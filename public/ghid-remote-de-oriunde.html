@@ -1,0 +1,459 @@
+<title>Remote de Oriunde</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --ink:#0b1f1a; --ink-2:#132e26;
+    --paper:#f4f7f3; --paper-2:#e9efe9;
+    --accent:#17d68f; --accent-dark:#0a9d67;
+    --gold:#f2b705;
+    --line:#d8e0da;
+    --text:#12211c; --text-dim:#4a5c54;
+    --on-ink:#eef5f0; --on-ink-dim:#a9c2b7;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0b1611; --paper-2:#101e18;
+      --text:#e9f2ec; --text-dim:#9fb6ac;
+      --line:#20362c;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0b1611; --paper-2:#101e18;
+    --text:#e9f2ec; --text-dim:#9fb6ac;
+    --line:#20362c;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--text);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 20px;}
+  h1,h2,h3{font-family:'Big Shoulders Display',sans-serif; font-weight:900; text-transform:uppercase; text-wrap:balance; letter-spacing:0.01em; line-height:0.95;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- HERO ---------- */
+  .hero{background:var(--ink); color:var(--on-ink); padding-block:56px 64px;}
+  .eyebrow{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:5px 14px; margin-bottom:18px;}
+  .hero h1{font-size:clamp(40px,7vw,74px); margin:0 0 14px;}
+  .hero h1 em{font-style:normal; color:var(--accent);}
+  .hero p.lead{font-size:19px; color:var(--on-ink-dim); max-width:60ch; margin:0 0 28px;}
+  .hero-grid{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
+  .pill{background:var(--ink-2); border:1px solid #234238; border-radius:10px; padding:12px 16px; font-size:14px; color:var(--on-ink-dim); flex:1 1 200px;}
+  .pill b{color:var(--on-ink); display:block; font-size:15px; margin-bottom:2px;}
+  .founder-banner{margin-top:22px; background:rgba(242,183,5,0.12); border:1px solid var(--gold); border-radius:12px; padding:14px 18px; font-size:15px; color:var(--on-ink); max-width:70ch;}
+  .founder-banner b{color:var(--gold);}
+
+  section{padding-block:52px;}
+  section.alt{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .kicker{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:10px;}
+  h2{font-size:clamp(28px,4.5vw,42px); margin:0 0 18px;}
+  p.big{font-size:18px; color:var(--text-dim); max-width:66ch;}
+
+  /* ---------- SECRET ---------- */
+  .secret-box{background:var(--ink); color:var(--on-ink); border-radius:16px; padding:32px; margin-top:28px;}
+  .secret-box p{color:var(--on-ink-dim); font-size:17px; max-width:70ch;}
+  .secret-box strong{color:var(--accent);}
+
+  /* ---------- CALCULATOR ---------- */
+  table.calc{width:100%; border-collapse:collapse; margin-top:24px; font-size:15px;}
+  table.calc caption{text-align:left; font-size:13px; color:var(--text-dim); margin-bottom:10px;}
+  table.calc th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); padding:10px 12px; border-bottom:2px solid var(--line);}
+  table.calc td{padding:12px; border-bottom:1px solid var(--line);}
+  table.calc td.num{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; text-align:right;}
+  table.calc td.comm{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; text-align:right; color:var(--accent-dark); font-weight:600;}
+  .scenario{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:28px;}
+  .scenario-card{background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:20px;}
+  .scenario-card .n{font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:42px; color:var(--accent-dark); line-height:1;}
+  .scenario-card .cap{font-size:13px; color:var(--text-dim); margin-top:6px;}
+  .disclaimer{font-size:13px; color:var(--text-dim); margin-top:16px; border-left:3px solid var(--gold); padding-left:12px;}
+
+  /* ---------- CHANNELS ---------- */
+  .channels{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:28px;}
+  .channel{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px;}
+  .channel .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent-dark); margin-bottom:8px;}
+  .channel h3{font-size:22px; margin:0 0 10px; text-transform:none; letter-spacing:0;}
+  .channel ul{margin:0; padding-left:18px; color:var(--text-dim); font-size:14.5px;}
+  .channel li{margin-bottom:6px;}
+
+  /* ---------- SCRIPTS (chat bubbles) ---------- */
+  .script-block{margin-top:24px;}
+  .script-title{font-weight:600; margin-bottom:10px; font-size:15px;}
+  .bubble{background:var(--paper); border:1px solid var(--line); border-radius:14px 14px 14px 4px; padding:14px 18px; max-width:70ch; font-size:15px; margin-bottom:22px; position:relative;}
+  .bubble::before{content:"Tu â†’"; display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent-dark); margin-bottom:6px; letter-spacing:0.06em;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line); padding-block:18px;}
+  .faq-item h3{font-size:17px; text-transform:none; letter-spacing:0; margin:0 0 8px; font-family:'IBM Plex Sans',sans-serif; font-weight:600;}
+  .faq-item p{margin:0; color:var(--text-dim);}
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta{background:linear-gradient(160deg,var(--ink),var(--ink-2)); color:var(--on-ink); border-radius:20px; padding:44px 32px; text-align:center; margin-top:8px;}
+  .cta h2{color:var(--on-ink);}
+  .cta p{color:var(--on-ink-dim); max-width:56ch; margin:0 auto 22px;}
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:26px; text-align:left;}
+  .step{background:var(--ink-2); border:1px solid #234238; border-radius:12px; padding:18px;}
+  .step .num{font-family:'Big Shoulders Display',sans-serif; font-weight:900; color:var(--accent); font-size:28px;}
+
+  footer{padding-block:36px; text-align:center; font-size:12.5px; color:var(--text-dim);}
+  figure{margin:0;}
+  .hero-diagram{margin-top:30px;}
+  .hero-diagram figcaption{font-size:12.5px; color:var(--on-ink-dim); margin-top:10px;}
+  .svg-chart figcaption{font-size:13px; color:var(--text-dim); margin-top:12px; max-width:66ch;}
+  tr.tier-gold{background:rgba(242,183,5,0.09);}
+
+  @media (max-width:520px){
+    .hero{padding-block:44px 48px;}
+    section{padding-block:40px;}
+    table.calc{font-size:13px;}
+    table.calc td, table.calc th{padding:8px 6px;}
+  }
+</style>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">🚀‡©🚀‡ª EdiÈ›ia Germania 2026"“2027 · Amira Consulting</span>
+    <h1>Cum faci bani <em>remote</em>,<br>de oriunde te-ai afla.</h1>
+    <p class="lead" style="font-size:21px; color:var(--on-ink); font-weight:500;">Drumul spre independenÈ›Äƒ financiarÄƒ "” fÄƒrÄƒ sÄƒ vinzi produse, fÄƒrÄƒ dropshipping, fÄƒrÄƒ sÄƒ investeÈ™ti niciun euro.</p>
+    <p class="lead">DacÄƒ tot ai vÄƒzut zeci de ghiduri "žcum fac bani remote" care Ã®n realitate te Ã®nvaÈ›Äƒ doar sÄƒ vinzi mai departe alt ghid "” Äƒsta e diferit. ÃŽÈ›i arÄƒtÄƒm mecanismul exact prin care poÈ›i cÃ¢È™tiga din recomandarea unui serviciu real, de care comunitatea romÃ¢neascÄƒ din Germania "” È™i nu numai, vezi mai jos "” are nevoie chiar acum, È™i Ã®È›i dÄƒm scripturile gata de copiat ca sÄƒ Ã®ncepi azi, nu "žÃ®ntr-o zi".</p>
+    <div class="hero-grid">
+      <div class="pill"><b>FÄƒrÄƒ plafon de cÃ¢È™tig</b>limita e cerul "” cu cÃ¢t recomanzi È™i formezi mai mult, cu atÃ¢t cÃ¢È™tigi mai mult</div>
+      <div class="pill"><b>0 investiÈ›ie</b>nu cumperi stoc, nu ai costuri, promovezi de pe telefon</div>
+      <div class="pill"><b>PlatÄƒ directÄƒ</b>urmÄƒritÄƒ automat pe numÄƒrul tÄƒu de telefon</div>
+    </div>
+    <div class="founder-banner">🚀… Primii 100 de Parteneri Amira primesc titlul de <b>Membru Fondator</b> "” 12% comision pe viaÈ›Äƒ, plus posibilitatea de a-È›i construi propria echipÄƒ È™i de a cÃ¢È™tiga È™i din activitatea ei.</div>
+    <figure class="hero-diagram">
+      <svg viewBox="0 0 640 130" role="img" aria-label="Tu recomanzi cuiva botul Amira pe WhatsApp, botul rezolvÄƒ dosarul, clientul plÄƒteÈ™te, iar tu primeÈ™ti automat comisionul" style="width:100%; height:auto; color:var(--on-ink-dim);">
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="currentColor"/></marker>
+        </defs>
+        <g font-family="IBM Plex Sans, sans-serif">
+          <circle cx="70" cy="45" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="70" y="53" text-anchor="middle" font-size="24">🚀™‹</text>
+          <text x="70" y="100" text-anchor="middle" font-size="13" fill="var(--on-ink)">Tu</text>
+
+          <line x1="108" y1="45" x2="192" y2="45" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="150" y="34" text-anchor="middle" font-size="11">recomanzi</text>
+
+          <circle cx="230" cy="45" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="230" y="53" text-anchor="middle" font-size="24">🚀¤–</text>
+          <text x="230" y="100" text-anchor="middle" font-size="13" fill="var(--on-ink)">Bot Amira</text>
+
+          <line x1="268" y1="45" x2="352" y2="45" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="310" y="34" text-anchor="middle" font-size="11">rezolvÄƒ dosarul</text>
+
+          <circle cx="390" cy="45" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="390" y="53" text-anchor="middle" font-size="24">🚀’¶</text>
+          <text x="390" y="100" text-anchor="middle" font-size="13" fill="var(--on-ink)">Clientul plÄƒteÈ™te</text>
+
+          <line x1="428" y1="45" x2="512" y2="45" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="470" y="34" text-anchor="middle" font-size="11">automat</text>
+
+          <circle cx="570" cy="45" r="34" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <text x="570" y="53" text-anchor="middle" font-size="24">🚀’°</text>
+          <text x="570" y="100" text-anchor="middle" font-size="13" fill="var(--accent)" font-weight="700">Comisionul tÄƒu</text>
+        </g>
+      </svg>
+      <figcaption>Mecanismul complet, de la recomandare la banii Ã®n cont "” fÄƒrÄƒ hÃ¢rtii, fÄƒrÄƒ discuÈ›ii.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Problema</div>
+    <h2>De ce majoritatea "žghidurilor remote"<br>nu Ã®È›i aduc niciun euro</h2>
+    <p class="big">Ai mai cumpÄƒrat probabil un ghid "žcum fac bani de acasÄƒ" care se termina cu "ž...È™i acum vinde-l È™i tu mai departe". FÄƒrÄƒ produs real Ã®n spate, fÄƒrÄƒ nimeni care sÄƒ cumpere cu adevÄƒrat ceva, banii nu apar niciodatÄƒ "” doar comisionul celui care È›i l-a vÃ¢ndut È›ie.</p>
+    <p class="big">Germania are peste 900.000 de romÃ¢ni (Destatis) "” plus turci, ucraineni, polonezi, bulgari È™i alte comunitÄƒÈ›i de imigranÈ›i, toate cu dosare reale de rezolvat: Kindergeld, BÃ¼rgergeld, acte de È™edere, amenzi, maÈ™ini. Nu e nevoie sÄƒ convingi pe nimeni de nimic fals "” oamenii deja cautÄƒ activ ajutor pentru asta, Ã®n fiecare zi, Ã®n orice grup de Facebook al diasporei.</p>
+
+    <div class="kicker" style="margin-top:34px;">SoluÈ›ia</div>
+    <h2>Devii puntea dintre<br>problemÄƒ È™i rezolvare</h2>
+    <div class="secret-box">
+      <p>CÃ¢nd cineva pe care Ã®l recomanzi <strong>chiar cumpÄƒrÄƒ</strong> un serviciu Amira Consulting, primeÈ™ti <strong>7-12% din valoarea serviciului</strong> (vezi mai jos exact cum), automat, fÄƒrÄƒ hÃ¢rtii, fÄƒrÄƒ discuÈ›ii. Nu conteazÄƒ unde eÈ™ti "” poÈ›i trimite un link din Spania, din RomÃ¢nia, de pe plajÄƒ. Singura ta treabÄƒ: sÄƒ pui Ã®n legÄƒturÄƒ oamenii care au o problemÄƒ administrativÄƒ cu Germania, cu botul nostru de WhatsApp care rezolvÄƒ acea problemÄƒ.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Trei niveluri, comision care creÈ™te</div>
+    <h2>Cu cÃ¢t te implici mai mult, cu atÃ¢t cÃ¢È™tigi mai mult</h2>
+    <p class="big">Nu toatÄƒ lumea Ã®ncepe la fel "” È™i nu toatÄƒ lumea rÄƒmÃ¢ne la fel. ReÈ›eaua Amira are 3 niveluri clare:</p>
+    <table class="calc" style="margin-bottom:8px;">
+      <tr><th>Nivel</th><th>Comision din vÃ¢nzÄƒri directe</th><th>Cum ajungi acolo</th></tr>
+      <tr><td>🚀¥‰ <b>Recomandare</b></td><td class="comm">7%</td><td>Automat, prima datÄƒ cÃ¢nd cineva te menÈ›ioneazÄƒ ca recomandare</td></tr>
+      <tr><td>🚀¥ˆ <b>Partener Amira</b></td><td class="comm">9%</td><td>Te implici activ, vrei sÄƒ faci asta constant "” te "žridici" la nivelul de Partener</td></tr>
+      <tr class="tier-gold"><td>🚀¥‡ <b>Membru Fondator</b></td><td class="comm">12%</td><td>Printre primii 100 Parteneri activi "” plus dreptul de a-È›i construi propria echipÄƒ</td></tr>
+    </table>
+    <p class="disclaimer">Un Membru Fondator care aduce pe cineva nou Ã®n reÈ›ea È™i Ã®l ajutÄƒ sÄƒ devinÄƒ Partener cÃ¢È™tigÄƒ È™i el ceva din activitatea acelei persoane, pe lÃ¢ngÄƒ comisionul lui direct "” un motiv Ã®n plus sÄƒ formezi È™i sÄƒ susÈ›ii pe altcineva, nu doar sÄƒ vinzi singur. Banii vin mereu din servicii reale plÄƒtite de clienÈ›i, niciodatÄƒ din taxe de Ã®nscriere.</p>
+
+    <div class="kicker" style="margin-top:30px;">Pe cifre "” nivel Partener Amira (9%)</div>
+    <table class="calc">
+      <caption>Servicii administrative "” comision 9% din preÈ› (Partener Amira)</caption>
+      <tr><th>Serviciu</th><th>PreÈ›</th><th>Comisionul tÄƒu (9%)</th></tr>
+      <tr><td>Meldebescheinigung (dovadÄƒ domiciliu)</td><td class="num">79 â‚¬</td><td class="comm">7,11 â‚¬</td></tr>
+      <tr><td>FÃ¼hrungszeugnis (cazier german)</td><td class="num">99 â‚¬</td><td class="comm">8,91 â‚¬</td></tr>
+      <tr><td>Gewerbeanmeldung (Ã®nregistrare activitate)</td><td class="num">129 â‚¬</td><td class="comm">11,61 â‚¬</td></tr>
+      <tr><td>Ajutor cÄƒutare locuinÈ›Äƒ (Wohnungssuche)</td><td class="num">149 â‚¬</td><td class="comm">13,41 â‚¬</td></tr>
+      <tr><td>Pachet Familie / Venit / Acte / Auto / ProtecÈ›ie</td><td class="num">219 â‚¬</td><td class="comm">19,71 â‚¬</td></tr>
+      <tr><td>Prelungire È™edere membri familie non-UE</td><td class="num">249 â‚¬</td><td class="comm">22,41 â‚¬</td></tr>
+      <tr><td>Dosar Complex (Widerspruch, Anerkennung diplome)</td><td class="num">349 â‚¬</td><td class="comm">31,41 â‚¬</td></tr>
+    </table>
+    <p class="disclaimer">Ca Membru Fondator (12%), aceleaÈ™i servicii aduc 219â‚¬ â†’ 26,28â‚¬, 349â‚¬ â†’ 41,88â‚¬ È™i tot aÈ™a "” plus ce cÃ¢È™tigi din echipa ta, dacÄƒ alegi sÄƒ o formezi.</p>
+
+    <table class="calc" style="margin-top:32px;">
+      <caption>Plasare loc de muncÄƒ "” de departe cel mai mare comision (candidatul NU plÄƒteÈ™te niciodatÄƒ, taxa vine de la angajator, legal Ã®n Germania) "” calculat la nivel Partener Amira (9%)</caption>
+      <tr><th>Salariul brut anual al candidatului plasat</th><th>Comision Amira de la angajator (~25%)</th><th>Comisionul tÄƒu (9% din el)</th></tr>
+      <tr><td>28.000 â‚¬ (muncitor calificat, entry-level)</td><td class="num">7.000 â‚¬</td><td class="comm">630 â‚¬</td></tr>
+      <tr><td>35.000 â‚¬ (meserie cu experienÈ›Äƒ)</td><td class="num">8.750 â‚¬</td><td class="comm">787,50 â‚¬</td></tr>
+      <tr><td>45.000 â‚¬ (specialist/calificare recunoscutÄƒ)</td><td class="num">11.250 â‚¬</td><td class="comm">1.012,50 â‚¬</td></tr>
+    </table>
+    <p class="disclaimer">25% e media realÄƒ de piaÈ›Äƒ pentru comisioane de recrutare Ã®n Germania (17-30% Ã®n funcÈ›ie de post, referinÈ›Äƒ BDU ~27,8%) "” o singurÄƒ recomandare de angajare poate valora cÃ¢t 30-50 de dosare administrative la un loc. La nivel de Membru Fondator (12%), aceleaÈ™i plasÄƒri aduc 840â‚¬ / 1.050â‚¬ / 1.350â‚¬.</p>
+
+    <div class="kicker" style="margin-top:36px;">Nu te opri la un singur tip de client</div>
+    <h2>CombinÄƒ serviciile "” aÈ™a aratÄƒ o lunÄƒ realÄƒ de Partener Amira</h2>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">~200 â‚¬</div><div class="cap">doar din 10 dosare administrative standard (219â‚¬, nivel Partener 9%) "” punctul de plecare, nu plafonul</div></div>
+      <div class="scenario-card"><div class="n">~910 â‚¬</div><div class="cap">6 dosare administrative + <b>1 plasare de job</b> (salariu 35.000â‚¬) Ã®n aceeaÈ™i lunÄƒ</div></div>
+      <div class="scenario-card"><div class="n">~1.500 â‚¬</div><div class="cap">Ca Membru Fondator: 4 dosare + 2 ajutoare locuinÈ›Äƒ + <b>1 plasare de job</b> (45.000â‚¬) + ce mai cÃ¢È™tigi din 2 Parteneri din echipa ta</div></div>
+      <div class="scenario-card"><div class="n">~2.860 â‚¬</div><div class="cap">Membru Fondator cu o echipÄƒ de 3 Parteneri activi: 8 dosare proprii + <b>2 plasÄƒri de job</b> (35.000â‚¬ È™i 45.000â‚¬) + ce cÃ¢È™tigi din activitatea echipei tale "” o lunÄƒ foarte bunÄƒ, cu o reÈ›ea deja formatÄƒ</div></div>
+      <div class="scenario-card"><div class="n">âˆž</div><div class="cap">Nu existÄƒ plafon "” mai multe recomandÄƒri, mai mulÈ›i Parteneri formaÈ›i, mai multe joburi plasate Ã®nseamnÄƒ pur È™i simplu mai mulÈ›i bani. Limita e cerul, nu ghidul Äƒsta.</div></div>
+    </div>
+    <p class="disclaimer">Aceste scenarii sunt exemple de calcul pe baza comisioanelor reale de mai sus, nu o garanÈ›ie de venit "” È™i nu un plafon. CÃ¢È›i bani faci depinde de cÃ¢te persoane din jurul tÄƒu au nevoie de aceste servicii, de cÃ¢t de constant aplici paÈ™ii din acest ghid È™i, la nivel de Fondator, de cÃ¢È›i Parteneri formezi.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">🚀Œ PiaÈ›a ta e mai mare decÃ¢t crezi</div>
+    <h2>Nu promovezi doar cÄƒtre romÃ¢ni</h2>
+    <p class="big">Botul Amira Consulting vorbeÈ™te acum È™i germanÄƒ, bulgarÄƒ, ucraineanÄƒ, turcÄƒ È™i polonezÄƒ, pe lÃ¢ngÄƒ romÃ¢nÄƒ "” fiecare comunitate primeÈ™te informaÈ›ia relevantÄƒ pentru situaÈ›ia ei specificÄƒ (de exemplu, regimul special de protecÈ›ie temporarÄƒ pentru ucraineni). Asta Ã®nseamnÄƒ cÄƒ reÈ›eaua ta de recomandare nu se opreÈ™te la prietenii/familia romÃ¢nÄƒ "” orice cunoÈ™tinÈ›Äƒ dintr-o comunitate de imigranÈ›i din Germania e un potenÈ›ial client.</p>
+    <p class="big">Conform Destatis (2025), peste <strong>14 milioane de strÄƒini</strong> locuiesc Ã®n Germania "” turcii, ucrainenii, sirienii, romÃ¢nii È™i polonezii fiind printre cele mai numeroase grupuri. Cu cÃ¢t reÈ›eaua ta acoperÄƒ mai multe comunitÄƒÈ›i, cu atÃ¢t plafonul de "ž10 recomandÄƒri pe lunÄƒ" din calculul de mai sus devine ridicol de conservator.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">🚀¢ Al doilea canal de venit</div>
+    <h2>Nu te limita la persoane "”<br>automatizezi È™i firme</h2>
+    <p class="big">InteligenÈ›a artificialÄƒ e viitorul Ã®n tot ce se construieÈ™te acum "” de la consultanÈ›Äƒ pÃ¢nÄƒ la automatizarea firmelor "” È™i Amira Consulting porneÈ™te pe acest val de la Ã®nceput, nu din urmÄƒ. Pe lÃ¢ngÄƒ dosarele administrative pentru persoane, poÈ›i recomanda chiar de-acum firme mici din jurul tÄƒu "” restaurantul de la colÈ›, un salon, un atelier, un cabinet "” pentru <b>roboÈ›i telefonici, asistenÈ›i virtuali È™i digitalizarea proceselor interne</b>. Orice proprietar care Ã®ncÄƒ rÄƒspunde manual la telefon sau È›ine evidenÈ›a pe hÃ¢rtie e un client potenÈ›ial.</p>
+    <div class="secret-box">
+      <p>Nu e o promisiune goalÄƒ "” suntem deja specialiÈ™ti Ã®n automatizÄƒri: <strong>chiar compania Amira Consulting funcÈ›ioneazÄƒ pe automatizarea pe care o construim</strong> (botul de WhatsApp care rÄƒspunde clienÈ›ilor, sistemul care urmÄƒreÈ™te comisioanele, tot ce ai citit pÃ¢nÄƒ acum Ã®n acest ghid). Ce am fÄƒcut pentru noi Ã®nÈ™ine, oferim acum È™i altor firme din Europa.</p>
+      <p>DiferenÈ›a faÈ›Äƒ de un dosar administrativ: acolo comisionul vine <strong>o singurÄƒ datÄƒ</strong>. La o firmÄƒ cu automatizare, vine <strong>Ã®n fiecare lunÄƒ</strong>, din aceeaÈ™i recomandare, cÃ¢t timp firma rÄƒmÃ¢ne clientÄƒ. Nu mai faci nimic nou dupÄƒ prima discuÈ›ie "” banii continuÄƒ sÄƒ vinÄƒ.</p>
+    </div>
+
+    <figure class="svg-chart" style="margin-top:30px;">
+      <svg viewBox="0 0 560 240" role="img" aria-label="ComparaÈ›ie: un dosar administrativ plÄƒteÈ™te o singurÄƒ datÄƒ 20 de euro comision, Ã®n timp ce un singur client de firmÄƒ cu automatizare plÄƒteÈ™te recurent, ajungÃ¢nd la 180 de euro comision cumulat Ã®n doar 6 luni È™i continuÃ¢nd sÄƒ creascÄƒ" style="width:100%; height:auto; color:var(--text-dim);">
+        <g font-family="IBM Plex Sans, sans-serif" font-size="11">
+          <rect x="60" y="10" width="10" height="10" fill="var(--gold)"/>
+          <text x="76" y="19" fill="var(--text-dim)">Un dosar administrativ (o datÄƒ)</text>
+          <rect x="60" y="26" width="10" height="10" fill="var(--accent-dark)"/>
+          <text x="76" y="35" fill="var(--text-dim)">Un client firmÄƒ cu automatizare (recurent, lunar)</text>
+        </g>
+        <line x1="60" y1="200" x2="540" y2="200" stroke="currentColor" stroke-width="1.5"/>
+        <polyline points="60,181 156,181 252,181 348,181 444,181 540,181" fill="none" stroke="var(--gold)" stroke-width="3"/>
+        <polyline points="60,172 156,143 252,115 348,87 444,58 540,30" fill="none" stroke="var(--accent-dark)" stroke-width="3"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor">
+          <text x="60" y="216" text-anchor="middle">L1</text>
+          <text x="156" y="216" text-anchor="middle">L2</text>
+          <text x="252" y="216" text-anchor="middle">L3</text>
+          <text x="348" y="216" text-anchor="middle">L4</text>
+          <text x="444" y="216" text-anchor="middle">L5</text>
+          <text x="540" y="216" text-anchor="middle">L6</text>
+        </g>
+        <circle cx="540" cy="181" r="4" fill="var(--gold)"/>
+        <circle cx="540" cy="30" r="4" fill="var(--accent-dark)"/>
+        <text x="486" y="171" text-anchor="end" font-size="12" fill="var(--gold)" font-weight="600">20 â‚¬ (rÄƒmÃ¢ne fix)</text>
+        <text x="486" y="22" text-anchor="end" font-size="12" fill="var(--accent-dark)" font-weight="600">180 â‚¬ È™i creÈ™te</text>
+      </svg>
+      <figcaption>Cumulat pe 6 luni, din exact acelaÈ™i efort iniÈ›ial: un dosar administrativ Ã®È›i aduce comisionul o singurÄƒ datÄƒ; un singur client de firmÄƒ cu automatizare È›i-l aduce Ã®n fiecare lunÄƒ "” iar diferenÈ›a creÈ™te lunÄƒ de lunÄƒ.</figcaption>
+    </figure>
+
+    <div class="kicker" style="margin-top:34px;">PreÈ› & comision "” pornim de la ce È™tim deja</div>
+    <table class="calc">
+      <caption>PreÈ›uri tipice de piaÈ›Äƒ pentru automatizÄƒri B2B Ã®n Europa "” comisionul tÄƒu calculat la procentele deja existente (7-12%), aici la nivel Partener Amira (9%)</caption>
+      <tr><th>Serviciu</th><th>Abonament lunar tipic</th><th>Comisionul tÄƒu lunar (9%, recurent)</th></tr>
+      <tr><td>Robot telefonic pentru o firmÄƒ micÄƒ</td><td class="num">300"“600 â‚¬/lunÄƒ</td><td class="comm">27"“54 â‚¬/lunÄƒ</td></tr>
+      <tr><td>Automatizare generalÄƒ de business</td><td class="num">800"“1.500 â‚¬/lunÄƒ</td><td class="comm">72"“135 â‚¬/lunÄƒ</td></tr>
+      <tr><td>Automatizare de producÈ›ie</td><td class="num">2.000+ â‚¬/lunÄƒ</td><td class="comm">180+ â‚¬/lunÄƒ</td></tr>
+    </table>
+    <p class="disclaimer">PreÈ›ul final se stabileÈ™te Ã®mpreunÄƒ cu noi, pentru fiecare firmÄƒ Ã®n parte (depinde de mÄƒrime È™i complexitate) "” dar procentul tÄƒu de comision e mereu cel deja stabilit pe nivelul tÄƒu (7-12%), exact ca la orice alt serviciu Amira. Tu deschizi discuÈ›ia cu proprietarul, ne trimiÈ›i nevoia lui, noi facem oferta È™i confirmÄƒm comisionul.</p>
+
+    <div class="kicker" style="margin-top:34px;">Venitul tÄƒu pasiv lunar, din portofoliul de firme</div>
+    <p class="big">Aici matematica se schimbÄƒ complet: nu numeri cÃ¢te dosare noi faci luna asta, numeri cÃ¢te firme rÄƒmÃ¢n clienÈ›i luna viitoare "” fÄƒrÄƒ sÄƒ mai faci nimic.</p>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">~250 â‚¬/lunÄƒ</div><div class="cap">4-5 firme mici cu robot telefonic de bazÄƒ "” venit recurent, Ã®n fiecare lunÄƒ, din recomandÄƒri fÄƒcute o singurÄƒ datÄƒ</div></div>
+      <div class="scenario-card"><div class="n">~600 â‚¬/lunÄƒ</div><div class="cap">portofoliu mixt de 6-8 firme: roboÈ›i telefonici + cÃ¢teva automatizÄƒri generale de business</div></div>
+      <div class="scenario-card"><div class="n">~1.200 â‚¬/lunÄƒ</div><div class="cap">10+ firme active, inclusiv 1-2 automatizÄƒri de producÈ›ie "” venit lunar solid, fÄƒrÄƒ niciun client nou luna asta</div></div>
+      <div class="scenario-card"><div class="n">2.500+ â‚¬/lunÄƒ</div><div class="cap">reÈ›ea maturÄƒ de firme, care creÈ™te de la sine lunÄƒ de lunÄƒ "” È™i Ã®ncÄƒ nu ai atins plafonul, pentru cÄƒ nu existÄƒ</div></div>
+    </div>
+    <p class="disclaimer">Aceste cifre sunt exemple de calcul, nu o garanÈ›ie de venit "” dar spre deosebire de un dosar administrativ, acest venit se repetÄƒ automat Ã®n fiecare lunÄƒ, cÃ¢t timp firma rÄƒmÃ¢ne clientÄƒ. Un Membru Fondator, cu echipa deja formatÄƒ din dosare administrative, va fi primul care poate construi rapid un astfel de portofoliu de firme. Vezi Ã®n secÈ›iunea "žCopiazÄƒ È™i trimite" mai jos un mesaj gata de folosit pentru un proprietar de firmÄƒ.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">â³ De ce acum</div>
+    <h2>Germania 2026"“2027:<br>fereastra e deschisÄƒ</h2>
+    <p class="big">Comunitatea romÃ¢neascÄƒ din Germania e una dintre cele mai mari diaspore din UE, iar birocraÈ›ia germanÄƒ (Kindergeld, BÃ¼rgergeld, Aufenthaltstitel) rÄƒmÃ¢ne complicatÄƒ È™i Ã®n mare parte doar Ã®n germanÄƒ "” exact locul unde ajutorul Ã®ntr-o limbÄƒ pe care o Ã®nÈ›elegi chiar conteazÄƒ, fie cÄƒ vorbim de romÃ¢nÄƒ, turcÄƒ, ucraineanÄƒ sau polonezÄƒ. Cu cÃ¢t intri mai devreme Ã®ntr-o reÈ›ea de recomandare Ã®ncÄƒ tÃ¢nÄƒrÄƒ, cu atÃ¢t ai mai puÈ›inÄƒ concurenÈ›Äƒ pe grupurile È™i comunitÄƒÈ›ile pe care le cunoÈ™ti deja.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Playbook pe canale</div>
+    <h2>Unde È™i cum promovezi,<br>concret</h2>
+    <div class="channels">
+      <div class="channel">
+        <div class="tag">🚀“˜ Facebook</div>
+        <h3>Grupuri de diaspora</h3>
+        <ul>
+          <li>CautÄƒ grupuri "žRomÃ¢ni Ã®n [oraÈ™ul tÄƒu din Germania]" "” sunt zeci, cu mii de membri</li>
+          <li>Nu da linkul direct din prima "” rÄƒspunde Ã®ntÃ¢i la 2-3 Ã®ntrebÄƒri reale ale oamenilor din grup despre Kindergeld/acte, apoi menÈ›ioneazÄƒ botul</li>
+          <li>PosteazÄƒ o datÄƒ pe sÄƒptÄƒmÃ¢nÄƒ un "žÈ™tiaÈ›i cÄƒ..." legat de un drept/beneficiu, cu linkul la coadÄƒ</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀Žµ TikTok / Reels</div>
+        <h3>Video scurt, o singurÄƒ idee</h3>
+        <ul>
+          <li>Format: "ž3 lucruri pe care nu le È™tiai despre Kindergeld Ã®n Germania" "” ultimul e "žpoÈ›i verifica gratuit pe WhatsApp"</li>
+          <li>Nu promite bani/beneficii exacte "” aratÄƒ doar cÄƒ existÄƒ un pas simplu de fÄƒcut</li>
+          <li>Linkul Ã®n bio, nu Ã®n video (TikTok penalizeazÄƒ linkurile Ã®n descriere uneori)</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀’¬ WhatsApp</div>
+        <h3>Status + mesaje directe</h3>
+        <ul>
+          <li>Update de status: "žCine are nevoie de ajutor cu acte Ã®n Germania, scrieÈ›i-mi" "” cald, nu agresiv</li>
+          <li>Cel mai bun canal: cineva din familie/prieteni care se plÃ¢nge de o problemÄƒ administrativÄƒ "” trimite-i direct numÄƒrul botului</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀“¸ Instagram</div>
+        <h3>Story + highlight permanent</h3>
+        <ul>
+          <li>Un highlight fix numit "žActe Germania" cu 3-4 story-uri salvate, mereu vizibile pe profilul tÄƒu</li>
+          <li>ReposteazÄƒ Ã®ntrebÄƒri din alte grupuri (cu acord) È™i rÄƒspunde public cu linkul</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀¢ Firme & antreprenori</div>
+        <h3>Al doilea canal de venit: firmele</h3>
+        <ul>
+          <li>Orice mic proprietar care Ã®ncÄƒ rÄƒspunde manual la telefon, È›ine evidenÈ›a pe hÃ¢rtie sau pierde clienÈ›i din lipsÄƒ de timp e un client potenÈ›ial pentru automatizare</li>
+          <li>ÃŽncepe cu firme pe care le cunoÈ™ti deja "” restaurantul de la colÈ›, un salon, un atelier, un cabinet "” nu ai nevoie de LinkedIn ca sÄƒ porneÈ™ti</li>
+          <li>Aici venitul tÄƒu e lunar, recurent, nu o singurÄƒ datÄƒ "” vezi secÈ›iunea "žAl doilea canal de venit" de mai sus</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">🚀“Š Ce spun cercetÄƒrile</div>
+    <h2>De ce recomandarea bate<br>orice reclamÄƒ</h2>
+    <p class="big">Nu e doar o vorbÄƒ goalÄƒ "žrecomandarea e cea mai bunÄƒ reclamÄƒ" "” sunt cifre reale, din studii serioase de piaÈ›Äƒ.</p>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">92%</div><div class="cap">dintre oameni au mai multÄƒ Ã®ncredere Ã®ntr-o recomandare de la cineva cunoscut decÃ¢t Ã®n orice reclamÄƒ (Nielsen, studiu global)</div></div>
+      <div class="scenario-card"><div class="n">4x</div><div class="cap">mai probabil sÄƒ cumpere cineva atunci cÃ¢nd e recomandat de un prieten, faÈ›Äƒ de a gÄƒsi singur oferta</div></div>
+      <div class="scenario-card"><div class="n">80%</div><div class="cap">din vÃ¢nzÄƒri au nevoie de minim 5 urmÄƒriri (follow-up) "” doar 2% se Ã®nchid din primul mesaj. Nu renunÈ›a dupÄƒ un "žnu rÄƒspunde acum"</div></div>
+    </div>
+    <p class="disclaimer">Concluzia practicÄƒ: tu ai deja avantajul cel mai mare posibil "” oamenii din jurul tÄƒu au Ã®ncredere Ã®n tine mai mult decÃ¢t Ã®n orice reclamÄƒ Amira ar putea rula vreodatÄƒ. RÄƒmÃ¢ne doar sÄƒ nu renunÈ›i dupÄƒ primul mesaj netrimis-Ã®napoi.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">🚀¤ VÃ¢nzare, nu presiune</div>
+    <h2>Cum rÄƒspunzi la cele mai dese ezitÄƒri</h2>
+    <p class="big">Un Partener Amira bun nu convinge pe nimeni cu forÈ›a "” rezolvÄƒ obiecÈ›ia Ã®nainte sÄƒ devinÄƒ un motiv de refuz. IatÄƒ rÄƒspunsuri gata pregÄƒtite la ce aude toatÄƒ lumea.</p>
+    <div class="script-block">
+      <div class="script-title">"žDar asta nu e gratuit la Familienkasse/Jobcenter direct?"</div>
+      <div class="bubble">Ai dreptate, depunerea Ã®n sine e gratuitÄƒ. PlÄƒteÈ™ti doar ca cineva sÄƒ completeze corect tot dosarul È™i sÄƒ-l depunÄƒ pentru tine, ca sÄƒ nu-È›i fie respins din greÈ™ealÄƒ sau sÄƒ pierzi luni de zile din cauza unei hÃ¢rtii lipsÄƒ. DacÄƒ vrei sÄƒ Ã®ncerci singur Ã®ntÃ¢i, poÈ›i oricÃ¢nd "” dar mulÈ›i preferÄƒ sÄƒ nu-È™i mai batÄƒ capul.</div>
+      <div class="script-title">"žNu am Ã®ncredere sÄƒ dau date personale pe un bot de WhatsApp"</div>
+      <div class="bubble">Total normal sÄƒ fii precaut. Datele sunt tratate conform GDPR È™i nu sunt folosite decÃ¢t pentru dosarul tÄƒu "” poÈ›i Ã®ncepe doar cu o Ã®ntrebare generalÄƒ, fÄƒrÄƒ nicio datÄƒ personalÄƒ, È™i vezi singur cum rÄƒspunde Ã®nainte sÄƒ decizi dacÄƒ mergi mai departe.</div>
+      <div class="script-title">"žNu am nevoie acum, poate mai tÃ¢rziu"</div>
+      <div class="bubble">Sigur, niciun grabÄƒ. ÃŽÈ›i las numÄƒrul aici ca sÄƒ-l ai cÃ¢nd ai nevoie "” È™i dacÄƒ Ã®ntre timp mai È™tii pe cineva care are o problemÄƒ cu actele, Ã®i poÈ›i da È™i lui.</div>
+    </div>
+    <p class="disclaimer">ObservÄƒ tiparul: niciun rÄƒspuns nu forÈ›eazÄƒ, toate lasÄƒ loc de "žnu acum" "” È™i toate transformÄƒ un refuz Ã®ntr-o uÈ™Äƒ rÄƒmasÄƒ deschisÄƒ pentru mai tÃ¢rziu.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">âœï¸ CopiazÄƒ È™i trimite</div>
+    <h2>Scripturi gata de folosit</h2>
+    <div class="script-block">
+      <div class="script-title">Pentru cineva din familie/prieteni</div>
+      <div class="bubble">Salut! È˜tiu cÄƒ tot spuneai cÄƒ nu È™tii cum sÄƒ faci actele alea pentru Kindergeld / BÃ¼rgergeld. Am gÄƒsit un serviciu pe WhatsApp, Amira Consulting, care te ajutÄƒ pas cu pas, Ã®n romÃ¢nÄƒ. Scrie-le tu direct, sau vrei sÄƒ le dau eu numÄƒrul tÄƒu?</div>
+      <div class="script-title">ÃŽntr-un grup de Facebook (dupÄƒ ce ai rÄƒspuns la o Ã®ntrebare realÄƒ)</div>
+      <div class="bubble">...pe scurt, ai dreptul la Kinderzuschlag pe lÃ¢ngÄƒ Kindergeld dacÄƒ venitul e mic, multÄƒ lume nu È™tie. DacÄƒ vrei ajutor sÄƒ depui dosarul corect, e un consultant pe WhatsApp (Amira Consulting) care te ghideazÄƒ gratuit prin proces, plÄƒteÈ™ti doar dacÄƒ alegi sÄƒ te ajute È™i cu completarea/depunerea.</div>
+      <div class="script-title">Status WhatsApp</div>
+      <div class="bubble">Ai treabÄƒ cu AuslÃ¤nderbehÃ¶rde, Jobcenter sau Familienkasse È™i nu È™tii de unde sÄƒ Ã®ncepi? Scrie-mi, te pun Ã®n legÄƒturÄƒ cu cineva care te ajutÄƒ pas cu pas. 🚀‡©🚀‡ª🚀“‹</div>
+      <div class="script-title">Pentru un proprietar de firmÄƒ (restaurant, salon, atelier, cabinet)</div>
+      <div class="bubble">Salut! Am vÄƒzut cÄƒ rÄƒspundeÈ›i voi la telefon toatÄƒ ziua / È›ineÈ›i evidenÈ›a pe hÃ¢rtie "” colaborez cu Amira Consulting, facem roboÈ›i telefonici È™i automatizÄƒri pentru firme mici, ca sÄƒ nu mai pierdeÈ›i clienÈ›i din lipsÄƒ de timp. Vrei sÄƒ vedem Ã®mpreunÄƒ, 10 minute, dacÄƒ are sens pentru afacerea ta? Nu costÄƒ nimic sÄƒ discutÄƒm. 🚀¢🚀¤–</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">â“ ÃŽntrebÄƒri frecvente</div>
+    <h2>Ce trebuie sÄƒ È™tii Ã®nainte sÄƒ Ã®ncepi</h2>
+    <div class="faq-item">
+      <h3>Cum È™tie Amira Consulting cÄƒ eu am adus clientul?</h3>
+      <p>Persoana pe care o recomanzi Ã®i spune botului cine a trimis-o (numele sau numÄƒrul tÄƒu de telefon) la prima conversaÈ›ie "” sistemul te leagÄƒ automat de acea recomandare.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Cum devin Partener Amira, nu doar Recomandare?</h3>
+      <p>Simplu "” scrii pe WhatsApp, la numÄƒrul Amira Consulting, exact cuvÃ¢ntul <b>"žpartener"</b> (un singur cuvÃ¢nt, fÄƒrÄƒ altceva) È™i eÈ™ti trecut automat la nivelul de Partener (9%). Nu trebuie sÄƒ suni pe nimeni, nu completezi niciun formular.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Trebuie sÄƒ am firmÄƒ sau contract ca sÄƒ primesc comisionul?</h3>
+      <p>Nu, nu ai nevoie de firmÄƒ pentru a fi Partener Amira. Comisionul se calculeazÄƒ È™i se È›ine evidenÈ›a lui pe numÄƒrul tÄƒu de telefon.</p>
+    </div>
+    <div class="faq-item">
+      <h3>CÃ¢t dureazÄƒ pÃ¢nÄƒ apare comisionul?</h3>
+      <p>OdatÄƒ ce persoana recomandatÄƒ de tine plÄƒteÈ™te efectiv un serviciu, comisionul e Ã®nregistrat pe contul tÄƒu de partener.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Pot promova din altÄƒ È›arÄƒ, nu doar din Germania?</h3>
+      <p>Da. Foarte mulÈ›i romÃ¢ni cu nevoi administrative Ã®n Germania locuiesc de fapt Ã®n RomÃ¢nia sau altundeva "” problema e legatÄƒ de Germania, nu de unde eÈ™ti tu fizic.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Ce Ã®nseamnÄƒ exact "žMembru Fondator"?</h3>
+      <p>Primii 100 de oameni care devin activi Ã®n reÈ›ea primesc, permanent, comision de 12% (faÈ›Äƒ de 9% cÃ¢t are un Partener obiÈ™nuit) "” È™i, Ã®n plus, dreptul de a-È™i construi propria echipÄƒ de Parteneri, cu training prin Zoom inclus. E o recunoaÈ™tere realÄƒ pentru cei care intrÄƒ devreme, nu un titlu decorativ.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Cum cÃ¢È™tig din echipa mea, dacÄƒ sunt Membru Fondator?</h3>
+      <p>Recrutezi È™i formezi (prin sesiuni Zoom) oameni noi, Ã®i ajuÈ›i sÄƒ devinÄƒ Parteneri Amira. Pe lÃ¢ngÄƒ comisionul tÄƒu direct din propriile recomandÄƒri, mai cÃ¢È™tigi È™i din activitatea echipei pe care ai format-o "” detaliile exacte È›i le explicÄƒm cÃ¢nd ajungi la acest nivel. Banii vin mereu din servicii reale plÄƒtite de clienÈ›i, niciodatÄƒ din taxe de Ã®nscriere ale partenerilor tÄƒi.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Pot recomanda È™i firme, nu doar persoane fizice?</h3>
+      <p>Da "” pe lÃ¢ngÄƒ dosarele administrative pentru persoane, poÈ›i recomanda firme mici (restaurant, salon, atelier, cabinet) pentru automatizÄƒri: robot telefonic, asistent virtual, digitalizarea proceselor. Comisionul se calculeazÄƒ la acelaÈ™i procent ca restul (7-12%, Ã®n funcÈ›ie de nivelul tÄƒu), dar aici vine Ã®n fiecare lunÄƒ, nu o singurÄƒ datÄƒ "” vezi secÈ›iunea "žAl doilea canal de venit" din ghid.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <h2>🚀š€ Gata sÄƒ Ã®ncepi?</h2>
+      <p>Nu ai nevoie de site, de reclame plÄƒtite sau de mii de urmÄƒritori. Ai nevoie de un telefon È™i de oamenii din jurul tÄƒu care oricum au nevoie de ajutor cu actele din Germania. Iar dacÄƒ eÈ™ti printre primii 100, rÄƒmÃ¢i cu 12% comision permanent "” nu doar 9%.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div>SalveazÄƒ numÄƒrul WhatsApp Amira Consulting din materialele primite la cumpÄƒrare</div>
+        <div class="step"><div class="num">02</div>Alege 1-2 canale din ghid È™i trimite primul mesaj azi, nu "žde mÃ¢ine"</div>
+        <div class="step"><div class="num">03</div>UrmÄƒreÈ™te comisioanele "” fiecare recomandare plÄƒtitÄƒ apare automat pe numÄƒrul tÄƒu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Acest ghid nu garanteazÄƒ venituri "” rezultatele depind de efortul È™i reÈ›eaua fiecÄƒruia. Comisionul variazÄƒ pe 3 niveluri (7% Recomandare / 9% Partener Amira / 12% Membru Fondator) din valoarea serviciilor plÄƒtite de persoanele recomandate; Membrii Fondatori cÃ¢È™tigÄƒ suplimentar È™i din activitatea echipei pe care o formeazÄƒ. Amira Consulting · RosenstraÃŸe 1, 49610 QuakenbrÃ¼ck.
+</footer>
+

@@ -1,0 +1,361 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Sistemul Amira Consulting</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #f6f4ee;
+    --surface: #ffffff;
+    --surface-2: #f0ede2;
+    --ink: #161f33;
+    --ink-soft: #5c6579;
+    --border: #ddd8c7;
+
+    --indigo: #5b4b9e;
+    --indigo-bg: #eae5f6;
+    --amber: #ab7a2e;
+    --amber-bg: #f4e7c9;
+    --teal: #1f7f66;
+    --teal-bg: #dcefe7;
+    --rust: #b1552f;
+    --rust-bg: #f5e1d3;
+
+    --shadow: 0 1px 2px rgba(22,31,51,.06), 0 8px 24px rgba(22,31,51,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10162a;
+      --surface: #171f38;
+      --surface-2: #1b2542;
+      --ink: #f0ede2;
+      --ink-soft: #a6afc4;
+      --border: #2c3757;
+
+      --indigo: #b3a1ef;
+      --indigo-bg: #241c40;
+      --amber: #e8bd6f;
+      --amber-bg: #2b2311;
+      --teal: #7fd4b6;
+      --teal-bg: #122820;
+      --rust: #e39a72;
+      --rust-bg: #2c1c14;
+
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10162a;
+    --surface: #171f38;
+    --surface-2: #1b2542;
+    --ink: #f0ede2;
+    --ink-soft: #a6afc4;
+    --border: #2c3757;
+
+    --indigo: #b3a1ef;
+    --indigo-bg: #241c40;
+    --amber: #e8bd6f;
+    --amber-bg: #2b2311;
+    --teal: #7fd4b6;
+    --teal-bg: #122820;
+    --rust: #e39a72;
+    --rust-bg: #2c1c14;
+
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.4);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', system-ui, sans-serif;
+    padding: 30px 20px 60px;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+  header { text-align: center; margin-bottom: 24px; }
+  header .eyebrow {
+    font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--indigo); font-weight: 700; margin-bottom: 8px;
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif; font-weight: 700;
+    font-size: clamp(30px, 5vw, 44px); margin: 0 0 8px; text-wrap: balance;
+  }
+  header p { color: var(--ink-soft); margin: 0 auto; font-size: 15px; max-width: 62ch; line-height: 1.55; }
+
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 20px 14px 10px;
+  }
+  svg { display: block; width: 100%; height: auto; }
+  .diagram-text { font-family: 'Public Sans', system-ui, sans-serif; }
+
+  figcaption {
+    text-align: center; color: var(--ink-soft); font-size: 13px;
+    margin: 12px 6px 0; line-height: 1.55; max-width: 78ch; margin-inline: auto;
+  }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: center;
+    margin: 24px 0 6px; font-size: 12.5px; color: var(--ink-soft);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .swatch { width: 13px; height: 13px; border-radius: 4px; display: inline-block; flex: none; }
+
+  .howto {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .howto .step {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 14px 16px;
+  }
+  .howto .num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px; font-weight: 700; color: var(--indigo);
+    display: block; margin-bottom: 4px;
+  }
+  .howto h3 { margin: 0 0 4px; font-size: 13.5px; }
+  .howto p { margin: 0; font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+
+  footer {
+    text-align: center; margin-top: 26px; font-size: 12px; color: var(--ink-soft);
+  }
+  footer strong { color: var(--ink); }
+
+  @media print {
+    body { background: #fff; max-width: none; padding: 6mm; }
+    .stage { box-shadow: none; border: 1px solid #ccc; }
+  }
+  @media (max-width: 760px) {
+    .howto { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    body { padding: 22px 10px 40px; }
+    .howto { grid-template-columns: 1fr; }
+  }
+</style>
+
+<header>
+  <div class="eyebrow">Plan de afaceri · schema sistemului Amira Consulting</div>
+  <h1>Cum funcÈ›ioneazÄƒ Amira Consulting</h1>
+  <p>De la primul contact al unui romÃ¢n cu unul din canalele noastre, pÃ¢nÄƒ la un catalog Ã®ntreg de servicii "” È™i cum orice client mulÈ›umit poate deveni, la rÃ¢ndul lui, un partener plÄƒtit prin recomandare.</p>
+</header>
+
+<div class="stage">
+<figure style="margin:0">
+<svg viewBox="0 0 1200 1340" role="img" aria-label="Diagrama sistemului Amira Consulting: trei canale de intrare (Life n' Five, apeluri DVAG, recomandari) alimenteaza doi asistenti AI (Maya la telefon si Consultantul WhatsApp), care conduc catre un hub central si un catalog de 12 produse si servicii; fiecare plata din catalog se imparte intre afiliatul care a recomandat clientul si Amira Consulting; iar orice client multumit poate deveni el insusi afiliat, inchizand o bucla de crestere inapoi spre recomandari.">
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--teal)"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--amber)"/>
+    </marker>
+    <marker id="arrowRust" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--rust)"/>
+    </marker>
+  </defs>
+
+  <g class="diagram-text" fill="var(--ink)" stroke="var(--ink)">
+
+  <!-- ============ ROW A: intrare ============ -->
+  <text x="600" y="26" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="var(--ink-soft)" stroke="none">â‘  DE UNDE VINE UN CLIENT NOU</text>
+
+  <rect x="40" y="42" width="340" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="210" y="74" text-anchor="middle" font-size="17" font-weight="700" stroke="none">Life n' Five</text>
+  <text x="210" y="96" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">conÈ›inut È™i reÈ›ele sociale,</text>
+  <text x="210" y="113" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">live streaming multi-platformÄƒ</text>
+
+  <rect x="430" y="42" width="340" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="600" y="74" text-anchor="middle" font-size="17" font-weight="700" stroke="none">Apeluri la rece DVAG</text>
+  <text x="600" y="96" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">Maya sunÄƒ potenÈ›iali clienÈ›i,</text>
+  <text x="600" y="113" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">programeazÄƒ Ã®ntÃ¢lniri gratuite</text>
+
+  <rect x="820" y="42" width="340" height="96" rx="12" fill="var(--rust-bg)" stroke="var(--rust)" stroke-width="1.5"/>
+  <text x="990" y="74" text-anchor="middle" font-size="17" font-weight="700" stroke="none">RecomandÄƒri</text>
+  <text x="990" y="96" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">orice romÃ¢n poate aduce un client "”</text>
+  <text x="990" y="113" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">telefonic sau prin reÈ›ele sociale</text>
+
+  <line x1="210" y1="138" x2="380" y2="196" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="600" y1="138" x2="600" y2="196" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="990" y1="138" x2="820" y2="196" stroke="var(--rust)" stroke-width="1.8" marker-end="url(#arrowRust)"/>
+
+  <!-- ============ ROW B: motoare AI ============ -->
+  <text x="600" y="184" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="var(--ink-soft)" stroke="none">â‘¡ CEI DOI ASISTENÈšI AI CARE VORBESC CU CLIENÈšII</text>
+
+  <rect x="140" y="200" width="430" height="92" rx="12" fill="var(--indigo-bg)" stroke="var(--indigo)" stroke-width="1.6"/>
+  <text x="355" y="232" text-anchor="middle" font-size="16.5" font-weight="700" fill="var(--indigo)" stroke="none">🚀Ž™ Maya "” vorbeÈ™te la telefon</text>
+  <text x="355" y="254" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">consultanÈ›Äƒ DVAG · programeazÄƒ Ã®ntÃ¢lniri</text>
+  <text x="355" y="273" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">ajutÄƒ la integrare "” nu doar romÃ¢ni</text>
+
+  <rect x="630" y="200" width="430" height="92" rx="12" fill="var(--indigo-bg)" stroke="var(--indigo)" stroke-width="1.6"/>
+  <text x="845" y="232" text-anchor="middle" font-size="16.5" font-weight="700" fill="var(--indigo)" stroke="none">🚀’¬ Consultantul WhatsApp</text>
+  <text x="845" y="254" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">scrie oricÃ¢nd, rÄƒspunde instant, 24/7</text>
+  <text x="845" y="273" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">10 specialiÈ™ti digitali + colectare dosare</text>
+
+  <line x1="355" y1="292" x2="500" y2="332" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="845" y1="292" x2="700" y2="332" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- ============ ROW C: hub ============ -->
+  <rect x="200" y="340" width="800" height="64" rx="14" fill="var(--ink)" stroke="var(--ink)"/>
+  <text x="600" y="379" text-anchor="middle" font-size="21" font-weight="700" fill="var(--bg)" stroke="none">ARIS CONSULTING</text>
+
+  <line x1="320" y1="404" x2="185" y2="440" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="480" y1="404" x2="510" y2="440" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="720" y1="404" x2="690" y2="440" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="880" y1="404" x2="1015" y2="440" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- ============ ROW D: produse (grid 2 x 6) ============ -->
+  <text x="600" y="430" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="var(--ink-soft)" stroke="none">â‘¢ CE OFERIM "” CATALOGUL COMPLET</text>
+
+  <!-- Card 1 -->
+  <rect x="60" y="444" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="472" font-size="15.5" font-weight="700" stroke="none">Ghid digital descÄƒrcabil</text>
+  <text x="84" y="492" font-size="12.5" fill="var(--ink-soft)" stroke="none">10 domenii: muncÄƒ, social, locuire, trafic, acte"¦</text>
+  <text x="556" y="514" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">livrare automatÄƒ</text>
+
+  <!-- Card 2 -->
+  <rect x="620" y="444" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="472" font-size="15.5" font-weight="700" stroke="none">Ghid + Consultant AI WhatsApp</text>
+  <text x="644" y="492" font-size="12.5" fill="var(--ink-soft)" stroke="none">acces 30 de zile, Ã®ntrebÄƒri nelimitate</text>
+  <text x="1116" y="514" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--amber)" stroke="none">cel mai popular</text>
+
+  <!-- Card 3 -->
+  <rect x="60" y="560" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="588" font-size="15.5" font-weight="700" stroke="none">Dosare administrative</text>
+  <text x="84" y="608" font-size="12.5" fill="var(--ink-soft)" stroke="none">Familie · Venit · Cazier · Gewerbe · duplicate acte</text>
+  <text x="556" y="630" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">prin WhatsApp</text>
+
+  <!-- Card 4 -->
+  <rect x="620" y="560" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="588" font-size="15.5" font-weight="700" stroke="none">Dosar Complex</text>
+  <text x="644" y="608" font-size="12.5" fill="var(--ink-soft)" stroke="none">Widerspruch · Grundsicherung · Anerkennung</text>
+  <text x="1116" y="630" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">cazuri dificile</text>
+
+  <!-- Card 5 -->
+  <rect x="60" y="676" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="704" font-size="15.5" font-weight="700" stroke="none">ConsultaÈ›ie personalÄƒ 1-la-1</text>
+  <text x="84" y="724" font-size="12.5" fill="var(--ink-soft)" stroke="none">60 minute video, cu un specialist Amira</text>
+  <text x="556" y="746" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--teal)" stroke="none">gratuitÄƒ dacÄƒ cumperi ceva</text>
+
+  <!-- Card 6 -->
+  <rect x="620" y="676" width="520" height="94" rx="12" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="1.5"/>
+  <text x="644" y="704" font-size="15.5" font-weight="700" stroke="none">ConsultanÈ›Äƒ financiarÄƒ DVAG</text>
+  <text x="644" y="724" font-size="12.5" fill="var(--ink-soft)" stroke="none">pensii, asigurÄƒri, economii</text>
+  <text x="1116" y="746" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--teal)" stroke="none">gratuit</text>
+
+  <!-- Card 7 -->
+  <rect x="60" y="792" width="520" height="94" rx="12" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="1.5"/>
+  <text x="84" y="820" font-size="15.5" font-weight="700" stroke="none">Sprijin integrare Ã®n Germania</text>
+  <text x="84" y="840" font-size="12.5" fill="var(--ink-soft)" stroke="none">nu doar romÃ¢ni "” orice nou-venit</text>
+  <text x="556" y="862" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--teal)" stroke="none">gratuit</text>
+
+  <!-- Card 8 -->
+  <rect x="620" y="792" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="820" font-size="15.5" font-weight="700" stroke="none">ÃŽnscriere maÈ™inÄƒ (Zulassungsdienst)</text>
+  <text x="644" y="840" font-size="12.5" fill="var(--ink-soft)" stroke="none">+ asigurare prin partenerul nostru</text>
+  <text x="1116" y="862" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">cu Ã®mputernicire</text>
+
+  <!-- Card 9 -->
+  <rect x="60" y="908" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="936" font-size="15.5" font-weight="700" stroke="none">Internet prin Starlink</text>
+  <text x="84" y="956" font-size="12.5" fill="var(--ink-soft)" stroke="none">instalare asistatÄƒ gratuit, prin video-call</text>
+  <text x="556" y="978" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">link afiliat</text>
+
+  <!-- Card 10 -->
+  <rect x="620" y="908" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="936" font-size="15.5" font-weight="700" stroke="none">Curs igienÄƒ alimentarÄƒ (§43)</text>
+  <text x="644" y="956" font-size="12.5" fill="var(--ink-soft)" stroke="none">certificat oficial, explicat Ã®n romÃ¢nÄƒ</text>
+  <text x="1116" y="978" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">online, rapid</text>
+
+  <!-- Card 11 -->
+  <rect x="60" y="1024" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="1052" font-size="15.5" font-weight="700" stroke="none">Coaching CV È™i interviu</text>
+  <text x="84" y="1072" font-size="12.5" fill="var(--ink-soft)" stroke="none">CV È™i scrisoare de intenÈ›ie, stil german</text>
+  <text x="556" y="1094" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">opÈ›ional, plÄƒtit</text>
+
+  <!-- Card 12 -->
+  <rect x="620" y="1024" width="520" height="94" rx="12" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="1.5"/>
+  <text x="644" y="1052" font-size="15.5" font-weight="700" stroke="none">CÄƒutare loc de muncÄƒ</text>
+  <text x="644" y="1072" font-size="12.5" fill="var(--ink-soft)" stroke="none">punem candidatul Ã®n legÄƒturÄƒ cu angajatori</text>
+  <text x="1116" y="1094" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--teal)" stroke="none">gratuit pentru candidat</text>
+
+  <line x1="600" y1="1118" x2="600" y2="1154" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- ============ ROW E: plata & comision ============ -->
+  <text x="600" y="1146" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="var(--ink-soft)" stroke="none">â‘£ CUM SE ÃŽMPARTE O PLATÄ‚</text>
+
+  <rect x="430" y="1162" width="340" height="68" rx="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.8"/>
+  <text x="600" y="1202" text-anchor="middle" font-size="16" font-weight="700" stroke="none">Un client plÄƒteÈ™te</text>
+
+  <line x1="500" y1="1230" x2="330" y2="1276" stroke="var(--amber)" stroke-width="1.8" marker-end="url(#arrowAmber)"/>
+  <line x1="700" y1="1230" x2="870" y2="1276" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <rect x="120" y="1284" width="420" height="84" rx="12" fill="var(--amber-bg)" stroke="var(--amber)" stroke-width="1.6"/>
+  <text x="330" y="1316" text-anchor="middle" font-size="16" font-weight="800" fill="var(--amber)" stroke="none">Un procent â†’ afiliatul</text>
+  <text x="330" y="1338" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">dacÄƒ cineva l-a recomandat pe client</text>
+  <text x="330" y="1356" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">simplu "” doar nume È™i telefon, fÄƒrÄƒ cod</text>
+
+  <rect x="660" y="1284" width="420" height="84" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="870" y="1316" text-anchor="middle" font-size="16" font-weight="800" stroke="none">Restul â†’ Amira Consulting</text>
+  <text x="870" y="1338" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">acoperÄƒ costurile serviciului</text>
+  <text x="870" y="1356" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">È™i rÄƒmÃ¢ne profit</text>
+
+  </g>
+</svg>
+<figcaption>Un client vine printr-unul din cele trei canale, vorbeÈ™te cu unul din cei doi asistenÈ›i AI, alege un produs din catalog "” iar din fiecare platÄƒ, cine l-a recomandat pe client primeÈ™te un procent, automat.</figcaption>
+</figure>
+</div>
+
+<div class="legend">
+  <span><span class="swatch" style="background:var(--rust-bg);border:1.5px solid var(--rust)"></span>intrare prin recomandare</span>
+  <span><span class="swatch" style="background:var(--indigo-bg);border:1.5px solid var(--indigo)"></span>asistent AI</span>
+  <span><span class="swatch" style="background:var(--amber-bg);border:1.5px solid var(--amber)"></span>venit cÄƒtre afiliat</span>
+  <span><span class="swatch" style="background:var(--teal-bg);border:1.5px solid var(--teal)"></span>gratuit pentru client</span>
+  <span><span class="swatch" style="background:var(--surface-2);border:1.5px solid var(--border)"></span>produs plÄƒtit</span>
+</div>
+
+<div class="howto">
+  <div class="step">
+    <span class="num">â‘ </span>
+    <h3>Un romÃ¢n ne gÄƒseÈ™te</h3>
+    <p>prin conÈ›inutul de pe reÈ›ele, printr-un apel DVAG, sau pentru cÄƒ cineva l-a recomandat.</p>
+  </div>
+  <div class="step">
+    <span class="num">â‘¡</span>
+    <h3>VorbeÈ™te cu un AI</h3>
+    <p>Maya la telefon sau consultantul pe WhatsApp "” rÄƒspund instant, Ã®n limba lui.</p>
+  </div>
+  <div class="step">
+    <span class="num">â‘¢</span>
+    <h3>Alege un serviciu</h3>
+    <p>ghid, dosar administrativ, consultaÈ›ie, sau ajutor gratuit "” din tot catalogul Amira.</p>
+  </div>
+  <div class="step">
+    <span class="num">â‘£</span>
+    <h3>Plata se Ã®mparte</h3>
+    <p>automat, un procent merge cÄƒtre persoana care l-a recomandat pe client.</p>
+  </div>
+  <div class="step">
+    <span class="num">â‘¤</span>
+    <h3>Clientul devine sursÄƒ</h3>
+    <p>mulÈ›umit, recomandÄƒ mai departe "” È™i sistemul creÈ™te singur, de la un client la altul.</p>
+  </div>
+</div>
+
+<footer>Document de prezentare internÄƒ "” <strong>sistemul complet Amira Consulting</strong>, de la primul contact pÃ¢nÄƒ la afiliere.</footer>
+
+</body></html>
+

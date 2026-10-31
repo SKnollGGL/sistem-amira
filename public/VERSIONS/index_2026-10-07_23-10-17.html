@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n-key="title">Amira Consulting - Consultanță Administrativă Germania</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #333; line-height: 1.6; background: #fff; }
+
+    .topbar { background: #9B8B7E; color: white; padding: 12px 40px; text-align: center; font-size: 14px; display: flex; justify-content: center; gap: 20px; align-items: center; }
+    .topbar .badge { background: #333; padding: 4px 12px; border-radius: 4px; font-weight: 600; font-size: 12px; }
+    .topbar a { color: white; text-decoration: none; font-weight: 600; margin-left: 8px; }
+
+    header { background: white; padding: 20px 40px; border-bottom: 1px solid #e8e8e8; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+    .header-left { display: flex; align-items: center; gap: 50px; flex: 1; }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 50px; width: auto; }
+    .nav-menu { display: flex; gap: 50px; }
+    .nav-menu a { text-decoration: none; color: #333; font-weight: 500; font-size: 14px; transition: color 0.2s; cursor: pointer; }
+    .nav-menu a:hover { color: #0a9d67; }
+
+    .header-right { display: flex; gap: 20px; align-items: center; }
+    .lang-flags { display: flex; gap: 4px; }
+    .lang-flag { width: 28px; height: 20px; cursor: pointer; border: 2px solid transparent; border-radius: 2px; transition: all 0.2s; }
+    .lang-flag:hover { transform: scale(1.05); }
+    .lang-flag.active { border: 2px solid #0a9d67; box-shadow: 0 0 0 2px rgba(10,157,103,0.2); }
+
+    .btn { padding: 10px 20px; border: none; border-radius: 20px; cursor: pointer; font-weight: 600; text-decoration: none; display: inline-block; font-size: 13px; transition: all 0.2s; }
+    .btn-green { background: #0a9d67; color: white; }
+    .btn-green:hover { background: #088a56; }
+    .btn-blue { background: #24a1de; color: white; }
+    .btn-blue:hover { background: #1d8ac0; }
+
+    .admin-link { color: #ff8c00; text-decoration: none; font-weight: 500; font-size: 13px; cursor: pointer; }
+    .admin-link:hover { color: #e67e00; }
+
+    .hero { background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 100%), url('hero_bg.jpg') no-repeat right center; background-size: cover; padding: 60px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; min-height: 500px; }
+
+    .hero-text h1 { font-size: 48px; line-height: 1.15; color: #132e26; margin-bottom: 20px; font-weight: 600; }
+    .hero-text h1 .green { color: #0a9d67; font-weight: 700; }
+    .hero-text p { font-size: 15px; color: #666; margin-bottom: 25px; line-height: 1.7; }
+
+    .hero-buttons { display: flex; gap: 12px; }
+    .hero-buttons .btn { padding: 12px 24px; font-size: 14px; }
+
+    .recommendations { padding: 40px 40px; background: #f8f8f8; }
+    .rec-container { max-width: 1400px; margin: 0 auto; }
+    .rec-label { font-size: 12px; font-weight: 600; color: #999; margin-bottom: 15px; }
+    .rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+
+    .rec-card { background: white; padding: 20px; border-radius: 8px; display: flex; align-items: center; gap: 15px; cursor: pointer; transition: all 0.2s; border: 1px solid #e8e8e8; text-decoration: none; color: inherit; }
+    .rec-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-2px); }
+
+    .rec-icon { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+    .rec-icon img { width: 100%; height: 100%; object-fit: contain; }
+
+    .rec-text h3 { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 3px; }
+    .rec-text p { font-size: 12px; color: #999; }
+
+    .services { padding: 80px 40px; background: white; }
+    .services-content { max-width: 1400px; margin: 0 auto; }
+    .services h2 { font-size: 36px; font-weight: 600; color: #132e26; margin-bottom: 50px; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+    .service-card { background: white; padding: 30px; border-radius: 8px; border-left: 4px solid #0a9d67; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .service-card h3 { font-size: 18px; font-weight: 600; color: #0a9d67; margin-bottom: 12px; }
+    .service-card p { font-size: 14px; color: #666; line-height: 1.7; }
+
+    .how-it-works { background: #f8f8f8; padding: 80px 40px; }
+    .how-content { max-width: 1400px; margin: 0 auto; }
+    .how-content h2 { font-size: 36px; font-weight: 600; color: #132e26; margin-bottom: 50px; }
+
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+    .step { text-align: center; }
+    .step-num { width: 50px; height: 50px; background: #0a9d67; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; margin: 0 auto 20px; }
+    .step h3 { font-size: 16px; font-weight: 600; color: #333; margin-bottom: 10px; }
+    .step p { font-size: 13px; color: #666; line-height: 1.6; }
+
+    .chat-fab { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: linear-gradient(135deg, #0a9d67 0%, #088a56 100%); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; z-index: 999; box-shadow: 0 4px 20px rgba(10,157,103,0.3); transition: all 0.3s; }
+    .chat-fab:hover { transform: scale(1.1); }
+
+    .chat-widget { position: fixed; bottom: 110px; right: 30px; width: 420px; background: white; border-radius: 12px; box-shadow: 0 5px 50px rgba(0,0,0,0.15); z-index: 999; display: none; flex-direction: column; max-height: 600px; overflow: hidden; }
+    .chat-widget.open { display: flex; }
+    .chat-header { background: linear-gradient(135deg, #0a9d67 0%, #088a56 100%); color: white; padding: 18px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 14px; }
+    .chat-close { cursor: pointer; font-size: 24px; }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 18px; background: #fafafa; }
+    .message { margin-bottom: 15px; display: flex; }
+    .msg-in { background: white; padding: 12px 14px; border-radius: 8px; max-width: 85%; border: 1px solid #e8e8e8; font-size: 13px; }
+    .msg-out { background: #0a9d67; color: white; padding: 12px 14px; border-radius: 8px; max-width: 85%; margin-left: auto; font-size: 13px; }
+    .chat-input { padding: 15px; border-top: 1px solid #e8e8e8; display: flex; gap: 8px; background: white; }
+    .chat-input input { flex: 1; border: 1px solid #ddd; padding: 10px 12px; border-radius: 6px; font-size: 13px; font-family: inherit; }
+    .chat-input button { background: #0a9d67; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px; }
+
+    footer { background: #132e26; color: white; padding: 50px 40px; }
+    .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
+    .footer-section h3 { margin-bottom: 20px; font-size: 14px; }
+    .footer-section a { display: block; color: #bbb; text-decoration: none; margin-bottom: 12px; font-size: 13px; transition: color 0.2s; cursor: pointer; }
+    .footer-section a:hover { color: #0a9d67; }
+    .footer-bottom { border-top: 1px solid #333; padding-top: 30px; text-align: center; font-size: 12px; color: #888; }
+
+    @media (max-width: 1024px) {
+      header { flex-direction: column; padding: 15px 20px; }
+      .header-left { flex-direction: column; gap: 20px; }
+      .nav-menu { gap: 20px; }
+      .hero { grid-template-columns: 1fr; padding: 40px 20px; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="badge">NOU</span>
+  <span><strong data-i18n="topbar1">Amira Digital</strong> – <span data-i18n="topbar2">site-uri, marketing și automatizări pentru afacerea ta</span></span>
+  <a href="javascript:void(0)" data-i18n="topbar-link">Vezi ofertele →</a>
+</div>
+
+<header>
+  <div class="header-left">
+    <div class="logo">
+      <img src="logo_lockup.png" alt="Amira Consulting">
+    </div>
+    <div class="nav-menu">
+      <a onclick="document.querySelector('.services').scrollIntoView({behavior:'smooth'})" data-i18n="nav-services">Servicii</a>
+      <a onclick="document.querySelector('.how-it-works').scrollIntoView({behavior:'smooth'})" data-i18n="nav-how">Cum funcționează</a>
+      <a href="javascript:void(0)" data-i18n="nav-partners">Parteneri</a>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <div class="lang-flags">
+      <img class="lang-flag active" data-lang="ro" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='300' height='600' fill='%23002B7F'/%3E%3Crect x='300' width='300' height='600' fill='%23FCD116'/%3E%3Crect x='600' width='300' height='600' fill='%23CE1126'/%3E%3Crect width='900' height='600' fill='none' stroke='%23000' stroke-width='8' rx='8'/%3E%3Cdefs%3E%3CradialGradient id='g1'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g1)' rx='8'/%3E%3C/svg%3E" onclick="switchLang(event, 'ro')" title="Română">
+      <img class="lang-flag" data-lang="de" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='200' fill='%23000'/%3E%3Crect y='200' width='900' height='200' fill='%23DD0000'/%3E%3Crect y='400' width='900' height='200' fill='%23FFCE00'/%3E%3Crect width='900' height='600' fill='none' stroke='%23000' stroke-width='8' rx='8'/%3E%3Cdefs%3E%3CradialGradient id='g2'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g2)' rx='8'/%3E%3C/svg%3E" onclick="switchLang(event, 'de')" title="Deutsch">
+      <img class="lang-flag" data-lang="en" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%2300247d'/%3E%3Cpath d='M0 0 L900 600 M900 0 L0 600' stroke='%23fff' stroke-width='60'/%3E%3Cpath d='M450 0 V600 M0 300 H900' stroke='%23fff' stroke-width='40'/%3E%3Crect width='900' height='600' fill='none' stroke='%23000' stroke-width='8' rx='8'/%3E%3Cdefs%3E%3CradialGradient id='g3'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g3)' rx='8'/%3E%3C/svg%3E" onclick="switchLang(event, 'en')" title="English">
+      <img class="lang-flag" data-lang="uk" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='300' fill='%23005BBF'/%3E%3Crect y='300' width='900' height='300' fill='%23FFD700'/%3E%3Crect width='900' height='600' fill='none' stroke='%23000' stroke-width='8' rx='8'/%3E%3Cdefs%3E%3CradialGradient id='g4'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g4)' rx='8'/%3E%3C/svg%3E" onclick="switchLang(event, 'uk')" title="Українська">
+      <img class="lang-flag" data-lang="tr" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23E4143F'/%3E%3Ccircle cx='280' cy='300' r='140' fill='%23FFF'/%3E%3Cpolygon points='420,240 460,320 350,320 400,380 360,460 420,400 480,460 440,380 490,320 380,320' fill='%23E4143F'/%3E%3Crect width='900' height='600' fill='none' stroke='%23000' stroke-width='8' rx='8'/%3E%3Cdefs%3E%3CradialGradient id='g5'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g5)' rx='8'/%3E%3C/svg%3E" onclick="switchLang(event, 'tr')" title="Türkçe">
+      <img class="lang-flag" data-lang="pl" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='300' fill='%23FFF'/%3E%3Crect y='300' width='900' height='300' fill='%23DC143C'/%3E%3Crect width='900' height='600' fill='none' stroke='%23000' stroke-width='8' rx='8'/%3E%3Cdefs%3E%3CradialGradient id='g6'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g6)' rx='8'/%3E%3C/svg%3E" onclick="switchLang(event, 'pl')" title="Polski">
+      <img class="lang-flag" data-lang="bg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='200' fill='%23FFF'/%3E%3Crect y='200' width='900' height='200' fill='%2300A86B'/%3E%3Crect y='400' width='900' height='200' fill='%23D62612'/%3E%3Crect width='900' height='600' fill='none' stroke='%23000' stroke-width='8' rx='8'/%3E%3Cdefs%3E%3CradialGradient id='g7'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g7)' rx='8'/%3E%3C/svg%3E" onclick="switchLang(event, 'bg')" title="Български">
+      <img class="lang-flag" data-lang="ar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23CE1126'/%3E%3Crect width='900' height='450' fill='%23000'/%3E%3Crect y='450' width='900' height='150' fill='%23FFF'/%3E%3Crect width='900' height='600' fill='none' stroke='%23000' stroke-width='8' rx='8'/%3E%3Cdefs%3E%3CradialGradient id='g8'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g8)' rx='8'/%3E%3C/svg%3E" onclick="switchLang(event, 'ar')" title="العربية">
+      <img class="lang-flag" data-lang="es" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23AA151B'/%3E%3Crect y='150' width='900' height='300' fill='%23F1BF00'/%3E%3Crect width='900' height='600' fill='none' stroke='%23000' stroke-width='8' rx='8'/%3E%3Cdefs%3E%3CradialGradient id='g9'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g9)' rx='8'/%3E%3C/svg%3E" onclick="switchLang(event, 'es')" title="Español">
+      <img class="lang-flag" data-lang="hu" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='200' fill='%23CD2A3E'/%3E%3Crect y='200' width='900' height='200' fill='%23FFF'/%3E%3Crect y='400' width='900' height='200' fill='%23436F4D'/%3E%3Crect width='900' height='600' fill='none' stroke='%23000' stroke-width='8' rx='8'/%3E%3Cdefs%3E%3CradialGradient id='g10'%3E%3Cstop offset='0%25' stop-color='%23fff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0.2'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='900' height='600' fill='url(%23g10)' rx='8'/%3E%3C/svg%3E" onclick="switchLang(event, 'hu')" title="Magyar">
+    </div>
+    <button class="btn btn-green" onclick="toggleChat()" data-i18n="btn-free">Scrie-ne o gratis</button>
+    <a href="https://t.me/AmiraConsultingbot" target="_blank" class="btn btn-blue" data-i18n="btn-telegram">Telegram</a>
+    <a href="https://wa.me/40373818188" target="_blank" class="btn btn-green" data-i18n="btn-whatsapp">WhatsApp</a>
+    <a href="javascript:void(0)" class="admin-link" onclick="openAdmin()" data-i18n="admin">👤 Admin</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1><span data-i18n="hero-part1">Actele cu statul</span> <span class="green" data-i18n="hero-part2">German, rezolvate</span> <span data-i18n="hero-part3">direct pe site, sau pe</span> <span class="green" data-i18n="hero-part4">Telegram.</span></h1>
+    <p data-i18n="hero-desc">Kindergeld, Grundsicherungsgeld, acte de reședere, amenzi, chirie — Amira te ghidează pas cu pas, direct din conversație, fără cozi și fără formulare pe care nu le înțelegi.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-green" onclick="toggleChat()" data-i18n="btn-free">Scrie-ne o gratis</button>
+      <a href="https://t.me/AmiraConsultingbot" target="_blank" class="btn btn-blue" data-i18n="btn-telegram">Deschide Telegram</a>
+    </div>
+  </div>
+</section>
+
+<section class="recommendations">
+  <div class="rec-container">
+    <div class="rec-label" data-i18n="rec-label">Recomandăm:</div>
+    <div class="rec-grid">
+      <a href="https://starlink.com/?referral=RC-DF-12154625-54652-94&app_source=share" target="_blank" class="rec-card">
+        <div class="rec-icon"><img src="starlink_logo.svg" alt="Starlink"></div>
+        <div class="rec-text">
+          <h3>Starlink</h3>
+          <p data-i18n="rec1">Internet prin satelit</p>
+        </div>
+      </a>
+      <a href="https://revolut.com/referral/?referral-code=robert0ub0!SEP2-26-AR-H1&geo-redirect" target="_blank" class="rec-card">
+        <div class="rec-icon"><img src="revolut_logo.svg" alt="Revolut"></div>
+        <div class="rec-text">
+          <h3>Revolut</h3>
+          <p data-i18n="rec2">Cont bancar</p>
+        </div>
+      </a>
+      <div class="rec-card" onclick="toggleChat()">
+        <div class="rec-icon">💬</div>
+        <div class="rec-text">
+          <h3 data-i18n="rec3">Ajutor la instalare</h3>
+          <p data-i18n="rec3b">scrie-ne</p>
+        </div>
+      </div>
+      <div class="rec-card" onclick="alert('Mergi la Telegram pentru înregistrare')">
+        <div class="rec-icon">❓</div>
+        <div class="rec-text">
+          <h3 data-i18n="rec4">Câine nou?</h3>
+          <p data-i18n="rec4b">Înregistrează-te</p>
+        </div>
+      </div>
+      <a href="https://t.me/AmiraConsultingbot" target="_blank" class="rec-card">
+        <div class="rec-icon">💼</div>
+        <div class="rec-text">
+          <h3 data-i18n="rec5">Lucreaza cu noi</h3>
+          <p data-i18n="rec5b">Remote</p>
+        </div>
+      </a>
+      <div class="rec-card" onclick="alert('Trading platform coming soon')">
+        <div class="rec-icon">📈</div>
+        <div class="rec-text">
+          <h3>Amira Trading</h3>
+          <p>date live</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="services-content">
+    <h2 data-i18n="services">Serviciile Noastre</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Kindergeld</h3>
+        <p data-i18n="s1">Ajutăm la depunerea și gestionarea cererilor de alocații copii</p>
+      </div>
+      <div class="service-card">
+        <h3>Grundsicherung</h3>
+        <p data-i18n="s2">Înțelegem procedurile complexe de asigurare socială</p>
+      </div>
+      <div class="service-card">
+        <h3>Acte Sedate</h3>
+        <p data-i18n="s3">Ghidare în obținerea actelor de reședința și țării</p>
+      </div>
+      <div class="service-card">
+        <h3>Impozit & Taxe</h3>
+        <p data-i18n="s4">Declarații fiscale și rezolvare probleme cu fisc-ul</p>
+      </div>
+      <div class="service-card">
+        <h3>Amenzi & Contestații</h3>
+        <p data-i18n="s5">Reprezentare în cazuri de amenzi și contestații</p>
+      </div>
+      <div class="service-card">
+        <h3>Chirie & Locuință</h3>
+        <p data-i18n="s6">Contracte de chirie și probleme cu proprietarul</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works">
+  <div class="how-content">
+    <h2 data-i18n="how">Cum Funcționează</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3 data-i18n="step1">Scrii Mesaj</h3>
+        <p data-i18n="step1d">Trimite o întrebare pe Telegram sau pe site</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3 data-i18n="step2">Consultant</h3>
+        <p data-i18n="step2d">Un expert analizează cazul tău</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3 data-i18n="step3">Rezolvare</h3>
+        <p data-i18n="step3d">Primești plan de acțiune pas cu pas</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3 data-i18n="step4">Implementare</h3>
+        <p data-i18n="step4d">Te ghidez până la rezolvare completă</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="chat-fab" onclick="toggleChat()">💬</div>
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-header">
+    <span data-i18n="chat-title">Amira Consulting</span>
+    <span class="chat-close" onclick="toggleChat()">×</span>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" data-i18n-placeholder="chat-placeholder" placeholder="Scrie..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+    <button onclick="sendChatMessage()" data-i18n="chat-send">Trimite</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3 data-i18n="footer-about">Amira Consulting</h3>
+      <a href="javascript:void(0)" data-i18n="footer-link1">Despre noi</a>
+      <a href="javascript:void(0)" data-i18n="footer-link2">Servicii</a>
+      <a href="javascript:void(0)" data-i18n="footer-link3">Contact</a>
+    </div>
+    <div class="footer-section">
+      <h3 data-i18n="footer-rapid">Rapid</h3>
+      <a href="https://wa.me/40373818188" target="_blank">WhatsApp</a>
+      <a href="https://t.me/AmiraConsultingbot" target="_blank">Telegram</a>
+      <a href="javascript:void(0)" onclick="toggleChat()" data-i18n="footer-chat">Chat</a>
+    </div>
+    <div class="footer-section">
+      <h3 data-i18n="footer-legal">Legal</h3>
+      <a href="javascript:void(0)" data-i18n="footer-terms">Termeni</a>
+      <a href="javascript:void(0)" data-i18n="footer-privacy">Confidențialitate</a>
+      <a href="javascript:void(0)" data-i18n="footer-cookies">Cookies</a>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2026 Amira Consulting. <span data-i18n="footer-rights">Toate drepturile rezervate</span>.</div>
+</footer>
+
+<script>
+const trans = {
+  ro: {
+    title: "Amira Consulting", topbar1: "Amira Digital", topbar2: "site-uri, marketing și automatizări pentru afacerea ta", topbar: "Vezi ofertele",
+    "nav-services": "Servicii", "nav-how": "Cum funcționează", "nav-partners": "Parteneri",
+    "btn-free": "Scrie-ne o gratis", "btn-telegram": "Telegram", "btn-whatsapp": "WhatsApp", "admin": "Admin",
+    "hero-part1": "Actele cu statul", "hero-part2": "German, rezolvate", "hero-part3": "direct pe site, sau pe", "hero-part4": "Telegram.",
+    "hero-desc": "Kindergeld, Grundsicherungsgeld, acte de reședința, amenzi, chirie — Amira te ghidează pas cu pas, direct din conversație, fără cozi și fără formulare pe care nu le înțelegi.",
+    "rec-label": "Recomandăm:", "rec1": "Internet prin satelit", "rec2": "Cont bancar", "rec3": "Ajutor la instalare", "rec3b": "scrie-ne", "rec4": "Câine nou?", "rec4b": "Înregistrează-te", "rec5": "Lucreaza cu noi", "rec5b": "Remote",
+    "services": "Serviciile Noastre",
+    "s1": "Ajutăm la depunerea și gestionarea cererilor de alocații copii", "s2": "Înțelegem procedurile complexe de asigurare socială", "s3": "Ghidare în obținerea actelor de reședința și țării", "s4": "Declarații fiscale și rezolvare probleme cu fisc-ul", "s5": "Reprezentare în cazuri de amenzi și contestații", "s6": "Contracte de chirie și probleme cu proprietarul",
+    "how": "Cum Funcționează",
+    "step1": "Scrii Mesaj", "step1d": "Trimite o întrebare pe Telegram sau pe site", "step2": "Consultant", "step2d": "Un expert analizează cazul tău", "step3": "Rezolvare", "step3d": "Primești plan de acțiune pas cu pas", "step4": "Implementare", "step4d": "Te ghidez până la rezolvare completă",
+    "chat-title": "Amira Consulting", "chat-placeholder": "Scrie...", "chat-send": "Trimite",
+    "footer-about": "Amira Consulting", "footer-link1": "Despre noi", "footer-link2": "Servicii", "footer-link3": "Contact",
+    "footer-rapid": "Rapid", "footer-chat": "Chat",
+    "footer-legal": "Legal", "footer-terms": "Termeni", "footer-privacy": "Confidențialitate", "footer-cookies": "Cookies",
+    "footer-rights": "Toate drepturile rezervate"
+  },
+  en: {
+    title: "Amira Consulting", topbar1: "Amira Digital", topbar2: "websites, marketing and automation for your business", "nav-services": "Services", "nav-how": "How it works", "nav-partners": "Partners",
+    "btn-free": "Write us free", "btn-telegram": "Telegram", "btn-whatsapp": "WhatsApp", "admin": "Admin",
+    "hero-part1": "German state", "hero-part2": "matters, resolved", "hero-part3": "directly on the site, or on", "hero-part4": "Telegram.",
+    "hero-desc": "Kindergeld, Grundsicherungsgeld, residence permits, fines, rent — Amira guides you step by step, directly in chat, without queues and without forms you don't understand.",
+    "rec-label": "We recommend:", "rec1": "Satellite internet", "rec2": "Bank account", "rec3": "Installation help", "rec3b": "write us", "rec4": "New?", "rec4b": "Register", "rec5": "Work with us", "rec5b": "Remote",
+    "services": "Our Services",
+    "s1": "Help with filing and managing child benefit requests", "s2": "Understand complex social insurance procedures", "s3": "Guidance on obtaining residence permits and documents", "s4": "Tax returns and tax office problem resolution", "s5": "Representation in fines and disputes", "s6": "Rental contracts and landlord issues",
+    "how": "How It Works",
+    "step1": "Send Message", "step1d": "Ask a question on Telegram or on the site", "step2": "Consultant", "step2d": "An expert analyzes your case", "step3": "Solution", "step3d": "You receive a step-by-step action plan", "step4": "Implementation", "step4d": "I guide you until complete resolution",
+    "chat-title": "Amira Chat", "chat-placeholder": "Type...", "chat-send": "Send",
+    "footer-about": "Amira Consulting", "footer-link1": "About", "footer-link2": "Services", "footer-link3": "Contact",
+    "footer-rapid": "Quick", "footer-chat": "Chat",
+    "footer-legal": "Legal", "footer-terms": "Terms", "footer-privacy": "Privacy", "footer-cookies": "Cookies",
+    "footer-rights": "All rights reserved"
+  },
+  de: {
+    title: "Amira Consulting", topbar1: "Amira Digital", topbar2: "Websites, Marketing und Automatisierung für Ihr Geschäft", "nav-services": "Dienstleistungen", "nav-how": "Wie es funktioniert", "nav-partners": "Partner",
+    "btn-free": "Schreib uns kostenlos", "btn-telegram": "Telegram", "btn-whatsapp": "WhatsApp", "admin": "Admin",
+    "hero-part1": "Deutsche Staats-", "hero-part2": "angelegenheiten, gelöst", "hero-part3": "direkt auf der Website oder auf", "hero-part4": "Telegram.",
+    "hero-desc": "Kindergeld, Grundsicherungsgeld, Aufenthaltspapiere, Geldstrafen, Miete — Amira führt dich Schritt für Schritt direkt im Chat, ohne Warteschlangen und ohne unverständliche Formulare.",
+    "rec-label": "Wir empfehlen:", "rec1": "Satelliteninternet", "rec2": "Bankkonto", "rec3": "Installationshilfe", "rec3b": "schreib uns", "rec4": "Neu hier?", "rec4b": "Registrieren", "rec5": "Arbeite mit uns", "rec5b": "Remote",
+    "services": "Unsere Dienstleistungen",
+    "s1": "Hilfe beim Antrag und der Verwaltung von Kindergeldanträgen", "s2": "Verständnis für komplexe Sozialversicherungsverfahren", "s3": "Anleitung zum Erhalt von Aufenthaltserlaubnissen und Dokumenten", "s4": "Steuererklärungen und Lösung von Finanzamtsproblemen", "s5": "Vertretung bei Geldstrafen und Einsprüchen", "s6": "Mietverträge und Probleme mit dem Vermieter",
+    "how": "Wie es funktioniert",
+    "step1": "Nachricht senden", "step1d": "Stellen Sie eine Frage auf Telegram oder auf der Website", "step2": "Berater", "step2d": "Ein Experte analysiert Ihren Fall", "step3": "Lösung", "step3d": "Sie erhalten einen Schritt-für-Schritt-Aktionsplan", "step4": "Umsetzung", "step4d": "Ich begleite Sie bis zur vollständigen Lösung",
+    "chat-title": "Amira Chat", "chat-placeholder": "Schreiben...", "chat-send": "Senden",
+    "footer-about": "Amira Consulting", "footer-link1": "Über", "footer-link2": "Dienstleistungen", "footer-link3": "Kontakt",
+    "footer-rapid": "Schnell", "footer-chat": "Chat",
+    "footer-legal": "Rechtlich", "footer-terms": "Bedingungen", "footer-privacy": "Datenschutz", "footer-cookies": "Cookies",
+    "footer-rights": "Alle Rechte vorbehalten"
+  },
+  uk: {
+    title: "Amira Consulting", topbar1: "Amira Digital", topbar2: "веб-сайти, маркетинг та автоматизація для вашого бізнесу", "nav-services": "Послуги", "nav-how": "Як це працює", "nav-partners": "Партнери",
+    "btn-free": "Напишіть нам безплатно", "btn-telegram": "Telegram", "btn-whatsapp": "WhatsApp", "admin": "Admin",
+    "hero-part1": "Справи з німецькою", "hero-part2": "державою, вирішені", "hero-part3": "прямо на сайті або на", "hero-part4": "Telegram.",
+    "hero-desc": "Kindergeld, Grundsicherungsgeld, посвідчення перебування, штрафи, оренда — Amira проведе вас крок за кроком прямо в чаті, без черг та незрозумілих форм.",
+    "rec-label": "Ми рекомендуємо:", "rec1": "Супутниковий Інтернет", "rec2": "Банківський рахунок", "rec3": "Допомога при встановленні", "rec3b": "напиши нам", "rec4": "Новий?", "rec4b": "Зареєструватися", "rec5": "Працюй з нами", "rec5b": "Remote",
+    "services": "Наші послуги",
+    "s1": "Допомога в поданні та управлінні запитами на дитячі виплати", "s2": "Розуміння складних процедур соціального страхування", "s3": "Консультації щодо отримання посвідчень про проживання та документів", "s4": "Податкові декларації та вирішення проблем з податковою службою", "s5": "Представництво у справах про штрафи та претензії", "s6": "Договори оренди та проблеми з орендодавцем",
+    "how": "Як це працює",
+    "step1": "Надішліть повідомлення", "step1d": "Задайте питання в Telegram або на сайті", "step2": "Консультант", "step2d": "Експерт аналізує вашу справу", "step3": "Рішення", "step3d": "Ви отримаєте пошаговий план дій", "step4": "Реалізація", "step4d": "Я буду вас супроводжувати до повного вирішення",
+    "chat-title": "Чат Amira", "chat-placeholder": "Напишіть...", "chat-send": "Надіслати",
+    "footer-about": "Amira Consulting", "footer-link1": "Про", "footer-link2": "Послуги", "footer-link3": "Контакт",
+    "footer-rapid": "Швидко", "footer-chat": "Чат",
+    "footer-legal": "Юридичні", "footer-terms": "Умови", "footer-privacy": "Конфіденційність", "footer-cookies": "Cookies",
+    "footer-rights": "Всі права захищені"
+  },
+  tr: {
+    title: "Amira Consulting", topbar1: "Amira Digital", topbar2: "web siteleri, pazarlama ve işletme otomasyonu", "nav-services": "Hizmetler", "nav-how": "Nasıl Çalışır", "nav-partners": "Ortaklar",
+    "btn-free": "Bize ücretsiz yazın", "btn-telegram": "Telegram", "btn-whatsapp": "WhatsApp", "admin": "Admin",
+    "hero-part1": "Alman devlet", "hero-part2": "işleri, çözüldü", "hero-part3": "doğrudan sitede veya", "hero-part4": "Telegram'da.",
+    "hero-desc": "Kindergeld, Grundsicherungsgeld, ikamet belgesi, para cezaları, kira — Amira sizi adım adım doğrudan sohbette rehberlik eder, kuyruk olmadan ve anlamadığınız formlar olmadan.",
+    "rec-label": "Tavsiye ederiz:", "rec1": "Uydu İnternet", "rec2": "Banka Hesabı", "rec3": "Kurulum Yardımı", "rec3b": "bize yazın", "rec4": "Yeni misiniz?", "rec4b": "Kayıt ol", "rec5": "Bizimle çalış", "rec5b": "Remote",
+    "services": "Hizmetlerimiz",
+    "s1": "Çocuk yardımı başvurularını verme ve yönetme konusunda yardım", "s2": "Karmaşık sosyal sigorta prosedürlerini anlayın", "s3": "İkamet belgeleri ve belgeler alma konusunda rehberlik", "s4": "Vergi beyannameleri ve vergi dairesi sorunlarının çözümü", "s5": "Para cezaları ve itirazlarda temsil", "s6": "Kira sözleşmeleri ve ev sahibi sorunları",
+    "how": "Nasıl Çalışır",
+    "step1": "Mesaj Gönder", "step1d": "Telegram'da veya sitede bir soru sorun", "step2": "Danışman", "step2d": "Bir uzman durumunuzu analiz eder", "step3": "Çözüm", "step3d": "Adım adım bir eylem planı alırsınız", "step4": "Uygulama", "step4d": "Tamamen çözülene kadar sizi rehberlik ederim",
+    "chat-title": "Amira Sohbeti", "chat-placeholder": "Yazın...", "chat-send": "Gönder",
+    "footer-about": "Amira Consulting", "footer-link1": "Hakkında", "footer-link2": "Hizmetler", "footer-link3": "İletişim",
+    "footer-rapid": "Hızlı", "footer-chat": "Sohbet",
+    "footer-legal": "Yasal", "footer-terms": "Şartlar", "footer-privacy": "Gizlilik", "footer-cookies": "Cookies",
+    "footer-rights": "Tüm hakları saklıdır"
+  },
+  pl: {
+    title: "Amira Consulting", topbar1: "Amira Digital", topbar2: "strony internetowe, marketing i automatyzacja biznesu", "nav-services": "Usługi", "nav-how": "Jak to działa", "nav-partners": "Partnerzy",
+    "btn-free": "Napisz nam bezpłatnie", "btn-telegram": "Telegram", "btn-whatsapp": "WhatsApp", "admin": "Admin",
+    "hero-part1": "Sprawy z państwem", "hero-part2": "niemieckim, rozwiązane", "hero-part3": "bezpośrednio na stronie lub na", "hero-part4": "Telegramie.",
+    "hero-desc": "Kindergeld, Grundsicherungsgeld, pozwolenia na pobyt, grzywny, czynsz — Amira prowadzi Cię krok po kroku bezpośrednio w czacie, bez kolejek i niezrozumiałych formularzy.",
+    "rec-label": "Rekomendujemy:", "rec1": "Internet satelitarny", "rec2": "Konto bankowe", "rec3": "Pomoc przy instalacji", "rec3b": "napisz do nas", "rec4": "Nowy?", "rec4b": "Zarejestruj się", "rec5": "Pracuj z nami", "rec5b": "Remote",
+    "services": "Nasze usługi",
+    "s1": "Pomoc w składaniu i zarządzaniu wnioskami o zasiłek rodzinny", "s2": "Zrozumienie złożonych procedur ubezpieczenia społecznego", "s3": "Wytyczne dotyczące uzyskania pozwoleń na pobyt i dokumentów", "s4": "Zeznania podatkowe i rozwiązywanie problemów z urzędem skarbowym", "s5": "Reprezentacja w sprawach o grzywny i spory", "s6": "Umowy wynajmu i problemy z wynajmującym",
+    "how": "Jak to działa",
+    "step1": "Wyślij wiadomość", "step1d": "Zadaj pytanie na Telegramie lub na stronie", "step2": "Konsultant", "step2d": "Ekspert analizuje Twoją sprawę", "step3": "Rozwiązanie", "step3d": "Otrzymujesz plan działania krok po kroku", "step4": "Wdrażanie", "step4d": "Prowadzę Cię do pełnego rozwiązania",
+    "chat-title": "Chat Amira", "chat-placeholder": "Napisz...", "chat-send": "Wyślij",
+    "footer-about": "Amira Consulting", "footer-link1": "O nas", "footer-link2": "Usługi", "footer-link3": "Kontakt",
+    "footer-rapid": "Szybko", "footer-chat": "Chat",
+    "footer-legal": "Prawne", "footer-terms": "Warunki", "footer-privacy": "Prywatność", "footer-cookies": "Cookies",
+    "footer-rights": "Wszystkie prawa zastrzeżone"
+  },
+  bg: {
+    title: "Amira Consulting", topbar1: "Amira Digital", topbar2: "уебсайтове, маркетинг и автоматизация на бизнес", "nav-services": "Услуги", "nav-how": "Как работи", "nav-partners": "Партньори",
+    "btn-free": "Напиши ни безплатно", "btn-telegram": "Telegram", "btn-whatsapp": "WhatsApp", "admin": "Admin",
+    "hero-part1": "Германските", "hero-part2": "въпроси, разрешени", "hero-part3": "директно на сайта или на", "hero-part4": "Telegram.",
+    "hero-desc": "Kindergeld, Grundsicherungsgeld, разрешения за пребиваване, глоби, наемане — Amira те ръководи стъпка по стъпка директно в чата, без опашки и неясни формуляри.",
+    "rec-label": "Препоръчваме:", "rec1": "Сателитен интернет", "rec2": "Банкова сметка", "rec3": "Помощ при инсталиране", "rec3b": "напиши ни", "rec4": "Новичък?", "rec4b": "Регистрирай се", "rec5": "Работи с нас", "rec5b": "Remote",
+    "services": "Нашите услуги",
+    "s1": "Помощ при подаването и управлението на искания за детски допълнения", "s2": "Разберете сложни процедури на социално осигуряване", "s3": "Указания за получаване на разрешения за пребиваване и документи", "s4": "Данъчни декларации и разрешаване на проблемите на данъчните служби", "s5": "Представянство в случаи с глоби и спорове", "s6": "Наемни договори и проблеми със собственика",
+    "how": "Как работи",
+    "step1": "Изпрати съобщение", "step1d": "Задайте въпрос в Telegram или на сайта", "step2": "Консултант", "step2d": "Експерт анализира вашия случай", "step3": "Решение", "step3d": "Получавате план за действие стъпка по стъпка", "step4": "Прилагане", "step4d": "Ръководя те до пълно разрешение",
+    "chat-title": "Чат на Amira", "chat-placeholder": "Напиши...", "chat-send": "Изпрати",
+    "footer-about": "Amira Consulting", "footer-link1": "За", "footer-link2": "Услуги", "footer-link3": "Контакт",
+    "footer-rapid": "Бързо", "footer-chat": "Чат",
+    "footer-legal": "Юридически", "footer-terms": "Условия", "footer-privacy": "Конфиденциалност", "footer-cookies": "Cookies",
+    "footer-rights": "Всички права запазени"
+  },
+  ar: {
+    title: "Amira Consulting", topbar1: "Amira Digital", topbar2: "مواقع ويب وتسويق وأتمتة الأعمال", "nav-services": "الخدمات", "nav-how": "كيفية العمل", "nav-partners": "الشركاء",
+    "btn-free": "اكتب لنا مجانا", "btn-telegram": "Telegram", "btn-whatsapp": "WhatsApp", "admin": "Admin",
+    "hero-part1": "القضايا", "hero-part2": "الألمانية، تم حلها", "hero-part3": "مباشرة على الموقع أو على", "hero-part4": "Telegram.",
+    "hero-desc": "Kindergeld و Grundsicherungsgeld وتصاريح الإقامة والغرامات والإيجار — يرشدك Amira خطوة بخطوة مباشرة في المحادثة ، بدون طوابير وبدون نماذج غير مفهومة.",
+    "rec-label": "نحن نوصي:", "rec1": "الإنترنت عبر الأقمار الصناعية", "rec2": "حساب بنكي", "rec3": "مساعدة التثبيت", "rec3b": "اكتب لنا", "rec4": "جديد؟", "rec4b": "سجل", "rec5": "اعمل معنا", "rec5b": "Remote",
+    "services": "خدماتنا",
+    "s1": "المساعدة في تقديم وإدارة طلبات المساعدة الأسرية", "s2": "فهم إجراءات التأمين الاجتماعي المعقدة", "s3": "إرشادات الحصول على تصاريح الإقامة والمستندات", "s4": "الإقرارات الضريبية وحل مشاكل مصلحة الضرائب", "s5": "التمثيل في قضايا الغرامات والنزاعات", "s6": "عقود الإيجار والمشاكل مع المالك",
+    "how": "كيفية العمل",
+    "step1": "إرسال رسالة", "step1d": "اطرح سؤالا على Telegram أو على الموقع", "step2": "استشاري", "step2d": "يحلل الخبير قضيتك", "step3": "الحل", "step3d": "تتلقى خطة عمل خطوة بخطوة", "step4": "التنفيذ", "step4d": "أرشدك حتى الحل الكامل",
+    "chat-title": "دردشة Amira", "chat-placeholder": "اكتب...", "chat-send": "إرسال",
+    "footer-about": "Amira Consulting", "footer-link1": "عن", "footer-link2": "الخدمات", "footer-link3": "اتصل",
+    "footer-rapid": "سريع", "footer-chat": "دردشة",
+    "footer-legal": "قانوني", "footer-terms": "شروط", "footer-privacy": "خصوصية", "footer-cookies": "Cookies",
+    "footer-rights": "جميع الحقوق محفوظة"
+  },
+  es: {
+    title: "Amira Consulting", topbar1: "Amira Digital", topbar2: "sitios web, marketing y automatización de negocios", "nav-services": "Servicios", "nav-how": "Cómo funciona", "nav-partners": "Socios",
+    "btn-free": "Escríbenos gratis", "btn-telegram": "Telegram", "btn-whatsapp": "WhatsApp", "admin": "Admin",
+    "hero-part1": "Asuntos del", "hero-part2": "estado alemán, resueltos", "hero-part3": "directamente en el sitio o en", "hero-part4": "Telegram.",
+    "hero-desc": "Kindergeld, Grundsicherungsgeld, permisos de residencia, multas, alquiler — Amira te guía paso a paso directamente en el chat, sin colas ni formularios incomprehensibles.",
+    "rec-label": "Recomendamos:", "rec1": "Internet por satélite", "rec2": "Cuenta bancaria", "rec3": "Ayuda de instalación", "rec3b": "escríbenos", "rec4": "¿Nuevo?", "rec4b": "Registrarse", "rec5": "Trabaja con nosotros", "rec5b": "Remote",
+    "services": "Nuestros servicios",
+    "s1": "Ayuda en la presentación y gestión de solicitudes de beneficios familiares", "s2": "Comprenda los procedimientos complejos del seguro social", "s3": "Orientación para obtener permisos de residencia y documentos", "s4": "Declaraciones fiscales y resolución de problemas de hacienda", "s5": "Representación en casos de multas y reclamaciones", "s6": "Contratos de alquiler y problemas con el propietario",
+    "how": "Cómo funciona",
+    "step1": "Enviar mensaje", "step1d": "Haz una pregunta en Telegram o en el sitio", "step2": "Consultor", "step2d": "Un experto analiza tu caso", "step3": "Solución", "step3d": "Recibes un plan de acción paso a paso", "step4": "Implementación", "step4d": "Te guío hasta la resolución completa",
+    "chat-title": "Chat de Amira", "chat-placeholder": "Escribe...", "chat-send": "Enviar",
+    "footer-about": "Amira Consulting", "footer-link1": "Acerca de", "footer-link2": "Servicios", "footer-link3": "Contacto",
+    "footer-rapid": "Rápido", "footer-chat": "Chat",
+    "footer-legal": "Legal", "footer-terms": "Condiciones", "footer-privacy": "Privacidad", "footer-cookies": "Cookies",
+    "footer-rights": "Todos los derechos reservados"
+  },
+  hu: {
+    title: "Amira Consulting", topbar1: "Amira Digital", topbar2: "weboldalak, marketing és üzleti automatizálás", "nav-services": "Szolgáltatások", "nav-how": "Hogyan működik", "nav-partners": "Partnerek",
+    "btn-free": "Írj nekünk ingyenesen", "btn-telegram": "Telegram", "btn-whatsapp": "WhatsApp", "admin": "Admin",
+    "hero-part1": "A német", "hero-part2": "állami ügyek, megoldva", "hero-part3": "közvetlenül a webhelyen vagy", "hero-part4": "Telegramban.",
+    "hero-desc": "Kindergeld, Grundsicherungsgeld, lakcímkátyák, bírságok, bérleti díjak — az Amira lépésről lépésre végigvezetett közvetlenül a csevegésben, sorban állás és érthetetlenül kitöltött formok nélkül.",
+    "rec-label": "Javasoljuk:", "rec1": "Műholdas internet", "rec2": "Bankszámla", "rec3": "Telepítési segítség", "rec3b": "írj nekünk", "rec4": "Új?", "rec4b": "Regisztrálj", "rec5": "Dolgozz velünk", "rec5b": "Remote",
+    "services": "Szolgáltatásaink",
+    "s1": "Segítség a családi juttatások igénylésének és kezelésének folyamatában", "s2": "Összetett szociális biztosítási eljárások megértése", "s3": "Útmutató a lakcímkátyák és dokumentumok beszerzéséhez", "s4": "Adóbevallások és adóhivatali problémák megoldása", "s5": "Képviselet bírságok és viták esetén", "s6": "Bérleti szerződések és a tulajdonossal kapcsolatos problémák",
+    "how": "Hogyan működik",
+    "step1": "Üzenet küldése", "step1d": "Tegyen fel kérdést a Telegramon vagy a webhelyen", "step2": "Tanácsadó", "step2d": "Egy szakértő elemzi az esetét", "step3": "Megoldás", "step3d": "Lépésről lépésre elkészített cselekvési tervet kapok", "step4": "Megvalósítás", "step4d": "Végig vezetek a teljes megoldásig",
+    "chat-title": "Amira csevegés", "chat-placeholder": "Írj...", "chat-send": "Küld",
+    "footer-about": "Amira Consulting", "footer-link1": "Rólunk", "footer-link2": "Szolgáltatások", "footer-link3": "Kapcsolat",
+    "footer-rapid": "Gyors", "footer-chat": "Csevegés",
+    "footer-legal": "Jogi", "footer-terms": "Feltételek", "footer-privacy": "Adatvédelem", "footer-cookies": "Cookies",
+    "footer-rights": "Minden jog fenntartva"
+  }
+};
+
+let lang = 'ro';
+let sid = 'web-' + Math.random().toString(36).substr(2, 9);
+const N8N = 'https://arisconsulting.app.n8n.cloud/webhook/web-chat-aris';
+
+function switchLang(e, l) {
+  lang = l;
+  document.querySelectorAll('.lang-flag').forEach(f => f.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (trans[l][key]) el.textContent = trans[l][key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (trans[l][key]) el.placeholder = trans[l][key];
+  });
+  document.querySelectorAll('[data-i18n-key]').forEach(el => {
+    const key = el.getAttribute('data-i18n-key');
+    if (trans[l][key]) document.title = trans[l][key];
+  });
+}
+
+function toggleChat() {
+  document.getElementById('chatWidget').classList.toggle('open');
+  if (!document.getElementById('chatMessages').children.length) {
+    addMsg('Intrà gratis în legătură cu noi, spune-ne problema ta 😊', 'in');
+  }
+}
+
+function addMsg(t, ty) {
+  const c = document.getElementById('chatMessages');
+  const m = document.createElement('div');
+  m.className = 'message';
+  const msgDiv = document.createElement('div');
+  msgDiv.className = ty === 'in' ? 'msg-in' : 'msg-out';
+  msgDiv.textContent = t;
+  m.appendChild(msgDiv);
+  c.appendChild(m);
+  c.scrollTop = c.scrollHeight;
+}
+
+function sendChatMessage() {
+  const i = document.getElementById('chatInput');
+  const t = i.value.trim();
+  if (!t) return;
+  addMsg(t, 'out');
+  i.value = '';
+  fetch(N8N, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({sessionId: sid, text: t, lang: lang})})
+    .then(r => r.json())
+    .then(d => addMsg(d?.reply || 'Am primit mesajul. Consultant va reveni în curând.', 'in'))
+    .catch(() => addMsg('Am primit mesajul. Consultant va reveni în curând.', 'in'));
+}
+
+function openAdmin() {
+  window.open('https://claude.ai/artifact/RTL62zGEfXdoRU9QTBTnXx', '_blank');
+}
+
+switchLang({target: document.querySelector('.lang-flag.active')}, 'ro');
+</script>
+
+</body>
+</html>

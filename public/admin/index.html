@@ -1,0 +1,372 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Admin Amira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,420;9..144,500;9..144,600;9..144,680&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f4f2ec;--surface:#ffffff;--surface-alt:#faf6ed;--border:#e3ded1;--ink:#132e26;--ink-soft:#5c6b64;--accent:#0a9d67;--accent-ink:#ffffff;--accent-soft:#e3f3ea;--shadow-sm:0 1px 2px rgba(19,46,38,.05);--font-display:'Fraunces',serif;--font-body:'Public Sans',sans-serif;--font-mono:'IBM Plex Mono',monospace;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0e1a16;--surface:#152420;--surface-alt:#1a2b25;--border:#2b3e36;--ink:#edf3ee;--ink-soft:#a2b8ae;--accent:#3fcf94;--accent-ink:#062017;--accent-soft:#153428;}}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);font-family:var(--font-body);color:var(--ink);}
+
+.login-screen{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:1000;align-items:center;justify-content:center;}
+.login-screen.show{display:flex;}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:40px;box-shadow:var(--shadow-sm);max-width:360px;}
+.login-box h1{font-family:var(--font-display);font-size:24px;margin:0 0 6px;font-weight:600;}
+.login-form{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+.login-form input{padding:10px;font:400 13px var(--font-body);color:var(--ink);background:var(--surface-alt);border:1px solid var(--border);border-radius:6px;}
+.login-form input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft);}
+.login-btn{padding:10px;font:600 13px var(--font-body);color:var(--accent-ink);background:var(--accent);border:none;border-radius:6px;cursor:pointer;}
+.login-btn:hover{opacity:.9;}
+.login-error{color:#a5402c;font-size:12px;margin-top:8px;}
+
+.dashboard{display:none;}
+.dashboard.show{display:block;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:16px;}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--border);margin-bottom:24px;}
+h1{font-family:var(--font-display);font-size:28px;margin:0;font-weight:600;}
+.header-right{display:flex;gap:12px;align-items:center;}
+.status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-soft);}
+.dot{width:8px;height:8px;border-radius:50%;background:#0a9d67;}
+.logout-btn{font:600 12px var(--font-body);padding:6px 12px;border:1px solid var(--border);background:var(--surface);color:var(--ink);border-radius:6px;cursor:pointer;}
+.logout-btn:hover{border-color:#a5402c;color:#a5402c;}
+
+.section{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--shadow-sm);margin-bottom:20px;}
+.section h2{font-size:18px;margin:0 0 16px;font-weight:600;}
+
+.conv-grid{display:grid;grid-template-columns:280px 1fr;gap:16px;}
+@media (max-width:760px){.conv-grid{grid-template-columns:1fr;}}
+
+.conv-list{border:1px solid var(--border);border-radius:10px;max-height:460px;overflow-y:auto;background:var(--surface-alt);}
+.conv-item{display:block;width:100%;text-align:left;padding:10px 12px;border:none;background:none;border-bottom:1px solid var(--border);cursor:pointer;font:400 13px var(--font-body);color:var(--ink);}
+.conv-item:hover{background:var(--accent-soft);}
+.conv-item.active{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent);}
+
+.thread-wrap{border:1px solid var(--border);border-radius:10px;background:var(--surface-alt);display:flex;flex-direction:column;max-height:460px;}
+.thread-head{padding:10px 14px;border-bottom:1px solid var(--border);font:700 14px var(--font-mono);}
+.thread-body{padding:12px 14px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px;}
+.msg{border-left:3px solid #8a978f;padding:2px 0 2px 10px;font-size:13px;}
+.msg.bot{border-left-color:var(--accent);}
+.msg .who{font:700 10px var(--font-mono);text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px;}
+.msg.bot .who{color:var(--accent);}
+.empty-hint{color:#8a978f;font-size:13px;padding:24px;text-align:center;}
+
+.bot-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media (max-width:900px){.bot-grid{grid-template-columns:1fr;}}
+
+.prompt-editor{display:flex;flex-direction:column;gap:10px;}
+.prompt-textarea{width:100%;min-height:300px;padding:10px;font:400 12px var(--font-mono);color:var(--ink);background:var(--surface-alt);border:1px solid var(--border);border-radius:6px;resize:vertical;}
+.prompt-textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft);}
+.btn-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.btn-primary{font:600 12px var(--font-body);padding:8px 14px;border:none;border-radius:6px;background:var(--accent);color:var(--accent-ink);cursor:pointer;}
+.btn-primary:hover{opacity:.9;}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;}
+.btn-secondary{font:600 12px var(--font-body);padding:8px 14px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--ink);cursor:pointer;}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
+
+.chat-box{display:flex;flex-direction:column;gap:10px;}
+.chat-messages{border:1px solid var(--border);border-radius:6px;background:var(--surface-alt);min-height:300px;max-height:400px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;}
+.chat-msg{padding:8px 10px;border-radius:6px;font-size:13px;line-height:1.4;}
+.chat-msg.user{background:var(--accent-soft);color:var(--accent);margin-left:20px;}
+.chat-msg.bot{background:var(--surface);color:var(--ink);margin-right:20px;border-left:3px solid var(--accent);}
+.chat-input-wrap{display:flex;gap:6px;}
+.chat-input{flex:1;padding:8px 10px;font:400 12px var(--font-body);color:var(--ink);background:var(--surface-alt);border:1px solid var(--border);border-radius:6px;}
+.chat-input:focus{outline:none;border-color:var(--accent);}
+.chat-send{font:600 12px var(--font-body);padding:8px 12px;border:none;border-radius:6px;background:var(--accent);color:var(--accent-ink);cursor:pointer;}
+.chat-send:hover{opacity:.9;}
+.chat-send:disabled{opacity:.5;cursor:not-allowed;}
+
+table{width:100%;border-collapse:collapse;margin-top:12px;}
+th{text-align:left;font:600 11px var(--font-mono);text-transform:uppercase;color:var(--ink-soft);padding:8px;border-bottom:1px solid var(--border);}
+td{padding:9px 8px;border-bottom:1px solid var(--border);font-size:13px;}
+tr:hover{background:var(--surface-alt);}
+.tag{display:inline-block;font:600 10px var(--font-mono);padding:3px 7px;border-radius:5px;background:var(--accent-soft);color:var(--accent);}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen show" id="loginScreen">
+  <div class="login-box">
+    <h1>Admin Amira</h1>
+    <form class="login-form" id="loginForm">
+      <input type="text" id="loginUser" placeholder="Utilizator" autocomplete="username" />
+      <input type="password" id="loginPass" placeholder="Parolă" autocomplete="current-password" />
+      <button type="submit" class="login-btn">Conectare</button>
+      <div class="login-error" id="loginError"></div>
+    </form>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Conversații & Pipeline</h1>
+        <div style="font-size:12px;color:var(--ink-soft);">Amira Consulting · admin panel</div>
+      </div>
+      <div class="header-right">
+        <div class="status"><span class="dot" id="statusDot"></span><span id="statusText">Loading...</span></div>
+        <button class="logout-btn" id="logoutBtn">Deconectare</button>
+      </div>
+    </header>
+
+    <!-- CONVERSATIONS -->
+    <div class="section">
+      <h2>Conversații (WhatsApp + Telegram)</h2>
+      <div class="conv-grid">
+        <div class="conv-list" id="convList"></div>
+        <div class="thread-wrap">
+          <div class="thread-head" id="threadPhone">—</div>
+          <div class="thread-body" id="threadBody"><div class="empty-hint">Selectează conversație</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOT CONTROL -->
+    <div class="section">
+      <h2>⚙️ Control Bot - Prompt & Test</h2>
+      <div class="bot-grid">
+        <div class="prompt-editor">
+          <label style="font:600 12px var(--font-body);color:var(--ink-soft);">System Prompt</label>
+          <textarea class="prompt-textarea" id="promptEditor"></textarea>
+          <div class="btn-actions">
+            <button class="btn-primary" id="applyBtn">✓ Aplică</button>
+            <button class="btn-secondary" id="resetBtn">↺ Reset</button>
+          </div>
+          <div id="promptStatus" style="font-size:12px;color:var(--ink-soft);margin-top:4px;"></div>
+        </div>
+
+        <div class="chat-box">
+          <label style="font:600 12px var(--font-body);color:var(--ink-soft);">Test Chat - Vorbește cu Botul</label>
+          <div class="chat-messages" id="chatMessages"></div>
+          <div class="chat-input-wrap">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Mesaj..." />
+            <button class="chat-send" id="chatSendBtn">Trimite</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- CLIENTS TABLE -->
+    <div class="section">
+      <h2>Clienți</h2>
+      <table><thead><tr><th>Client</th><th>Telefon</th><th>Tip</th><th>Pachet</th><th>Status</th></tr></thead>
+      <tbody id="clientsBody"></tbody></table>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const ADMIN_USER = 'robert';
+const ADMIN_PASS = '350390';
+// Credentials loaded from backend via /api/config - never hardcode secrets in frontend
+const SUPABASE_URL = window.SUPABASE_URL || 'https://diryethqkgdweamujrdu.supabase.co';
+const SUPABASE_ANON = window.SUPABASE_ANON || '[PLACEHOLDER_SUPABASE_ANON_KEY]';
+const SUPABASE_SERVICE = '[PLACEHOLDER_SUPABASE_SERVICE_KEY]'; // Backend-only, never in frontend
+const CLAUDE_KEY = '[PLACEHOLDER_CLAUDE_KEY]'; // Backend-only, never in frontend
+
+const state = { data: null, selectedSid: null };
+const defaultPrompt = `Tu ești Ana, consultant digital la Amira Consulting.
+
+Salută clientul cu:
+"Bună! Sunt Ana, consultant digital la Amira Consulting.
+
+Conform reglementărilor UE (AI Act, articolul 50), vă informez că sunteți în conversație cu un consultant bazat pe inteligență artificială. Datele sunt tratate conform standardelor de protecție din Germania (Datenschutz).
+
+Cum vă pot ajuta astazi? 😊"
+
+Răspunde scurt și clar în limba română.`;
+
+function checkAuth() {
+  const token = localStorage.getItem('adminToken');
+  if (!token) {
+    document.getElementById('loginScreen').classList.add('show');
+    document.getElementById('dashboard').classList.remove('show');
+    return false;
+  }
+  document.getElementById('loginScreen').classList.remove('show');
+  document.getElementById('dashboard').classList.add('show');
+  return true;
+}
+
+document.getElementById('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const user = document.getElementById('loginUser').value.trim();
+  const pass = document.getElementById('loginPass').value.trim();
+
+  try {
+    const res = await fetch('https://backend.amiraconsulting.services/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: user, password: pass })
+    });
+
+    const data = await res.json();
+    if (data.success && data.token) {
+      localStorage.setItem('adminToken', data.token);
+      document.getElementById('loginError').textContent = '';
+      checkAuth();
+      loadAllData();
+    } else {
+      document.getElementById('loginError').textContent = '❌ ' + (data.error || 'Incorect');
+    }
+  } catch (e) {
+    document.getElementById('loginError').textContent = '❌ Eroare conexiune';
+  }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  localStorage.removeItem('adminToken');
+  checkAuth();
+});
+
+async function loadAllData() {
+  document.getElementById('statusText').textContent = 'Conectare...';
+
+  try {
+    const token = localStorage.getItem('adminToken');
+    const convRes = await fetch('https://backend.amiraconsulting.services/api/admin/conversations', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+
+    const convData = await convRes.json();
+    const convs = convData.conversatii || [];
+    const clients = [];
+    const webChats = [];
+    const visitors = [];
+    const events = [];
+
+    // Merge voice calls and web chats
+    const merged = [
+      ...(Array.isArray(convs) ? convs : []),
+      ...(Array.isArray(webChats) ? webChats : [])
+    ].sort((a, b) => new Date(b.creat_la) - new Date(a.creat_la));
+
+    state.data = {
+      conversatii: merged,
+      clienti: Array.isArray(clients) ? clients : [],
+      vizitatori: Array.isArray(visitors) ? visitors : [],
+      events: Array.isArray(events) ? events : []
+    };
+
+    document.getElementById('statusDot').style.background = 'var(--accent)';
+    document.getElementById('statusText').textContent = 'Conectat ✓';
+    render();
+  } catch (e) {
+    console.error(e);
+    document.getElementById('statusText').textContent = 'Eroare conexiune';
+  }
+}
+
+function render() {
+  if (!state.data) return;
+
+  const convs = state.data.conversatii || [];
+  const list = document.getElementById('convList');
+
+  list.innerHTML = convs.map(c => {
+    const active = c.call_sid === state.selectedSid ? 'active' : '';
+    return `<button class="conv-item ${active}" data-sid="${c.call_sid}"><strong>${c.client_name || c.telefon}</strong></button>`;
+  }).join('');
+
+  if (convs.length && !state.selectedSid) state.selectedSid = convs[0].call_sid;
+
+  document.querySelectorAll('.conv-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.selectedSid = btn.dataset.sid;
+      render();
+    });
+  });
+
+  const conv = convs.find(c => c.call_sid === state.selectedSid);
+  document.getElementById('threadPhone').textContent = conv?.telefon || '—';
+
+  const thread = document.getElementById('threadBody');
+  if (conv?.istoric?.length) {
+    thread.innerHTML = conv.istoric.map(m =>
+      `<div class="msg ${m.rol === 'consultant' ? 'bot' : ''}"><div class="who">${m.rol === 'consultant' ? 'Ana' : 'Client'}</div><div>${m.text}</div></div>`
+    ).join('');
+  } else {
+    thread.innerHTML = '<div class="empty-hint">Nicio conversație selectată</div>';
+  }
+
+  const table = document.getElementById('clientsBody');
+  table.innerHTML = (state.data.clienti || []).slice(0, 20).map(c =>
+    `<tr><td><strong>${c.nume || '—'}</strong></td><td style="font-family:var(--font-mono);font-size:12px;">${c.telefon || '—'}</td><td>${c.tip || '—'}</td><td>${c.pachet_curent || '—'}</td><td><span class="tag">${c.gdpr_semnat ? 'GDPR' : 'Lead'}</span></td></tr>`
+  ).join('');
+}
+
+// Bot
+document.getElementById('promptEditor').value = localStorage.getItem('botPrompt') || defaultPrompt;
+
+document.getElementById('applyBtn').addEventListener('click', () => {
+  const prompt = document.getElementById('promptEditor').value.trim();
+  if (prompt) {
+    localStorage.setItem('botPrompt', prompt);
+    document.getElementById('promptStatus').textContent = '✅ Salvat local';
+  }
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  document.getElementById('promptEditor').value = defaultPrompt;
+  localStorage.removeItem('botPrompt');
+});
+
+function addMsg(text, role) {
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + role;
+  div.textContent = text;
+  document.getElementById('chatMessages').appendChild(div);
+  document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+}
+
+document.getElementById('chatSendBtn').addEventListener('click', async () => {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  addMsg(msg, 'user');
+  input.value = '';
+  document.getElementById('chatSendBtn').disabled = true;
+
+  try {
+    const token = localStorage.getItem('adminToken');
+    const res = await fetch('https://backend.amiraconsulting.services/api/admin/bot-message', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        message: msg,
+        systemPrompt: document.getElementById('promptEditor').value
+      })
+    });
+
+    const data = await res.json();
+    addMsg(data.reply || '(no response)', 'bot');
+  } catch (e) {
+    addMsg('❌ ' + e.message, 'bot');
+  } finally {
+    document.getElementById('chatSendBtn').disabled = false;
+  }
+});
+
+document.getElementById('chatInput').addEventListener('keypress', e => {
+  if (e.key === 'Enter') document.getElementById('chatSendBtn').click();
+});
+
+// Init
+checkAuth();
+</script>
+</body>
+</html>

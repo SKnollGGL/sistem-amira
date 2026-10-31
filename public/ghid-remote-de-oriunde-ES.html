@@ -1,0 +1,459 @@
+<title>Trabaja Desde Cualquier Lugar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --ink:#0b1f1a; --ink-2:#132e26;
+    --paper:#f4f7f3; --paper-2:#e9efe9;
+    --accent:#17d68f; --accent-dark:#0a9d67;
+    --gold:#f2b705;
+    --line:#d8e0da;
+    --text:#12211c; --text-dim:#4a5c54;
+    --on-ink:#eef5f0; --on-ink-dim:#a9c2b7;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0b1611; --paper-2:#101e18;
+      --text:#e9f2ec; --text-dim:#9fb6ac;
+      --line:#20362c;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0b1611; --paper-2:#101e18;
+    --text:#e9f2ec; --text-dim:#9fb6ac;
+    --line:#20362c;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--text);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 20px;}
+  h1,h2,h3{font-family:'Big Shoulders Display',sans-serif; font-weight:900; text-transform:uppercase; text-wrap:balance; letter-spacing:0.01em; line-height:0.95;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- HERO ---------- */
+  .hero{background:var(--ink); color:var(--on-ink); padding-block:56px 64px;}
+  .eyebrow{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:5px 14px; margin-bottom:18px;}
+  .hero h1{font-size:clamp(40px,7vw,74px); margin:0 0 14px;}
+  .hero h1 em{font-style:normal; color:var(--accent);}
+  .hero p.lead{font-size:19px; color:var(--on-ink-dim); max-width:60ch; margin:0 0 28px;}
+  .hero-grid{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
+  .pill{background:var(--ink-2); border:1px solid #234238; border-radius:10px; padding:12px 16px; font-size:14px; color:var(--on-ink-dim); flex:1 1 200px;}
+  .pill b{color:var(--on-ink); display:block; font-size:15px; margin-bottom:2px;}
+  .founder-banner{margin-top:22px; background:rgba(242,183,5,0.12); border:1px solid var(--gold); border-radius:12px; padding:14px 18px; font-size:15px; color:var(--on-ink); max-width:70ch;}
+  .founder-banner b{color:var(--gold);}
+
+  section{padding-block:52px;}
+  section.alt{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .kicker{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:10px;}
+  h2{font-size:clamp(28px,4.5vw,42px); margin:0 0 18px;}
+  p.big{font-size:18px; color:var(--text-dim); max-width:66ch;}
+
+  /* ---------- SECRET ---------- */
+  .secret-box{background:var(--ink); color:var(--on-ink); border-radius:16px; padding:32px; margin-top:28px;}
+  .secret-box p{color:var(--on-ink-dim); font-size:17px; max-width:70ch;}
+  .secret-box strong{color:var(--accent);}
+
+  /* ---------- CALCULATOR ---------- */
+  table.calc{width:100%; border-collapse:collapse; margin-top:24px; font-size:15px;}
+  table.calc caption{text-align:left; font-size:13px; color:var(--text-dim); margin-bottom:10px;}
+  table.calc th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); padding:10px 12px; border-bottom:2px solid var(--line);}
+  table.calc td{padding:12px; border-bottom:1px solid var(--line);}
+  table.calc td.num{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; text-align:right;}
+  table.calc td.comm{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; text-align:right; color:var(--accent-dark); font-weight:600;}
+  .scenario{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:28px;}
+  .scenario-card{background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:20px;}
+  .scenario-card .n{font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:42px; color:var(--accent-dark); line-height:1;}
+  .scenario-card .cap{font-size:13px; color:var(--text-dim); margin-top:6px;}
+  .disclaimer{font-size:13px; color:var(--text-dim); margin-top:16px; border-left:3px solid var(--gold); padding-left:12px;}
+
+  /* ---------- CHANNELS ---------- */
+  .channels{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:28px;}
+  .channel{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px;}
+  .channel .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent-dark); margin-bottom:8px;}
+  .channel h3{font-size:22px; margin:0 0 10px; text-transform:none; letter-spacing:0;}
+  .channel ul{margin:0; padding-left:18px; color:var(--text-dim); font-size:14.5px;}
+  .channel li{margin-bottom:6px;}
+
+  /* ---------- SCRIPTS (chat bubbles) ---------- */
+  .script-block{margin-top:24px;}
+  .script-title{font-weight:600; margin-bottom:10px; font-size:15px;}
+  .bubble{background:var(--paper); border:1px solid var(--line); border-radius:14px 14px 14px 4px; padding:14px 18px; max-width:70ch; font-size:15px; margin-bottom:22px; position:relative;}
+  .bubble::before{content:"TÃº â†’"; display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent-dark); margin-bottom:6px; letter-spacing:0.06em;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line); padding-block:18px;}
+  .faq-item h3{font-size:17px; text-transform:none; letter-spacing:0; margin:0 0 8px; font-family:'IBM Plex Sans',sans-serif; font-weight:600;}
+  .faq-item p{margin:0; color:var(--text-dim);}
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta{background:linear-gradient(160deg,var(--ink),var(--ink-2)); color:var(--on-ink); border-radius:20px; padding:44px 32px; text-align:center; margin-top:8px;}
+  .cta h2{color:var(--on-ink);}
+  .cta p{color:var(--on-ink-dim); max-width:56ch; margin:0 auto 22px;}
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:26px; text-align:left;}
+  .step{background:var(--ink-2); border:1px solid #234238; border-radius:12px; padding:18px;}
+  .step .num{font-family:'Big Shoulders Display',sans-serif; font-weight:900; color:var(--accent); font-size:28px;}
+
+  footer{padding-block:36px; text-align:center; font-size:12.5px; color:var(--text-dim);}
+  figure{margin:0;}
+  .hero-diagram{margin-top:30px;}
+  .hero-diagram figcaption{font-size:12.5px; color:var(--on-ink-dim); margin-top:10px;}
+  .svg-chart figcaption{font-size:13px; color:var(--text-dim); margin-top:12px; max-width:66ch;}
+  tr.tier-gold{background:rgba(242,183,5,0.09);}
+
+  @media (max-width:520px){
+    .hero{padding-block:44px 48px;}
+    section{padding-block:40px;}
+    table.calc{font-size:13px;}
+    table.calc td, table.calc th{padding:8px 6px;}
+  }
+</style>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">🚀‡©🚀‡ª EdiciÃ³n Alemania 2026"“2027 · Amira Consulting</span>
+    <h1>CÃ³mo ganar dinero <em>en remoto</em>,<br>estÃ©s donde estÃ©s.</h1>
+    <p class="lead" style="font-size:21px; color:var(--on-ink); font-weight:500;">El camino hacia la independencia financiera "” sin vender productos, sin dropshipping, sin invertir ni un euro.</p>
+    <p class="lead">Si ya has visto decenas de guÃ­as de "cÃ³mo ganar dinero en remoto" que en realidad solo te enseÃ±an a revender esa misma guÃ­a "” esta es diferente. Te mostramos el mecanismo exacto para ganar dinero recomendando un servicio real que las comunidades de inmigrantes en Alemania "” mira mÃ¡s abajo, es mÃ¡s grande de lo que crees "” necesitan de verdad ahora mismo, junto con guiones listos para copiar y empezar hoy, no "algÃºn dÃ­a".</p>
+    <div class="hero-grid">
+      <div class="pill"><b>Sin lÃ­mite de ganancias</b>el lÃ­mite es el cielo "” cuantas mÃ¡s personas recomiendes y formes, mÃ¡s ganas</div>
+      <div class="pill"><b>0 inversiÃ³n</b>no compras stock, no tienes costes, promocionas desde el mÃ³vil</div>
+      <div class="pill"><b>Pago directo</b>rastreado automÃ¡ticamente con tu propio nÃºmero de telÃ©fono</div>
+    </div>
+    <div class="founder-banner">🚀… Los primeros 100 Socios Amira reciben el tÃ­tulo de <b>Miembro Fundador</b> "” 12% de comisiÃ³n de por vida, ademÃ¡s de la posibilidad de formar tu propio equipo y ganar tambiÃ©n de su actividad.</div>
+    <figure class="hero-diagram">
+      <svg viewBox="0 0 640 130" role="img" aria-label="TÃº recomiendas a alguien el bot de Amira en WhatsApp, el bot resuelve el trÃ¡mite, el cliente paga, y tÃº recibes automÃ¡ticamente la comisiÃ³n" style="width:100%; height:auto; color:var(--on-ink-dim);">
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="currentColor"/></marker>
+        </defs>
+        <g font-family="IBM Plex Sans, sans-serif">
+          <circle cx="70" cy="45" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="70" y="53" text-anchor="middle" font-size="24">🚀™‹</text>
+          <text x="70" y="100" text-anchor="middle" font-size="13" fill="var(--on-ink)">TÃº</text>
+
+          <line x1="108" y1="45" x2="192" y2="45" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="150" y="34" text-anchor="middle" font-size="11">recomiendas</text>
+
+          <circle cx="230" cy="45" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="230" y="53" text-anchor="middle" font-size="24">🚀¤–</text>
+          <text x="230" y="100" text-anchor="middle" font-size="13" fill="var(--on-ink)">Bot Amira</text>
+
+          <line x1="268" y1="45" x2="352" y2="45" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="310" y="34" text-anchor="middle" font-size="11">resuelve el trÃ¡mite</text>
+
+          <circle cx="390" cy="45" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="390" y="53" text-anchor="middle" font-size="24">🚀’¶</text>
+          <text x="390" y="100" text-anchor="middle" font-size="13" fill="var(--on-ink)">El cliente paga</text>
+
+          <line x1="428" y1="45" x2="512" y2="45" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="470" y="34" text-anchor="middle" font-size="11">automÃ¡tico</text>
+
+          <circle cx="570" cy="45" r="34" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <text x="570" y="53" text-anchor="middle" font-size="24">🚀’°</text>
+          <text x="570" y="100" text-anchor="middle" font-size="13" fill="var(--accent)" font-weight="700">Tu comisiÃ³n</text>
+        </g>
+      </svg>
+      <figcaption>El mecanismo completo, desde la recomendaciÃ³n hasta el dinero en tu cuenta "” sin papeleo, sin complicaciones.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">El problema</div>
+    <h2>Por quÃ© la mayorÃ­a de las guÃ­as de "ingresos remotos"<br>nunca te pagan ni un euro</h2>
+    <p class="big">Seguramente ya compraste una guÃ­a de "cÃ³mo ganar dinero desde casa" que terminaba con "...y ahora vÃ©ndesela tÃº a otra persona". Sin un producto real detrÃ¡s, sin nadie que compre de verdad algo, el dinero nunca llega "” solo la comisiÃ³n de quien te vendiÃ³ la guÃ­a a ti.</p>
+    <p class="big">Alemania tiene mÃ¡s de 900.000 rumanos (Destatis) "” ademÃ¡s de turcos, ucranianos, polacos, bÃºlgaros y muchas otras comunidades de inmigrantes, todos con trÃ¡mites reales que resolver: Kindergeld (ayuda por hijos), BÃ¼rgergeld (ayuda social bÃ¡sica), permisos de residencia, multas, matriculaciÃ³n de coches. No hace falta convencer a nadie de nada falso "” la gente ya estÃ¡ buscando ayuda activamente para esto, cada dÃ­a, en cualquier grupo de Facebook de la diÃ¡spora.</p>
+
+    <div class="kicker" style="margin-top:34px;">La soluciÃ³n</div>
+    <h2>Te conviertes en el puente<br>entre el problema y la soluciÃ³n</h2>
+    <div class="secret-box">
+      <p>Cuando alguien a quien recomiendas <strong>compra de verdad</strong> un servicio de Amira Consulting, recibes <strong>entre el 7% y el 12% del valor del servicio</strong> (el desglose exacto mÃ¡s abajo), automÃ¡ticamente, sin papeleo, sin complicaciones. No importa dÃ³nde estÃ©s "” puedes enviar un enlace desde cualquier parte del mundo. Tu Ãºnica tarea: poner en contacto a personas con un problema burocrÃ¡tico en Alemania con nuestro bot de WhatsApp que lo resuelve.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Tres niveles, comisiÃ³n creciente</div>
+    <h2>Cuanto mÃ¡s te impliques, mÃ¡s ganas</h2>
+    <p class="big">No todo el mundo empieza igual "” ni todo el mundo se queda en el mismo nivel. La red Amira tiene 3 niveles claros:</p>
+    <table class="calc" style="margin-bottom:8px;">
+      <tr><th>Nivel</th><th>ComisiÃ³n en ventas directas</th><th>CÃ³mo llegas ahÃ­</th></tr>
+      <tr><td>🚀¥‰ <b>RecomendaciÃ³n</b></td><td class="comm">7%</td><td>AutomÃ¡tico, la primera vez que alguien te menciona como referente</td></tr>
+      <tr><td>🚀¥ˆ <b>Socio Amira</b></td><td class="comm">9%</td><td>Te implicas activamente, quieres hacerlo de forma constante "” "subes" a nivel de Socio</td></tr>
+      <tr class="tier-gold"><td>🚀¥‡ <b>Miembro Fundador</b></td><td class="comm">12%</td><td>Entre los primeros 100 Socios activos "” ademÃ¡s del derecho a formar tu propio equipo</td></tr>
+    </table>
+    <p class="disclaimer">Un Miembro Fundador que trae a alguien nuevo a la red y le ayuda a convertirse en Socio tambiÃ©n gana algo de la actividad de esa persona, ademÃ¡s de su propia comisiÃ³n directa "” una razÃ³n mÃ¡s para formar y apoyar a otros, no solo vender en solitario. El dinero siempre viene de servicios reales pagados por clientes reales, nunca de una cuota de inscripciÃ³n.</p>
+
+    <div class="kicker" style="margin-top:30px;">En cifras "” nivel Socio Amira (9%)</div>
+    <table class="calc">
+      <caption>Servicios administrativos "” comisiÃ³n del 9% sobre el precio (Socio Amira)</caption>
+      <tr><th>Servicio</th><th>Precio</th><th>Tu comisiÃ³n (9%)</th></tr>
+      <tr><td>Meldebescheinigung (certificado de empadronamiento)</td><td class="num">79 â‚¬</td><td class="comm">7,11 â‚¬</td></tr>
+      <tr><td>FÃ¼hrungszeugnis (certificado de antecedentes penales alemÃ¡n)</td><td class="num">99 â‚¬</td><td class="comm">8,91 â‚¬</td></tr>
+      <tr><td>Gewerbeanmeldung (registro de actividad/negocio)</td><td class="num">129 â‚¬</td><td class="comm">11,61 â‚¬</td></tr>
+      <tr><td>Ayuda para buscar vivienda (Wohnungssuche)</td><td class="num">149 â‚¬</td><td class="comm">13,41 â‚¬</td></tr>
+      <tr><td>Paquete Familia / Ingresos / Documentos / Coche / ProtecciÃ³n</td><td class="num">219 â‚¬</td><td class="comm">19,71 â‚¬</td></tr>
+      <tr><td>PrÃ³rroga de residencia para familiares no comunitarios</td><td class="num">249 â‚¬</td><td class="comm">22,41 â‚¬</td></tr>
+      <tr><td>TrÃ¡mite complejo (recurso formal, homologaciÃ³n de tÃ­tulos)</td><td class="num">349 â‚¬</td><td class="comm">31,41 â‚¬</td></tr>
+    </table>
+    <p class="disclaimer">Como Miembro Fundador (12%), los mismos servicios pagan 219â‚¬ â†’ 26,28â‚¬, 349â‚¬ â†’ 41,88â‚¬, y asÃ­ sucesivamente "” mÃ¡s lo que ganes de tu propio equipo, si decides formarlo.</p>
+
+    <table class="calc" style="margin-top:32px;">
+      <caption>ColocaciÃ³n laboral "” con diferencia la comisiÃ³n mÃ¡s alta (el candidato NUNCA paga, la tarifa la pone el empleador, legal en Alemania) "” calculado a nivel Socio Amira (9%)</caption>
+      <tr><th>Salario bruto anual del candidato colocado</th><th>ComisiÃ³n de Amira del empleador (~25%)</th><th>Tu comisiÃ³n (9% de eso)</th></tr>
+      <tr><td>28.000 â‚¬ (trabajador cualificado, nivel inicial)</td><td class="num">7.000 â‚¬</td><td class="comm">630 â‚¬</td></tr>
+      <tr><td>35.000 â‚¬ (oficio con experiencia)</td><td class="num">8.750 â‚¬</td><td class="comm">787,50 â‚¬</td></tr>
+      <tr><td>45.000 â‚¬ (especialista/cualificaciÃ³n reconocida)</td><td class="num">11.250 â‚¬</td><td class="comm">1.012,50 â‚¬</td></tr>
+    </table>
+    <p class="disclaimer">El 25% es la media real de mercado para comisiones de reclutamiento en Alemania (17-30% segÃºn el puesto, referencia BDU ~27,8%) "” una sola recomendaciÃ³n de colocaciÃ³n laboral puede valer tanto como 30-50 trÃ¡mites administrativos juntos. A nivel de Miembro Fundador (12%), las mismas colocaciones pagan 840â‚¬ / 1.050â‚¬ / 1.350â‚¬.</p>
+
+    <div class="kicker" style="margin-top:36px;">No te quedes en un solo tipo de cliente</div>
+    <h2>Combina servicios "” asÃ­ es un mes real como Socio Amira</h2>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">~200 â‚¬</div><div class="cap">solo con 10 trÃ¡mites administrativos estÃ¡ndar (219â‚¬, nivel Socio 9%) "” el punto de partida, no el lÃ­mite</div></div>
+      <div class="scenario-card"><div class="n">~910 â‚¬</div><div class="cap">6 trÃ¡mites administrativos + <b>1 colocaciÃ³n laboral</b> (salario de 35.000â‚¬) en el mismo mes</div></div>
+      <div class="scenario-card"><div class="n">~1.500 â‚¬</div><div class="cap">Como Miembro Fundador: 4 trÃ¡mites + 2 ayudas de vivienda + <b>1 colocaciÃ³n laboral</b> (45.000â‚¬) + lo que ganas de 2 Socios de tu equipo</div></div>
+      <div class="scenario-card"><div class="n">~2.860 â‚¬</div><div class="cap">Miembro Fundador con un equipo de 3 Socios activos: 8 trÃ¡mites propios + <b>2 colocaciones laborales</b> (35.000â‚¬ y 45.000â‚¬) + lo que aporta la actividad de tu equipo "” un mes muy bueno, con una red ya formada</div></div>
+      <div class="scenario-card"><div class="n">âˆž</div><div class="cap">No hay lÃ­mite "” mÃ¡s recomendaciones, mÃ¡s Socios formados, mÃ¡s colocaciones laborales significan simplemente mÃ¡s dinero. El lÃ­mite es el cielo, no esta guÃ­a.</div></div>
+    </div>
+    <p class="disclaimer">Estos escenarios son ejemplos de cÃ¡lculo basados en las comisiones reales de arriba, no una garantÃ­a de ingresos "” ni tampoco un lÃ­mite. CuÃ¡nto dinero ganes depende de cuÃ¡nta gente a tu alrededor necesite estos servicios, de cuÃ¡n constante seas aplicando los pasos de esta guÃ­a y, a nivel Fundador, de cuÃ¡ntos Socios formes.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">🚀Œ Tu mercado es mÃ¡s grande de lo que crees</div>
+    <h2>No promocionas solo para una nacionalidad</h2>
+    <p class="big">El bot de Amira Consulting ahora habla alemÃ¡n, bÃºlgaro, ucraniano, turco y polaco, ademÃ¡s de rumano "” cada comunidad recibe la informaciÃ³n relevante para su situaciÃ³n especÃ­fica (por ejemplo, el rÃ©gimen especial de protecciÃ³n temporal para ucranianos). Eso significa que tu red de recomendaciÃ³n no se limita a una sola nacionalidad "” cualquier conocido de cualquier comunidad de inmigrantes en Alemania es un cliente potencial.</p>
+    <p class="big">SegÃºn Destatis (2025), mÃ¡s de <strong>14 millones de extranjeros</strong> viven en Alemania "” turcos, ucranianos, sirios, rumanos y polacos entre los grupos mÃ¡s numerosos. Cuantas mÃ¡s comunidades cubra tu red, mÃ¡s conservador (y ridÃ­culo) parece el lÃ­mite de "10 recomendaciones al mes" usado en los cÃ¡lculos de arriba.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">🚀¢ El segundo canal de ingresos</div>
+    <h2>No te limites a personas "”<br>tambiÃ©n puedes recomendar empresas</h2>
+    <p class="big">La inteligencia artificial es el futuro de todo lo que se estÃ¡ construyendo ahora "” desde la consultorÃ­a hasta la automatizaciÃ³n de empresas "” y Amira Consulting monta esta ola desde el principio, no llega tarde. AdemÃ¡s de los trÃ¡mites administrativos para personas, puedes recomendar ya mismo pequeÃ±os negocios de tu entorno "” el restaurante de la esquina, una peluquerÃ­a, un taller, una consulta "” para <b>bots telefÃ³nicos, asistentes virtuales y digitalizaciÃ³n de procesos internos</b>. Cualquier dueÃ±o de negocio que todavÃ­a conteste el telÃ©fono a mano o lleve las cuentas en papel es un cliente potencial.</p>
+    <div class="secret-box">
+      <p>No es una promesa vacÃ­a "” ya somos especialistas en automatizaciÃ³n: <strong>la propia Amira Consulting funciona con la automatizaciÃ³n que construimos</strong> (el bot de WhatsApp que responde a los clientes, el sistema que rastrea las comisiones, todo lo que has leÃ­do hasta ahora en esta guÃ­a). Lo que hicimos para nosotros mismos, ahora lo ofrecemos tambiÃ©n a otras empresas en Europa.</p>
+      <p>La diferencia con un trÃ¡mite administrativo: ahÃ­ la comisiÃ³n llega <strong>una sola vez</strong>. Con un cliente de automatizaciÃ³n empresarial, llega <strong>cada mes</strong>, de la misma recomendaciÃ³n, mientras la empresa siga siendo cliente. No haces nada nuevo despuÃ©s de la primera conversaciÃ³n "” el dinero sigue llegando.</p>
+    </div>
+
+    <figure class="svg-chart" style="margin-top:30px;">
+      <svg viewBox="0 0 560 240" role="img" aria-label="ComparaciÃ³n: un trÃ¡mite administrativo paga una comisiÃ³n Ãºnica de 20 euros, mientras que un solo cliente de automatizaciÃ³n empresarial paga de forma recurrente, alcanzando 180 euros acumulados en solo 6 meses y sigue creciendo" style="width:100%; height:auto; color:var(--text-dim);">
+        <g font-family="IBM Plex Sans, sans-serif" font-size="11">
+          <rect x="60" y="10" width="10" height="10" fill="var(--gold)"/>
+          <text x="76" y="19" fill="var(--text-dim)">Un trÃ¡mite administrativo (una vez)</text>
+          <rect x="60" y="26" width="10" height="10" fill="var(--accent-dark)"/>
+          <text x="76" y="35" fill="var(--text-dim)">Un cliente de automatizaciÃ³n empresarial (recurrente, mensual)</text>
+        </g>
+        <line x1="60" y1="200" x2="540" y2="200" stroke="currentColor" stroke-width="1.5"/>
+        <polyline points="60,181 156,181 252,181 348,181 444,181 540,181" fill="none" stroke="var(--gold)" stroke-width="3"/>
+        <polyline points="60,172 156,143 252,115 348,87 444,58 540,30" fill="none" stroke="var(--accent-dark)" stroke-width="3"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor">
+          <text x="60" y="216" text-anchor="middle">M1</text>
+          <text x="156" y="216" text-anchor="middle">M2</text>
+          <text x="252" y="216" text-anchor="middle">M3</text>
+          <text x="348" y="216" text-anchor="middle">M4</text>
+          <text x="444" y="216" text-anchor="middle">M5</text>
+          <text x="540" y="216" text-anchor="middle">M6</text>
+        </g>
+        <circle cx="540" cy="181" r="4" fill="var(--gold)"/>
+        <circle cx="540" cy="30" r="4" fill="var(--accent-dark)"/>
+        <text x="486" y="171" text-anchor="end" font-size="12" fill="var(--gold)" font-weight="600">20 â‚¬ (se queda fijo)</text>
+        <text x="486" y="22" text-anchor="end" font-size="12" fill="var(--accent-dark)" font-weight="600">180 â‚¬ y sigue creciendo</text>
+      </svg>
+      <figcaption>Acumulado en 6 meses, con exactamente el mismo esfuerzo inicial: un trÃ¡mite administrativo te paga la comisiÃ³n una sola vez; un solo cliente de automatizaciÃ³n empresarial te la paga cada mes "” y la diferencia sigue creciendo.</figcaption>
+    </figure>
+
+    <div class="kicker" style="margin-top:34px;">Precio y comisiÃ³n "” partimos de lo que ya sabemos</div>
+    <table class="calc">
+      <caption>Precios tÃ­picos de mercado para automatizaciÃ³n B2B en Europa "” tu comisiÃ³n calculada con los porcentajes ya establecidos (7-12%), aquÃ­ a nivel Socio Amira (9%)</caption>
+      <tr><th>Servicio</th><th>SuscripciÃ³n mensual tÃ­pica</th><th>Tu comisiÃ³n mensual (9%, recurrente)</th></tr>
+      <tr><td>Bot telefÃ³nico para un negocio pequeÃ±o</td><td class="num">300"“600 â‚¬/mes</td><td class="comm">27"“54 â‚¬/mes</td></tr>
+      <tr><td>AutomatizaciÃ³n general de negocio</td><td class="num">800"“1.500 â‚¬/mes</td><td class="comm">72"“135 â‚¬/mes</td></tr>
+      <tr><td>AutomatizaciÃ³n de producciÃ³n</td><td class="num">2.000+ â‚¬/mes</td><td class="comm">180+ â‚¬/mes</td></tr>
+    </table>
+    <p class="disclaimer">El precio final se define junto con nosotros, para cada negocio en particular (depende del tamaÃ±o y la complejidad) "” pero tu porcentaje de comisiÃ³n es siempre el que ya tienes en tu nivel (7-12%), igual que en cualquier otro servicio de Amira. TÃº abres la conversaciÃ³n con el dueÃ±o, nos pasas la necesidad, nosotros hacemos la oferta y confirmamos la comisiÃ³n.</p>
+
+    <div class="kicker" style="margin-top:34px;">Tu ingreso pasivo mensual, desde tu cartera de empresas</div>
+    <p class="big">AquÃ­ las cuentas cambian por completo: no cuentas cuÃ¡ntos trÃ¡mites nuevos cierras este mes, cuentas cuÃ¡ntas empresas siguen siendo clientes el mes que viene "” sin hacer nada nuevo.</p>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">~250 â‚¬/mes</div><div class="cap">4-5 negocios pequeÃ±os con un bot telefÃ³nico bÃ¡sico "” ingreso recurrente, cada mes, de recomendaciones que hiciste una sola vez</div></div>
+      <div class="scenario-card"><div class="n">~600 â‚¬/mes</div><div class="cap">una cartera mixta de 6-8 negocios: bots telefÃ³nicos + algunas automatizaciones generales de negocio</div></div>
+      <div class="scenario-card"><div class="n">~1.200 â‚¬/mes</div><div class="cap">10+ negocios activos, incluyendo 1-2 automatizaciones de producciÃ³n "” ingreso mensual sÃ³lido, sin ningÃºn cliente nuevo este mes</div></div>
+      <div class="scenario-card"><div class="n">2.500+ â‚¬/mes</div><div class="cap">una cartera madura de empresas que crece por sÃ­ sola, mes tras mes "” y todavÃ­a no has llegado al lÃ­mite, porque no existe</div></div>
+    </div>
+    <p class="disclaimer">Estas cifras son ejemplos de cÃ¡lculo, no una garantÃ­a de ingresos "” pero, a diferencia de un trÃ¡mite administrativo, este ingreso se repite automÃ¡ticamente cada mes, mientras la empresa siga siendo cliente. Un Miembro Fundador, con un equipo ya formado a partir de trÃ¡mites administrativos, serÃ¡ el primero capaz de construir rÃ¡pido una cartera de empresas asÃ­. Mira la secciÃ³n "Copia y envÃ­a" mÃ¡s abajo para un mensaje ya listo para un dueÃ±o de negocio.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">â³ Por quÃ© ahora</div>
+    <h2>Alemania 2026"“2027:<br>la ventana estÃ¡ abierta</h2>
+    <p class="big">Las comunidades de inmigrantes en Alemania estÃ¡n entre las mÃ¡s grandes de la UE, y la burocracia alemana (Kindergeld, BÃ¼rgergeld, permisos de residencia) sigue siendo complicada y, en gran parte, solo en alemÃ¡n "” justo donde la ayuda en un idioma que entiendes de verdad importa, ya sea rumano, turco, ucraniano, polaco o espaÃ±ol. Cuanto antes entres en una red de recomendaciÃ³n todavÃ­a joven, menos competencia tendrÃ¡s en los grupos y comunidades que ya conoces.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">GuÃ­a por canales</div>
+    <h2>DÃ³nde y cÃ³mo promocionas,<br>en concreto</h2>
+    <div class="channels">
+      <div class="channel">
+        <div class="tag">🚀“˜ Facebook</div>
+        <h3>Grupos de la diÃ¡spora</h3>
+        <ul>
+          <li>Busca grupos como "Rumanos en [tu ciudad de Alemania]", "Latinos en [ciudad]" "” hay decenas, con miles de miembros</li>
+          <li>No sueltes el enlace de primeras "” responde antes a 2-3 preguntas reales de la gente del grupo sobre Kindergeld/trÃ¡mites, y luego menciona el bot</li>
+          <li>Publica una vez por semana un "¿sabÃ­as que...?" sobre un derecho o ayuda, con el enlace al final</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀Žµ TikTok / Reels</div>
+        <h3>VÃ­deo corto, una sola idea</h3>
+        <ul>
+          <li>Formato: "3 cosas que no sabÃ­as sobre el Kindergeld en Alemania" "” la Ãºltima es "puedes consultarlo gratis por WhatsApp"</li>
+          <li>No prometas cantidades exactas de dinero/ayudas "” muestra solo que hay un paso sencillo que dar</li>
+          <li>El enlace en la bio, no en el vÃ­deo (TikTok a veces penaliza los enlaces en la descripciÃ³n)</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀’¬ WhatsApp</div>
+        <h3>Estado + mensajes directos</h3>
+        <ul>
+          <li>ActualizaciÃ³n de estado: "Quien necesite ayuda con trÃ¡mites en Alemania, que me escriba" "” cercano, no agresivo</li>
+          <li>El mejor canal: alguien de tu familia/amigos que se queja de un problema administrativo "” pÃ¡sale directamente el nÃºmero del bot</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀“¸ Instagram</div>
+        <h3>Historia + destacado permanente</h3>
+        <ul>
+          <li>Un destacado fijo llamado "TrÃ¡mites Alemania" con 3-4 historias guardadas, siempre visibles en tu perfil</li>
+          <li>Comparte preguntas de otros grupos (con permiso) y responde en pÃºblico con el enlace</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀¢ Empresas y emprendedores</div>
+        <h3>El segundo canal de ingresos: las empresas</h3>
+        <ul>
+          <li>Cualquier pequeÃ±o dueÃ±o de negocio que todavÃ­a conteste el telÃ©fono a mano, lleve las cuentas en papel o pierda clientes por falta de tiempo es un cliente potencial de automatizaciÃ³n</li>
+          <li>Empieza con negocios que ya conoces "” el restaurante de la esquina, una peluquerÃ­a, un taller, una consulta "” no necesitas LinkedIn para empezar</li>
+          <li>AquÃ­ tu ingreso es mensual y recurrente, no de una sola vez "” mira la secciÃ³n "el segundo canal de ingresos" mÃ¡s arriba</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">🚀“Š Lo que dicen los estudios</div>
+    <h2>Por quÃ© la recomendaciÃ³n gana<br>a cualquier anuncio</h2>
+    <p class="big">"El boca a boca es la mejor publicidad" no es solo un dicho "” hay cifras reales detrÃ¡s, de estudios de mercado serios.</p>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">92%</div><div class="cap">de las personas confÃ­a mÃ¡s en una recomendaciÃ³n de alguien conocido que en cualquier anuncio (Nielsen, estudio global)</div></div>
+      <div class="scenario-card"><div class="n">4x</div><div class="cap">mÃ¡s probable que alguien compre cuando se lo recomienda un amigo, frente a encontrar la oferta por su cuenta</div></div>
+      <div class="scenario-card"><div class="n">80%</div><div class="cap">de las ventas necesitan al menos 5 seguimientos "” solo el 2% se cierran en el primer mensaje. No te rindas despuÃ©s de un "ahora no"</div></div>
+    </div>
+    <p class="disclaimer">La conclusiÃ³n prÃ¡ctica: ya tienes la mayor ventaja posible "” la gente de tu alrededor confÃ­a en ti mÃ¡s que en cualquier anuncio que Amira pudiera poner jamÃ¡s. Solo queda no rendirse despuÃ©s del primer mensaje sin respuesta.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">🚀¤ Vender, no presionar</div>
+    <h2>CÃ³mo responder a las dudas mÃ¡s comunes</h2>
+    <p class="big">Un buen Socio Amira nunca presiona a nadie "” resuelve la objeciÃ³n antes de que se convierta en un motivo para decir que no. AquÃ­ tienes respuestas ya preparadas para lo que todo el mundo pregunta.</p>
+    <div class="script-block">
+      <div class="script-title">"¿Pero esto no es gratis directamente en el Familienkasse/Jobcenter?"</div>
+      <div class="bubble">Tienes razÃ³n, presentar la solicitud en sÃ­ es gratis. Pagas solo porque alguien rellene y presente bien todo el trÃ¡mite, para que no te lo rechacen por error o pierdas meses por un papel que falta. Si prefieres intentarlo tÃº primero, siempre puedes "” pero mucha gente prefiere no complicarse.</div>
+      <div class="script-title">"No me fÃ­o de dar mis datos personales a un bot de WhatsApp"</div>
+      <div class="bubble">Es totalmente normal tener cuidado. Los datos se tratan conforme al RGPD y solo se usan para tu propio trÃ¡mite "” puedes empezar solo con una pregunta general, sin ningÃºn dato personal, y ver por ti mismo cÃ³mo responde antes de decidir si sigues adelante.</div>
+      <div class="script-title">"No lo necesito ahora, quizÃ¡ mÃ¡s adelante"</div>
+      <div class="bubble">Claro, sin ninguna prisa. Te dejo aquÃ­ el nÃºmero para que lo tengas cuando lo necesites "” y si mientras tanto conoces a alguien mÃ¡s con problemas de trÃ¡mites, se lo puedes pasar tambiÃ©n.</div>
+    </div>
+    <p class="disclaimer">FÃ­jate en el patrÃ³n: ninguna respuesta presiona, todas dejan espacio para el "ahora no" "” y todas convierten un "no" en una puerta que queda abierta para mÃ¡s adelante.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">âœï¸ Copia y envÃ­a</div>
+    <h2>Guiones listos para usar</h2>
+    <div class="script-block">
+      <div class="script-title">Para familia/amigos</div>
+      <div class="bubble">¡Hola! Me comentaste que no sabÃ­as cÃ³mo hacer los trÃ¡mites del Kindergeld / BÃ¼rgergeld. EncontrÃ© un servicio por WhatsApp, Amira Consulting, que te guÃ­a paso a paso. Les escribes tÃº directamente, o ¿quieres que les pase tu nÃºmero?</div>
+      <div class="script-title">En un grupo de Facebook (despuÃ©s de responder a una pregunta real)</div>
+      <div class="bubble">...resumiendo, tambiÃ©n tienes derecho al Kinderzuschlag ademÃ¡s del Kindergeld si tus ingresos son bajos, mucha gente no lo sabe. Si quieres ayuda para presentar bien el trÃ¡mite, hay un consultor por WhatsApp (Amira Consulting) que te guÃ­a gratis por el proceso, solo pagas si eliges que tambiÃ©n te ayuden con el papeleo y la presentaciÃ³n.</div>
+      <div class="script-title">Estado de WhatsApp</div>
+      <div class="bubble">¿Tienes lÃ­os con la oficina de extranjerÃ­a, el Jobcenter o el Familienkasse y no sabes por dÃ³nde empezar? EscrÃ­beme, te pongo en contacto con alguien que te guÃ­a paso a paso. 🚀‡©🚀‡ª🚀“‹</div>
+      <div class="script-title">Para el dueÃ±o de un negocio (restaurante, peluquerÃ­a, taller, consulta)</div>
+      <div class="bubble">¡Hola! Vi que contestÃ¡is el telÃ©fono todo el dÃ­a / llevÃ¡is las cuentas en papel "” colaboro con Amira Consulting, hacemos bots telefÃ³nicos y automatizaciÃ³n para negocios pequeÃ±os, para que no perdÃ¡is clientes por falta de tiempo. ¿Vemos juntos, 10 minutos, si tiene sentido para tu negocio? No cuesta nada hablarlo. 🚀¢🚀¤–</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">â“ Preguntas frecuentes</div>
+    <h2>Lo que debes saber antes de empezar</h2>
+    <div class="faq-item">
+      <h3>¿CÃ³mo sabe Amira Consulting que yo traje al cliente?</h3>
+      <p>La persona que recomiendas le dice al bot quiÃ©n la enviÃ³ (tu nombre o tu nÃºmero de telÃ©fono) en la primera conversaciÃ³n "” el sistema te vincula automÃ¡ticamente a esa recomendaciÃ³n.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Necesito tener una empresa o un contrato para cobrar la comisiÃ³n?</h3>
+      <p>No, no necesitas tener una empresa para ser Socio Amira. La comisiÃ³n se calcula y se registra con tu propio nÃºmero de telÃ©fono.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿CuÃ¡nto tarda en aparecer la comisiÃ³n?</h3>
+      <p>En cuanto la persona que recomendaste pague de verdad un servicio, la comisiÃ³n queda registrada en tu cuenta de socio.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Puedo promocionar desde otro paÃ­s, no solo desde Alemania?</h3>
+      <p>SÃ­. Mucha gente con necesidades administrativas en Alemania en realidad vive en otro sitio "” el problema estÃ¡ ligado a Alemania, no a dÃ³nde estÃ©s tÃº fÃ­sicamente.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿CÃ³mo me convierto en Socio Amira, no solo en RecomendaciÃ³n?</h3>
+      <p>Muy fÃ¡cil "” escribe por WhatsApp, al nÃºmero de Amira Consulting, exactamente la palabra <b>"partener"</b> (una sola palabra, sin nada mÃ¡s, es el mismo comando en todos los idiomas) y pasas automÃ¡ticamente al nivel de Socio (9%). No hace falta llamar a nadie ni rellenar ningÃºn formulario.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿QuÃ© significa exactamente "Miembro Fundador"?</h3>
+      <p>Las primeras 100 personas que se activan en la red reciben, de forma permanente, una comisiÃ³n del 12% (frente al 9% de un Socio normal) "” y, ademÃ¡s, el derecho a formar su propio equipo de Socios, con formaciÃ³n por Zoom incluida. Es un reconocimiento real para quienes entran pronto, no un tÃ­tulo decorativo.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿CÃ³mo gano con mi equipo, si soy Miembro Fundador?</h3>
+      <p>Reclutas y formas (mediante sesiones de Zoom) a gente nueva, ayudÃ¡ndola a convertirse en Socios Amira. AdemÃ¡s de tu propia comisiÃ³n directa por tus recomendaciones, tambiÃ©n ganas de la actividad del equipo que has formado "” los detalles exactos te los explicamos cuando llegues a ese nivel. El dinero siempre viene de servicios reales pagados por clientes reales, nunca de una cuota de inscripciÃ³n de tus socios.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Puedo recomendar tambiÃ©n empresas, no solo personas?</h3>
+      <p>SÃ­ "” ademÃ¡s de los trÃ¡mites administrativos para personas, puedes recomendar pequeÃ±os negocios (restaurante, peluquerÃ­a, taller, consulta) para automatizaciÃ³n: bots telefÃ³nicos, asistentes virtuales, digitalizaciÃ³n de procesos. La comisiÃ³n se calcula al mismo porcentaje que el resto (7-12%, segÃºn tu nivel), pero aquÃ­ llega cada mes, no una sola vez "” mira la secciÃ³n "el segundo canal de ingresos" de esta guÃ­a.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <h2>🚀š€ ¿Listo para empezar?</h2>
+      <p>No necesitas una web, anuncios pagados ni miles de seguidores. Necesitas un telÃ©fono y a la gente de tu alrededor que de todas formas necesita ayuda con los trÃ¡mites en Alemania. Y si estÃ¡s entre los primeros 100, te quedas con el 12% de comisiÃ³n de forma permanente "” no solo el 9%.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div>Guarda el nÃºmero de WhatsApp de Amira Consulting de los materiales que recibiste al comprar</div>
+        <div class="step"><div class="num">02</div>Elige 1-2 canales de esta guÃ­a y envÃ­a tu primer mensaje hoy, no "maÃ±ana"</div>
+        <div class="step"><div class="num">03</div>Sigue tus comisiones "” cada recomendaciÃ³n pagada aparece automÃ¡ticamente en tu nÃºmero</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Esta guÃ­a no garantiza ingresos "” los resultados dependen del esfuerzo y la red de cada persona. La comisiÃ³n varÃ­a en 3 niveles (7% RecomendaciÃ³n / 9% Socio Amira / 12% Miembro Fundador) sobre el valor de los servicios pagados por las personas recomendadas; los Miembros Fundadores ademÃ¡s ganan de la actividad del equipo que forman. Amira Consulting · RosenstraÃŸe 1, 49610 QuakenbrÃ¼ck, Alemania.
+</footer>
+

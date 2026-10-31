@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: sistem-amira
+    runtime: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: CLAUDE_API_KEY
+        value: ${CLAUDE_API_KEY}
+      - key: SUPABASE_URL
+        value: ${SUPABASE_URL}
+      - key: SUPABASE_KEY
+        value: ${SUPABASE_KEY}
+      - key: NODE_ENV
+        value: production
+    region: oregon
+    plan: free

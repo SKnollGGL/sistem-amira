@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amira Consulting - Consultanță Administrativă Germania</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; line-height: 1.6; background: #f8f8f8; }
+
+    /* TOP BAR */
+    .topbar { background: #8B7355; color: white; padding: 10px 20px; text-align: center; font-size: 14px; }
+    .topbar a { color: #fff; text-decoration: none; margin-left: 10px; font-weight: 600; }
+
+    /* HEADER */
+    header { background: white; padding: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
+    .header-content { max-width: 1400px; margin: 0 auto; padding: 0 30px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 15px; font-size: 24px; font-weight: 700; color: #1a1a1a; }
+    .logo img { width: 50px; height: 50px; }
+    .nav-menu { display: flex; gap: 40px; flex: 1; margin-left: 50px; }
+    .nav-menu a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
+    .nav-menu a:hover { color: #0a9d67; }
+    .header-actions { display: flex; gap: 15px; align-items: center; }
+    .btn-action { padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.3s; }
+    .btn-green { background: #0a9d67; color: white; }
+    .btn-green:hover { background: #088a56; }
+    .btn-blue { background: #24a1de; color: white; }
+    .btn-blue:hover { background: #1d8ac0; }
+    .lang-flags { display: flex; gap: 6px; }
+    .lang-flag { width: 30px; height: 22px; cursor: pointer; border: 2px solid transparent; border-radius: 3px; transition: all 0.2s; }
+    .lang-flag:hover { transform: translateY(-2px); }
+    .lang-flag.active { border-color: #0a9d67; box-shadow: 0 0 0 1px rgba(10, 157, 103, 0.5); }
+
+    /* HERO SECTION */
+    .hero { background: linear-gradient(135deg, rgba(10,157,103,0.1) 0%, rgba(36,161,222,0.1) 100%), url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 600%22%3E%3Crect fill=%22%23f8f8f8%22 width=%221200%22 height=%22600%22/%3E%3C/svg%3E'); background-size: cover; background-position: right; padding: 100px 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .hero-text h1 { font-size: 52px; line-height: 1.2; color: #132e26; margin-bottom: 20px; font-weight: 700; }
+    .hero-text h1 .highlight { color: #0a9d67; }
+    .hero-text p { font-size: 18px; color: #666; margin-bottom: 30px; line-height: 1.6; }
+    .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+    .hero-image { text-align: center; }
+    .hero-image img { max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+
+    /* CARDS SECTION */
+    .cards-section { max-width: 1400px; margin: -40px auto 50px; padding: 0 30px; position: relative; z-index: 10; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 20px; cursor: pointer; transition: all 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .card-icon { font-size: 40px; }
+    .card-text h3 { font-size: 16px; font-weight: 600; color: #1a1a1a; margin-bottom: 5px; }
+    .card-text p { font-size: 13px; color: #999; }
+
+    /* SERVICES SECTION */
+    .services { background: white; padding: 80px 30px; }
+    .services-content { max-width: 1400px; margin: 0 auto; }
+    .section-title { font-size: 42px; font-weight: 700; color: #132e26; margin-bottom: 50px; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .service-card { background: #f9f9f9; padding: 40px; border-radius: 12px; border-left: 4px solid #0a9d67; }
+    .service-card h3 { font-size: 22px; font-weight: 600; color: #0a9d67; margin-bottom: 15px; }
+    .service-card p { color: #666; font-size: 15px; line-height: 1.8; }
+
+    /* CHAT WIDGET */
+    .chat-fab { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: linear-gradient(135deg, #0a9d67 0%, #088a56 100%); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; z-index: 999; box-shadow: 0 4px 20px rgba(10,157,103,0.3); transition: all 0.3s; }
+    .chat-fab:hover { transform: scale(1.1); }
+    .chat-widget { position: fixed; bottom: 110px; right: 30px; width: 420px; background: white; border-radius: 16px; box-shadow: 0 5px 50px rgba(0,0,0,0.16); z-index: 999; display: none; overflow: hidden; flex-direction: column; max-height: 600px; }
+    .chat-widget.open { display: flex; }
+    .chat-header { background: linear-gradient(135deg, #0a9d67 0%, #088a56 100%); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+    .chat-close { cursor: pointer; font-size: 28px; }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 20px; background: #f9f9f9; }
+    .message { margin-bottom: 15px; display: flex; }
+    .msg-in { background: white; padding: 12px 16px; border-radius: 12px; max-width: 80%; border: 1px solid #e0e0e0; }
+    .msg-out { background: #0a9d67; color: white; padding: 12px 16px; border-radius: 12px; max-width: 80%; margin-left: auto; }
+    .chat-input { padding: 15px; border-top: 1px solid #ddd; display: flex; gap: 10px; background: white; }
+    .chat-input input { flex: 1; border: 1px solid #ddd; padding: 12px; border-radius: 8px; font-size: 14px; font-family: inherit; }
+    .chat-input button { background: #0a9d67; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+    .chat-input button:hover { background: #088a56; }
+
+    /* HOW IT WORKS */
+    .how-it-works { background: #f9f9f9; padding: 80px 30px; }
+    .how-content { max-width: 1400px; margin: 0 auto; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .step { text-align: center; }
+    .step-number { width: 60px; height: 60px; background: #0a9d67; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; margin: 0 auto 20px; }
+    .step h3 { font-size: 18px; font-weight: 600; color: #1a1a1a; margin-bottom: 10px; }
+    .step p { color: #666; font-size: 14px; }
+
+    /* FOOTER */
+    footer { background: #132e26; color: white; padding: 50px 30px 20px; }
+    .footer-content { max-width: 1400px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .footer-section h3 { margin-bottom: 20px; }
+    .footer-section a { display: block; color: #bbb; text-decoration: none; margin-bottom: 10px; transition: color 0.3s; }
+    .footer-section a:hover { color: #0a9d67; }
+    footer .divider { border-top: 1px solid #333; margin: 30px 0; }
+    footer .bottom { text-align: center; font-size: 13px; color: #888; }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 60px 20px; }
+      .hero-text h1 { font-size: 36px; }
+      .nav-menu { display: none; }
+      .header-actions { flex-wrap: wrap; }
+      .lang-flags { margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  🆕 <strong>Amira Digital</strong> – site-uri, marketing și automatizări pentru afacerea ta <a href="javascript:void(0)">Vezi ofertele →</a>
+</div>
+
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <div style="width:50px; height:50px; background: linear-gradient(135deg, #0a9d67 0%, #088a56 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">AC</div>
+      Amira Consulting
+    </div>
+    <div class="nav-menu">
+      <a href="javascript:void(0)" data-i18n="nav-services">Servicii</a>
+      <a href="javascript:void(0)" data-i18n="nav-how">Cum funcționează</a>
+      <a href="javascript:void(0)" data-i18n="nav-partners">Parteneri</a>
+    </div>
+    <div class="header-actions">
+      <div class="lang-flags">
+        <img class="lang-flag active" data-lang="ro" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='300' height='600' fill='%23002B7F'/%3E%3Crect x='300' width='300' height='600' fill='%23FCD116'/%3E%3Crect x='600' width='300' height='600' fill='%23CE1126'/%3E%3C/svg%3E" title="Română" onclick="switchLang(event, 'ro')">
+        <img class="lang-flag" data-lang="de" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='200' fill='%23000'/%3E%3Crect y='200' width='900' height='200' fill='%23DD0000'/%3E%3Crect y='400' width='900' height='200' fill='%23FFCE00'/%3E%3C/svg%3E" title="Deutsch" onclick="switchLang(event, 'de')">
+        <img class="lang-flag" data-lang="en" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%2300247d'/%3E%3C/svg%3E" title="English" onclick="switchLang(event, 'en')">
+        <img class="lang-flag" data-lang="uk" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='300' fill='%23005BBF'/%3E%3Crect y='300' width='900' height='300' fill='%23FFD700'/%3E%3C/svg%3E" title="Українська" onclick="switchLang(event, 'uk')">
+        <img class="lang-flag" data-lang="tr" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23E4143F'/%3E%3Ccircle cx='250' cy='400' r='150' fill='%23FFF'/%3E%3Cpolygon points='400,300 450,380 380,380 420,440 370,440 410,500 340,440 380,380 310,380' fill='%23E4143F'/%3E%3C/svg%3E" title="Türkçe" onclick="switchLang(event, 'tr')">
+        <img class="lang-flag" data-lang="pl" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='300' fill='%23FFF'/%3E%3Crect y='300' width='900' height='300' fill='%23DC143C'/%3E%3C/svg%3E" title="Polski" onclick="switchLang(event, 'pl')">
+        <img class="lang-flag" data-lang="bg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='200' fill='%23FFF'/%3E%3Crect y='200' width='900' height='200' fill='%2300A86B'/%3E%3Crect y='400' width='900' height='200' fill='%23D62612'/%3E%3C/svg%3E" title="Български" onclick="switchLang(event, 'bg')">
+        <img class="lang-flag" data-lang="ar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23CE1126'/%3E%3Crect width='900' height='450' fill='%23000'/%3E%3Crect y='450' width='900' height='150' fill='%23FFF'/%3E%3C/svg%3E" title="العربية" onclick="switchLang(event, 'ar')">
+        <img class="lang-flag" data-lang="es" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23AA151B'/%3E%3Crect y='150' width='900' height='300' fill='%23F1BF00'/%3E%3C/svg%3E" title="Español" onclick="switchLang(event, 'es')">
+        <img class="lang-flag" data-lang="hu" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='200' fill='%23CD2A3E'/%3E%3Crect y='200' width='900' height='200' fill='%23FFF'/%3E%3Crect y='400' width='900' height='200' fill='%23436F4D'/%3E%3C/svg%3E" title="Magyar" onclick="switchLang(event, 'hu')">
+      </div>
+      <a href="https://wa.me/40373818188" class="btn-action btn-green" target="_blank" data-i18n="btn-whatsapp">WhatsApp</a>
+      <a href="https://t.me/AmiraConsultingbot" class="btn-action btn-blue" target="_blank" data-i18n="btn-telegram">Telegram</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1 data-i18n="hero-title">Statul German fără stres — noi ne ocupam de toată <span class="highlight">birocraţia.</span></h1>
+    <p data-i18n="hero-desc">Kindergeld, Grundsicherungsgeld, acte de reședere, amenzi, chirie — Amira te ghidează pas cu pas, direct din conversație, fără cozi și fără formulare pe care nu le înțelegi.</p>
+    <div class="hero-buttons">
+      <a href="javascript:void(0)" class="btn-action btn-green" data-i18n="btn-free">Scrie-ne o gratis</a>
+      <a href="https://t.me/AmiraConsultingbot" class="btn-action" style="background: #24a1de; color: white;" target="_blank" data-i18n="btn-telegram2">Deschide Telegram</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, rgba(10,157,103,0.1) 0%, rgba(36,161,222,0.1) 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 80px;">💬</div>
+  </div>
+</section>
+
+<section class="cards-section">
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">📡</div>
+      <div class="card-text">
+        <h3 data-i18n="card1-title">Internet prin satelit</h3>
+        <p data-i18n="card1-desc">Recomandare</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💳</div>
+      <div class="card-text">
+        <h3>Revolut</h3>
+        <p data-i18n="card2-desc">Cont bancar</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <div class="card-text">
+        <h3 data-i18n="card3-title">Ajutor la instalare</h3>
+        <p data-i18n="card3-desc">Scrie-ne</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">❓</div>
+      <div class="card-text">
+        <h3 data-i18n="card4-title">Câine nou?</h3>
+        <p data-i18n="card4-desc">Înregistrează-te</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="services-content">
+    <h2 class="section-title" data-i18n="services-title">Serviciile Noastre</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Kindergeld</h3>
+        <p data-i18n="service1">Ajutăm la depunerea și gestionarea cererilor de alocații copii</p>
+      </div>
+      <div class="service-card">
+        <h3>Grundsicherung</h3>
+        <p data-i18n="service2">Înțelegem procedurile complexe de asigurare socială</p>
+      </div>
+      <div class="service-card">
+        <h3>Acte Sedate</h3>
+        <p data-i18n="service3">Ghidare în obținerea actelor de reședere și țarii</p>
+      </div>
+      <div class="service-card">
+        <h3>Impozit & Taxe</h3>
+        <p data-i18n="service4">Declarații fiscale și rezolvare probleme cu fisc-ul</p>
+      </div>
+      <div class="service-card">
+        <h3>Amenzi & Contestații</h3>
+        <p data-i18n="service5">Reprezentare în cazuri de amenzi și contestații</p>
+      </div>
+      <div class="service-card">
+        <h3>Chirie & Locuință</h3>
+        <p data-i18n="service6">Contracte de chirie și probleme cu proprietarul</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-it-works">
+  <div class="how-content">
+    <h2 class="section-title" data-i18n="how-title">Cum Funcționează</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3 data-i18n="step1-title">Scrii Mesaj</h3>
+        <p data-i18n="step1-desc">Trimite o întrebare pe Telegram sau pe site</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3 data-i18n="step2-title">Consultant</h3>
+        <p data-i18n="step2-desc">Un expert analizează cazul tău</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3 data-i18n="step3-title">Rezolvare</h3>
+        <p data-i18n="step3-desc">Primești plan de acțiune pas cu pas</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3 data-i18n="step4-title">Implementare</h3>
+        <p data-i18n="step4-desc">Te ghidez până la rezolvare completă</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="chat-fab" onclick="toggleChat()">💬</div>
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-header">
+    <span data-i18n="chat-title">Chat Amira</span>
+    <span class="chat-close" onclick="toggleChat()">×</span>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" data-i18n-placeholder="chat-placeholder" placeholder="Scrie..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+    <button onclick="sendChatMessage()" data-i18n="chat-send">Trimite</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>Amira Consulting</h3>
+        <a href="javascript:void(0)">Despre noi</a>
+        <a href="javascript:void(0)">Servicii</a>
+        <a href="javascript:void(0)">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h3>Rapid</h3>
+        <a href="https://wa.me/40373818188" target="_blank">WhatsApp</a>
+        <a href="https://t.me/AmiraConsultingbot" target="_blank">Telegram</a>
+        <a href="javascript:void(0)" onclick="toggleChat()">Chat</a>
+      </div>
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <a href="javascript:void(0)">Termeni</a>
+        <a href="javascript:void(0)">Confidențialitate</a>
+        <a href="javascript:void(0)">Cookies</a>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="bottom">&copy; 2026 Amira Consulting. Toate drepturile rezervate.</div>
+  </div>
+</footer>
+
+<script>
+const trans = {
+  ro: {
+    'nav-services': 'Servicii',
+    'nav-how': 'Cum funcționează',
+    'nav-partners': 'Parteneri',
+    'hero-title': 'Statul German fără stres — noi ne ocupam de toată <span class="highlight">birocraţia.</span>',
+    'hero-desc': 'Kindergeld, Grundsicherungsgeld, acte de reședere, amenzi, chirie — Amira te ghidează pas cu pas, direct din conversație, fără cozi și fără formulare pe care nu le înțelegi.',
+    'btn-free': 'Scrie-ne o gratis',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-telegram': 'Telegram',
+    'btn-telegram2': 'Deschide Telegram',
+    'card1-title': 'Internet prin satelit',
+    'card1-desc': 'Recomandare',
+    'card2-desc': 'Cont bancar',
+    'card3-title': 'Ajutor la instalare',
+    'card3-desc': 'Scrie-ne',
+    'card4-title': 'Câine nou?',
+    'card4-desc': 'Înregistrează-te',
+    'services-title': 'Serviciile Noastre',
+    'service1': 'Ajutăm la depunerea și gestionarea cererilor de alocații copii',
+    'service2': 'Înțelegem procedurile complexe de asigurare socială',
+    'service3': 'Ghidare în obținerea actelor de reședere și țării',
+    'service4': 'Declarații fiscale și rezolvare probleme cu fisc-ul',
+    'service5': 'Reprezentare în cazuri de amenzi și contestații',
+    'service6': 'Contracte de chirie și probleme cu proprietarul',
+    'how-title': 'Cum Funcționează',
+    'step1-title': 'Scrii Mesaj',
+    'step1-desc': 'Trimite o întrebare pe Telegram sau pe site',
+    'step2-title': 'Consultant',
+    'step2-desc': 'Un expert analizează cazul tău',
+    'step3-title': 'Rezolvare',
+    'step3-desc': 'Primești plan de acțiune pas cu pas',
+    'step4-title': 'Implementare',
+    'step4-desc': 'Te ghidez până la rezolvare completă',
+    'chat-title': 'Chat Amira',
+    'chat-placeholder': 'Scrie...',
+    'chat-send': 'Trimite',
+    'chat-greeting': 'Bun! 👋 Cum te pot ajuta? Sunt consultant acreditat și voi răspunde în maxim 1 oră.'
+  },
+  en: {
+    'nav-services': 'Services',
+    'nav-how': 'How it works',
+    'nav-partners': 'Partners',
+    'hero-title': 'German state matters without stress — <span class="highlight">we handle all the bureaucracy.</span>',
+    'hero-desc': 'Kindergeld, Grundsicherungsgeld, residence permits, fines, rent — Amira guides you step by step, directly in chat, without queues and without forms you don\'t understand.',
+    'btn-free': 'Write us free',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-telegram': 'Telegram',
+    'btn-telegram2': 'Open Telegram',
+    'card1-title': 'Satellite Internet',
+    'card1-desc': 'Recommendation',
+    'card2-desc': 'Bank Account',
+    'card3-title': 'Installation Help',
+    'card3-desc': 'Write us',
+    'card4-title': 'New here?',
+    'card4-desc': 'Register',
+    'services-title': 'Our Services',
+    'service1': 'Help with filing and managing child benefit requests',
+    'service2': 'Understand complex social insurance procedures',
+    'service3': 'Guidance on obtaining residence permits and documents',
+    'service4': 'Tax returns and tax office problem resolution',
+    'service5': 'Representation in fines and disputes',
+    'service6': 'Rental contracts and landlord issues',
+    'how-title': 'How It Works',
+    'step1-title': 'Send Message',
+    'step1-desc': 'Ask a question on Telegram or on the site',
+    'step2-title': 'Consultant',
+    'step2-desc': 'An expert analyzes your case',
+    'step3-title': 'Solution',
+    'step3-desc': 'You receive a step-by-step action plan',
+    'step4-title': 'Implementation',
+    'step4-desc': 'I guide you until complete resolution',
+    'chat-title': 'Amira Chat',
+    'chat-placeholder': 'Type...',
+    'chat-send': 'Send',
+    'chat-greeting': 'Hi! 👋 How can I help? I\'m an accredited consultant and will respond within 1 hour.'
+  },
+  de: {
+    'nav-services': 'Dienstleistungen',
+    'nav-how': 'Wie es funktioniert',
+    'nav-partners': 'Partner',
+    'hero-title': 'Deutscher Staat ohne Stress — <span class="highlight">wir kümmern uns um die ganze Bürokratie.</span>',
+    'hero-desc': 'Kindergeld, Grundsicherungsgeld, Aufenthaltspapiere, Geldstrafen, Miete — Amira führt Sie Schritt für Schritt direkt im Chat, ohne Warteschlangen und ohne unverständliche Formulare.',
+    'btn-free': 'Kostenlos schreiben',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-telegram': 'Telegram',
+    'btn-telegram2': 'Telegram öffnen',
+    'card1-title': 'Satelliteninternet',
+    'card1-desc': 'Empfehlung',
+    'card2-desc': 'Bankkonto',
+    'card3-title': 'Installationshilfe',
+    'card3-desc': 'Schreib uns',
+    'card4-title': 'Neu hier?',
+    'card4-desc': 'Registrieren',
+    'services-title': 'Unsere Dienstleistungen',
+    'service1': 'Hilfe beim Antrag und der Verwaltung von Kindergeldanträgen',
+    'service2': 'Verständnis für komplexe Sozialversicherungsverfahren',
+    'service3': 'Anleitung zum Erhalt von Aufenthaltserlaubnissen und Dokumenten',
+    'service4': 'Steuererklärungen und Lösung von Finanzamtsproblemen',
+    'service5': 'Vertretung bei Geldstrafen und Einsprüchen',
+    'service6': 'Mietverträge und Probleme mit dem Vermieter',
+    'how-title': 'Wie es funktioniert',
+    'step1-title': 'Nachricht senden',
+    'step1-desc': 'Stellen Sie eine Frage auf Telegram oder auf der Website',
+    'step2-title': 'Berater',
+    'step2-desc': 'Ein Experte analysiert Ihren Fall',
+    'step3-title': 'Lösung',
+    'step3-desc': 'Sie erhalten einen Schritt-für-Schritt-Aktionsplan',
+    'step4-title': 'Umsetzung',
+    'step4-desc': 'Ich begleite Sie bis zur vollständigen Lösung',
+    'chat-title': 'Amira Chat',
+    'chat-placeholder': 'Schreiben...',
+    'chat-send': 'Senden',
+    'chat-greeting': 'Hallo! 👋 Wie kann ich dir helfen? Ich bin ein akkreditierter Berater und antworte innerhalb von 1 Stunde.'
+  },
+  uk: {
+    'nav-services': 'Послуги',
+    'nav-how': 'Як це працює',
+    'nav-partners': 'Партнери',
+    'hero-title': 'Справи з німецькою державою без стресу — <span class="highlight">ми займаємося всією бюрократією.</span>',
+    'hero-desc': 'Kindergeld, Grundsicherungsgeld, посвідчення перебування, штрафи, оренда — Amira проведе вас крок за кроком прямо в чаті, без черг та незрозумілих форм.',
+    'btn-free': 'Напишіть нам безплатно',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-telegram': 'Telegram',
+    'btn-telegram2': 'Відкрити Telegram',
+    'card1-title': 'Супутниковий Інтернет',
+    'card1-desc': 'Рекомендація',
+    'card2-desc': 'Банківський рахунок',
+    'card3-title': 'Допомога при встановленні',
+    'card3-desc': 'Напишіть нам',
+    'card4-title': 'Новий?',
+    'card4-desc': 'Зареєструватися',
+    'services-title': 'Наші послуги',
+    'service1': 'Допомога в поданні та управлінні запитами на дитячі виплати',
+    'service2': 'Розуміння складних процедур соціального страхування',
+    'service3': 'Консультації щодо отримання посвідчень про проживання та документів',
+    'service4': 'Податкові декларації та вирішення проблем з податковою службою',
+    'service5': 'Представництво у справах про штрафи та претензії',
+    'service6': 'Договори оренди та проблеми з орендодавцем',
+    'how-title': 'Як це працює',
+    'step1-title': 'Надішліть повідомлення',
+    'step1-desc': 'Задайте питання в Telegram або на сайті',
+    'step2-title': 'Консультант',
+    'step2-desc': 'Експерт аналізує вашу справу',
+    'step3-title': 'Рішення',
+    'step3-desc': 'Ви отримаєте пошаговий план дій',
+    'step4-title': 'Реалізація',
+    'step4-desc': 'Я буду вас супроводжувати до повного вирішення',
+    'chat-title': 'Чат Amira',
+    'chat-placeholder': 'Напишіть...',
+    'chat-send': 'Надіслати',
+    'chat-greeting': 'Привіт! 👋 Як я можу вам допомогти? Я акредитований консультант і відповім протягом 1 години.'
+  },
+  tr: {
+    'nav-services': 'Hizmetler',
+    'nav-how': 'Nasıl Çalışır',
+    'nav-partners': 'Ortaklar',
+    'hero-title': 'Alman devlet işleri stres olmadan — <span class="highlight">biz tüm bürokrasiyi hallederiz.</span>',
+    'hero-desc': 'Kindergeld, Grundsicherungsgeld, ikamet belgesi, para cezaları, kira — Amira sizi adım adım doğrudan sohbette rehberlik eder, kuyruk olmadan ve anlamadığınız formlar olmadan.',
+    'btn-free': 'Bize ücretsiz yazın',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-telegram': 'Telegram',
+    'btn-telegram2': 'Telegram\'ı Aç',
+    'card1-title': 'Uydu İnternet',
+    'card1-desc': 'Tavsiye',
+    'card2-desc': 'Banka Hesabı',
+    'card3-title': 'Kurulum Yardımı',
+    'card3-desc': 'Bize yazın',
+    'card4-title': 'Yeni misiniz?',
+    'card4-desc': 'Kayıt ol',
+    'services-title': 'Hizmetlerimiz',
+    'service1': 'Çocuk yardımı başvurularını verme ve yönetme konusunda yardım',
+    'service2': 'Karmaşık sosyal sigorta prosedürlerini anlayın',
+    'service3': 'İkamet belgeleri ve belgeler alma konusunda rehberlik',
+    'service4': 'Vergi beyannameleri ve vergi dairesi sorunlarının çözümü',
+    'service5': 'Para cezaları ve itirazlarda temsil',
+    'service6': 'Kira sözleşmeleri ve ev sahibi sorunları',
+    'how-title': 'Nasıl Çalışır',
+    'step1-title': 'Mesaj Gönder',
+    'step1-desc': 'Telegram\'da veya sitede bir soru sorun',
+    'step2-title': 'Danışman',
+    'step2-desc': 'Bir uzman durumunuzu analiz eder',
+    'step3-title': 'Çözüm',
+    'step3-desc': 'Adım adım bir eylem planı alırsınız',
+    'step4-title': 'Uygulama',
+    'step4-desc': 'Tamamen çözülene kadar sizi rehberlik ederim',
+    'chat-title': 'Amira Sohbeti',
+    'chat-placeholder': 'Yazın...',
+    'chat-send': 'Gönder',
+    'chat-greeting': 'Merhaba! 👋 Nasıl yardım edebilirim? Akredite bir danışmanım ve 1 saat içinde yanıt vereceğim.'
+  },
+  pl: {
+    'nav-services': 'Usługi',
+    'nav-how': 'Jak to działa',
+    'nav-partners': 'Partnerzy',
+    'hero-title': 'Sprawy dotyczące państwa niemieckiego bez stresu — <span class="highlight">zajmujemy się całą biurokracją.</span>',
+    'hero-desc': 'Kindergeld, Grundsicherungsgeld, pozwolenia na pobyt, grzywny, czynsz — Amira prowadzi Cię krok po kroku bezpośrednio w czacie, bez kolejek i niezrozumiałych formularzy.',
+    'btn-free': 'Napisz nam bezpłatnie',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-telegram': 'Telegram',
+    'btn-telegram2': 'Otwórz Telegram',
+    'card1-title': 'Internet satelitarny',
+    'card1-desc': 'Rekomendacja',
+    'card2-desc': 'Konto bankowe',
+    'card3-title': 'Pomoc przy instalacji',
+    'card3-desc': 'Napisz do nas',
+    'card4-title': 'Nowy?',
+    'card4-desc': 'Zarejestruj się',
+    'services-title': 'Nasze usługi',
+    'service1': 'Pomoc w składaniu i zarządzaniu wioskami na zasiłek rodzinny',
+    'service2': 'Zrozumieć złożone procedury ubezpieczenia społecznego',
+    'service3': 'Wskazówki dotyczące uzyskania pozwoleń na pobyt i dokumentów',
+    'service4': 'Zeznania podatkowe i rozwiązywanie problemów z urzędem skarbowym',
+    'service5': 'Reprezentacja w sprawach grzywien i sporów',
+    'service6': 'Umowy najmu i problemy z wynajmującym',
+    'how-title': 'Jak to działa',
+    'step1-title': 'Wyślij wiadomość',
+    'step1-desc': 'Zadaj pytanie na Telegramie lub na stronie',
+    'step2-title': 'Konsultant',
+    'step2-desc': 'Ekspert analizuje Twoją sprawę',
+    'step3-title': 'Rozwiązanie',
+    'step3-desc': 'Otrzymujesz plan działania krok po kroku',
+    'step4-title': 'Wdrożenie',
+    'step4-desc': 'Prowadzę Cię aż do pełnego rozwiązania',
+    'chat-title': 'Chat Amira',
+    'chat-placeholder': 'Napisz...',
+    'chat-send': 'Wyślij',
+    'chat-greeting': 'Cześć! 👋 Jak się mam? Jestem akredytowanym konsultantem i odpowiem w ciągu 1 godziny.'
+  },
+  bg: {
+    'nav-services': 'Услуги',
+    'nav-how': 'Как работи',
+    'nav-partners': 'Партньори',
+    'hero-title': 'Германските държавни въпроси без стрес — <span class="highlight">ние се грижим за цялата бюрокрация.</span>',
+    'hero-desc': 'Kindergeld, Grundsicherungsgeld, разрешения за пребиваване, глоби, наемане — Amira те ръководи стъпка по стъпка директно в чата, без опашки и неясни формуляри.',
+    'btn-free': 'Напиши ни безплатно',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-telegram': 'Telegram',
+    'btn-telegram2': 'Отворете Telegram',
+    'card1-title': 'Сателитен интернет',
+    'card1-desc': 'Препоръка',
+    'card2-desc': 'Банкова сметка',
+    'card3-title': 'Помощ при инсталиране',
+    'card3-desc': 'Напиши ни',
+    'card4-title': 'Новичък?',
+    'card4-desc': 'Регистрирай се',
+    'services-title': 'Нашите услуги',
+    'service1': 'Помощ при подаването и управлението на искания за детски допълнения',
+    'service2': 'Разберете сложни процедури на социално осигуряване',
+    'service3': 'Указания за получаване на разрешения за пребиваване и документи',
+    'service4': 'Данъчни декларации и разрешаване на проблемите на данъчните служби',
+    'service5': 'Представянство в случаи с глоби и спорове',
+    'service6': 'Наемни договори и проблеми със собственика',
+    'how-title': 'Как работи',
+    'step1-title': 'Изпрати съобщение',
+    'step1-desc': 'Задайте въпрос в Telegram или на сайта',
+    'step2-title': 'Консултант',
+    'step2-desc': 'Експерт анализира вашия случай',
+    'step3-title': 'Решение',
+    'step3-desc': 'Получавате план за действие стъпка по стъпка',
+    'step4-title': 'Прилагане',
+    'step4-desc': 'Ръководя те до пълно разрешение',
+    'chat-title': 'Чат на Amira',
+    'chat-placeholder': 'Напиши...',
+    'chat-send': 'Изпрати',
+    'chat-greeting': 'Привет! 👋 Как мога да помогна? Аз съм акредитиран консултант и ще отговоря в рамките на 1 час.'
+  },
+  ar: {
+    'nav-services': 'الخدمات',
+    'nav-how': 'كيفية العمل',
+    'nav-partners': 'الشركاء',
+    'hero-title': 'قضايا الدولة الألمانية بدون إجهاد — <span class="highlight">نحن نتعامل مع جميع البيروقراطية.</span>',
+    'hero-desc': 'Kindergeld و Grundsicherungsgeld وتصاريح الإقامة والغرامات والإيجار — يرشدك Amira خطوة بخطوة مباشرة في المحادثة ، بدون طوابير وبدون نماذج غير مفهومة.',
+    'btn-free': 'اكتب لنا مجانا',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-telegram': 'Telegram',
+    'btn-telegram2': 'فتح Telegram',
+    'card1-title': 'الإنترنت عبر الأقمار الصناعية',
+    'card1-desc': 'توصية',
+    'card2-desc': 'حساب بنكي',
+    'card3-title': 'مساعدة التثبيت',
+    'card3-desc': 'اكتب لنا',
+    'card4-title': 'جديد؟',
+    'card4-desc': 'سجل',
+    'services-title': 'خدماتنا',
+    'service1': 'المساعدة في تقديم وإدارة طلبات المساعدة الأسرية',
+    'service2': 'فهم إجراءات التأمين الاجتماعي المعقدة',
+    'service3': 'إرشادات الحصول على تصاريح الإقامة والمستندات',
+    'service4': 'الإقرارات الضريبية وحل مشاكل مصلحة الضرائب',
+    'service5': 'التمثيل في قضايا الغرامات والنزاعات',
+    'service6': 'عقود الإيجار والمشاكل مع المالك',
+    'how-title': 'كيفية العمل',
+    'step1-title': 'إرسال رسالة',
+    'step1-desc': 'اطرح سؤالا على Telegram أو على الموقع',
+    'step2-title': 'استشاري',
+    'step2-desc': 'يحلل الخبير قضيتك',
+    'step3-title': 'الحل',
+    'step3-desc': 'تتلقى خطة عمل خطوة بخطوة',
+    'step4-title': 'التنفيذ',
+    'step4-desc': 'أرشدك حتى الحل الكامل',
+    'chat-title': 'دردشة Amira',
+    'chat-placeholder': 'اكتب...',
+    'chat-send': 'إرسال',
+    'chat-greeting': 'مرحبا! 👋 كيف يمكنني مساعدتك؟ أنا استشاري معتمد وسأرد خلال ساعة واحدة.'
+  },
+  es: {
+    'nav-services': 'Servicios',
+    'nav-how': 'Cómo funciona',
+    'nav-partners': 'Socios',
+    'hero-title': 'Asuntos del estado alemán sin estrés — <span class="highlight">nosotros manejamos toda la burocracia.</span>',
+    'hero-desc': 'Kindergeld, Grundsicherungsgeld, permisos de residencia, multas, alquiler — Amira te guía paso a paso directamente en el chat, sin colas ni formularios incomprehensibles.',
+    'btn-free': 'Escríbenos gratis',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-telegram': 'Telegram',
+    'btn-telegram2': 'Abrir Telegram',
+    'card1-title': 'Internet por satélite',
+    'card1-desc': 'Recomendación',
+    'card2-desc': 'Cuenta bancaria',
+    'card3-title': 'Ayuda de instalación',
+    'card3-desc': 'Escríbenos',
+    'card4-title': '¿Nuevo?',
+    'card4-desc': 'Registrarse',
+    'services-title': 'Nuestros servicios',
+    'service1': 'Ayuda en la presentación y gestión de solicitudes de beneficios familiares',
+    'service2': 'Comprender procedimientos complejos de seguros sociales',
+    'service3': 'Orientación para obtener permisos de residencia y documentos',
+    'service4': 'Declaraciones fiscales y resolución de problemas con hacienda',
+    'service5': 'Representación en casos de multas y reclamaciones',
+    'service6': 'Contratos de alquiler y problemas con el propietario',
+    'how-title': 'Cómo funciona',
+    'step1-title': 'Enviar mensaje',
+    'step1-desc': 'Haz una pregunta en Telegram o en el sitio',
+    'step2-title': 'Consultor',
+    'step2-desc': 'Un experto analiza tu caso',
+    'step3-title': 'Solución',
+    'step3-desc': 'Recibes un plan de acción paso a paso',
+    'step4-title': 'Implementación',
+    'step4-desc': 'Te guío hasta la resolución completa',
+    'chat-title': 'Chat de Amira',
+    'chat-placeholder': 'Escribe...',
+    'chat-send': 'Enviar',
+    'chat-greeting': '¡Hola! 👋 ¿Cómo puedo ayudarte? Soy consultor acreditado y responderé dentro de 1 hora.'
+  },
+  hu: {
+    'nav-services': 'Szolgáltatások',
+    'nav-how': 'Hogyan működik',
+    'nav-partners': 'Partnerek',
+    'hero-title': 'A német állami ügyek stressz nélkül — <span class="highlight">mi kezeljük az összes bürokráciát.</span>',
+    'hero-desc': 'Kindergeld, Grundsicherungsgeld, lakcímkártyák, bírságok, bérleti díjak — az Amira lépésről lépésre végigvezetett közvetlenül a csevegésben, sorban állás és érthetetlenül kitöltött formok nélkül.',
+    'btn-free': 'Írj nekünk ingyenesen',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-telegram': 'Telegram',
+    'btn-telegram2': 'Telegram megnyitása',
+    'card1-title': 'Műholdas internet',
+    'card1-desc': 'Javaslat',
+    'card2-desc': 'Bankszámla',
+    'card3-title': 'Telepítési segítség',
+    'card3-desc': 'Írj nekünk',
+    'card4-title': 'Új?',
+    'card4-desc': 'Regisztrálj',
+    'services-title': 'Szolgáltatásaink',
+    'service1': 'Segítség a családi juttatások igénylésének és kezelésének folyamatában',
+    'service2': 'Összetett szociális biztosítási eljárások megértése',
+    'service3': 'Útmutató a lakcímkátyák és dokumentumok beszerzéséhez',
+    'service4': 'Adóbevallások és adóhivatali problémák megoldása',
+    'service5': 'Képviselet bírságok és viták esetén',
+    'service6': 'Bérleti szerződések és a tulajdonossal kapcsolatos problémák',
+    'how-title': 'Hogyan működik',
+    'step1-title': 'Üzenet küldése',
+    'step1-desc': 'Tegyen fel kérdést a Telegramon vagy a webhelyen',
+    'step2-title': 'Tanácsadó',
+    'step2-desc': 'Egy szakértő elemzi az esetét',
+    'step3-title': 'Megoldás',
+    'step3-desc': 'Lépésről lépésre elkészített cselekvési tervet kapok',
+    'step4-title': 'Megvalósítás',
+    'step4-desc': 'Végig vezetek a teljes megoldásig',
+    'chat-title': 'Amira csevegés',
+    'chat-placeholder': 'Írj...',
+    'chat-send': 'Küld',
+    'chat-greeting': 'Szia! 👋 Hogyan segíthetek? Akkreditált tanácsadó vagyok, és 1 órán belül válaszolok.'
+  }
+};
+
+let lang = 'ro';
+let sid = 'web-' + Math.random().toString(36).substr(2, 9);
+const N8N = 'https://arisconsulting.app.n8n.cloud/webhook/web-chat-aris';
+
+function switchLang(e, l) {
+  lang = l;
+  document.querySelectorAll('.lang-flag').forEach(f => f.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (trans[l][key]) el.textContent = trans[l][key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (trans[l][key]) el.placeholder = trans[l][key];
+  });
+}
+
+function toggleChat() {
+  document.getElementById('chatWidget').classList.toggle('open');
+  if (!document.getElementById('chatMessages').children.length) {
+    addMsg(trans[lang]['chat-greeting'], 'in');
+  }
+}
+
+function addMsg(t, ty) {
+  const c = document.getElementById('chatMessages');
+  const m = document.createElement('div');
+  m.className = 'message msg-' + ty;
+  const msgDiv = document.createElement('div');
+  msgDiv.className = ty === 'in' ? 'msg-in' : 'msg-out';
+  msgDiv.textContent = t;
+  m.appendChild(msgDiv);
+  c.appendChild(m);
+  c.scrollTop = c.scrollHeight;
+}
+
+function sendChatMessage() {
+  const i = document.getElementById('chatInput');
+  const t = i.value.trim();
+  if (!t) return;
+  addMsg(t, 'out');
+  i.value = '';
+  fetch(N8N, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({sessionId: sid, text: t, lang: lang})})
+    .then(r => r.json())
+    .then(d => addMsg(d?.reply || trans[lang]['chat-greeting'], 'in'))
+    .catch(() => addMsg(trans[lang]['chat-greeting'], 'in'));
+}
+
+// Initialize Romanian
+switchLang({target: document.querySelector('.lang-flag.active')}, 'ro');
+</script>
+
+</body>
+</html>

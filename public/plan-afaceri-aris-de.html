@@ -1,0 +1,355 @@
+<title>Aris Consulting System</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #f6f4ee;
+    --surface: #ffffff;
+    --surface-2: #f0ede2;
+    --ink: #161f33;
+    --ink-soft: #5c6579;
+    --border: #ddd8c7;
+
+    --indigo: #5b4b9e;
+    --indigo-bg: #eae5f6;
+    --amber: #ab7a2e;
+    --amber-bg: #f4e7c9;
+    --teal: #1f7f66;
+    --teal-bg: #dcefe7;
+    --rust: #b1552f;
+    --rust-bg: #f5e1d3;
+
+    --shadow: 0 1px 2px rgba(22,31,51,.06), 0 8px 24px rgba(22,31,51,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10162a;
+      --surface: #171f38;
+      --surface-2: #1b2542;
+      --ink: #f0ede2;
+      --ink-soft: #a6afc4;
+      --border: #2c3757;
+
+      --indigo: #b3a1ef;
+      --indigo-bg: #241c40;
+      --amber: #e8bd6f;
+      --amber-bg: #2b2311;
+      --teal: #7fd4b6;
+      --teal-bg: #122820;
+      --rust: #e39a72;
+      --rust-bg: #2c1c14;
+
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10162a;
+    --surface: #171f38;
+    --surface-2: #1b2542;
+    --ink: #f0ede2;
+    --ink-soft: #a6afc4;
+    --border: #2c3757;
+
+    --indigo: #b3a1ef;
+    --indigo-bg: #241c40;
+    --amber: #e8bd6f;
+    --amber-bg: #2b2311;
+    --teal: #7fd4b6;
+    --teal-bg: #122820;
+    --rust: #e39a72;
+    --rust-bg: #2c1c14;
+
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.4);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', system-ui, sans-serif;
+    padding: 30px 20px 60px;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+  header { text-align: center; margin-bottom: 24px; }
+  header .eyebrow {
+    font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--indigo); font-weight: 700; margin-bottom: 8px;
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif; font-weight: 700;
+    font-size: clamp(30px, 5vw, 44px); margin: 0 0 8px; text-wrap: balance;
+  }
+  header p { color: var(--ink-soft); margin: 0 auto; font-size: 15px; max-width: 62ch; line-height: 1.55; }
+
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 20px 14px 10px;
+  }
+  svg { display: block; width: 100%; height: auto; }
+  .diagram-text { font-family: 'Public Sans', system-ui, sans-serif; }
+
+  figcaption {
+    text-align: center; color: var(--ink-soft); font-size: 13px;
+    margin: 12px 6px 0; line-height: 1.55; max-width: 78ch; margin-inline: auto;
+  }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: center;
+    margin: 24px 0 6px; font-size: 12.5px; color: var(--ink-soft);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .swatch { width: 13px; height: 13px; border-radius: 4px; display: inline-block; flex: none; }
+
+  .howto {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .howto .step {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 14px 16px;
+  }
+  .howto .num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px; font-weight: 700; color: var(--indigo);
+    display: block; margin-bottom: 4px;
+  }
+  .howto h3 { margin: 0 0 4px; font-size: 13.5px; }
+  .howto p { margin: 0; font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+
+  footer {
+    text-align: center; margin-top: 26px; font-size: 12px; color: var(--ink-soft);
+  }
+  footer strong { color: var(--ink); }
+
+  @media print {
+    body { background: #fff; max-width: none; padding: 6mm; }
+    .stage { box-shadow: none; border: 1px solid #ccc; }
+  }
+  @media (max-width: 760px) {
+    .howto { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    body { padding: 22px 10px 40px; }
+    .howto { grid-template-columns: 1fr; }
+  }
+</style>
+
+<header>
+  <div class="eyebrow">GeschÃ¤ftsplan · SystemÃ¼bersicht Aris Consulting</div>
+  <h1>So funktioniert Aris Consulting</h1>
+  <p>Vom ersten Kontakt eines RumÃ¤nen mit einem unserer KanÃ¤le bis zum vollstÃ¤ndigen Leistungskatalog "” und wie jeder zufriedene Kunde selbst zum bezahlten Partner durch Empfehlung werden kann.</p>
+</header>
+
+<div class="stage">
+<figure style="margin:0">
+<svg viewBox="0 0 1200 1340" role="img" aria-label="Diagramm des Aris-Consulting-Systems: drei Eingangskanaele (Life n' Five, DVAG-Anrufe, Empfehlungen) speisen zwei KI-Assistentinnen (Maya am Telefon und der WhatsApp-Berater), die zu einer zentralen Anlaufstelle und einem Katalog von 12 Produkten und Dienstleistungen fuehren; von jeder Zahlung aus dem Katalog geht ein Anteil an den Partner, der den Kunden empfohlen hat, der Rest an Aris Consulting; und jeder zufriedene Kunde kann selbst zum Partner werden, wodurch sich der Kreislauf zurueck zu den Empfehlungen schliesst.">
+
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+    <marker id="arrowAmber2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--amber)"/>
+    </marker>
+    <marker id="arrowRust2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--rust)"/>
+    </marker>
+  </defs>
+
+  <g class="diagram-text" fill="var(--ink)" stroke="var(--ink)">
+
+  <!-- ============ ROW A: Eingang ============ -->
+  <text x="600" y="26" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="var(--ink-soft)" stroke="none">â‘  WOHER EIN NEUER KUNDE KOMMT</text>
+
+  <rect x="40" y="42" width="340" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="210" y="74" text-anchor="middle" font-size="17" font-weight="700" stroke="none">Life n' Five</text>
+  <text x="210" y="96" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">Inhalte und soziale Medien,</text>
+  <text x="210" y="113" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">Livestreaming auf mehreren Plattformen</text>
+
+  <rect x="430" y="42" width="340" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="600" y="74" text-anchor="middle" font-size="17" font-weight="700" stroke="none">DVAG-Kaltakquise</text>
+  <text x="600" y="96" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">Maya ruft potenzielle Kunden an,</text>
+  <text x="600" y="113" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">vereinbart kostenlose Termine</text>
+
+  <rect x="820" y="42" width="340" height="96" rx="12" fill="var(--rust-bg)" stroke="var(--rust)" stroke-width="1.5"/>
+  <text x="990" y="74" text-anchor="middle" font-size="17" font-weight="700" stroke="none">Empfehlungen</text>
+  <text x="990" y="96" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">jeder RumÃ¤ne kann einen Kunden bringen "”</text>
+  <text x="990" y="113" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">telefonisch oder Ã¼ber soziale Medien</text>
+
+  <line x1="210" y1="138" x2="380" y2="196" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <line x1="600" y1="138" x2="600" y2="196" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <line x1="990" y1="138" x2="820" y2="196" stroke="var(--rust)" stroke-width="1.8" marker-end="url(#arrowRust2)"/>
+
+  <!-- ============ ROW B: KI-Assistentinnen ============ -->
+  <text x="600" y="184" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="var(--ink-soft)" stroke="none">â‘¡ DIE ZWEI KI-ASSISTENTINNEN IM KUNDENKONTAKT</text>
+
+  <rect x="140" y="200" width="430" height="92" rx="12" fill="var(--indigo-bg)" stroke="var(--indigo)" stroke-width="1.6"/>
+  <text x="355" y="232" text-anchor="middle" font-size="16.5" font-weight="700" fill="var(--indigo)" stroke="none">🚀Ž™ Maya "” spricht am Telefon</text>
+  <text x="355" y="254" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">DVAG-Beratung · vereinbart Termine</text>
+  <text x="355" y="273" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">hilft bei der Integration "” nicht nur RumÃ¤nen</text>
+
+  <rect x="630" y="200" width="430" height="92" rx="12" fill="var(--indigo-bg)" stroke="var(--indigo)" stroke-width="1.6"/>
+  <text x="845" y="232" text-anchor="middle" font-size="16.5" font-weight="700" fill="var(--indigo)" stroke="none">🚀’¬ Der WhatsApp-Berater</text>
+  <text x="845" y="254" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">jederzeit erreichbar, antwortet sofort, 24/7</text>
+  <text x="845" y="273" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">10 digitale Fachbereiche + Aktenaufnahme</text>
+
+  <line x1="355" y1="292" x2="500" y2="332" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow2)"/>
+  <line x1="845" y1="292" x2="700" y2="332" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow2)"/>
+
+  <!-- ============ ROW C: Zentrale ============ -->
+  <rect x="200" y="340" width="800" height="64" rx="14" fill="var(--ink)" stroke="var(--ink)"/>
+  <text x="600" y="379" text-anchor="middle" font-size="21" font-weight="700" fill="var(--bg)" stroke="none">ARIS CONSULTING</text>
+
+  <line x1="320" y1="404" x2="185" y2="440" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow2)"/>
+  <line x1="480" y1="404" x2="510" y2="440" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow2)"/>
+  <line x1="720" y1="404" x2="690" y2="440" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow2)"/>
+  <line x1="880" y1="404" x2="1015" y2="440" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow2)"/>
+
+  <!-- ============ ROW D: Angebot (Raster 2 x 6) ============ -->
+  <text x="600" y="430" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="var(--ink-soft)" stroke="none">â‘¢ UNSER ANGEBOT "” DER GESAMTE KATALOG</text>
+
+  <!-- Card 1 -->
+  <rect x="60" y="444" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="472" font-size="15.5" font-weight="700" stroke="none">Digitaler Ratgeber zum Download</text>
+  <text x="84" y="492" font-size="12.5" fill="var(--ink-soft)" stroke="none">10 Themenbereiche: Arbeit, Soziales, Wohnen, Verkehr"¦</text>
+  <text x="556" y="514" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">automatische Lieferung</text>
+
+  <!-- Card 2 -->
+  <rect x="620" y="444" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="472" font-size="15.5" font-weight="700" stroke="none">Ratgeber + WhatsApp-KI-Berater</text>
+  <text x="644" y="492" font-size="12.5" fill="var(--ink-soft)" stroke="none">30 Tage Zugang, unbegrenzte Fragen</text>
+  <text x="1116" y="514" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--amber)" stroke="none">am beliebtesten</text>
+
+  <!-- Card 3 -->
+  <rect x="60" y="560" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="588" font-size="15.5" font-weight="700" stroke="none">BehÃ¶rdliche AntrÃ¤ge</text>
+  <text x="84" y="608" font-size="12.5" fill="var(--ink-soft)" stroke="none">Familie · Einkommen · FÃ¼hrungszeugnis · Gewerbe</text>
+  <text x="556" y="630" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">Ã¼ber WhatsApp</text>
+
+  <!-- Card 4 -->
+  <rect x="620" y="560" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="588" font-size="15.5" font-weight="700" stroke="none">Komplexer Fall</text>
+  <text x="644" y="608" font-size="12.5" fill="var(--ink-soft)" stroke="none">Widerspruch · Grundsicherung · Anerkennung</text>
+  <text x="1116" y="630" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">schwierige FÃ¤lle</text>
+
+  <!-- Card 5 -->
+  <rect x="60" y="676" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="704" font-size="15.5" font-weight="700" stroke="none">PersÃ¶nliche Einzelberatung</text>
+  <text x="84" y="724" font-size="12.5" fill="var(--ink-soft)" stroke="none">60 Minuten Video, mit einem Aris-Spezialisten</text>
+  <text x="556" y="746" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--teal)" stroke="none">kostenlos bei Folgekauf</text>
+
+  <!-- Card 6 -->
+  <rect x="620" y="676" width="520" height="94" rx="12" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="1.5"/>
+  <text x="644" y="704" font-size="15.5" font-weight="700" stroke="none">DVAG-Finanzberatung</text>
+  <text x="644" y="724" font-size="12.5" fill="var(--ink-soft)" stroke="none">Rente, Versicherungen, Sparen</text>
+  <text x="1116" y="746" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--teal)" stroke="none">kostenlos</text>
+
+  <!-- Card 7 -->
+  <rect x="60" y="792" width="520" height="94" rx="12" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="1.5"/>
+  <text x="84" y="820" font-size="15.5" font-weight="700" stroke="none">Integrationshilfe in Deutschland</text>
+  <text x="84" y="840" font-size="12.5" fill="var(--ink-soft)" stroke="none">nicht nur fÃ¼r RumÃ¤nen "” fÃ¼r alle NeuankÃ¶mmlinge</text>
+  <text x="556" y="862" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--teal)" stroke="none">kostenlos</text>
+
+  <!-- Card 8 -->
+  <rect x="620" y="792" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="820" font-size="15.5" font-weight="700" stroke="none">Fahrzeuganmeldung (Zulassungsdienst)</text>
+  <text x="644" y="840" font-size="12.5" fill="var(--ink-soft)" stroke="none">+ Versicherung Ã¼ber unseren Partner</text>
+  <text x="1116" y="862" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">mit Vollmacht</text>
+
+  <!-- Card 9 -->
+  <rect x="60" y="908" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="936" font-size="15.5" font-weight="700" stroke="none">Internet Ã¼ber Starlink</text>
+  <text x="84" y="956" font-size="12.5" fill="var(--ink-soft)" stroke="none">kostenlose Installationshilfe per Videoanruf</text>
+  <text x="556" y="978" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">Partnerlink</text>
+
+  <!-- Card 10 -->
+  <rect x="620" y="908" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="936" font-size="15.5" font-weight="700" stroke="none">Hygieneschulung (§43 IfSG)</text>
+  <text x="644" y="956" font-size="12.5" fill="var(--ink-soft)" stroke="none">offizielles Zertifikat, auf RumÃ¤nisch erklÃ¤rt</text>
+  <text x="1116" y="978" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">online, schnell</text>
+
+  <!-- Card 11 -->
+  <rect x="60" y="1024" width="520" height="94" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="1052" font-size="15.5" font-weight="700" stroke="none">Lebenslauf- & VorstellungsgesprÃ¤ch-Coaching</text>
+  <text x="84" y="1072" font-size="12.5" fill="var(--ink-soft)" stroke="none">Lebenslauf und Anschreiben im deutschen Stil</text>
+  <text x="556" y="1094" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--ink-soft)" stroke="none">optional, kostenpflichtig</text>
+
+  <!-- Card 12 -->
+  <rect x="620" y="1024" width="520" height="94" rx="12" fill="var(--teal-bg)" stroke="var(--teal)" stroke-width="1.5"/>
+  <text x="644" y="1052" font-size="15.5" font-weight="700" stroke="none">Jobsuche</text>
+  <text x="644" y="1072" font-size="12.5" fill="var(--ink-soft)" stroke="none">wir bringen Kandidaten mit Arbeitgebern zusammen</text>
+  <text x="1116" y="1094" text-anchor="end" font-size="11.5" font-weight="700" fill="var(--teal)" stroke="none">kostenlos fÃ¼r Kandidaten</text>
+
+  <line x1="600" y1="1118" x2="600" y2="1154" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow2)"/>
+
+  <!-- ============ ROW E: Zahlung & Provision ============ -->
+  <text x="600" y="1146" text-anchor="middle" font-size="13.5" font-weight="700" letter-spacing="1.5" fill="var(--ink-soft)" stroke="none">â‘£ WIE EINE ZAHLUNG AUFGETEILT WIRD</text>
+
+  <rect x="430" y="1162" width="340" height="68" rx="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.8"/>
+  <text x="600" y="1202" text-anchor="middle" font-size="16" font-weight="700" stroke="none">Ein Kunde zahlt</text>
+
+  <line x1="500" y1="1230" x2="330" y2="1276" stroke="var(--amber)" stroke-width="1.8" marker-end="url(#arrowAmber2)"/>
+  <line x1="700" y1="1230" x2="870" y2="1276" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow2)"/>
+
+  <rect x="120" y="1284" width="420" height="84" rx="12" fill="var(--amber-bg)" stroke="var(--amber)" stroke-width="1.6"/>
+  <text x="330" y="1316" text-anchor="middle" font-size="16" font-weight="800" fill="var(--amber)" stroke="none">Ein Anteil â†’ der Partner</text>
+  <text x="330" y="1338" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">wenn jemand den Kunden empfohlen hat</text>
+  <text x="330" y="1356" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">einfach "” nur Name und Telefonnummer</text>
+
+  <rect x="660" y="1284" width="420" height="84" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="870" y="1316" text-anchor="middle" font-size="16" font-weight="800" stroke="none">Der Rest â†’ Aris Consulting</text>
+  <text x="870" y="1338" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">deckt die Kosten der Dienstleistung</text>
+  <text x="870" y="1356" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">und bleibt als Gewinn</text>
+
+  </g>
+</svg>
+<figcaption>Ein Kunde kommt Ã¼ber einen der drei KanÃ¤le, spricht mit einer der beiden KI-Assistentinnen, wÃ¤hlt ein Produkt aus dem Katalog "” und bei jeder Zahlung erhÃ¤lt automatisch die Person, die den Kunden empfohlen hat, einen Anteil.</figcaption>
+</figure>
+</div>
+
+<div class="legend">
+  <span><span class="swatch" style="background:var(--rust-bg);border:1.5px solid var(--rust)"></span>Eingang durch Empfehlung</span>
+  <span><span class="swatch" style="background:var(--indigo-bg);border:1.5px solid var(--indigo)"></span>KI-Assistentin</span>
+  <span><span class="swatch" style="background:var(--amber-bg);border:1.5px solid var(--amber)"></span>Einnahme fÃ¼r den Partner</span>
+  <span><span class="swatch" style="background:var(--teal-bg);border:1.5px solid var(--teal)"></span>kostenlos fÃ¼r den Kunden</span>
+  <span><span class="swatch" style="background:var(--surface-2);border:1.5px solid var(--border)"></span>kostenpflichtiges Produkt</span>
+</div>
+
+<div class="howto">
+  <div class="step">
+    <span class="num">â‘ </span>
+    <h3>Ein RumÃ¤ne findet uns</h3>
+    <p>Ã¼ber Social-Media-Inhalte, einen DVAG-Anruf, oder weil ihn jemand empfohlen hat.</p>
+  </div>
+  <div class="step">
+    <span class="num">â‘¡</span>
+    <h3>Spricht mit einer KI</h3>
+    <p>Maya am Telefon oder der Berater auf WhatsApp "” beide antworten sofort, in seiner Sprache.</p>
+  </div>
+  <div class="step">
+    <span class="num">â‘¢</span>
+    <h3>WÃ¤hlt eine Leistung</h3>
+    <p>Ratgeber, BehÃ¶rdenantrag, Beratung, oder kostenlose Hilfe "” aus dem gesamten Aris-Katalog.</p>
+  </div>
+  <div class="step">
+    <span class="num">â‘£</span>
+    <h3>Die Zahlung wird geteilt</h3>
+    <p>automatisch geht ein Anteil an die Person, die den Kunden empfohlen hat.</p>
+  </div>
+  <div class="step">
+    <span class="num">â‘¤</span>
+    <h3>Der Kunde wird zur Quelle</h3>
+    <p>zufrieden empfiehlt er weiter "” und das System wÃ¤chst von selbst, von einem Kunden zum nÃ¤chsten.</p>
+  </div>
+</div>
+
+<footer>Internes PrÃ¤sentationsdokument "” <strong>das vollstÃ¤ndige Aris-Consulting-System</strong>, vom ersten Kontakt bis zur Partnerschaft.</footer>
+

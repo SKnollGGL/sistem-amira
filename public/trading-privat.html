@@ -1,0 +1,318 @@
+﻿<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amira Trading - ZonÄƒ privatÄƒ</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1210; --surface:#141d19; --surface-2:#1a251f;
+    --ink:#eef3ee; --ink-soft:#a2b8ae; --line:#263129;
+    --accent:#2fd68c; --gold:#f2b705;
+    --up:#3ddc84; --down:#ff6b6b;
+    --font-body:'Public Sans',-apple-system,Segoe UI,sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:24px 20px 60px; }
+  header{ display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; padding-block:18px; border-bottom:1px solid var(--line); margin-bottom:20px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:18px; }
+  .badge-privat{ font-family:var(--font-mono); font-size:10.5px; font-weight:700; letter-spacing:.06em; color:var(--gold); border:1px solid var(--gold); border-radius:999px; padding:3px 9px; }
+  .status{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
+
+  .notice{
+    background:var(--surface-2); border:1px solid var(--line); border-radius:12px;
+    padding:12px 16px; font-size:12px; color:var(--ink-soft); line-height:1.6; margin-bottom:24px;
+  }
+  .notice b{ color:var(--ink); }
+
+  #gate{ max-width:380px; margin:80px auto; text-align:center; }
+  #gate input{ width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line); background:var(--surface); color:var(--ink); font-size:14px; margin-top:14px; font-family:var(--font-mono); }
+  #gate button{ margin-top:12px; width:100%; padding:12px; border-radius:10px; border:none; background:var(--accent); color:#062017; font-weight:700; cursor:pointer; }
+  #gateErr{ color:var(--down); font-size:12.5px; margin-top:10px; min-height:16px; }
+
+  h2{ font-size:18px; margin:30px 0 12px; }
+  table{ width:100%; border-collapse:collapse; font-size:13px; }
+  thead th{ text-align:left; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); padding:8px 10px; border-bottom:1px solid var(--line); }
+  tbody td{ padding:10px; border-bottom:1px solid var(--line); }
+  tbody tr:hover{ background:var(--surface); }
+  .rang{ font-family:var(--font-mono); font-weight:700; color:var(--ink-soft); }
+  .rang.top1{ color:var(--gold); }
+  .simbol{ font-weight:700; }
+  .num{ font-family:var(--font-mono); }
+  .var.up{ color:var(--up); } .var.down{ color:var(--down); }
+  .scorbar{ display:flex; align-items:center; gap:8px; }
+  .scorbar .track{ flex:1; height:6px; border-radius:99px; background:var(--surface-2); overflow:hidden; min-width:60px; }
+  .scorbar .fill{ height:100%; background:var(--accent); }
+  .semnal{ font-family:var(--font-mono); font-size:10.5px; font-weight:700; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+  .semnal.buy{ background:rgba(61,220,132,.15); color:var(--up); }
+  .semnal.neutru{ background:rgba(162,184,174,.15); color:var(--ink-soft); }
+  .semnal.evita{ background:rgba(255,107,107,.15); color:var(--down); }
+  .empty{ color:var(--ink-soft); font-size:13px; padding:16px 0; }
+  #content{ display:none; }
+  tbody tr{ cursor:pointer; }
+  .pattern-tag{ font-size:10px; color:var(--gold); font-weight:600; }
+  .rsi-val{ font-family:var(--font-mono); }
+  .rsi-val.oversold{ color:var(--up); } .rsi-val.overbought{ color:var(--down); }
+
+  .chart-overlay{
+    display:none; position:fixed; inset:0; z-index:999; background:rgba(4,7,6,.78);
+    align-items:center; justify-content:center; padding:16px;
+  }
+  .chart-overlay.open{ display:flex; }
+  .chart-modal{ background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px; width:min(760px,100%); }
+  .chart-modal .chead{ display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+  .chart-modal .chead .simbol{ font-weight:800; font-size:16px; }
+  .chart-modal .chead .nume{ font-size:11.5px; color:var(--ink-soft); }
+  .chart-close{ background:var(--surface-2); border:1px solid var(--line); color:var(--ink); width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:16px; }
+  .chart-meta{ display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--ink-soft); margin-bottom:10px; }
+  .chart-meta b{ color:var(--ink); }
+  #chartBox{ width:100%; height:360px; }
+  .chart-loading{ color:var(--ink-soft); font-size:13px; text-align:center; padding:60px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="gate">
+    <a href="/" style="display:block;text-align:center;font-size:12.5px;color:var(--ink-soft);text-decoration:none;margin-bottom:8px;">â† ÃŽnapoi la pagina principalÄƒ</a>
+    <div class="brand" style="justify-content:center;">🚀”’ Amira Trading "” ZonÄƒ privatÄƒ</div>
+    <p style="color:var(--ink-soft); font-size:13px;">AutentificÄƒ-te ca sÄƒ vezi ierarhizarea È™i scorurile.</p>
+    <input type="text" id="userInput" placeholder="utilizator" autocomplete="username">
+    <input type="password" id="parolaInput" placeholder="parolÄƒ" autocomplete="current-password">
+    <button id="gateBtn">IntrÄƒ</button>
+    <div id="gateErr"></div>
+  </div>
+
+  <div id="content">
+    <header>
+      <a class="brand" href="/" style="text-decoration:none;">â† Amira Trading <span class="badge-privat">PRIVAT</span></a>
+      <span class="status" id="status">Se Ã®ncarcÄƒ...</span>
+    </header>
+
+    <div class="notice">
+      <b>Doar pentru tine.</b> Scorul È™i "semnalul" de mai jos sunt un calcul cantitativ (momentum de preÈ› 60% + semnal de volum 40%), transparent È™i exact matematic "” <b>NU</b> o predicÈ›ie garantatÄƒ a pieÈ›ei. Nimeni nu poate promite acurateÈ›e la prezicerea preÈ›urilor, nici oamenii, nici AI-ul. FoloseÈ™te-le ca punct de plecare pentru cercetarea ta, nu ca decizie automatÄƒ.
+    </div>
+
+    <h2>🚀“ˆ AcÈ›iuni "” ierarhizate</h2>
+    <table>
+      <thead><tr><th>Rang</th><th>Simbol</th><th>PreÈ›</th><th>VariaÈ›ie</th><th>RSI</th><th>Scor</th><th>Semnal</th></tr></thead>
+      <tbody id="tabelActiuni"><tr><td colspan="7" class="empty">Se Ã®ncarcÄƒ...</td></tr></tbody>
+    </table>
+
+    <h2>🚀ª™ Criptomonede "” ierarhizate</h2>
+    <table>
+      <thead><tr><th>Rang</th><th>Simbol</th><th>PreÈ›</th><th>VariaÈ›ie</th><th>RSI</th><th>Scor</th><th>Semnal</th></tr></thead>
+      <tbody id="tabelCripto"><tr><td colspan="7" class="empty">Se Ã®ncarcÄƒ...</td></tr></tbody>
+    </table>
+    <p style="font-size:11.5px; color:var(--ink-soft); margin-top:10px;">Click pe un rÃ¢nd ca sÄƒ vezi graficul cu lumÃ¢nÄƒri + mediile mobile (SMA5/SMA20).</p>
+  </div>
+
+</div>
+
+<div class="chart-overlay" id="chartOverlay">
+  <div class="chart-modal">
+    <div class="chead">
+      <div><div class="simbol" id="chartSimbol">"”</div><div class="nume" id="chartNume"></div></div>
+      <button class="chart-close" id="chartClose">âœ•</button>
+    </div>
+    <div class="chart-meta" id="chartMeta"></div>
+    <div id="chartBox"><div class="chart-loading">Se Ã®ncarcÄƒ graficul...</div></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+
+<script>
+(function(){
+  var ENDPOINT = 'https://arisconsulting.app.n8n.cloud/webhook/trading-scoruri-private';
+  var LOGIN_ENDPOINT = 'https://arisconsulting.app.n8n.cloud/webhook/trading-login';
+  var ISTORIC_ENDPOINT = 'https://arisconsulting.app.n8n.cloud/webhook/trading-istoric';
+  var TOKEN_KEY = 'amira_trading_token';
+  var PATTERN_TXT = {
+    hammer: '🚀”¨ hammer', doji: 'âž• doji',
+    engulfing_bullish: '🚀Ÿ¢ engulfing bull', engulfing_bearish: '🚀”´ engulfing bear'
+  };
+
+  function fmt(n, d){ if (n === null || n === undefined) return '"”'; return Number(n).toLocaleString('ro-RO', {minimumFractionDigits:d||2, maximumFractionDigits:d||2}); }
+
+  function semnalPentru(scor){
+    if (scor >= 66) return { cls: 'buy', txt: 'SCOR MARE' };
+    if (scor >= 34) return { cls: 'neutru', txt: 'NEUTRU' };
+    return { cls: 'evita', txt: 'SCOR MIC' };
+  }
+
+  function randTabel(item){
+    var up = (item.variatie_procent || 0) >= 0;
+    var s = semnalPentru(item.scor || 0);
+    var rsi = item.rsi;
+    var rsiCls = rsi == null ? '' : (rsi < 30 ? 'oversold' : (rsi > 75 ? 'overbought' : ''));
+    var patternTag = item.pattern && PATTERN_TXT[item.pattern] ? '<div class="pattern-tag">' + PATTERN_TXT[item.pattern] + '</div>' : '';
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td class="rang ' + (item.rang===1?'top1':'') + '">#' + item.rang + '</td>' +
+      '<td class="simbol">' + item.simbol + '<div style="font-size:10.5px;color:var(--ink-soft);font-weight:400;">' + (item.nume||'') + '</div>' + patternTag + '</td>' +
+      '<td class="num">$' + fmt(item.pret, item.pret < 10 ? 4 : 2) + '</td>' +
+      '<td class="num var ' + (up?'up':'down') + '">' + (up?'â–²':'â–¼') + ' ' + fmt(Math.abs(item.variatie_procent||0),2) + '%</td>' +
+      '<td class="num rsi-val ' + rsiCls + '">' + (rsi==null?'"”':fmt(rsi,1)) + '</td>' +
+      '<td><div class="scorbar"><div class="track"><div class="fill" style="width:' + (item.scor||0) + '%;"></div></div><span class="num">' + fmt(item.scor,1) + '</span></div></td>' +
+      '<td><span class="semnal ' + s.cls + '">' + s.txt + '</span></td>';
+    tr.addEventListener('click', function(){ deschideGrafic(item); });
+    return tr;
+  }
+
+  var chartInstance = null;
+  function deschideGrafic(item){
+    document.getElementById('chartSimbol').textContent = item.simbol;
+    document.getElementById('chartNume').textContent = item.nume || '';
+    var patternTxt = item.pattern && PATTERN_TXT[item.pattern] ? PATTERN_TXT[item.pattern] : '"”';
+    document.getElementById('chartMeta').innerHTML =
+      '<span>RSI(14): <b>' + (item.rsi==null?'"”':fmt(item.rsi,1)) + '</b></span>' +
+      '<span>SMA5 vs SMA20: <b>' + (item.sma_semnal>0?'â–² peste':(item.sma_semnal<0?'â–¼ sub':'"”')) + '</b></span>' +
+      '<span>Pattern ultima lumÃ¢nare: <b>' + patternTxt + '</b></span>';
+    document.getElementById('chartOverlay').classList.add('open');
+    var box = document.getElementById('chartBox');
+    box.innerHTML = '<div class="chart-loading">Se Ã®ncarcÄƒ graficul...</div>';
+
+    var simbolQuery = item.tip === 'cripto' ? item.id_cripto : item.simbol;
+    fetch(ISTORIC_ENDPOINT + '?simbol=' + encodeURIComponent(simbolQuery) + '&tip=' + encodeURIComponent(item.tip))
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var candele = data.candele || [];
+        if (!candele.length){ box.innerHTML = '<div class="chart-loading">FÄƒrÄƒ date istorice momentan.</div>'; return; }
+        box.innerHTML = '';
+        chartInstance = LightweightCharts.createChart(box, {
+          width: box.clientWidth, height: 360,
+          layout: { background: { color: 'transparent' }, textColor: '#a2b8ae' },
+          grid: { vertLines: { color: '#20302a' }, horzLines: { color: '#20302a' } },
+          timeScale: { borderColor: '#263129' },
+          rightPriceScale: { borderColor: '#263129' },
+        });
+        var serie = chartInstance.addCandlestickSeries({
+          upColor: '#3ddc84', downColor: '#ff6b6b', borderVisible: false,
+          wickUpColor: '#3ddc84', wickDownColor: '#ff6b6b',
+        });
+        var uniceMap = {};
+        candele.forEach(function(c){
+          var t = item.tip === 'cripto' ? Math.floor(new Date(c.time.replace(' ', 'T') + 'Z').getTime()/1000) : c.time;
+          uniceMap[t] = { time: t, open: c.open, high: c.high, low: c.low, close: c.close };
+        });
+        var puncte = Object.keys(uniceMap).map(function(k){ return uniceMap[k]; }).sort(function(a,b){
+          return (typeof a.time === 'string' ? new Date(a.time) : a.time) - (typeof b.time === 'string' ? new Date(b.time) : b.time);
+        });
+        serie.setData(puncte);
+
+        function sma(puncte, perioada){
+          var rez = [];
+          for (var i = perioada - 1; i < puncte.length; i++){
+            var suma = 0;
+            for (var j = 0; j < perioada; j++) suma += puncte[i-j].close;
+            rez.push({ time: puncte[i].time, value: suma / perioada });
+          }
+          return rez;
+        }
+        if (puncte.length >= 20){
+          var lineScurt = chartInstance.addLineSeries({ color: '#f2b705', lineWidth: 1 });
+          lineScurt.setData(sma(puncte, 5));
+          var lineLung = chartInstance.addLineSeries({ color: '#8ab7e2', lineWidth: 1 });
+          lineLung.setData(sma(puncte, 20));
+        }
+        chartInstance.timeScale().fitContent();
+      }).catch(function(){
+        box.innerHTML = '<div class="chart-loading">Eroare la Ã®ncÄƒrcarea graficului.</div>';
+      });
+  }
+
+  document.getElementById('chartClose').addEventListener('click', function(){
+    document.getElementById('chartOverlay').classList.remove('open');
+  });
+  document.getElementById('chartOverlay').addEventListener('click', function(ev){
+    if (ev.target.id === 'chartOverlay') document.getElementById('chartOverlay').classList.remove('open');
+  });
+
+  function incarca(token){
+    fetch(ENDPOINT + '?token=' + encodeURIComponent(token)).then(function(r){
+      if (r.status === 401 || r.status === 403) throw new Error('acces_pierdut');
+      return r.json();
+    }).then(function(data){
+      if (data.eroare) throw new Error(data.eroare);
+      var active = data.active || [];
+      var actiuni = active.filter(function(a){ return a.tip === 'actiune'; }).sort(function(a,b){ return a.rang-b.rang; });
+      var cripto = active.filter(function(a){ return a.tip === 'cripto'; }).sort(function(a,b){ return a.rang-b.rang; });
+
+      var tA = document.getElementById('tabelActiuni');
+      var tC = document.getElementById('tabelCripto');
+      tA.innerHTML = ''; tC.innerHTML = '';
+      actiuni.forEach(function(a){ tA.appendChild(randTabel(a)); });
+      cripto.forEach(function(c){ tC.appendChild(randTabel(c)); });
+
+      document.getElementById('status').textContent = 'Actualizat: ' + new Date().toLocaleTimeString('ro-RO');
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      try { localStorage.setItem(TOKEN_KEY, token); } catch(e){}
+    }).catch(function(e){
+      if (refreshTimer) { clearInterval(refreshTimer); refreshTimer = null; }
+      document.getElementById('content').style.display = 'none';
+      document.getElementById('gate').style.display = 'block';
+      var expirat = e.message === 'acces_pierdut' || e.message === 'abonament expirat sau inactiv' || e.message === 'token invalid';
+      document.getElementById('gateErr').textContent = expirat
+        ? 'Sesiunea a expirat sau abonamentul nu mai este activ - autentificÄƒ-te din nou.'
+        : 'Eroare de conexiune, Ã®ncearcÄƒ din nou.';
+      try { localStorage.removeItem(TOKEN_KEY); } catch(err){}
+    });
+  }
+
+  var refreshTimer = null;
+  function porneste(token){
+    incarca(token);
+    if (refreshTimer) clearInterval(refreshTimer);
+    refreshTimer = setInterval(function(){ incarca(token); }, 60000);
+  }
+
+  function login(user, parola){
+    document.getElementById('gateErr').textContent = '';
+    fetch(LOGIN_ENDPOINT, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user: user, parola: parola })
+    }).then(function(r){ return r.json().then(function(d){ return { status: r.status, body: d }; }); }).then(function(res){
+      var eroare = res.body && (res.body.detail || res.body.eroare);
+      if (eroare || !res.body || !res.body.token){
+        var mesaj = 'Utilizator sau parolÄƒ incorectÄƒ.';
+        if (eroare === 'prea multe incercari - asteapta 10 minute') mesaj = 'Prea multe Ã®ncercÄƒri greÈ™ite - aÈ™teaptÄƒ 10 minute.';
+        else if (res.status === 403 || eroare === 'abonament expirat sau inactiv') mesaj = 'Abonamentul tÄƒu a expirat sau este inactiv. ContacteazÄƒ-ne pentru reÃ®nnoire.';
+        document.getElementById('gateErr').textContent = mesaj;
+        return;
+      }
+      porneste(res.body.token);
+    }).catch(function(){
+      document.getElementById('gateErr').textContent = 'Eroare de conexiune, Ã®ncearcÄƒ din nou.';
+    });
+  }
+
+  document.getElementById('gateBtn').addEventListener('click', function(){
+    var u = document.getElementById('userInput').value.trim();
+    var p = document.getElementById('parolaInput').value.trim();
+    if (u && p) login(u, p);
+  });
+  ['userInput','parolaInput'].forEach(function(id){
+    document.getElementById(id).addEventListener('keydown', function(ev){
+      if (ev.key === 'Enter') document.getElementById('gateBtn').click();
+    });
+  });
+
+  var savedToken = null;
+  try { savedToken = localStorage.getItem(TOKEN_KEY); } catch(e){}
+  if (savedToken){
+    porneste(savedToken);
+  }
+})();
+</script>
+</body>
+</html>
+

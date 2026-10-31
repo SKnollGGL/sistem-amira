@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amira Consulting</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; color: #333; line-height: 1.6; background: #f5f5f5; }
+    header { background: #fff; padding: 20px 0; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
+    .nav { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 24px; font-weight: bold; color: #0a9d67; }
+    .header-right { display: flex; gap: 20px; align-items: center; }
+    .buttons { display: flex; gap: 10px; }
+    .btn { padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; text-decoration: none; display: inline-block; }
+    .btn-green { background: #0a9d67; color: white; }
+    .btn-green:hover { background: #088a56; }
+    .btn-blue { background: #24a1de; color: white; }
+    .btn-blue:hover { background: #1d8ac0; }
+    .lang-flags { display: flex; gap: 4px; flex-wrap: wrap; }
+    .lang-flag { width: 32px; height: 23px; cursor: pointer; border: 2px solid transparent; border-radius: 3px; transition: all 0.2s; }
+    .lang-flag:hover { transform: translateY(-2px); }
+    .lang-flag.active { border-color: #0a9d67; box-shadow: 0 0 0 2px rgba(10, 157, 103, 0.3); }
+    .section { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    .hero { background: white; padding: 60px 20px; text-align: center; border-radius: 8px; }
+    .hero h1 { font-size: 42px; color: #132e26; margin-bottom: 20px; }
+    .hero p { font-size: 18px; color: #666; margin-bottom: 30px; }
+    .services { background: white; padding: 40px 20px; border-radius: 8px; }
+    .services h2 { font-size: 32px; margin-bottom: 30px; color: #132e26; }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .service-card { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #0a9d67; }
+    .service-card h3 { color: #0a9d67; margin-bottom: 10px; }
+    .chat-fab { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #0a9d67; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .chat-fab:hover { background: #088a56; }
+    .chat-widget { position: fixed; bottom: 100px; right: 30px; width: 380px; background: white; border-radius: 12px; box-shadow: 0 5px 40px rgba(0,0,0,0.16); z-index: 999; display: none; overflow: hidden; flex-direction: column; max-height: 500px; }
+    .chat-widget.open { display: flex; }
+    .chat-header { background: #0a9d67; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .chat-close { cursor: pointer; font-size: 24px; }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 20px; background: #f9f9f9; }
+    .message { margin-bottom: 15px; }
+    .msg-in { background: #e8f5e9; padding: 12px 16px; border-radius: 8px; max-width: 80%; }
+    .msg-out { background: #0a9d67; color: white; padding: 12px 16px; border-radius: 8px; max-width: 80%; margin-left: auto; }
+    .chat-input { padding: 15px; border-top: 1px solid #ddd; display: flex; gap: 10px; }
+    .chat-input input { flex: 1; border: 1px solid #ddd; padding: 10px; border-radius: 4px; font-size: 14px; }
+    .chat-input button { background: #0a9d67; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: 600; }
+    .chat-input button:hover { background: #088a56; }
+    footer { background: #132e26; color: white; padding: 40px 20px; text-align: center; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Amira Consulting</div>
+    <div class="header-right">
+      <div class="lang-flags">
+        <img class="lang-flag active" data-lang="ro" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='10' height='20' fill='%23002B7F'/%3E%3Crect x='10' width='10' height='20' fill='%23FCD116'/%3E%3Crect x='20' width='10' height='20' fill='%23CE1126'/%3E%3C/svg%3E" title="Română" onclick="switchLang(event, 'ro')">
+        <img class="lang-flag" data-lang="de" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='6.67' fill='%23000'/%3E%3Crect y='6.67' width='30' height='6.67' fill='%23DD0000'/%3E%3Crect y='13.34' width='30' height='6.67' fill='%23FFCE00'/%3E%3C/svg%3E" title="Deutsch" onclick="switchLang(event, 'de')">
+        <img class="lang-flag" data-lang="en" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%2300247d'/%3E%3C/svg%3E" title="English" onclick="switchLang(event, 'en')">
+        <img class="lang-flag" data-lang="uk" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='300' fill='%23005BBF'/%3E%3Crect y='300' width='900' height='300' fill='%23FFD700'/%3E%3C/svg%3E" title="Українська" onclick="switchLang(event, 'uk')">
+        <img class="lang-flag" data-lang="tr" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23E4143F'/%3E%3Ccircle cx='250' cy='400' r='150' fill='%23FFF'/%3E%3Cpolygon points='400,300 450,380 380,380 420,440 370,440 410,500 340,440 380,380 310,380' fill='%23E4143F'/%3E%3C/svg%3E" title="Türkçe" onclick="switchLang(event, 'tr')">
+        <img class="lang-flag" data-lang="pl" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='300' fill='%23FFF'/%3E%3Crect y='300' width='900' height='300' fill='%23DC143C'/%3E%3C/svg%3E" title="Polski" onclick="switchLang(event, 'pl')">
+        <img class="lang-flag" data-lang="bg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='200' fill='%23FFF'/%3E%3Crect y='200' width='900' height='200' fill='%2300A86B'/%3E%3Crect y='400' width='900' height='200' fill='%23D62612'/%3E%3C/svg%3E" title="Български" onclick="switchLang(event, 'bg')">
+        <img class="lang-flag" data-lang="ar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23CE1126'/%3E%3Crect width='900' height='450' fill='%23000'/%3E%3Crect y='450' width='900' height='150' fill='%23FFF'/%3E%3C/svg%3E" title="العربية" onclick="switchLang(event, 'ar')">
+        <img class="lang-flag" data-lang="es" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='20' fill='%23AA151B'/%3E%3Crect y='5' width='30' height='10' fill='%23F1BF00'/%3E%3C/svg%3E" title="Español" onclick="switchLang(event, 'es')">
+        <img class="lang-flag" data-lang="hu" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Crect width='30' height='6.67' fill='%23CD2A3E'/%3E%3Crect y='6.67' width='30' height='6.67' fill='%23fff'/%3E%3Crect y='13.34' width='30' height='6.67' fill='%23436F4D'/%3E%3C/svg%3E" title="Magyar" onclick="switchLang(event, 'hu')">
+      </div>
+      <div class="buttons">
+        <a href="https://wa.me/40373818188" class="btn btn-green" target="_blank">WhatsApp</a>
+        <a href="https://t.me/AmiraConsultingbot" class="btn btn-blue" target="_blank">Telegram</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 data-i18n="title">Consultanță Administrativă pentru Germania</h1>
+  <p data-i18n="desc">Pentru toți românii care trăiesc în Germania</p>
+  <div class="buttons">
+    <a href="https://wa.me/40373818188" class="btn btn-green" target="_blank">WhatsApp</a>
+    <a href="https://t.me/AmiraConsultingbot" class="btn btn-blue" target="_blank">Telegram</a>
+  </div>
+</section>
+
+<section class="section services">
+  <h2 data-i18n="services">Serviciile Noastre</h2>
+  <div class="service-grid">
+    <div class="service-card"><h3>Kindergeld</h3><p data-i18n="s1">Alocații copii</p></div>
+    <div class="service-card"><h3>Impozit</h3><p data-i18n="s2">Declarații fiscale</p></div>
+    <div class="service-card"><h3>Locuință</h3><p data-i18n="s3">Contracte & chirie</p></div>
+    <div class="service-card"><h3>Protecție Socială</h3><p data-i18n="s4">Beneficii sociale</p></div>
+  </div>
+</section>
+
+<div class="chat-fab" onclick="toggleChat()">💬</div>
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-header">
+    <span data-i18n="chat">Chat Amira</span>
+    <span class="chat-close" onclick="toggleChat()">×</span>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Scrie..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+    <button>Trimite</button>
+  </div>
+</div>
+
+<footer><p>&copy; 2026 Amira Consulting</p></footer>
+
+<script>
+const trans = {
+  ro: { title: "Consultanță Administrativă pentru Germania", desc: "Pentru toți românii care trăiesc în Germania", services: "Serviciile Noastre", s1: "Alocații copii", s2: "Declarații fiscale", s3: "Contracte & chirie", s4: "Beneficii sociale", chat: "Chat Amira", greeting: "Bun! Cum te pot ajuta?" },
+  en: { title: "Administrative Consulting for Germany", desc: "For all Romanians living in Germany", services: "Our Services", s1: "Child allowance", s2: "Tax declarations", s3: "Contracts & rent", s4: "Social benefits", chat: "Amira Chat", greeting: "Hi! How can I help?" },
+  de: { title: "Verwaltungsberatung für Deutschland", desc: "Für alle Rumänen, die in Deutschland leben", services: "Unsere Dienstleistungen", s1: "Kindergeld", s2: "Steuererklärungen", s3: "Verträge & Miete", s4: "Sozialleistungen", chat: "Amira Chat", greeting: "Hallo! Wie kann ich dir helfen?" },
+  uk: { title: "Адміністративне консультування для Німеччини", desc: "Для всіх румунів, які живуть у Німеччині", services: "Наші послуги", s1: "Дитячі допомоги", s2: "Податкові декларації", s3: "Контракти та оренда", s4: "Соціальні пільги", chat: "Чат Amira", greeting: "Привіт! Як я можу вам допомогти?" },
+  tr: { title: "Almanya için İdari Danışmanlık", desc: "Almanya'da yaşayan tüm Romanlar için", services: "Hizmetlerimiz", s1: "Çocuk parası", s2: "Vergi beyannameleri", s3: "Sözleşmeler ve kira", s4: "Sosyal yardımlar", chat: "Amira Sohbeti", greeting: "Merhaba! Nasıl yardım edebilirim?" },
+  pl: { title: "Konsultacje administracyjne dla Niemiec", desc: "Dla wszystkich Rumunów żyjących w Niemczech", services: "Nasze usługi", s1: "Zasiłek rodzinny", s2: "Deklaracje podatkowe", s3: "Umowy i czynsz", s4: "Świadczenia społeczne", chat: "Czat Amira", greeting: "Cześć! Jak się mam?" },
+  bg: { title: "Административно консултиране за Германия", desc: "За всички румънци, живеещи в Германия", services: "Нашите услуги", s1: "Детска надбавка", s2: "Данъчни декларации", s3: "Договори и наем", s4: "Социални помощи", chat: "Чат Amira", greeting: "Привет! Как мога да помогна?" },
+  ar: { title: "استشارات إدارية لألمانيا", desc: "لجميع الروملانيين الذين يعيشون في ألمانيا", services: "خدماتنا", s1: "استحقاقات الأطفال", s2: "الإقرارات الضريبية", s3: "العقود والإيجار", s4: "المزايا الاجتماعية", chat: "Amira الدردشة", greeting: "مرحبا! كيف يمكنني مساعدتك؟" },
+  es: { title: "Consultoría Administrativa para Alemania", desc: "Para todos los rumanos que viven en Alemania", services: "Nuestros servicios", s1: "Asignaciones familiares", s2: "Declaraciones fiscales", s3: "Contratos y alquiler", s4: "Beneficios sociales", chat: "Chat de Amira", greeting: "¡Hola! ¿Cómo puedo ayudarte?" },
+  hu: { title: "Adminisztratív tanácsadás Németországnak", desc: "Azoknak a rumánoknak, akik Németországban élnek", services: "Szolgáltatásaink", s1: "Gyermekapomány", s2: "Adóbevallások", s3: "Szerződések és bérleti díj", s4: "Szociális juttatások", chat: "Amira csevegés", greeting: "Halló! Hogyan segíthetek?" }
+};
+
+let lang = 'ro';
+let sid = 'web-' + Math.random().toString(36).substr(2, 9);
+const N8N = 'https://arisconsulting.app.n8n.cloud/webhook/web-chat-aris';
+
+function switchLang(e, l) {
+  lang = l;
+  document.querySelectorAll('.lang-flag').forEach(f => f.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (trans[l][key]) el.textContent = trans[l][key];
+  });
+}
+
+function toggleChat() {
+  document.getElementById('chatWidget').classList.toggle('open');
+  if (!document.getElementById('chatMessages').children.length) {
+    addMsg(trans[lang].greeting, 'in');
+  }
+}
+
+function addMsg(t, ty) {
+  const c = document.getElementById('chatMessages');
+  const m = document.createElement('div');
+  m.className = 'message msg-' + ty;
+  m.textContent = t;
+  c.appendChild(m);
+  c.scrollTop = c.scrollHeight;
+}
+
+function sendChatMessage() {
+  const i = document.getElementById('chatInput');
+  const btn = document.querySelector('.chat-input button');
+  const t = i.value.trim();
+  if (!t) return;
+  addMsg(t, 'out');
+  i.value = '';
+  fetch(N8N, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({sessionId: sid, text: t, lang: lang})})
+    .then(r => r.json())
+    .then(d => addMsg(d?.reply || 'Am primit mesajul. Voi reveni în curând.', 'in'))
+    .catch(() => addMsg('Am primit mesajul. Voi reveni în curând.', 'in'));
+}
+</script>
+
+</body>
+</html>

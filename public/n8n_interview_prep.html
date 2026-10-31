@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>n8n Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a16; --paper:#faf7f0; --paper-raised:#ffffff;
+    --line:#e0d9c8; --muted:#6f6656; --accent:#2f4d43; --accent-soft:#e7efe9;
+    --amber:#b9722f; --amber-soft:#f5e5d3;
+  }
+  *{box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  @page{ size:A4; margin:16mm 16mm; }
+  body{ background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans', sans-serif; font-size:12.5px; line-height:1.55; margin:0 }
+  h1{font-family:'Newsreader', serif; font-size:26px; font-weight:700; margin:0}
+  h2{font-family:'Newsreader', serif; font-size:16px; font-weight:600; margin:0 0 8px; color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:5px}
+  .kicker{font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+  section{margin-top:22px; page-break-inside:avoid}
+  .fact-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+  .fact{background:var(--paper-raised); border:1px solid var(--line); border-radius:6px; padding:7px 11px; font-size:11px}
+  .fact b{font-family:'IBM Plex Mono', monospace; color:var(--accent)}
+  .stage{display:flex; gap:12px; margin-top:10px; align-items:flex-start}
+  .stage .n{font-family:'Newsreader', serif; font-weight:700; font-size:18px; color:var(--accent); min-width:22px}
+  .stage p{margin:2px 0 0; color:var(--muted)}
+  .stage b{font-size:12.5px}
+  .pron{background:var(--amber-soft); border-left:3px solid var(--amber); border-radius:0 6px 6px 0; padding:8px 12px; margin-top:10px; font-size:11.5px}
+  .pron b{font-family:'IBM Plex Mono', monospace; color:var(--amber)}
+  .script{background:var(--paper-raised); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:14px 16px; margin-top:10px; font-size:12px}
+  .script .q{font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin-bottom:6px}
+  .script p{margin:6px 0}
+  .method{background:var(--accent-soft); border-radius:8px; padding:12px 16px; margin-top:10px; font-size:11.5px}
+  .method ol{margin:6px 0 0; padding-left:18px}
+  .method li{margin:3px 0}
+  footer{margin-top:24px; padding-top:12px; border-top:1px solid var(--line); font-size:10px; color:var(--muted); text-align:center}
+</style>
+</head>
+<body>
+<div style="padding:0 4px">
+
+  <span class="kicker">Interview prep &middot; n8n &middot; Forward Deployed Engineer</span>
+  <h1>Ce trebuie sÄƒ È™tiu, pe de rost</h1>
+
+  <section>
+    <h2>01 &nbsp; Despre companie</h2>
+    <div class="fact-row">
+      <div class="fact">FondaÈ›i <b>2019</b></div>
+      <div class="fact"><b>350+</b> oameni</div>
+      <div class="fact">Sediu central <b>Berlin</b></div>
+      <div class="fact"><b>650.000+</b> dezvoltatori activi</div>
+      <div class="fact"><b>200k+</b> stele GitHub (top 40 global)</div>
+      <div class="fact">#4 Sifted B2B SaaS Rising 100 (2025)</div>
+      <div class="fact"><b>$240M</b> strÃ¢nÈ™i total</div>
+      <div class="fact">Series C <b>$180M</b>, investiÈ›ie SAP</div>
+      <div class="fact">Evaluare <b>$5.2 miliarde</b></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>02 &nbsp; Procesul de interviu</h2>
+    <div class="stage">
+      <span class="n">1</span>
+      <div><b>Recruiter screen (~30 min)</b><p>Background, rol, logisticÄƒ "” aici probabil Ã®ntreabÄƒ despre eligibilitate de muncÄƒ (Germania/Irlanda/UK/Olanda/Portugalia/Spania) È™i accept pentru travel 50-60%.</p></div>
+    </div>
+    <div class="stage">
+      <span class="n">2</span>
+      <div><b>Interviu tehnic (~45-60 min)</b><p>Coding È™i/sau system design. Ex: design de integrare API, experienÈ›Äƒ TypeScript, best practices Node.js.</p></div>
+    </div>
+    <div class="stage">
+      <span class="n">3</span>
+      <div><b>Interviu comportamental (~45 min)</b><p>PoveÈ™ti STAR "” deadline-uri, troubleshooting, echilibru tehnic/utilizator.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>03 &nbsp; PronunÈ›ie de reÈ›inut</h2>
+    <div class="pron"><b>OAuth</b> â†’ "oh-auth" (NU "our authorization")</div>
+    <div class="pron"><b>n8n</b> â†’ "en-eight-en", spus repede: N, opt, N (NU "any ten" / "N8M")</div>
+  </section>
+
+  <section>
+    <h2>04 &nbsp; RÄƒspuns exersat: integrare API cu auth diferit</h2>
+    <div class="script">
+      <div class="q">ÃŽntrebare: "How would you design a workflow integrating two APIs with different auth methods?"</div>
+      <p>"I use OAuth for Google Calendar, and an API key for Twilio. I keep them separate "” I never mix them in the same code path."</p>
+      <p>"OAuth tokens can fail silently when they expire, so I let n8n manage them instead of hardcoding them."</p>
+      <p style="color:var(--muted); font-style:italic">(opÈ›ional, dacÄƒ cer mai mult detaliu:) "A leaked API key only affects one account. A leaked OAuth token can reach further "” so I treat each type of secret differently, not just by how it's used, but by where it physically lives in the workflow."</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>05 &nbsp; Povestea principalÄƒ (incident, format STAR)</h2>
+    <div class="script">
+      <div class="q">Pentru orice Ã®ntrebare de tip "tell me about a complex problem you solved" / "a time something broke in production"</div>
+      <p><b>SituaÈ›ie:</b> Migram zeci de noduri de la chei API plaintext la credenÈ›iale gestionate, Ã®n sistemul meu de producÈ›ie n8n (Amira Consulting, 58+ clienÈ›i reali).</p>
+      <p><b>ProblemÄƒ:</b> Am lovit o limitare nedocumentatÄƒ "” Code node-urile n8n eÈ™ueazÄƒ silenÈ›ios la apeluri autentificate, fÄƒrÄƒ eroare vizibilÄƒ. Facturarea, comisioanele, confirmÄƒrile GDPR se stricau silenÈ›ios.</p>
+      <p><b>AcÈ›iune:</b> Am construit o metodÄƒ temporarÄƒ de debug ca sÄƒ vÄƒd eroarea realÄƒ din execution logs. Am confirmat impactul pe ~23 noduri. Am decis: revert complet la ultima versiune funcÈ›ionalÄƒ, verificare pe o conversaÈ›ie realÄƒ de client, apoi STOP pentru noaptea respectivÄƒ "” nu am mai Ã®ncercat un al doilea fix live sub presiune.</p>
+      <p><b>Rezultat:</b> Sistem restaurat, verificat funcÈ›ional. Am scris un plan de migrare pe niveluri de risc pentru o reÃ®ncercare corectÄƒ, supervizatÄƒ, Ã®n loc sÄƒ grÄƒbesc o soluÈ›ie.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>06 &nbsp; Metoda de exersat (foloseÈ™te-o È™i pentru restul)</h2>
+    <div class="method">
+      Nu memora propoziÈ›ii Ã®ntregi. Ia o idee, spune-o simplu, cu cuvintele tale:
+      <ol>
+        <li>Scrie ideea Ã®n 4-5 puncte foarte scurte (nu propoziÈ›ii complete)</li>
+        <li>Spune primul punct cu voce tare, de 2-3 ori, pÃ¢nÄƒ sunÄƒ relaxat</li>
+        <li>AdaugÄƒ punctul urmÄƒtor, repetÄƒ tot de la Ã®nceput</li>
+        <li>CÃ¢nd ai toate punctele, spune-le pe toate legate, fÄƒrÄƒ pauzÄƒ</li>
+        <li>O pauzÄƒ de tÄƒcere e mai bunÄƒ decÃ¢t "uh" "” nu te grÄƒbi</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>Amira Consulting &middot; pregÄƒtire interviu n8n</footer>
+
+</div>
+</body>
+</html>
+

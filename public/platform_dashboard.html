@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARIS Platform - Dashboard</title>
+<style>
+  :root{
+    --primary:#667eea; --primary-dark:#764ba2;
+    --bg:#f4f2ec; --surface:#ffffff;
+    --ink:#132e26; --success:#4caf50;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ font-family:Arial, sans-serif; background:var(--bg); color:var(--ink); }
+
+  .header{
+    background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color:#fff; padding:30px 20px; text-align:center;
+  }
+  .header h1{ font-size:28px; margin-bottom:10px; }
+
+  .container{ max-width:900px; margin:30px auto; padding:0 20px; }
+
+  .card{ background:var(--surface); padding:25px; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+
+  .stats-grid{
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:15px; margin-bottom:30px;
+  }
+  .stat-card{
+    background:linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+    padding:20px; border-radius:8px; border-left:4px solid var(--primary);
+  }
+  .stat-label{ font-size:12px; color:#999; text-transform:uppercase; }
+  .stat-value{ font-size:28px; font-weight:bold; color:var(--primary); margin-top:5px; }
+
+  .bots-section h2{ color:var(--ink); margin:30px 0 15px 0; font-size:20px; }
+  .bot-card{
+    background:var(--surface); padding:20px; border:1px solid #ddd; border-radius:8px;
+    margin-bottom:15px; display:flex; justify-content:space-between; align-items:center;
+  }
+  .bot-info{ flex:1; }
+  .bot-name{ font-weight:bold; color:var(--ink); margin-bottom:5px; }
+  .bot-status{ font-size:12px; color:#999; }
+  .bot-status.active{ color:var(--success); }
+  .btn{
+    padding:10px 15px; border:none; border-radius:6px; cursor:pointer; font-weight:bold;
+    font-size:14px; transition:all 0.3s;
+  }
+  .btn-primary{
+    background:var(--primary); color:#fff;
+  }
+  .btn-primary:hover{ background:var(--primary-dark); }
+  .btn-secondary{
+    background:#f0f0f0; color:var(--ink);
+  }
+  .btn-secondary:hover{ background:#e0e0e0; }
+
+  .success-banner{
+    background:#e8f5e9; border-left:4px solid var(--success);
+    padding:20px; border-radius:8px; margin-bottom:20px;
+  }
+  .success-banner h3{ color:var(--success); margin-bottom:5px; }
+  .success-banner p{ color:#2e7d32; font-size:14px; }
+
+  .empty-state{
+    text-align:center; padding:40px; color:#999;
+  }
+  .empty-state p{ margin:10px 0; }
+
+  @media (max-width:768px){
+    .stats-grid{ grid-template-columns:1fr; }
+    .bot-card{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🤖 Dashboard ARIS Platform</h1>
+  <p id="firmName"></p>
+</div>
+
+<div class="container">
+
+  <div class="success-banner">
+    <h3>✅ Cont activat cu succes!</h3>
+    <p>Bun venit la ARIS Platform. Boțul tău digital este gata să lucreze.</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Mesaje luna aceasta</div>
+      <div class="stat-value" id="messages">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Conversații</div>
+      <div class="stat-value" id="conversations">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Boți activi</div>
+      <div class="stat-value" id="botCount">1</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Boții tăi</h2>
+    <div id="botsList">
+      <div class="bot-card">
+        <div class="bot-info">
+          <div class="bot-name">🤖 Default Bot</div>
+          <div class="bot-status active">Activ</div>
+          <div style="font-size:12px; color:#999; margin-top:5px;">Consultație - Română</div>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-secondary">Configură</button>
+          <button class="btn btn-secondary">Test</button>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" style="margin-top:15px; width:100%;">+ Crează bot nou</button>
+  </div>
+
+  <div class="card">
+    <h2>Integrări</h2>
+    <p style="color:#666; margin-bottom:15px;">Conectează boții la canalele tale de comunicare</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+      <div style="padding:15px; border:1px solid #ddd; border-radius:8px; text-align:center;">
+        <div style="font-size:32px; margin-bottom:10px;">💬</div>
+        <div style="font-weight:bold;">WhatsApp</div>
+        <button class="btn btn-secondary" style="width:100%; margin-top:10px;">Conectează</button>
+      </div>
+      <div style="padding:15px; border:1px solid #ddd; border-radius:8px; text-align:center;">
+        <div style="font-size:32px; margin-bottom:10px;">✈️</div>
+        <div style="font-weight:bold;">Telegram</div>
+        <button class="btn btn-secondary" style="width:100%; margin-top:10px;">Conectează</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Plan actual</h2>
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:15px 0;">
+      <div>
+        <div style="font-weight:bold; color:var(--primary); font-size:18px;" id="planName">PRO - €349/lună</div>
+        <div style="color:#999; font-size:14px;">3 boți, 5 servicii</div>
+      </div>
+      <button class="btn btn-secondary">Modifică plan</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const API_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:3000'
+    : 'https://aris-platform.com';
+
+  // Get firmId from URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const firmId = urlParams.get('firm_id');
+
+  async function loadDashboard() {
+    if (!firmId) {
+      console.error('No firm ID provided');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/api/firm/${firmId}/dashboard`);
+      const data = await response.json();
+
+      // Update stats
+      document.getElementById('firmName').textContent = data.firm?.name || 'Firma ta';
+      document.getElementById('messages').textContent = data.stats?.messages_month || 0;
+      document.getElementById('conversations').textContent = data.stats?.conversations || 0;
+      document.getElementById('botCount').textContent = data.stats?.active_bots || 1;
+      document.getElementById('planName').textContent = (data.firm?.plan || 'PRO').toUpperCase() + ' - €' + getPlanPrice(data.firm?.plan);
+
+      // Display bots
+      const botsList = document.getElementById('botsList');
+      if (data.bots && data.bots.length > 0) {
+        botsList.innerHTML = data.bots.map(bot => `
+          <div class="bot-card">
+            <div class="bot-info">
+              <div class="bot-name">🤖 ${bot.name}</div>
+              <div class="bot-status ${bot.active ? 'active' : ''}">
+                ${bot.active ? 'Activ' : 'Inactiv'}
+              </div>
+              <div style="font-size:12px; color:#999; margin-top:5px;">
+                ${bot.services?.join(', ') || 'Consultație'} - ${bot.languages?.join(', ') || 'Română'}
+              </div>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <button class="btn btn-secondary">Configură</button>
+              <button class="btn btn-secondary">Test</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    } catch (err) {
+      console.error('Error loading dashboard:', err);
+    }
+  }
+
+  function getPlanPrice(plan) {
+    const prices = { solo: '99', pro: '349', enterprise: '999' };
+    return prices[plan?.toLowerCase()] || '349';
+  }
+
+  // Load dashboard on page load
+  loadDashboard();
+</script>
+
+</body>
+</html>

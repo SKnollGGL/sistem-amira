@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amira Trading - Date de piaÈ›Äƒ</title>
+<meta name="description" content="PreÈ›uri, variaÈ›ii È™i volume live pentru acÈ›iuni È™i criptomonede - informativ, nu recomandare de investiÈ›ii.">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1512; --surface:#16201b; --surface-2:#1d2a23;
+    --ink:#eef3ee; --ink-soft:#a2b8ae; --line:#28362f;
+    --accent:#2fd68c; --accent-ink:#062017;
+    --up:#3ddc84; --down:#ff6b6b;
+    --font-body:'Public Sans',-apple-system,Segoe UI,sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:24px 20px 60px; }
+  header{ display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; padding-block:18px; border-bottom:1px solid var(--line); margin-bottom:22px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:18px; text-decoration:none; color:var(--ink); }
+  .brand img{ width:34px; height:34px; }
+  .head-actions{ display:flex; align-items:center; gap:12px; }
+  .btn-privat{
+    display:inline-flex; align-items:center; gap:7px; background:var(--surface); border:1px solid var(--line);
+    color:var(--ink); text-decoration:none; font-size:12.5px; font-weight:700; padding:8px 14px; border-radius:10px;
+  }
+  .btn-privat:hover{ border-color:var(--accent); color:var(--accent); }
+  .disclaimer{
+    background:var(--surface-2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 16px; font-size:12.5px; color:var(--ink-soft); line-height:1.6; margin-bottom:26px;
+  }
+  .disclaimer b{ color:var(--ink); }
+  h2{ font-size:19px; margin:32px 0 14px; display:flex; align-items:center; gap:10px; }
+  .status{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px; }
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px; }
+  .card .top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+  .card .simbol{ font-weight:800; font-size:15px; }
+  .card .nume{ font-size:11.5px; color:var(--ink-soft); margin-top:1px; }
+  .card .pret{ font-family:var(--font-mono); font-size:22px; font-weight:600; margin-top:8px; }
+  .card .rand2{ display:flex; align-items:center; justify-content:space-between; margin-top:10px; font-family:var(--font-mono); font-size:12.5px; }
+  .var{ font-weight:700; }
+  .var.up{ color:var(--up); } .var.down{ color:var(--down); }
+  .vol{ color:var(--ink-soft); }
+  .empty{ color:var(--ink-soft); font-size:13px; padding:20px 0; }
+  footer{ margin-top:40px; font-size:11.5px; color:var(--ink-soft); text-align:center; }
+  .card{ cursor:pointer; transition:border-color .15s ease; }
+  .card:hover{ border-color:var(--accent); }
+
+  .pret-box{
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    background:linear-gradient(135deg,var(--surface-2),var(--surface)); border:1px solid var(--accent);
+    border-radius:14px; padding:18px 20px; margin-bottom:26px;
+  }
+  .pret-titlu{ font-weight:700; font-size:14.5px; }
+  .pret-sub{ font-size:12px; color:var(--ink-soft); margin-top:3px; }
+  .pret-cifre{ font-family:var(--font-mono); font-size:15px; font-weight:700; color:var(--accent); white-space:nowrap; }
+  .pret-cta{
+    background:var(--accent); color:var(--accent-ink); text-decoration:none; font-weight:700; font-size:13px;
+    padding:10px 16px; border-radius:10px; white-space:nowrap;
+  }
+
+  .chart-overlay{
+    display:none; position:fixed; inset:0; z-index:999; background:rgba(6,10,8,.72);
+    align-items:center; justify-content:center; padding:16px;
+  }
+  .chart-overlay.open{ display:flex; }
+  .chart-modal{ background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px; width:min(720px,100%); }
+  .chart-modal .chead{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  .chart-modal .chead .simbol{ font-weight:800; font-size:16px; }
+  .chart-modal .chead .nume{ font-size:11.5px; color:var(--ink-soft); }
+  .chart-close{ background:var(--surface-2); border:1px solid var(--line); color:var(--ink); width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:16px; }
+  #chartBox{ width:100%; height:360px; }
+  .chart-loading{ color:var(--ink-soft); font-size:13px; text-align:center; padding:60px 0; }
+
+  /* ---------- chat widget (identic cu cel de pe amiraconsulting.services) ---------- */
+  #amira-chat-fab{
+    position:fixed; right:22px; bottom:22px; z-index:9998; width:58px; height:58px; border-radius:50%;
+    background:var(--accent); color:var(--accent-ink); border:none; box-shadow:0 8px 24px rgba(0,0,0,.4); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:26px;
+  }
+  #amira-chat-label{
+    position:fixed; right:88px; bottom:34px; z-index:9997; background:var(--surface); color:var(--ink);
+    border:1px solid var(--line); border-radius:12px; padding:10px 14px; font-size:13px; max-width:220px;
+    box-shadow:0 8px 24px rgba(0,0,0,.4); cursor:pointer;
+  }
+  #amira-chat-panel{
+    position:fixed; right:22px; bottom:90px; z-index:9999; width:min(380px,92vw); height:min(560px,72vh);
+    background:var(--surface); border:1px solid var(--line); border-radius:18px; box-shadow:0 8px 24px rgba(0,0,0,.4);
+    display:none; flex-direction:column; overflow:hidden;
+  }
+  #amira-chat-panel.open{ display:flex; }
+  #amira-chat-head{ background:rgba(47,214,140,.14); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+  #amira-chat-log{ flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; }
+  .amira-msg{ max-width:85%; padding:9px 12px; border-radius:14px; font-size:13.5px; line-height:1.5; overflow-wrap:anywhere; }
+  .amira-msg.bot{ background:var(--surface-2); align-self:flex-start; border-bottom-left-radius:4px; }
+  .amira-msg.user{ background:var(--accent); color:var(--accent-ink); align-self:flex-end; border-bottom-right-radius:4px; }
+  .amira-msg a{ color:inherit; text-decoration:underline; word-break:break-all; }
+  #amira-chat-form{ display:flex; gap:8px; padding:12px; border-top:1px solid var(--line); }
+  #amira-chat-input{ flex:1; border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-size:13.5px; background:var(--bg); color:var(--ink); }
+  #amira-chat-send{ background:var(--accent); color:var(--accent-ink); border:none; border-radius:10px; padding:0 16px; font-weight:700; cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="/" title="ÃŽnapoi la pagina principalÄƒ"><img src="logo_icon.png" alt="">Amira Trading</a>
+    <div class="head-actions">
+      <a href="/" style="font-size:12px;color:var(--ink-soft,#5c6b64);text-decoration:none;margin-right:4px;">â† AcasÄƒ</a>
+      <span class="status" id="status">Se Ã®ncarcÄƒ...</span>
+      <a class="btn-privat" href="trading-privat.html">🚀”’ ZonÄƒ privatÄƒ</a>
+    </div>
+  </header>
+
+  <div class="disclaimer">
+    <b>Informativ, nu recomandare de investiÈ›ii.</b> Datele afiÈ™ate (preÈ›, variaÈ›ie, volum) sunt publice È™i Ã®n timp real, dar nu constituie sfat financiar, nu sunt o recomandare de cumpÄƒrare/vÃ¢nzare È™i nu garanteazÄƒ niciun rezultat. TranzacÈ›ionarea acÈ›iunilor È™i criptomonedelor implicÄƒ risc real de pierdere a capitalului. Deciziile de investiÈ›ie Ã®È›i aparÈ›in Ã®n Ã®ntregime.
+  </div>
+
+  <div class="pret-box" id="pretBox">
+    <div>
+      <div class="pret-titlu">🚀”’ ZonÄƒ privatÄƒ "” scoruri, ierarhizare È™i grafice cu indicatori</div>
+      <div class="pret-sub">Instrument de cercetare personal: date calculate transparent, nu sfat financiar.</div>
+    </div>
+    <div class="pret-cifre" id="pretCifre">se Ã®ncarcÄƒ...</div>
+    <a class="pret-cta" href="#" onclick="if(window.amiraOpenChat){amiraOpenChat();window.amiraPrefill&&amiraPrefill('Vreau acces la zona privata Amira Trading');}return false;">Scrie-ne pentru acces â†’</a>
+  </div>
+
+  <h2>🚀“ˆ AcÈ›iuni</h2>
+  <div class="grid" id="gridActiuni"><div class="empty">Se Ã®ncarcÄƒ...</div></div>
+
+  <h2>🚀ª™ Criptomonede</h2>
+  <div class="grid" id="gridCripto"><div class="empty">Se Ã®ncarcÄƒ...</div></div>
+
+  <footer>Amira Trading · date publice, actualizate automat · Amira Consulting</footer>
+</div>
+
+<div class="chart-overlay" id="chartOverlay">
+  <div class="chart-modal">
+    <div class="chead">
+      <div><div class="simbol" id="chartSimbol">"”</div><div class="nume" id="chartNume"></div></div>
+      <button class="chart-close" id="chartClose">âœ•</button>
+    </div>
+    <div id="chartBox"><div class="chart-loading">Se Ã®ncarcÄƒ graficul...</div></div>
+  </div>
+</div>
+
+<button id="amira-chat-fab" aria-label="Deschide chatul">🚀’¬</button>
+<div id="amira-chat-label" role="button" tabindex="0">Scrie-ne, primeÈ™ti acces Ã®n cÃ¢teva minute</div>
+<div id="amira-chat-panel">
+  <div id="amira-chat-head">
+    <div><b>Amira Trading</b><div style="font-size:11.5px; color:var(--ink-soft);">Consultant · online</div></div>
+    <button id="amira-chat-close" aria-label="ÃŽnchide" style="background:none; border:none; font-size:18px; cursor:pointer; color:var(--ink);">âœ•</button>
+  </div>
+  <div id="amira-chat-log"></div>
+  <form id="amira-chat-form">
+    <input id="amira-chat-input" type="text" placeholder="Scrie un mesaj..." autocomplete="off">
+    <button id="amira-chat-send" type="submit">Trimite</button>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<script>
+(function(){
+  var ENDPOINT = 'https://arisconsulting.app.n8n.cloud/webhook/trading-date-publice';
+  var ISTORIC_ENDPOINT = 'https://arisconsulting.app.n8n.cloud/webhook/trading-istoric';
+
+  function fmt(n, d){ if (n === null || n === undefined) return '"”'; return Number(n).toLocaleString('ro-RO', {minimumFractionDigits:d||2, maximumFractionDigits:d||2}); }
+  function fmtVol(n){
+    if (n === null || n === undefined) return '"”';
+    if (n >= 1e9) return (n/1e9).toFixed(2) + 'B';
+    if (n >= 1e6) return (n/1e6).toFixed(2) + 'M';
+    if (n >= 1e3) return (n/1e3).toFixed(1) + 'K';
+    return String(n);
+  }
+
+  function card(item){
+    var up = (item.variatie_procent || 0) >= 0;
+    var el = document.createElement('div');
+    el.className = 'card';
+    el.innerHTML =
+      '<div class="top"><div><div class="simbol">' + item.simbol + '</div><div class="nume">' + (item.nume||'') + '</div></div></div>' +
+      '<div class="pret">$' + fmt(item.pret, item.pret < 10 ? 4 : 2) + '</div>' +
+      '<div class="rand2">' +
+        '<span class="var ' + (up?'up':'down') + '">' + (up?'â–²':'â–¼') + ' ' + fmt(Math.abs(item.variatie_procent||0),2) + '% <span style="color:var(--ink-soft); font-weight:400;">(' + (item.variatie_eticheta||'') + ')</span></span>' +
+        '<span class="vol">vol ' + fmtVol(item.volum) + '</span>' +
+      '</div>';
+    el.addEventListener('click', function(){ deschideGrafic(item); });
+    return el;
+  }
+
+  var chartInstance = null;
+  function deschideGrafic(item){
+    document.getElementById('chartSimbol').textContent = item.simbol;
+    document.getElementById('chartNume').textContent = item.nume || '';
+    document.getElementById('chartOverlay').classList.add('open');
+    var box = document.getElementById('chartBox');
+    box.innerHTML = '<div class="chart-loading">Se Ã®ncarcÄƒ graficul...</div>';
+
+    var simbolQuery = item.tip === 'cripto' ? item.id_cripto : item.simbol;
+    fetch(ISTORIC_ENDPOINT + '?simbol=' + encodeURIComponent(simbolQuery) + '&tip=' + encodeURIComponent(item.tip))
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var candele = data.candele || [];
+        if (!candele.length){ box.innerHTML = '<div class="chart-loading">FÄƒrÄƒ date istorice momentan.</div>'; return; }
+        box.innerHTML = '';
+        chartInstance = LightweightCharts.createChart(box, {
+          width: box.clientWidth, height: 360,
+          layout: { background: { color: 'transparent' }, textColor: '#a2b8ae' },
+          grid: { vertLines: { color: '#22302a' }, horzLines: { color: '#22302a' } },
+          timeScale: { borderColor: '#28362f' },
+          rightPriceScale: { borderColor: '#28362f' },
+        });
+        var serie = chartInstance.addCandlestickSeries({
+          upColor: '#3ddc84', downColor: '#ff6b6b', borderVisible: false,
+          wickUpColor: '#3ddc84', wickDownColor: '#ff6b6b',
+        });
+        var uniceMap = {};
+        candele.forEach(function(c){
+          var t = item.tip === 'cripto' ? Math.floor(new Date(c.time.replace(' ', 'T') + 'Z').getTime()/1000) : c.time;
+          uniceMap[t] = { time: t, open: c.open, high: c.high, low: c.low, close: c.close };
+        });
+        var puncte = Object.keys(uniceMap).map(function(k){ return uniceMap[k]; }).sort(function(a,b){
+          return (typeof a.time === 'string' ? new Date(a.time) : a.time) - (typeof b.time === 'string' ? new Date(b.time) : b.time);
+        });
+        serie.setData(puncte);
+        chartInstance.timeScale().fitContent();
+      }).catch(function(){
+        box.innerHTML = '<div class="chart-loading">Eroare la Ã®ncÄƒrcarea graficului.</div>';
+      });
+  }
+
+  document.getElementById('chartClose').addEventListener('click', function(){
+    document.getElementById('chartOverlay').classList.remove('open');
+  });
+  document.getElementById('chartOverlay').addEventListener('click', function(ev){
+    if (ev.target.id === 'chartOverlay') document.getElementById('chartOverlay').classList.remove('open');
+  });
+
+
+  function incarca(){
+    fetch(ENDPOINT).then(function(r){ return r.json(); }).then(function(data){
+      var active = data.active || [];
+      var actiuni = active.filter(function(a){ return a.tip === 'actiune'; });
+      var cripto = active.filter(function(a){ return a.tip === 'cripto'; });
+
+      var gA = document.getElementById('gridActiuni');
+      var gC = document.getElementById('gridCripto');
+      gA.innerHTML = ''; gC.innerHTML = '';
+      if (!actiuni.length) gA.innerHTML = '<div class="empty">FÄƒrÄƒ date momentan.</div>';
+      actiuni.forEach(function(a){ gA.appendChild(card(a)); });
+      if (!cripto.length) gC.innerHTML = '<div class="empty">FÄƒrÄƒ date momentan.</div>';
+      cripto.forEach(function(c){ gC.appendChild(card(c)); });
+
+      document.getElementById('status').textContent = 'Actualizat: ' + new Date().toLocaleTimeString('ro-RO');
+
+      if (data.pret){
+        document.getElementById('pretCifre').textContent = data.pret.lunar + 'â‚¬/lunÄƒ sau ' + data.pret.anual + 'â‚¬/an';
+      }
+    }).catch(function(){
+      document.getElementById('status').textContent = 'Eroare la Ã®ncÄƒrcarea datelor.';
+    });
+  }
+
+  incarca();
+  setInterval(incarca, 60000);
+})();
+</script>
+
+<script>
+(function(){
+  var ENDPOINT = 'https://arisconsulting.app.n8n.cloud/webhook/web-chat-aris';
+  var POLL_ENDPOINT = 'https://arisconsulting.app.n8n.cloud/webhook/web-chat-poll';
+  var SID_KEY = 'amira_web_session_id';
+  var HIST_KEY = 'amira_web_chat_history';
+
+  function getSessionId(){
+    var sid = null;
+    try { sid = localStorage.getItem(SID_KEY); } catch(e){}
+    if (!sid){
+      sid = 'w' + Date.now().toString(36) + Math.random().toString(36).slice(2,10);
+      try { localStorage.setItem(SID_KEY, sid); } catch(e){}
+    }
+    return sid;
+  }
+
+  var REF_KEY = 'amira_ref_code';
+  function getRefCode(){
+    try {
+      var qs = new URLSearchParams(window.location.search);
+      var fromUrl = qs.get('ref');
+      if (fromUrl) { localStorage.setItem(REF_KEY, fromUrl); return fromUrl; }
+      return localStorage.getItem(REF_KEY) || '';
+    } catch(e){ return ''; }
+  }
+
+  var fab = document.getElementById('amira-chat-fab');
+  var panel = document.getElementById('amira-chat-panel');
+  var closeBtn = document.getElementById('amira-chat-close');
+  var log = document.getElementById('amira-chat-log');
+  var form = document.getElementById('amira-chat-form');
+  var input = document.getElementById('amira-chat-input');
+  var sendBtn = document.getElementById('amira-chat-send');
+  var label = document.getElementById('amira-chat-label');
+  var opened = false;
+  var greeted = false;
+
+  var URL_RE = /(https?:\/\/[^\s]+)/g;
+  var BOLD_RE = /\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+
+  function renderPlainSegment(el, text){
+    var last = 0, m;
+    BOLD_RE.lastIndex = 0;
+    while ((m = BOLD_RE.exec(text))){
+      if (m.index > last) el.appendChild(document.createTextNode(text.slice(last, m.index)));
+      var strong = document.createElement('strong');
+      strong.textContent = m[1] || m[2] || '';
+      el.appendChild(strong);
+      last = BOLD_RE.lastIndex;
+    }
+    if (last < text.length) el.appendChild(document.createTextNode(text.slice(last)));
+  }
+
+  function renderMsgContent(el, text){
+    var last = 0, m;
+    URL_RE.lastIndex = 0;
+    while ((m = URL_RE.exec(text))){
+      if (m.index > last) renderPlainSegment(el, text.slice(last, m.index));
+      var raw = m[0];
+      var trail = '';
+      while (raw.length && /[.,!?)\]]$/.test(raw)) { trail = raw.slice(-1) + trail; raw = raw.slice(0, -1); }
+      var a = document.createElement('a');
+      a.href = raw; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = raw;
+      el.appendChild(a);
+      if (trail) el.appendChild(document.createTextNode(trail));
+      last = URL_RE.lastIndex;
+    }
+    if (last < text.length) renderPlainSegment(el, text.slice(last));
+  }
+
+  function loadHistory(){
+    try { return JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch(e){ return []; }
+  }
+  function saveToHistory(text, who){
+    try {
+      var arr = loadHistory();
+      arr.push({ text: text, who: who });
+      if (arr.length > 60) arr = arr.slice(-60);
+      localStorage.setItem(HIST_KEY, JSON.stringify(arr));
+    } catch(e){}
+  }
+
+  function addMsg(text, who, skipSave){
+    var el = document.createElement('div');
+    el.className = 'amira-msg ' + who;
+    renderMsgContent(el, text);
+    log.appendChild(el);
+    log.scrollTop = log.scrollHeight;
+    if (!skipSave) saveToHistory(text, who);
+    return el;
+  }
+
+  function addTyping(){
+    var el = document.createElement('div');
+    el.className = 'amira-msg bot';
+    el.textContent = '...';
+    log.appendChild(el);
+    log.scrollTop = log.scrollHeight;
+    return el;
+  }
+
+  var pollTimer = null, pollActive = false, pollKnownCount = null, pollGen = 0;
+
+  // Polling continuu cat timp panoul e deschis (aceeasi logica/reparatie de leak ca pe pagina
+  // principala) - prinde atat raspunsurile AI-ului dupa un link async, cat si mesajele trimise
+  // manual de Robert din Pipeline. pollGen izoleaza fiecare ciclu deschide/inchide, ca un fetch
+  // "intarziat" dintr-un ciclu vechi sa nu mai poata porni un al doilea interval orfan.
+  function stopPolling(){
+    pollGen++;
+    if (pollTimer){ clearInterval(pollTimer); pollTimer = null; }
+    pollActive = false;
+  }
+  function pollOnce(myGen){
+    if (myGen !== pollGen) return;
+    var sid = getSessionId();
+    fetch(POLL_ENDPOINT + '?sessionId=' + encodeURIComponent(sid) + '&afterCount=' + pollKnownCount)
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if (myGen !== pollGen) return;
+        if (!data || typeof data.count !== 'number' || data.count <= pollKnownCount) return;
+        var noi = Array.isArray(data.nou) ? data.nou : (data.reply ? [{ rol: 'consultant', text: data.reply }] : []);
+        for (var i = 0; i < noi.length; i++){
+          if (noi[i] && noi[i].rol === 'consultant' && noi[i].text){ addMsg(noi[i].text, 'bot'); }
+        }
+        pollKnownCount = data.count;
+      }).catch(function(){});
+  }
+  function startPolling(){
+    if (pollActive) return;
+    pollActive = true;
+    var myGen = ++pollGen;
+    var sid = getSessionId();
+    fetch(POLL_ENDPOINT + '?sessionId=' + encodeURIComponent(sid) + '&afterCount=-1')
+      .then(function(r){ return r.json(); })
+      .then(function(baseline){
+        if (myGen !== pollGen) return;
+        pollKnownCount = baseline && typeof baseline.count === 'number' ? baseline.count : 0;
+        pollTimer = setInterval(function(){ pollOnce(myGen); }, 5000);
+      })
+      .catch(function(){ if (myGen === pollGen) pollActive = false; });
+  }
+
+  function sendMessage(text){
+    addMsg(text, 'user');
+    input.value = '';
+    sendBtn.disabled = true;
+    var typingEl = addTyping();
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionId: getSessionId(), text: text, lang: 'ro', ref: getRefCode(), pagina: 'trading' })
+    }).then(function(r){ return r.json(); }).then(function(data){
+      typingEl.remove();
+      var replyText = data && data.reply ? data.reply : 'Ne pare rau, a aparut o eroare. Incercati din nou.';
+      addMsg(replyText, 'bot');
+      sendBtn.disabled = false;
+    }).catch(function(){
+      typingEl.remove();
+      addMsg('Ne pare rau, a aparut o eroare de conexiune. Incercati din nou.', 'bot');
+      sendBtn.disabled = false;
+    });
+  }
+
+  function openPanel(){
+    panel.classList.add('open');
+    opened = true;
+    if (!greeted){
+      greeted = true;
+      var hist = loadHistory();
+      if (hist.length){
+        for (var i = 0; i < hist.length; i++){ addMsg(hist[i].text, hist[i].who, true); }
+      } else {
+        addMsg('BunÄƒ! Sunt aici pentru Amira Trading "” spune-mi dacÄƒ vrei acces la zona privatÄƒ (scoruri, semnale, grafice) È™i Ã®È›i rÄƒspund rapid.', 'bot');
+      }
+    }
+    startPolling();
+    setTimeout(function(){ input.focus(); }, 50);
+  }
+  function closePanel(){ panel.classList.remove('open'); stopPolling(); }
+
+  fab.addEventListener('click', function(){ if (panel.classList.contains('open')) closePanel(); else openPanel(); });
+  label.addEventListener('click', openPanel);
+  label.addEventListener('keydown', function(ev){ if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); openPanel(); } });
+  closeBtn.addEventListener('click', closePanel);
+  window.amiraOpenChat = openPanel;
+  window.amiraPrefill = function(text){ input.value = text; setTimeout(function(){ input.focus(); }, 60); };
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var text = input.value.trim();
+    if (!text) return;
+    sendMessage(text);
+  });
+})();
+</script>
+</body>
+</html>
+

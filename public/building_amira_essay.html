@@ -1,0 +1,92 @@
+<title>Building Amira</title>
+<meta name="description" content="A personal essay on building Amira Consulting alone, directing an AI through architecture, incidents, and a last-chance test.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#211d17;
+    --paper:#f7f2e7;
+    --muted:#8a7f68;
+    --line:#e3d8bf;
+    --accent:#8a3324;
+    --accent-soft:#f0e0d8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#ece5d4;
+      --paper:#18150f;
+      --muted:#a89a7c;
+      --line:#332c1f;
+      --accent:#d98a72;
+      --accent-soft:#2b1e18;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#ece5d4;
+    --paper:#18150f;
+    --muted:#a89a7c;
+    --line:#332c1f;
+    --accent:#d98a72;
+    --accent-soft:#2b1e18;
+  }
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'Newsreader', Georgia, serif;
+    font-size:19px; line-height:1.72;
+    padding:0 20px; padding-block:0;
+  }
+  .page{max-width:640px; margin:0 auto; padding-block:64px 100px}
+  .kicker{
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--accent); font-weight:500;
+  }
+  h1{font-size:clamp(2rem,6vw,2.6rem); font-weight:600; margin:14px 0 6px; line-height:1.12; text-wrap:balance}
+  .dek{color:var(--muted); font-size:17px; font-style:italic; max-width:48ch; margin-bottom:10px}
+  .byline{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted); margin-top:22px; padding-bottom:32px; border-bottom:1px solid var(--line)}
+  p{margin:22px 0; max-width:58ch}
+  p.lead::first-letter{
+    font-size:3.6em; float:left; line-height:.85; padding-right:.08em; padding-top:.05em;
+    font-weight:600; color:var(--accent);
+  }
+  .pull{
+    font-size:23px; font-style:italic; line-height:1.5; color:var(--accent);
+    margin:40px 0; max-width:50ch; border-left:2px solid var(--accent); padding-left:22px;
+  }
+  hr.break{border:none; text-align:center; margin:48px 0; color:var(--muted)}
+  hr.break::before{content:"· · ·"; font-family:'IBM Plex Mono', monospace; letter-spacing:.3em}
+  em{color:var(--accent); font-style:italic}
+  .sign{margin-top:56px; padding-top:24px; border-top:1px solid var(--line); font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted)}
+</style>
+
+<div class="page">
+  <span class="kicker">A founder's notebook</span>
+  <h1>Building Amira</h1>
+  <p class="dek">On building a live AI system alone, with an AI, for people who needed it to work.</p>
+  <div class="byline">Robert Catalin Bercea &middot; Amira Consulting</div>
+
+  <p class="lead">There was no team. That's the part people skip over when they hear "AI consulting platform" and picture an office somewhere. It was me, a chat window, and a growing list of people in Germany who needed help with Kindergeld, with unemployment paperwork, with a contract they didn't know how to end, with a family reunification file sitting untouched because nobody had time to explain the forms in a language that made sense to them.</p>
+
+  <p>I didn't write the code line by line. I directed it &mdash; the way you'd direct a very fast, very literal engineer who needed exact instructions and caught nothing you didn't say out loud. That's a different kind of work than people expect when they hear "built with AI." It's still architecture. Still decisions. Still mine to get wrong or right. I decided that phone numbers would never be an identity key, even after collection, because a phone number is something a person changes, not something they are. I decided every language on the site would get the same visual weight, because "we serve you too, just smaller" is not a message you put on a homepage. Small decisions, made a hundred times, that's what building actually is.</p>
+
+  <p>Somewhere in the middle of it, money got tight. Not metaphor-tight &mdash; real tight. Every subscription the system depended on had a bill attached, and the bills didn't pause while I figured out what was broken. I kept building anyway, because stopping meant the people already mid-conversation with the bot, already mid-dossier, would have nobody.</p>
+
+  <p class="pull">There was a night I told myself: one more test. If it doesn't work end to end, all of it, I walk away.</p>
+
+  <p>So I asked for exactly that. Check everything. Delete every trace of testing. Make it real. I gave my own number, called it a final test, and meant it &mdash; not as a figure of speech but as an actual decision I was prepared to make. That's what building alone does to you: eventually the project and your own resolve are the same test.</p>
+
+  <p>What came back wasn't a clean pass. It never is. WhatsApp worked. Telegram worked. The site opened in eight languages depending on who visited it. A bug that had been silently failing every single day for a week surfaced from the logs and got fixed before it caused real harm. And then the voice line rang, said something in English that wasn't supposed to be there, and hung up &mdash; not a bug in anything I'd built, but a payment that had quietly failed somewhere in a subscription I couldn't check from a terminal. The kind of thing that has nothing to do with skill and everything to do with running a business with a thin margin.</p>
+
+  <hr class="break">
+
+  <p>I didn't get the version of that night where everything works perfectly and you close the laptop satisfied. I got the more honest version: most of it held, one piece didn't, and the piece that didn't wasn't a verdict on the work, it was a bill. I paused what needed pausing instead of pretending it was fine. I kept what was working, working. That's the actual shape of building something real &mdash; not a launch day, a long list of Tuesdays where you decide, again, whether to keep going.</p>
+
+  <p>What's live now is not a demo. It's real clients, with real case files, in real conversations, in a language they chose, on a channel they already had open. Nobody who talks to it knows what the night before looked like. That's correct &mdash; it should never have to.</p>
+
+  <div class="sign">
+    Written after the system passed its own final test.<br>
+    Amira Consulting &mdash; amiraconsulting.services
+  </div>
+</div>
+

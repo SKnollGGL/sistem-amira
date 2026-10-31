@@ -1,0 +1,346 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Businessplan Amira Consulting</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #f6f4ee; --surface: #ffffff; --surface-2: #f0ede2;
+    --ink: #161f33; --ink-soft: #5c6579; --border: #ddd8c7;
+    --indigo: #5b4b9e; --indigo-bg: #eae5f6;
+    --amber: #ab7a2e; --amber-bg: #f4e7c9;
+    --teal: #1f7f66; --teal-bg: #dcefe7;
+    --rust: #b1552f; --rust-bg: #f5e1d3;
+    --shadow: 0 1px 2px rgba(22,31,51,.06), 0 8px 24px rgba(22,31,51,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10162a; --surface: #171f38; --surface-2: #1b2542;
+      --ink: #f0ede2; --ink-soft: #a6afc4; --border: #2c3757;
+      --indigo: #b3a1ef; --indigo-bg: #241c40;
+      --amber: #e8bd6f; --amber-bg: #2b2311;
+      --teal: #7fd4b6; --teal-bg: #122820;
+      --rust: #e39a72; --rust-bg: #2c1c14;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10162a; --surface: #171f38; --surface-2: #1b2542;
+    --ink: #f0ede2; --ink-soft: #a6afc4; --border: #2c3757;
+    --indigo: #b3a1ef; --indigo-bg: #241c40;
+    --amber: #e8bd6f; --amber-bg: #2b2311;
+    --teal: #7fd4b6; --teal-bg: #122820;
+    --rust: #e39a72; --rust-bg: #2c1c14;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.4);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Public Sans', system-ui, sans-serif;
+    padding: 34px 20px 70px; max-width: 880px; margin: 0 auto;
+    line-height: 1.6; font-size: 15px;
+  }
+  header { margin-bottom: 34px; }
+  .eyebrow { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--indigo); font-weight: 700; margin-bottom: 8px; }
+  h1 { font-family: 'Fraunces', Georgia, serif; font-weight: 700; font-size: clamp(28px, 5vw, 40px); margin: 0 0 10px; text-wrap: balance; }
+  header p.lead { color: var(--ink-soft); margin: 0; font-size: 15px; max-width: 62ch; }
+  header .meta { margin-top: 16px; font-size: 12.5px; color: var(--ink-soft); display: flex; gap: 18px; flex-wrap: wrap; }
+  header .meta b { color: var(--ink); }
+
+  nav.toc { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 20px; margin-bottom: 32px; box-shadow: var(--shadow); }
+  nav.toc h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-soft); margin: 0 0 10px; }
+  nav.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 24px; font-size: 13.5px; }
+  nav.toc li { margin-bottom: 4px; break-inside: avoid; }
+  nav.toc a { color: var(--ink); text-decoration: none; }
+  nav.toc a:hover { color: var(--indigo); }
+
+  section { margin-bottom: 34px; scroll-margin-top: 20px; }
+  section > .num { font-family: 'Fraunces', Georgia, serif; font-weight: 700; font-size: 13px; color: var(--indigo); letter-spacing: .04em; }
+  h2 { font-family: 'Fraunces', Georgia, serif; font-size: 22px; font-weight: 700; margin: 2px 0 14px; }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 20px 0 8px; }
+  p { margin: 0 0 12px; }
+  ul, ol.plain { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 5px; }
+
+  .box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); margin-bottom: 14px; }
+  .callout { border: 1.5px solid var(--accent); background: var(--accent-bg); border-radius: 12px; padding: 14px 16px; font-size: 13.5px; margin: 14px 0; }
+  .callout strong { color: var(--accent); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+  th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--surface-2); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-soft); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  tr.total td { font-weight: 800; background: var(--surface-2); }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+
+  .swot { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .swot .cell { border-radius: 12px; padding: 14px 16px; border: 1.5px solid var(--accent); background: var(--accent-bg); }
+  .swot .cell h4 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--accent); }
+  .swot ul { margin: 0; padding-left: 18px; font-size: 13px; }
+
+  .chart { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px 10px; box-shadow: var(--shadow); margin: 14px 0; }
+  svg text { font-family: 'Public Sans', system-ui, sans-serif; }
+
+  footer { text-align: center; margin-top: 40px; font-size: 12px; color: var(--ink-soft); }
+  footer strong { color: var(--ink); }
+
+  @media (max-width: 620px) {
+    .swot { grid-template-columns: 1fr; }
+    nav.toc ol { columns: 1; }
+  }
+</style>
+
+<header>
+  <div class="eyebrow">Businessplan · Stand September 2026</div>
+  <h1>Amira Consulting</h1>
+  <p class="lead">Digital gestÃ¼tzte Beratungs- und Vermittlungsdienstleistungen fÃ¼r rumÃ¤nische StaatsangehÃ¶rige in Deutschland "” administrative UnterstÃ¼tzung, Finanzberatung und Integrationsbegleitung, umgesetzt Ã¼ber KI-gestÃ¼tzte KommunikationskanÃ¤le (WhatsApp, Telefon).</p>
+  <div class="meta">
+    <span><b>GrÃ¼nder:</b> Robert Catalin Bercea</span>
+    <span><b>Sitz:</b> RosenstraÃŸe 1c, 49610 QuakenbrÃ¼ck</span>
+    <span><b>Rechtsform:</b> Einzelunternehmen (Nebengewerbe)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h2>Inhalt</h2>
+  <ol>
+    <li><a href="#s1">Zusammenfassung</a></li>
+    <li><a href="#s2">GrÃ¼nderprofil</a></li>
+    <li><a href="#s3">GeschÃ¤ftsidee und Leistungsangebot</a></li>
+    <li><a href="#s4">Markt- und Wettbewerbsanalyse</a></li>
+    <li><a href="#s5">Marketing und Vertrieb</a></li>
+    <li><a href="#s6">Unternehmensform, Standort, Organisation</a></li>
+    <li><a href="#s7">Rechtlicher Rahmen und Compliance</a></li>
+    <li><a href="#s8">Chancen und Risiken</a></li>
+    <li><a href="#s9">Finanzplanung</a></li>
+    <li><a href="#s10">Wachstumsperspektive: Internationale Erweiterung</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+  <div class="num">01</div>
+  <h2>Zusammenfassung</h2>
+  <p>Amira Consulting bietet digital gestÃ¼tzte Beratungs- und Vermittlungsdienstleistungen fÃ¼r die rumÃ¤nische Community in Deutschland (sowie fÃ¼r RumÃ¤nen in RumÃ¤nien, die BehÃ¶rdenangelegenheiten mit Deutschland regeln oder nach Deutschland kommen mÃ¶chten). Kern des Angebots ist ein KI-gestÃ¼tzter Berater, erreichbar per WhatsApp und Telefon, der rund um die Uhr in rumÃ¤nischer Sprache Fragen beantwortet, AntrÃ¤ge vorbereitet und BehÃ¶rdengÃ¤nge organisatorisch begleitet.</p>
+  <p>Das GeschÃ¤ftsmodell kombiniert vier ErlÃ¶squellen: (1) digitale Ratgeber und Beratungspakete, (2) UnterstÃ¼tzung bei BehÃ¶rdenantrÃ¤gen (Antragshilfe, keine Rechtsberatung), (3) provisionsbasierte Vermittlung (Kfz-Zulassung, Internetanschluss, Personalvermittlung), und (4) ein Empfehlungsprogramm, das Kunden zu Partnern macht. Die Kostenstruktur ist durch den Einsatz von KI-Technologie sehr schlank (variable Kosten unter 0,50 â‚¬ pro Kundeninteraktion), was hohe Bruttomargen bei geringem Kapitalbedarf ermÃ¶glicht.</p>
+  <p>Der GrÃ¼nder verfÃ¼gt Ã¼ber einschlÃ¤gige Erfahrung als registrierter Versicherungs- und Finanzvermittler (§34d GewO, DVAG) und kennt die Zielgruppe aus eigener TÃ¤tigkeit. Die TÃ¤tigkeit wird zunÃ¤chst im Nebenerwerb aufgenommen und bei ausreichender TragfÃ¤higkeit in eine hauptberufliche SelbststÃ¤ndigkeit Ã¼berfÃ¼hrt.</p>
+</section>
+
+<section id="s2">
+  <div class="num">02</div>
+  <h2>GrÃ¼nderprofil</h2>
+  <p><strong>Robert Catalin Bercea</strong>, geboren am 29.03.1990 in CÃ¢mpulung, RumÃ¤nien, wohnhaft in QuakenbrÃ¼ck, Niedersachsen. RumÃ¤nische StaatsangehÃ¶rigkeit, langjÃ¤hrig in Deutschland ansÃ¤ssig.</p>
+  <ul>
+    <li>Registrierter Finanz- und Versicherungsvermittler (§34d GewO) bei der DVAG "” praktische Erfahrung in Kundenberatung, Vertrauensaufbau und VermittlungsgeschÃ¤ft.</li>
+    <li>Direkter, gelebter Zugang zur Zielgruppe: rumÃ¤nischsprachige Community in Deutschland, deren typische administrative Herausforderungen aus eigener Erfahrung bekannt sind.</li>
+    <li>Technisches VerstÃ¤ndnis fÃ¼r den Aufbau und Betrieb KI-gestÃ¼tzter Kommunikationssysteme (Automatisierung, Datenbanken, Sprachassistenten), die die Basis des operativen GeschÃ¤fts bilden.</li>
+  </ul>
+</section>
+
+<section id="s3">
+  <div class="num">03</div>
+  <h2>GeschÃ¤ftsidee und Leistungsangebot</h2>
+  <p>Viele rumÃ¤nische StaatsangehÃ¶rige in Deutschland stehen vor denselben wiederkehrenden administrativen HÃ¼rden: Kindergeld- und BÃ¼rgergeld-AntrÃ¤ge, Kfz-Zulassung, Anerkennung von im Ausland erworbenen Qualifikationen, AnmeldeformalitÃ¤ten. Sprachbarrieren und Unkenntnis der Verwaltungsstrukturen fÃ¼hren hÃ¤ufig zu verzÃ¶gerten oder gescheiterten AntrÃ¤gen. Gleichzeitig sind bestehende Angebote entweder kostenintensiv (Anwaltskanzleien, klassische ÃœbersetzungsbÃ¼ros) oder schwer erreichbar (lange Wartezeiten bei BehÃ¶rden und Beratungsstellen).</p>
+  <p>Amira Consulting schlieÃŸt diese LÃ¼cke durch einen KI-gestÃ¼tzten digitalen Berater, der in rumÃ¤nischer Sprache sofort, 24 Stunden am Tag, Ã¼ber WhatsApp erreichbar ist. Das Leistungsangebot gliedert sich in sechs Kategorien:</p>
+  <h3>A. Digitale Ratgeber</h3>
+  <p>Herunterladbare LeitfÃ¤den zu Ã¼ber zehn Themenbereichen (Arbeitsrecht, Sozialrecht, Verkehrsrecht, Wohnen, Integration) sowie ein erweitertes Paket mit 30 Tagen Zugang zum KI-Berater.</p>
+  <h3>B. Antragshilfe (einfache FÃ¤lle)</h3>
+  <p>UnterstÃ¼tzung beim AusfÃ¼llen und Einreichen von AntrÃ¤gen: Kindergeld, Elterngeld, BÃ¼rgergeld, FÃ¼hrungszeugnis, Gewerbeanmeldung, Meldebescheinigung, AufenthaltsverlÃ¤ngerung, Rundfunkbeitragsbefreiung, sowie UnterstÃ¼tzung bei der Zusammenstellung von Unterlagen fÃ¼r die RentenkontenklÃ¤rung (RO-DE).</p>
+  <h3>C. Antragshilfe (komplexe FÃ¤lle)</h3>
+  <p>Vorbereitung und Einreichung von WidersprÃ¼chen, GrundsicherungsantrÃ¤gen und Anerkennungsverfahren fÃ¼r auslÃ¤ndische Berufsqualifikationen "” stets als organisatorische UnterstÃ¼tzung, nicht als Rechtsvertretung.</p>
+  <h3>C.2 Bewerbungscoaching Wohnungssuche</h3>
+  <p>UnterstÃ¼tzung beim Aufbau einer starken Mietbewerbung (Mieterselbstauskunft, ErklÃ¤rung der SCHUFA-Auskunft, individuelles Anschreiben an Vermieter). Bewusst kein MaklergeschÃ¤ft: Es wird kein konkretes Objekt vermittelt (dafÃ¼r wÃ¤re eine Maklererlaubnis nach § 34c GewO nÃ¶tig), sondern ausschlieÃŸlich die eigenstÃ¤ndige Bewerbung des Kunden vorbereitet "” konform mit dem Bestellerprinzip (§ 2 Abs. 1a WoVermRG).</p>
+  <h3>D. Beratung</h3>
+  <p>PersÃ¶nliche Videoberatung (60 Minuten), kostenlose Finanzberatung Ã¼ber den DVAG-Partnerkanal, kostenlose allgemeine IntegrationsunterstÃ¼tzung.</p>
+  <h3>E. Provisionsbasierte Vermittlung</h3>
+  <p>Kfz-Zulassungsservice (inkl. Vermittlung einer Kfz-Versicherung Ã¼ber einen Partnercode), Internetanschluss Ã¼ber Starlink (Affiliate-Link), Hygieneschulung nach §43 IfSG.</p>
+  <h3>F. Personalvermittlung</h3>
+  <p>Vermittlung rumÃ¤nischer Arbeitssuchender an deutsche Arbeitgeber. FÃ¼r Kandidaten grundsÃ¤tzlich kostenlos "” die VergÃ¼tung erfolgt ausschlieÃŸlich durch eine Erfolgsprovision des Arbeitgebers (20"“30 % des Bruttojahresgehalts), wie gesetzlich vorgeschrieben.</p>
+</section>
+
+<section id="s4">
+  <div class="num">04</div>
+  <h2>Markt- und Wettbewerbsanalyse</h2>
+  <p>In Deutschland lebten laut Statistischem Bundesamt zum Jahresende 2023 rund 909.800 rumÃ¤nische StaatsangehÃ¶rige (aktuellste amtlich verfÃ¼gbare Zahl) "” eine der grÃ¶ÃŸten Gruppen unter EU-Zuwanderern. Hinzu kommt eine erhebliche Zahl temporÃ¤rer ArbeitskrÃ¤fte sowie Personen in RumÃ¤nien, die eine Ãœbersiedlung nach Deutschland planen oder BehÃ¶rdenvorgÃ¤nge mit Deutschland aus der Ferne regeln mÃ¼ssen. FÃ¼r konkrete Umsatz- oder Konversionskennzahlen vergleichbarer digitaler Beratungsangebote fÃ¼r Migrantengruppen liegen keine verÃ¶ffentlichten Marktdaten vor "” dieses GeschÃ¤ftsmodell ist in dieser Form neu am Markt. Die Finanzplanung (Kapitel 9) stÃ¼tzt sich daher bewusst nicht auf angenommene Marktdurchdringung, sondern auf die tatsÃ¤chliche ZeitkapazitÃ¤t des GrÃ¼nders.</p>
+  <h3>Wettbewerb</h3>
+  <ul>
+    <li><strong>Klassische Rechtsanwaltskanzleien und ÃœbersetzungsbÃ¼ros:</strong> hÃ¶herpreisig (BehÃ¶rdenbegleitung am Markt bei ca. 250 â‚¬ pro Termin), meist ohne rumÃ¤nischsprachigen Direktkontakt auÃŸerhalb der GeschÃ¤ftszeiten.</li>
+    <li><strong>WohlfahrtsverbÃ¤nde und kommunale Migrationsberatung:</strong> kostenlos, aber mit langen Wartezeiten und begrenzten KapazitÃ¤ten.</li>
+    <li><strong>Informelle Hilfe (Facebook-Gruppen, Bekannte):</strong> kostenlos, aber unzuverlÃ¤ssig und ohne Haftung.</li>
+  </ul>
+  <p>Amira Consulting positioniert sich dazwischen: professionelle, sofort verfÃ¼gbare UnterstÃ¼tzung in der Muttersprache, zu einem Bruchteil der Kosten klassischer Anbieter, ermÃ¶glicht durch den Einsatz von KI-Technologie zur Automatisierung der Erstberatung.</p>
+</section>
+
+<section id="s5">
+  <div class="num">05</div>
+  <h2>Marketing und Vertrieb</h2>
+  <ul>
+    <li><strong>Content-Marketing:</strong> Aufbau Ã¼ber bestehende Social-Media-PrÃ¤senz (Kurzvideos, praxisnahe Tipps fÃ¼r das Leben in Deutschland).</li>
+    <li><strong>Direktansprache:</strong> Ausgehende Telefonkontakte durch einen KI-gestÃ¼tzten Anrufassistenten, der auf das Beratungsangebot hinweist.</li>
+    <li><strong>Empfehlungsprogramm:</strong> Jede Person kann kostenfrei Partner werden und erhÃ¤lt 10 % Provision auf jeden durch sie vermittelten Kaufabschluss "” ohne eigenen vorherigen Kauf. Dies erzeugt organisches, netzwerkbasiertes Wachstum bei minimalen Marketingkosten.</li>
+    <li><strong>Cross-Selling Ã¼ber den DVAG-Kanal:</strong> Kunden, die Ã¼ber die Finanzberatung angesprochen werden, erfahren vom Gesamtangebot und umgekehrt.</li>
+  </ul>
+</section>
+
+<section id="s6">
+  <div class="num">06</div>
+  <h2>Unternehmensform, Standort, Organisation</h2>
+  <p>Die TÃ¤tigkeit wird als Einzelunternehmen im Nebengewerbe am Wohnsitz des GrÃ¼nders (RosenstraÃŸe 1c, 49610 QuakenbrÃ¼ck) ausgeÃ¼bt. Der Betrieb ist standortunabhÃ¤ngig internetbasiert; physische RÃ¤umlichkeiten sind nicht erforderlich. Die operative Umsetzung erfolgt Ã¼ber eine cloudbasierte Automatisierungsplattform (n8n), angebunden an Kommunikationsdienste (Twilio fÃ¼r Telefonie und WhatsApp), eine Datenbank (Supabase) sowie KI-Sprachmodelle (Anthropic Claude) und Sprachsynthese (ElevenLabs).</p>
+  <p>Bei Erreichen ausreichender TragfÃ¤higkeit ist die Umwandlung in eine hauptberufliche TÃ¤tigkeit vorgesehen, ggf. mit UnterstÃ¼tzung durch den GrÃ¼ndungszuschuss der Agentur fÃ¼r Arbeit.</p>
+</section>
+
+<section id="s7">
+  <div class="num">07</div>
+  <h2>Rechtlicher Rahmen und Compliance</h2>
+  <ul>
+    <li><strong>Rechtsdienstleistungsgesetz (RDG):</strong> SÃ¤mtliche Antragshilfen werden ausschlieÃŸlich als organisatorische UnterstÃ¼tzung (AusfÃ¼llen, Zusammenstellen, Einreichen von Unterlagen) erbracht, nicht als Rechtsberatung. FÃ¤lle, die eine juristische Bewertung erfordern, werden an entsprechend qualifizierte Stellen (Rechtsanwalt, registrierter Rentenberater) verwiesen.</li>
+    <li><strong>Bewusster Verzicht auf Rechtsberatung als Produkt:</strong> Rechtsberatung wird nicht angeboten und ist auch nicht Ã¼ber eine Provision vermittelbar "” § 49b Abs. 3 BRAO verbietet jede Vermittlungsprovision fÃ¼r Mandate an RechtsanwÃ¤lte, unabhÃ¤ngig vom EmpfÃ¤nger. Bei Bedarf wird unentgeltlich auf unabhÃ¤ngige RechtsanwÃ¤lte verwiesen, ohne jede VergÃ¼tung fÃ¼r die Empfehlung.</li>
+    <li><strong>Wohnungssuche:</strong> Kein MaklergeschÃ¤ft (keine Vermittlung konkreter Objekte, keine Maklererlaubnis erforderlich); ausschlieÃŸlich Bewerbungscoaching fÃ¼r die eigenstÃ¤ndige Wohnungssuche des Kunden, konform mit dem Bestellerprinzip.</li>
+    <li><strong>Personalvermittlung:</strong> Erfolgt gemÃ¤ÃŸ § 296 SGB III ausschlieÃŸlich auf Kosten des Arbeitgebers; Kandidaten werden zu keinem Zeitpunkt fÃ¼r die Vermittlung selbst belastet.</li>
+    <li><strong>Datenschutz (DSGVO):</strong> Eine vollstÃ¤ndige DatenschutzerklÃ¤rung liegt vor; mit allen eingesetzten Drittanbietern (Twilio, Anthropic, ElevenLabs, Google, Supabase) bestehen bzw. werden AuftragsverarbeitungsvertrÃ¤ge abgeschlossen.</li>
+    <li><strong>KI-Transparenz (EU-KI-Verordnung, Art. 50):</strong> Kunden werden zu Beginn jeder Interaktion transparent informiert, dass sie mit einem KI-System kommunizieren.</li>
+    <li><strong>Kleinunternehmerregelung (§19 UStG):</strong> Bis zum Erreichen der Umsatzgrenzen wird ohne Umsatzsteuerausweis fakturiert.</li>
+  </ul>
+</section>
+
+<section id="s8">
+  <div class="num">08</div>
+  <h2>Chancen und Risiken</h2>
+  <div class="swot">
+    <div class="cell" style="--accent:var(--teal); --accent-bg:var(--teal-bg)">
+      <h4>StÃ¤rken</h4>
+      <ul><li>Sehr niedrige variable Kosten (unter 0,50 â‚¬ je Kundeninteraktion)</li><li>24/7-Erreichbarkeit in der Muttersprache der Zielgruppe</li><li>Bestehende Branchenerfahrung und Netzwerk (DVAG)</li><li>Diversifizierte ErlÃ¶squellen</li></ul>
+    </div>
+    <div class="cell" style="--accent:var(--amber); --accent-bg:var(--amber-bg)">
+      <h4>SchwÃ¤chen</h4>
+      <ul><li>Ein-Personen-Unternehmen zu Beginn "” begrenzte KapazitÃ¤t</li><li>AbhÃ¤ngigkeit von externen API-Anbietern (PreisÃ¤nderungen mÃ¶glich)</li><li>Noch geringer Bekanntheitsgrad am Markt</li></ul>
+    </div>
+    <div class="cell" style="--accent:var(--indigo); --accent-bg:var(--indigo-bg)">
+      <h4>Chancen</h4>
+      <ul><li>GroÃŸe, wachsende Zielgruppe ohne vergleichbares digitales Angebot</li><li>Empfehlungsprogramm als Wachstumshebel ohne hohe Marketingkosten</li><li>Ausweitung auf weitere osteuropÃ¤ische Communities mÃ¶glich</li></ul>
+    </div>
+    <div class="cell" style="--accent:var(--rust); --accent-bg:var(--rust-bg)">
+      <h4>Risiken</h4>
+      <ul><li>Regulatorische Ã„nderungen (KI-Verordnung, RDG-Auslegung)</li><li>Reputationsrisiko bei Fehlberatung "” daher strikte BeschrÃ¤nkung auf Antragshilfe</li><li>AbhÃ¤ngigkeit von Twilio-Nummerngenehmigung und PlattformverfÃ¼gbarkeit</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="s9">
+  <div class="num">09</div>
+  <h2>Finanzplanung</h2>
+
+  <h3>9.1 Kapitalbedarf (Anlaufphase)</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Position</th><th class="num">Betrag</th></tr>
+    <tr><td>Gewerbeanmeldung / Ummeldung</td><td class="num">40 â‚¬</td></tr>
+    <tr><td>Twilio-Rufnummer und Guthaben (Startpuffer)</td><td class="num">50 â‚¬</td></tr>
+    <tr><td>Software-Abonnements (erste 3 Monate: n8n, Supabase, ElevenLabs)</td><td class="num">210 â‚¬</td></tr>
+    <tr><td>Marketing-Startbudget (Anlaufphase)</td><td class="num">150 â‚¬</td></tr>
+    <tr><td>Reserve fÃ¼r Unvorhergesehenes</td><td class="num">150 â‚¬</td></tr>
+    <tr class="total"><td>Gesamt</td><td class="num">600 â‚¬</td></tr>
+  </table></div>
+
+  <h3>9.2 Finanzierung</h3>
+  <p>Der geringe Kapitalbedarf ist grundsÃ¤tzlich aus Eigenmitteln bzw. laufenden Einnahmen darstellbar. ErgÃ¤nzend wird ein Antrag auf GrÃ¼ndungszuschuss bei der Agentur fÃ¼r Arbeit gestellt, der die soziale Absicherung wÃ¤hrend der Anlaufphase sichert und keinen RÃ¼ckzahlungsanspruch begrÃ¼ndet. Ein klassischer Bankkredit ist aufgrund der niedrigen Fixkosten nicht zwingend erforderlich, kÃ¶nnte jedoch als Sicherheitspuffer fÃ¼r die Wachstumsphase (Jahr 2) in HÃ¶he von 5.000"“10.000 â‚¬ sinnvoll sein.</p>
+
+  <h3>9.3 Kostenstruktur</h3>
+  <div class="callout" style="--accent:var(--teal); --accent-bg:var(--teal-bg)">
+    <strong>Variable Kosten pro Kundeninteraktion (Richtwerte, Stand 09/2026):</strong> WhatsApp-Beratung ca. 0,05"“0,10 â‚¬, Telefonanruf ca. 0,10"“0,15 â‚¬ "” basierend auf aktuellen Anthropic-, Twilio- und ElevenLabs-Preisen. Bei einem durchschnittlichen Transaktionswert von 60"“350 â‚¬ ergibt sich eine Bruttomarge von Ã¼ber 95 %.
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>Fixkosten (monatlich)</th><th class="num">Betrag</th></tr>
+    <tr><td>Supabase (Datenbank, ab Wachstumsphase)</td><td class="num">23 â‚¬</td></tr>
+    <tr><td>n8n Cloud (Automatisierung)</td><td class="num">20 â‚¬</td></tr>
+    <tr><td>ElevenLabs (Sprachsynthese, Basis-Tarif)</td><td class="num">10 â‚¬</td></tr>
+    <tr><td>Twilio-Rufnummer</td><td class="num">3 â‚¬</td></tr>
+    <tr class="total"><td>Gesamt Fixkosten</td><td class="num">ca. 56 â‚¬</td></tr>
+  </table></div>
+
+  <h3>9.4 Umsatz- und RentabilitÃ¤tsvorschau (kapazitÃ¤tsbasiert)</h3>
+  <div class="callout" style="--accent:var(--rust); --accent-bg:var(--rust-bg)">
+    <strong>Methodik:</strong> Da fÃ¼r dieses neuartige GeschÃ¤ftsmodell keine verÃ¶ffentlichten Marktdaten zu Konversion oder Nachfrage existieren (vgl. Kapitel 4), stÃ¼tzt sich die folgende Vorschau nicht auf eine angenommene Marktdurchdringung, sondern auf die tatsÃ¤chlich verfÃ¼gbare ZeitkapazitÃ¤t des GrÃ¼nders "” die einzige zum jetzigen Zeitpunkt belastbar quantifizierbare GrÃ¶ÃŸe.
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>KapazitÃ¤tsrechnung (Nebenerwerb, max. 14 Std./Woche)</th><th class="num">Wert</th></tr>
+    <tr><td>VerfÃ¼gbare Zeit</td><td class="num">â‰ˆ 60 Std./Monat</td></tr>
+    <tr><td>Davon direkte Fallbearbeitung (â‰ˆ 60 %, Rest: Akquise, Administration)</td><td class="num">â‰ˆ 36 Std./Monat</td></tr>
+    <tr><td>Ã˜ Bearbeitungszeit je Fall (PrÃ¼fung + Einreichung "” die KI Ã¼bernimmt die Erstaufnahme)</td><td class="num">35 Min.</td></tr>
+    <tr class="total"><td>Theoretische KapazitÃ¤tsobergrenze</td><td class="num">â‰ˆ 60 FÃ¤lle/Monat</td></tr>
+  </table></div>
+  <p>Die Planungsannahme fÃ¼r Jahr 1 bleibt deutlich unter dieser KapazitÃ¤tsgrenze (Jahresdurchschnitt â‰ˆ 19 FÃ¤lle/Monat, ca. 32 % der theoretischen Obergrenze) und dient als bewusst vorsichtiger Ausgangspunkt: 8 FÃ¤lle/Monat (Q1) â†’ 15 (Q2) â†’ 23 (Q3) â†’ 30 (Q4), bei einem gewichteten Ã˜ Transaktionswert von 110 â‚¬ (Mix aus dem realen Preistarif: 35 % einfache Antragshilfe, 20 % Ratgeber/Coaching, 15 % Beratung, 10 % KomplexfÃ¤lle, 20 % Vermittlungsleistungen). Ab Jahr 2 wird der Ãœbergang in die Hauptberuflichkeit (vgl. Kapitel 6) unterstellt, wodurch sich die ZeitkapazitÃ¤t und damit die erreichbare Fallzahl erhÃ¶ht.</p>
+  <div class="table-wrap"><table>
+    <tr><th></th><th class="num">Jahr 1</th><th class="num">Jahr 2</th><th class="num">Jahr 3</th></tr>
+    <tr><td>Umsatz</td><td class="num">25.000 â‚¬</td><td class="num">62.000 â‚¬</td><td class="num">95.000 â‚¬</td></tr>
+    <tr><td>Variable Kosten (API/Provider)</td><td class="num">750 â‚¬</td><td class="num">1.860 â‚¬</td><td class="num">2.850 â‚¬</td></tr>
+    <tr><td>Fixkosten (Infrastruktur)</td><td class="num">670 â‚¬</td><td class="num">900 â‚¬</td><td class="num">1.100 â‚¬</td></tr>
+    <tr><td>Provisionen an Partner (Empfehlungsprogramm, ca. 10 %)</td><td class="num">2.500 â‚¬</td><td class="num">6.200 â‚¬</td><td class="num">9.500 â‚¬</td></tr>
+    <tr class="total"><td>Ergebnis vor Steuern</td><td class="num">21.080 â‚¬</td><td class="num">53.040 â‚¬</td><td class="num">81.550 â‚¬</td></tr>
+  </table></div>
+  <p style="font-size:12.5px;color:var(--ink-soft)">Alle Werte sind Annahmen des GrÃ¼nders, keine verifizierten Marktdaten "” dies ist bei einem neu gegrÃ¼ndeten Unternehmen ohne Betriebshistorie Ã¼blich und wird von PrÃ¼fstellen entsprechend eingeordnet. Ohne DVAG-Provisionen (separate Einkommensquelle).</p>
+
+  <div class="chart">
+    <svg viewBox="0 0 640 220" role="img" aria-label="Balkendiagramm: Umsatzentwicklung von 25000 Euro in Jahr 1 auf 95000 Euro in Jahr 3, kapazitaetsbasiert geschaetzt">
+      <g font-size="11" fill="var(--ink-soft)">
+        <line x1="60" y1="20" x2="60" y2="180" stroke="var(--border)"/>
+        <line x1="60" y1="180" x2="600" y2="180" stroke="var(--border)"/>
+        <text x="55" y="24" text-anchor="end">95k</text>
+        <text x="55" y="99" text-anchor="end">47.5k</text>
+        <text x="55" y="176" text-anchor="end">0</text>
+        <line x1="60" y1="20" x2="600" y2="20" stroke="var(--border)" stroke-dasharray="3 4"/>
+        <line x1="60" y1="100" x2="600" y2="100" stroke="var(--border)" stroke-dasharray="3 4"/>
+      </g>
+      <g>
+        <rect x="140" y="137.9" width="100" height="42.1" fill="var(--indigo)" opacity="0.85"/>
+        <rect x="310" y="75.6" width="100" height="104.4" fill="var(--amber)" opacity="0.9"/>
+        <rect x="480" y="20" width="100" height="160" fill="var(--teal)" opacity="0.9"/>
+      </g>
+      <g font-size="13" font-weight="700" fill="var(--ink)">
+        <text x="190" y="130" text-anchor="middle">25k â‚¬</text>
+        <text x="360" y="68" text-anchor="middle">62k â‚¬</text>
+        <text x="530" y="12" text-anchor="middle">95k â‚¬</text>
+      </g>
+      <g font-size="12" fill="var(--ink-soft)">
+        <text x="190" y="198" text-anchor="middle">Jahr 1</text>
+        <text x="360" y="198" text-anchor="middle">Jahr 2</text>
+        <text x="530" y="198" text-anchor="middle">Jahr 3</text>
+      </g>
+    </svg>
+  </div>
+
+  <h3>9.5 LiquiditÃ¤tsplan Jahr 1 (vereinfacht, quartalsweise)</h3>
+  <div class="table-wrap"><table>
+    <tr><th></th><th class="num">Q1</th><th class="num">Q2</th><th class="num">Q3</th><th class="num">Q4</th></tr>
+    <tr><td>Ã˜ FÃ¤lle/Monat</td><td class="num">8</td><td class="num">15</td><td class="num">23</td><td class="num">30</td></tr>
+    <tr><td>Einnahmen</td><td class="num">2.640 â‚¬</td><td class="num">4.950 â‚¬</td><td class="num">7.590 â‚¬</td><td class="num">9.900 â‚¬</td></tr>
+    <tr><td>Ausgaben (fix + variabel + Provisionen)</td><td class="num">412 â‚¬</td><td class="num">772 â‚¬</td><td class="num">1.184 â‚¬</td><td class="num">1.544 â‚¬</td></tr>
+    <tr class="total"><td>LiquiditÃ¤tssaldo (Quartal)</td><td class="num">2.228 â‚¬</td><td class="num">4.178 â‚¬</td><td class="num">6.406 â‚¬</td><td class="num">8.356 â‚¬</td></tr>
+  </table></div>
+  <p style="font-size:12.5px;color:var(--ink-soft)">Die LiquiditÃ¤t bleibt in jedem Quartal deutlich positiv "” bedingt durch die niedrige Kostenbasis, entsteht kein Kapitalengpass, selbst bei langsamerem Kundenwachstum als angenommen.</p>
+</section>
+
+<section id="s10">
+  <div class="num">10</div>
+  <h2>Wachstumsperspektive: Internationale Erweiterung</h2>
+  <p>Die unter Punkt 9 dargestellte Finanzplanung bezieht sich ausschlieÃŸlich auf das rumÃ¤nischsprachige Kernangebot (Phase 1) und enthÃ¤lt keine ErlÃ¶se aus einer mÃ¶glichen Erweiterung. Sie wird hier als Ausblick ergÃ¤nzt, nicht als Bestandteil der aktuellen Zahlenbasis.</p>
+  <div class="callout" style="--accent:var(--indigo); --accent-bg:var(--indigo-bg)">
+    <strong>Konzept:</strong> Sobald das rumÃ¤nischsprachige Angebot etabliert und wirtschaftlich tragfÃ¤hig ist, ist der Aufbau eines <em>separaten</em> digitalen Beraters fÃ¼r weitere Sprachgemeinschaften in Deutschland vorgesehen "” als eigenstÃ¤ndiges System mit eigenem Wissensstand und eigener Persona, auf derselben technischen Architektur aufbauend, jedoch bewusst getrennt vom bestehenden rumÃ¤nischen Angebot gefÃ¼hrt, um dessen Fokus und QualitÃ¤t nicht zu verwÃ¤ssern.
+  </div>
+  <p><strong>Priorisierung nach ZielgruppengrÃ¶ÃŸe (Destatis, Stand 2025) und tatsÃ¤chlichem Bedarf:</strong></p>
+  <ol class="plain">
+    <li><strong>Ukrainisch</strong> (ca. 1,4 Mio., einzige groÃŸe Gruppe noch im Wachstum: +76.000 allein 2025) "” akuter Verwaltungsbedarf, wenig bestehendes Angebot in dieser Sprache.</li>
+    <li><strong>TÃ¼rkisch</strong> (grÃ¶ÃŸte Einwanderergruppe, ca. 2,6 Mio. mit Migrationshintergrund) "” grÃ¶ÃŸter absoluter Markt.</li>
+    <li><strong>Polnisch</strong> (ca. 2 Mio.) "” nahezu identische Ausgangslage wie bei rumÃ¤nischen Kunden (EU-Arbeitsmigration); gÃ¼nstigste Erweiterung, da ca. 90 % der bestehenden Inhalte (BÃ¼rgergeld, Kindergeld, Arbeitsrecht, Kfz-Zulassung) rein sprachlich Ã¼bersetzt werden kÃ¶nnen "” das deutsche Recht selbst ist unabhÃ¤ngig von der NationalitÃ¤t identisch, nur die RO-DE-Rentenkoordination ist rumÃ¤nienspezifisch.</li>
+    <li><strong>Arabisch</strong> (ca. 1,3 Mio. syrischstÃ¤mmig plus weitere) "” hoher Bedarf, benÃ¶tigt zusÃ¤tzlich asyl-/fluchtspezifische Inhalte, nicht nur Ãœbersetzung.</li>
+  </ol>
+  <p>Diese Erweiterung ist als Phase 2 vorgesehen und wird erst nach Nachweis der TragfÃ¤higkeit von Phase 1 konkret budgetiert und beantragt.</p>
+
+  <div class="callout" style="--accent:var(--amber); --accent-bg:var(--amber-bg)">
+    <strong>Langfristige Option "” eigener Lohnsteuerhilfeverein:</strong> Amira Consulting bietet bereits kostenlose allgemeine Informationen zu Lohnsteuer und Abrechnungen an und verweist Kunden an bestehende Lohnsteuerhilfevereine. Die GrÃ¼ndung eines eigenen Lohnsteuerhilfevereins (§14 StBerG) wÃ¤re eine natÃ¼rliche Erweiterung "” passend zur bestehenden Zielgruppe (angestellte Arbeitnehmer) "” erfordert jedoch einen qualifizierten Beratungsstellenleiter (§23 Abs. 3 StBerG: Steuerberater oder eine abgeschlossene steuerfachliche Ausbildung mit mindestens 3 Jahren Praxiserfahrung im Einkommensteuerrecht) sowie eine VereinsgrÃ¼ndung mit behÃ¶rdlicher Anerkennung. Der GrÃ¼nder erfÃ¼llt diese fachliche Qualifikation aktuell nicht. Realistischer Weg: eine spÃ¤tere Partnerschaft mit einer bereits qualifizierten Person (z. B. Steuerfachangestellte/r mit einschlÃ¤giger Erfahrung). Nicht Teil der aktuellen Finanzplanung.
+  </div>
+</section>
+
+<footer>Businessplan Amira Consulting "” erstellt September 2026 · Robert Catalin Bercea, Einzelunternehmen (Nebengewerbe)</footer>
+
+</body></html>
+

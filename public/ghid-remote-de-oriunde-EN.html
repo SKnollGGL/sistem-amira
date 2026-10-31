@@ -1,0 +1,459 @@
+<title>Work From Anywhere</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --ink:#0b1f1a; --ink-2:#132e26;
+    --paper:#f4f7f3; --paper-2:#e9efe9;
+    --accent:#17d68f; --accent-dark:#0a9d67;
+    --gold:#f2b705;
+    --line:#d8e0da;
+    --text:#12211c; --text-dim:#4a5c54;
+    --on-ink:#eef5f0; --on-ink-dim:#a9c2b7;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0b1611; --paper-2:#101e18;
+      --text:#e9f2ec; --text-dim:#9fb6ac;
+      --line:#20362c;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0b1611; --paper-2:#101e18;
+    --text:#e9f2ec; --text-dim:#9fb6ac;
+    --line:#20362c;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--text);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 20px;}
+  h1,h2,h3{font-family:'Big Shoulders Display',sans-serif; font-weight:900; text-transform:uppercase; text-wrap:balance; letter-spacing:0.01em; line-height:0.95;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- HERO ---------- */
+  .hero{background:var(--ink); color:var(--on-ink); padding-block:56px 64px;}
+  .eyebrow{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:5px 14px; margin-bottom:18px;}
+  .hero h1{font-size:clamp(40px,7vw,74px); margin:0 0 14px;}
+  .hero h1 em{font-style:normal; color:var(--accent);}
+  .hero p.lead{font-size:19px; color:var(--on-ink-dim); max-width:60ch; margin:0 0 28px;}
+  .hero-grid{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
+  .pill{background:var(--ink-2); border:1px solid #234238; border-radius:10px; padding:12px 16px; font-size:14px; color:var(--on-ink-dim); flex:1 1 200px;}
+  .pill b{color:var(--on-ink); display:block; font-size:15px; margin-bottom:2px;}
+  .founder-banner{margin-top:22px; background:rgba(242,183,5,0.12); border:1px solid var(--gold); border-radius:12px; padding:14px 18px; font-size:15px; color:var(--on-ink); max-width:70ch;}
+  .founder-banner b{color:var(--gold);}
+
+  section{padding-block:52px;}
+  section.alt{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .kicker{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:10px;}
+  h2{font-size:clamp(28px,4.5vw,42px); margin:0 0 18px;}
+  p.big{font-size:18px; color:var(--text-dim); max-width:66ch;}
+
+  /* ---------- SECRET ---------- */
+  .secret-box{background:var(--ink); color:var(--on-ink); border-radius:16px; padding:32px; margin-top:28px;}
+  .secret-box p{color:var(--on-ink-dim); font-size:17px; max-width:70ch;}
+  .secret-box strong{color:var(--accent);}
+
+  /* ---------- CALCULATOR ---------- */
+  table.calc{width:100%; border-collapse:collapse; margin-top:24px; font-size:15px;}
+  table.calc caption{text-align:left; font-size:13px; color:var(--text-dim); margin-bottom:10px;}
+  table.calc th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); padding:10px 12px; border-bottom:2px solid var(--line);}
+  table.calc td{padding:12px; border-bottom:1px solid var(--line);}
+  table.calc td.num{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; text-align:right;}
+  table.calc td.comm{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; text-align:right; color:var(--accent-dark); font-weight:600;}
+  .scenario{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:28px;}
+  .scenario-card{background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:20px;}
+  .scenario-card .n{font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:42px; color:var(--accent-dark); line-height:1;}
+  .scenario-card .cap{font-size:13px; color:var(--text-dim); margin-top:6px;}
+  .disclaimer{font-size:13px; color:var(--text-dim); margin-top:16px; border-left:3px solid var(--gold); padding-left:12px;}
+
+  /* ---------- CHANNELS ---------- */
+  .channels{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:28px;}
+  .channel{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px;}
+  .channel .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent-dark); margin-bottom:8px;}
+  .channel h3{font-size:22px; margin:0 0 10px; text-transform:none; letter-spacing:0;}
+  .channel ul{margin:0; padding-left:18px; color:var(--text-dim); font-size:14.5px;}
+  .channel li{margin-bottom:6px;}
+
+  /* ---------- SCRIPTS (chat bubbles) ---------- */
+  .script-block{margin-top:24px;}
+  .script-title{font-weight:600; margin-bottom:10px; font-size:15px;}
+  .bubble{background:var(--paper); border:1px solid var(--line); border-radius:14px 14px 14px 4px; padding:14px 18px; max-width:70ch; font-size:15px; margin-bottom:22px; position:relative;}
+  .bubble::before{content:"You â†’"; display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent-dark); margin-bottom:6px; letter-spacing:0.06em;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line); padding-block:18px;}
+  .faq-item h3{font-size:17px; text-transform:none; letter-spacing:0; margin:0 0 8px; font-family:'IBM Plex Sans',sans-serif; font-weight:600;}
+  .faq-item p{margin:0; color:var(--text-dim);}
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta{background:linear-gradient(160deg,var(--ink),var(--ink-2)); color:var(--on-ink); border-radius:20px; padding:44px 32px; text-align:center; margin-top:8px;}
+  .cta h2{color:var(--on-ink);}
+  .cta p{color:var(--on-ink-dim); max-width:56ch; margin:0 auto 22px;}
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:26px; text-align:left;}
+  .step{background:var(--ink-2); border:1px solid #234238; border-radius:12px; padding:18px;}
+  .step .num{font-family:'Big Shoulders Display',sans-serif; font-weight:900; color:var(--accent); font-size:28px;}
+
+  footer{padding-block:36px; text-align:center; font-size:12.5px; color:var(--text-dim);}
+  figure{margin:0;}
+  .hero-diagram{margin-top:30px;}
+  .hero-diagram figcaption{font-size:12.5px; color:var(--on-ink-dim); margin-top:10px;}
+  .svg-chart figcaption{font-size:13px; color:var(--text-dim); margin-top:12px; max-width:66ch;}
+  tr.tier-gold{background:rgba(242,183,5,0.09);}
+
+  @media (max-width:520px){
+    .hero{padding-block:44px 48px;}
+    section{padding-block:40px;}
+    table.calc{font-size:13px;}
+    table.calc td, table.calc th{padding:8px 6px;}
+  }
+</style>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">🚀‡©🚀‡ª Germany Edition 2026"“2027 · Amira Consulting</span>
+    <h1>How to earn money <em>remote</em>,<br>from anywhere you are.</h1>
+    <p class="lead" style="font-size:21px; color:var(--on-ink); font-weight:500;">The path to financial independence "” no products to sell, no dropshipping, no money to invest.</p>
+    <p class="lead">If you've already seen dozens of "make money remote" guides that really just teach you to resell another guide "” this one is different. We show you the exact mechanism to earn from referring a real service that Germany's immigrant communities "” see below, it's bigger than you think "” genuinely need right now, plus ready-to-copy scripts to start today, not "someday".</p>
+    <div class="hero-grid">
+      <div class="pill"><b>No earnings cap</b>the sky's the limit "” the more you refer and the more people you bring in, the more you earn</div>
+      <div class="pill"><b>Zero investment</b>no stock to buy, no costs, promote straight from your phone</div>
+      <div class="pill"><b>Direct payout</b>tracked automatically on your own phone number</div>
+    </div>
+    <div class="founder-banner">🚀… The first 100 Amira Partners get the title of <b>Founding Member</b> "” 12% commission for life, plus the chance to build your own team and earn from its activity too.</div>
+    <figure class="hero-diagram">
+      <svg viewBox="0 0 640 130" role="img" aria-label="You refer someone to the Amira bot on WhatsApp, the bot handles the case, the client pays, and you automatically receive the commission" style="width:100%; height:auto; color:var(--on-ink-dim);">
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" fill="currentColor"/></marker>
+        </defs>
+        <g font-family="IBM Plex Sans, sans-serif">
+          <circle cx="70" cy="45" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="70" y="53" text-anchor="middle" font-size="24">🚀™‹</text>
+          <text x="70" y="100" text-anchor="middle" font-size="13" fill="var(--on-ink)">You</text>
+
+          <line x1="108" y1="45" x2="192" y2="45" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="150" y="34" text-anchor="middle" font-size="11">you refer</text>
+
+          <circle cx="230" cy="45" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="230" y="53" text-anchor="middle" font-size="24">🚀¤–</text>
+          <text x="230" y="100" text-anchor="middle" font-size="13" fill="var(--on-ink)">Amira Bot</text>
+
+          <line x1="268" y1="45" x2="352" y2="45" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="310" y="34" text-anchor="middle" font-size="11">handles the case</text>
+
+          <circle cx="390" cy="45" r="34" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="390" y="53" text-anchor="middle" font-size="24">🚀’¶</text>
+          <text x="390" y="100" text-anchor="middle" font-size="13" fill="var(--on-ink)">Client pays</text>
+
+          <line x1="428" y1="45" x2="512" y2="45" stroke="currentColor" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <text x="470" y="34" text-anchor="middle" font-size="11">automatically</text>
+
+          <circle cx="570" cy="45" r="34" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <text x="570" y="53" text-anchor="middle" font-size="24">🚀’°</text>
+          <text x="570" y="100" text-anchor="middle" font-size="13" fill="var(--accent)" font-weight="700">Your commission</text>
+        </g>
+      </svg>
+      <figcaption>The whole mechanism, from referral to money in your pocket "” no paperwork, no back-and-forth.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">The problem</div>
+    <h2>Why most "remote income" guides<br>never pay you a single euro</h2>
+    <p class="big">You've probably already bought a "make money from home" guide that ended with "...now go sell this same guide to someone else." With no real product behind it and no one actually buying anything, the money never shows up "” only the commission of whoever sold you the guide in the first place.</p>
+    <p class="big">Germany is home to over 900,000 Romanians (Destatis) "” plus Turks, Ukrainians, Poles, Bulgarians and many other immigrant communities, all with real paperwork to sort out: Kindergeld (child benefit), BÃ¼rgergeld (basic income support), residence permits, fines, car registration. You don't need to convince anyone of anything "” people are already actively searching for help with this, every day, in every diaspora Facebook group.</p>
+
+    <div class="kicker" style="margin-top:34px;">The solution</div>
+    <h2>You become the bridge<br>between the problem and the fix</h2>
+    <div class="secret-box">
+      <p>When someone you refer <strong>actually buys</strong> an Amira Consulting service, you get <strong>7-12% of the service value</strong> (exact breakdown below), automatically, no paperwork, no back-and-forth. It doesn't matter where you are "” you can send a link from anywhere in the world. Your only job: connect people who have a German bureaucracy problem with our WhatsApp bot that solves it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Three tiers, rising commission</div>
+    <h2>The more involved you get, the more you earn</h2>
+    <p class="big">Not everyone starts the same way "” and not everyone stays at the same level. The Amira network has 3 clear tiers:</p>
+    <table class="calc" style="margin-bottom:8px;">
+      <tr><th>Tier</th><th>Commission on direct sales</th><th>How you get there</th></tr>
+      <tr><td>🚀¥‰ <b>Referral</b></td><td class="comm">7%</td><td>Automatic, the first time someone mentions you as their referrer</td></tr>
+      <tr><td>🚀¥ˆ <b>Amira Partner</b></td><td class="comm">9%</td><td>You get actively involved and want to do this consistently "” you "level up" to Partner</td></tr>
+      <tr class="tier-gold"><td>🚀¥‡ <b>Founding Member</b></td><td class="comm">12%</td><td>Among the first 100 active Partners "” plus the right to build your own team</td></tr>
+    </table>
+    <p class="disclaimer">A Founding Member who brings someone new into the network and helps them become a Partner also earns something from that person's activity, on top of their own direct commission "” one more reason to coach and support others, not just sell solo. The money always comes from real services paid for by real clients, never from any sign-up fee.</p>
+
+    <div class="kicker" style="margin-top:30px;">By the numbers "” Amira Partner tier (9%)</div>
+    <table class="calc">
+      <caption>Administrative services "” 9% commission on price (Amira Partner)</caption>
+      <tr><th>Service</th><th>Price</th><th>Your commission (9%)</th></tr>
+      <tr><td>Meldebescheinigung (proof of registration)</td><td class="num">â‚¬79</td><td class="comm">â‚¬7.11</td></tr>
+      <tr><td>FÃ¼hrungszeugnis (German police clearance certificate)</td><td class="num">â‚¬99</td><td class="comm">â‚¬8.91</td></tr>
+      <tr><td>Gewerbeanmeldung (business registration)</td><td class="num">â‚¬129</td><td class="comm">â‚¬11.61</td></tr>
+      <tr><td>Housing search assistance (Wohnungssuche)</td><td class="num">â‚¬149</td><td class="comm">â‚¬13.41</td></tr>
+      <tr><td>Family / Income / Documents / Car / Protection package</td><td class="num">â‚¬219</td><td class="comm">â‚¬19.71</td></tr>
+      <tr><td>Residence permit extension for non-EU family members</td><td class="num">â‚¬249</td><td class="comm">â‚¬22.41</td></tr>
+      <tr><td>Complex case (formal appeal, foreign diploma recognition)</td><td class="num">â‚¬349</td><td class="comm">â‚¬31.41</td></tr>
+    </table>
+    <p class="disclaimer">As a Founding Member (12%), the same services pay â‚¬219 â†’ â‚¬26.28, â‚¬349 â†’ â‚¬41.88, and so on "” plus whatever you earn from your own team, if you choose to build one.</p>
+
+    <table class="calc" style="margin-top:32px;">
+      <caption>Job placement "” by far the highest commission (the candidate NEVER pays, the fee comes from the employer, legal in Germany) "” calculated at Amira Partner tier (9%)</caption>
+      <tr><th>Placed candidate's gross annual salary</th><th>Amira's fee from the employer (~25%)</th><th>Your commission (9% of it)</th></tr>
+      <tr><td>â‚¬28,000 (skilled entry-level worker)</td><td class="num">â‚¬7,000</td><td class="comm">â‚¬630</td></tr>
+      <tr><td>â‚¬35,000 (experienced tradesperson)</td><td class="num">â‚¬8,750</td><td class="comm">â‚¬787.50</td></tr>
+      <tr><td>â‚¬45,000 (specialist / recognized qualification)</td><td class="num">â‚¬11,250</td><td class="comm">â‚¬1,012.50</td></tr>
+    </table>
+    <p class="disclaimer">25% is the real market average for recruitment fees in Germany (17-30% depending on the role, reference BDU ~27.8%) "” a single job placement referral can be worth as much as 30-50 administrative cases combined. At Founding Member tier (12%), the same placements pay â‚¬840 / â‚¬1,050 / â‚¬1,350.</p>
+
+    <div class="kicker" style="margin-top:36px;">Don't stop at one type of client</div>
+    <h2>Combine services "” a real month as an Amira Partner</h2>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">~â‚¬200</div><div class="cap">just from 10 standard administrative cases (â‚¬219, Partner tier 9%) "” the starting point, not the ceiling</div></div>
+      <div class="scenario-card"><div class="n">~â‚¬910</div><div class="cap">6 administrative cases + <b>1 job placement</b> (â‚¬35,000 salary) in the same month</div></div>
+      <div class="scenario-card"><div class="n">~â‚¬1,500</div><div class="cap">As a Founding Member: 4 cases + 2 housing referrals + <b>1 job placement</b> (â‚¬45,000) + what you also earn from 2 Partners on your team</div></div>
+      <div class="scenario-card"><div class="n">~â‚¬2,860</div><div class="cap">Founding Member with a team of 3 active Partners: 8 cases of your own + <b>2 job placements</b> (â‚¬35,000 and â‚¬45,000) + what your team's activity brings in "” a very good month, with a network already in place</div></div>
+      <div class="scenario-card"><div class="n">âˆž</div><div class="cap">There's no ceiling "” more referrals, more Partners you help grow, more job placements simply mean more money. The sky's the limit, not this guide.</div></div>
+    </div>
+    <p class="disclaimer">These scenarios are calculation examples based on the real commissions above, not an income guarantee "” and not a ceiling either. How much you make depends on how many people around you need these services, how consistently you apply the steps in this guide, and, at Founder level, how many Partners you help grow.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">🚀Œ Your market is bigger than you think</div>
+    <h2>You're not just promoting to one nationality</h2>
+    <p class="big">The Amira Consulting bot now speaks German, Bulgarian, Ukrainian, Turkish and Polish, alongside Romanian "” each community gets information relevant to its own specific situation (for example, the special temporary protection rules for Ukrainians). That means your referral network isn't limited to any one nationality "” any acquaintance from any immigrant community in Germany is a potential client.</p>
+    <p class="big">According to Destatis (2025), over <strong>14 million foreign nationals</strong> live in Germany "” Turks, Ukrainians, Syrians, Romanians and Poles among the largest groups. The more communities your network reaches, the more the "10 referrals a month" figure used in the calculations above starts to look absurdly conservative.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">🚀¢ The second income stream</div>
+    <h2>Don't stop at individuals "”<br>you can refer businesses too</h2>
+    <p class="big">Artificial intelligence is the future of everything being built right now "” from consulting to business automation "” and Amira Consulting is riding this wave from the start, not catching up later. Beyond administrative cases for individuals, you can start recommending small local businesses right now "” the restaurant on the corner, a salon, a workshop, a practice "” for <b>phone bots, virtual assistants and process digitization</b>. Any owner who's still answering the phone by hand or keeping records on paper is a potential client.</p>
+    <div class="secret-box">
+      <p>This isn't an empty promise "” we're already automation specialists: <strong>Amira Consulting itself runs on the automation we build</strong> (the WhatsApp bot that answers clients, the system that tracks commissions, everything you've read so far in this guide). What we built for ourselves, we now offer to other businesses across Europe too.</p>
+      <p>The difference from an administrative case: there, the commission comes <strong>once</strong>. With a business automation client, it comes <strong>every month</strong>, from the same referral, for as long as the business stays a client. You don't do anything new after the first conversation "” the money keeps coming.</p>
+    </div>
+
+    <figure class="svg-chart" style="margin-top:30px;">
+      <svg viewBox="0 0 560 240" role="img" aria-label="Comparison: an administrative case pays a one-time 20 euro commission, while a single business automation client pays recurring commission, reaching 180 euros cumulative in just 6 months and still growing" style="width:100%; height:auto; color:var(--text-dim);">
+        <g font-family="IBM Plex Sans, sans-serif" font-size="11">
+          <rect x="60" y="10" width="10" height="10" fill="var(--gold)"/>
+          <text x="76" y="19" fill="var(--text-dim)">One administrative case (one-time)</text>
+          <rect x="60" y="26" width="10" height="10" fill="var(--accent-dark)"/>
+          <text x="76" y="35" fill="var(--text-dim)">One business automation client (recurring, monthly)</text>
+        </g>
+        <line x1="60" y1="200" x2="540" y2="200" stroke="currentColor" stroke-width="1.5"/>
+        <polyline points="60,181 156,181 252,181 348,181 444,181 540,181" fill="none" stroke="var(--gold)" stroke-width="3"/>
+        <polyline points="60,172 156,143 252,115 348,87 444,58 540,30" fill="none" stroke="var(--accent-dark)" stroke-width="3"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor">
+          <text x="60" y="216" text-anchor="middle">M1</text>
+          <text x="156" y="216" text-anchor="middle">M2</text>
+          <text x="252" y="216" text-anchor="middle">M3</text>
+          <text x="348" y="216" text-anchor="middle">M4</text>
+          <text x="444" y="216" text-anchor="middle">M5</text>
+          <text x="540" y="216" text-anchor="middle">M6</text>
+        </g>
+        <circle cx="540" cy="181" r="4" fill="var(--gold)"/>
+        <circle cx="540" cy="30" r="4" fill="var(--accent-dark)"/>
+        <text x="486" y="171" text-anchor="end" font-size="12" fill="var(--gold)" font-weight="600">â‚¬20 (stays fixed)</text>
+        <text x="486" y="22" text-anchor="end" font-size="12" fill="var(--accent-dark)" font-weight="600">â‚¬180 and growing</text>
+      </svg>
+      <figcaption>Cumulative over 6 months, from the exact same initial effort: an administrative case pays your commission once; a single business automation client pays it every month "” and the gap keeps growing.</figcaption>
+    </figure>
+
+    <div class="kicker" style="margin-top:34px;">Price & commission "” we start from what we already know</div>
+    <table class="calc">
+      <caption>Typical market prices for B2B automation in Europe "” your commission calculated at the tiers already in place (7-12%), here at Amira Partner tier (9%)</caption>
+      <tr><th>Service</th><th>Typical monthly subscription</th><th>Your monthly commission (9%, recurring)</th></tr>
+      <tr><td>Phone bot for a small business</td><td class="num">â‚¬300"“600/mo</td><td class="comm">â‚¬27"“54/mo</td></tr>
+      <tr><td>General business automation</td><td class="num">â‚¬800"“1,500/mo</td><td class="comm">â‚¬72"“135/mo</td></tr>
+      <tr><td>Production automation</td><td class="num">â‚¬2,000+/mo</td><td class="comm">â‚¬180+/mo</td></tr>
+    </table>
+    <p class="disclaimer">The final price is set together with us, for each business individually (it depends on size and complexity) "” but your commission percentage is always the one already set at your tier (7-12%), exactly like any other Amira service. You open the conversation with the owner, send us the need, we build the offer and confirm the commission.</p>
+
+    <div class="kicker" style="margin-top:34px;">Your monthly passive income, from your business portfolio</div>
+    <p class="big">Here the math changes completely: you're not counting how many new cases you close this month, you're counting how many businesses stay clients next month "” without doing anything new.</p>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">~â‚¬250/mo</div><div class="cap">4-5 small businesses with a basic phone bot "” recurring income, every month, from referrals you made just once</div></div>
+      <div class="scenario-card"><div class="n">~â‚¬600/mo</div><div class="cap">a mixed portfolio of 6-8 businesses: phone bots + a few general business automations</div></div>
+      <div class="scenario-card"><div class="n">~â‚¬1,200/mo</div><div class="cap">10+ active businesses, including 1-2 production automations "” solid monthly income, with zero new clients this month</div></div>
+      <div class="scenario-card"><div class="n">â‚¬2,500+/mo</div><div class="cap">a mature portfolio of businesses that grows on its own, month after month "” and you still haven't hit the ceiling, because there isn't one</div></div>
+    </div>
+    <p class="disclaimer">These figures are calculation examples, not an income guarantee "” but unlike an administrative case, this income repeats automatically every month, for as long as the business stays a client. A Founding Member, with a team already built from administrative cases, will be the first able to build a business portfolio like this quickly. See the "Copy & send" section below for a ready-to-use message for a business owner.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">â³ Why now</div>
+    <h2>Germany 2026"“2027:<br>the window is open</h2>
+    <p class="big">Germany's immigrant communities are among the largest in the EU, and German bureaucracy (Kindergeld, BÃ¼rgergeld, residence permits) stays complicated and mostly German-only "” exactly where help in a language people actually understand matters, whether that's Romanian, Turkish, Ukrainian, Polish, or plain English. The earlier you get into a referral network that's still young, the less competition you'll face in the groups and communities you already know.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Channel playbook</div>
+    <h2>Where and how you promote,<br>concretely</h2>
+    <div class="channels">
+      <div class="channel">
+        <div class="tag">🚀“˜ Facebook</div>
+        <h3>Diaspora and expat groups</h3>
+        <ul>
+          <li>Search for groups like "Romanians in [your German city]", "Expats in [city]" "” there are dozens, with thousands of members</li>
+          <li>Don't drop the link right away "” answer 2-3 real questions people ask in the group about Kindergeld/paperwork first, then mention the bot</li>
+          <li>Post a "did you know..." once a week about a right or benefit, with the link at the end</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀Žµ TikTok / Reels</div>
+        <h3>Short video, one idea</h3>
+        <ul>
+          <li>Format: "3 things you didn't know about Kindergeld in Germany" "” the last one is "you can check for free on WhatsApp"</li>
+          <li>Don't promise exact money/benefits "” just show that there's a simple next step</li>
+          <li>Link in bio, not in the video (TikTok sometimes penalizes links in captions)</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀’¬ WhatsApp</div>
+        <h3>Status + direct messages</h3>
+        <ul>
+          <li>Status update: "Anyone need help with paperwork in Germany, message me" "” warm, not pushy</li>
+          <li>Best channel of all: someone in your family/friends complaining about an administrative problem "” send them the bot's number directly</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀“¸ Instagram</div>
+        <h3>Story + permanent highlight</h3>
+        <ul>
+          <li>A fixed highlight called "Germany Paperwork" with 3-4 saved stories, always visible on your profile</li>
+          <li>Repost questions from other groups (with permission) and reply publicly with the link</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">🚀¢ Businesses & entrepreneurs</div>
+        <h3>The second income stream: businesses</h3>
+        <ul>
+          <li>Any small business owner who's still answering the phone by hand, keeping records on paper, or losing clients from lack of time is a potential automation client</li>
+          <li>Start with businesses you already know "” the corner restaurant, a salon, a workshop, a practice "” you don't need LinkedIn to start</li>
+          <li>Here your income is monthly and recurring, not one-time "” see the "second income stream" section above</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">🚀“Š What the research says</div>
+    <h2>Why referrals beat<br>any ad</h2>
+    <p class="big">"Word of mouth is the best advertising" isn't just a saying "” there are real numbers behind it, from serious market research.</p>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">92%</div><div class="cap">of people trust a recommendation from someone they know more than any advertisement (Nielsen, global study)</div></div>
+      <div class="scenario-card"><div class="n">4x</div><div class="cap">more likely to buy when referred by a friend, compared to finding the offer on their own</div></div>
+      <div class="scenario-card"><div class="n">80%</div><div class="cap">of sales need at least 5 follow-ups "” only 2% close on the first message. Don't give up after one "not right now"</div></div>
+    </div>
+    <p class="disclaimer">The practical takeaway: you already have the biggest possible advantage "” the people around you trust you more than any ad Amira could ever run. All that's left is not giving up after the first unanswered message.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">🚀¤ Selling, not pushing</div>
+    <h2>How to answer the most common hesitations</h2>
+    <p class="big">A good Amira Partner never pressures anyone "” they resolve the objection before it becomes a reason to say no. Here are ready-made answers to what everyone asks.</p>
+    <div class="script-block">
+      <div class="script-title">"Isn't this free directly through Familienkasse/Jobcenter?"</div>
+      <div class="bubble">You're right, submitting the application itself is free. You're only paying for someone to fill out and file the whole case correctly, so it doesn't get rejected by mistake or cost you months over a missing document. If you'd rather try it yourself first, you always can "” but a lot of people would rather not deal with the hassle.</div>
+      <div class="script-title">"I don't trust giving personal data to a WhatsApp bot"</div>
+      <div class="bubble">Totally fair to be careful. Data is handled under GDPR and only used for your own case "” you can start with just a general question, no personal data at all, and see for yourself how it responds before deciding whether to go further.</div>
+      <div class="script-title">"I don't need it now, maybe later"</div>
+      <div class="bubble">Sure, no rush at all. I'll leave the number here so you have it when you need it "” and if you happen to know someone else dealing with paperwork issues, feel free to pass it along to them too.</div>
+    </div>
+    <p class="disclaimer">Notice the pattern: no answer pushes, all of them leave room for "not now" "” and all of them turn a "no" into a door left open for later.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">âœï¸ Copy & send</div>
+    <h2>Ready-to-use scripts</h2>
+    <div class="script-block">
+      <div class="script-title">For family/friends</div>
+      <div class="bubble">Hey! You mentioned you didn't know how to handle the paperwork for Kindergeld / BÃ¼rgergeld. I found a WhatsApp service, Amira Consulting, that walks you through it step by step. You can message them directly, or want me to pass along your number?</div>
+      <div class="script-title">In a Facebook group (after answering a real question)</div>
+      <div class="bubble">...quick tip, you're also entitled to Kinderzuschlag on top of Kindergeld if your income is low, a lot of people don't know that. If you want help filing the case correctly, there's a WhatsApp consultant (Amira Consulting) that walks you through it for free, you only pay if you choose to have them handle the paperwork and filing too.</div>
+      <div class="script-title">WhatsApp status</div>
+      <div class="bubble">Dealing with the immigration office, Jobcenter, or Familienkasse and don't know where to start? Message me, I'll connect you with someone who'll walk you through it step by step. 🚀‡©🚀‡ª🚀“‹</div>
+      <div class="script-title">For a business owner (restaurant, salon, workshop, practice)</div>
+      <div class="bubble">Hi! I noticed you're answering the phone all day / keeping records on paper "” I work with Amira Consulting, we build phone bots and automation for small businesses so you stop losing clients from lack of time. Want to spend 10 minutes seeing if it makes sense for your business? No cost just to talk. 🚀¢🚀¤–</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">â“ Frequently asked questions</div>
+    <h2>What you should know before you start</h2>
+    <div class="faq-item">
+      <h3>How does Amira Consulting know I referred the client?</h3>
+      <p>The person you refer tells the bot who sent them (your name or phone number) in the first conversation "” the system links you to that referral automatically.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do I need a registered business or a contract to get paid?</h3>
+      <p>No, you don't need a business to be an Amira Partner. Your commission is calculated and tracked against your own phone number.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How long until the commission shows up?</h3>
+      <p>As soon as the person you referred actually pays for a service, the commission is recorded on your partner account.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I promote from another country, not just from Germany?</h3>
+      <p>Yes. Plenty of people with administrative needs in Germany actually live somewhere else entirely "” the problem is tied to Germany, not to where you happen to be.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How do I become an Amira Partner, not just a Referral?</h3>
+      <p>Simple "” message the Amira Consulting WhatsApp number with exactly the word <b>"partener"</b> (one word, nothing else, it's the same command in every language) and you're automatically moved to Partner tier (9%). No calls, no forms.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What exactly does "Founding Member" mean?</h3>
+      <p>The first 100 people who become active in the network get, permanently, 12% commission (versus 9% for a regular Partner) "” plus the right to build their own team of Partners, with Zoom training included. It's a real reward for those who join early, not a decorative title.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How do I earn from my team, as a Founding Member?</h3>
+      <p>You recruit and coach (via Zoom sessions) new people, helping them become Amira Partners. On top of your own direct commission from your referrals, you also earn from the activity of the team you've built "” the exact details are explained once you reach this tier. The money always comes from real services paid for by real clients, never from any sign-up fee your partners pay.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I refer businesses too, not just individuals?</h3>
+      <p>Yes "” alongside administrative cases for individuals, you can refer small businesses (restaurant, salon, workshop, practice) for automation: phone bots, virtual assistants, process digitization. Commission is calculated at the same percentage as everything else (7-12%, depending on your tier), but here it comes every month, not just once "” see the "second income stream" section in this guide.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <h2>🚀š€ Ready to start?</h2>
+      <p>You don't need a website, paid ads, or thousands of followers. You need a phone and the people around you who already need help with German paperwork. And if you're among the first 100, you keep 12% commission permanently "” not just 9%.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div>Save the Amira Consulting WhatsApp number from the materials you received at purchase</div>
+        <div class="step"><div class="num">02</div>Pick 1-2 channels from this guide and send your first message today, not "tomorrow"</div>
+        <div class="step"><div class="num">03</div>Track your commissions "” every paid referral shows up automatically on your number</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  This guide does not guarantee income "” results depend on each person's effort and network. Commission varies across 3 tiers (7% Referral / 9% Amira Partner / 12% Founding Member) of the value of services paid for by referred clients; Founding Members additionally earn from the activity of the team they build. Amira Consulting · RosenstraÃŸe 1, 49610 QuakenbrÃ¼ck, Germany.
+</footer>
+

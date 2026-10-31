@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "include": [
+    "/chat-alina.html",
+    "/index.html",
+    "/admin/*",
+    "/*.html"
+  ],
+  "exclude": [
+    "/api/*",
+    "/*.json",
+    "/*.png",
+    "/*.ico",
+    "/*.css",
+    "/*.js",
+    "/*.jpg",
+    "/*.jpeg",
+    "/*.gif",
+    "/*.svg"
+  ]
+}

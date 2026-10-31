@@ -1,0 +1,316 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Amira Consulting "” Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a16;
+    --paper:#faf7f0;
+    --paper-raised:#ffffff;
+    --line:#e0d9c8;
+    --muted:#6f6656;
+    --accent:#2f4d43;
+    --accent-2:#3a5f52;
+    --accent-ink:#f3f6f4;
+    --accent-soft:#e7efe9;
+    --amber:#b9722f;
+    --amber-soft:#f5e5d3;
+  }
+  *{box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  @page{ size:A4; margin:0; }
+  html,body{margin:0; padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    font-size:12.5px;
+    line-height:1.55;
+  }
+  h1,h2,h3{font-family:'Newsreader', Georgia, serif; margin:0}
+  .page-pad{padding:0 44px}
+
+  /* ===== HERO BAND ===== */
+  .hero{
+    background:linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 62%, #4a7263 100%);
+    color:var(--accent-ink);
+    padding:40px 44px 34px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; right:-60px; top:-80px;
+    width:280px; height:280px; border-radius:50%;
+    background:rgba(255,255,255,.06);
+  }
+  .hero::after{
+    content:"";
+    position:absolute; right:40px; bottom:-100px;
+    width:180px; height:180px; border-radius:50%;
+    background:rgba(255,255,255,.05);
+  }
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+    color:rgba(243,246,244,.72); font-weight:600;
+  }
+  .hero h1{font-size:34px; font-weight:600; margin-top:8px; line-height:1.05; position:relative; z-index:1}
+  .hero .role{font-size:12.5px; color:rgba(243,246,244,.86); margin-top:10px; max-width:62ch; position:relative; z-index:1}
+  .badges{display:flex; flex-wrap:wrap; gap:7px; margin-top:18px; position:relative; z-index:1}
+  .badge{
+    font-family:'IBM Plex Mono', monospace; font-size:10px;
+    padding:4px 9px; border-radius:4px;
+    background:rgba(255,255,255,.14); color:#fff;
+    border:1px solid rgba(255,255,255,.22);
+  }
+
+  .stat-row{display:flex; margin-top:24px; position:relative; z-index:1; gap:0}
+  .stat{flex:1; padding-right:18px}
+  .stat .num{font-family:'Newsreader', serif; font-size:26px; font-weight:700; font-variant-numeric:tabular-nums; line-height:1}
+  .stat .lbl{font-size:9.5px; color:rgba(243,246,244,.72); margin-top:4px; max-width:16ch}
+
+  /* ===== BODY ===== */
+  .body-pad{padding:30px 44px 10px}
+  section{margin-top:26px; page-break-inside:avoid}
+  section.no-break-off{page-break-inside:auto}
+  .sec-head{display:flex; align-items:baseline; gap:12px; border-bottom:2px solid var(--accent); padding-bottom:7px; margin-bottom:14px}
+  .sec-num{
+    font-family:'Newsreader', serif; font-weight:700; font-size:22px; color:var(--accent);
+    min-width:26px;
+  }
+  .sec-head h2{font-size:17px; font-weight:600; color:var(--ink)}
+  p.lede{color:var(--muted); font-size:11.5px; max-width:70ch; margin:0 0 10px}
+  p{margin:8px 0; max-width:74ch}
+
+  .diagram-wrap{margin-top:8px; padding:14px; background:var(--paper-raised); border:1px solid var(--line); border-radius:8px}
+  figcaption{font-size:9.5px; color:var(--muted); margin-top:8px; text-align:center}
+  svg text{fill:var(--ink); font-family:'IBM Plex Mono', monospace}
+  svg .lbl-small{fill:var(--muted); font-size:9px}
+  svg .arrow{stroke:var(--muted); fill:none; stroke-width:1.2}
+  svg .arrow-accent{stroke:var(--accent); fill:none; stroke-width:1.4}
+  svg .box{fill:var(--paper-raised); stroke:var(--line); stroke-width:1.1}
+  svg .box-accent{fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.3}
+
+  .feature-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:6px}
+  .feature{
+    padding:12px 14px; background:var(--paper-raised); border:1px solid var(--line); border-left:3px solid var(--accent);
+    border-radius:0 7px 7px 0; page-break-inside:avoid;
+  }
+  .feature .tag{font-family:'IBM Plex Mono', monospace; font-size:9px; color:var(--accent); text-transform:uppercase; letter-spacing:.05em; font-weight:600}
+  .feature h3{font-size:12.5px; font-weight:600; font-family:'IBM Plex Sans',sans-serif; margin-top:3px}
+  .feature p{margin:5px 0 0; font-size:10.5px; color:var(--muted); max-width:none}
+
+  table{width:100%; border-collapse:collapse; margin-top:6px; font-size:10.8px}
+  th{text-align:left; font-family:'IBM Plex Mono', monospace; font-size:9px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:600; padding:6px 10px; border-bottom:1.5px solid var(--accent)}
+  td{padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top}
+  td:first-child{font-weight:600; white-space:nowrap; width:1%; color:var(--accent-2)}
+
+  .story{margin-top:9px; padding:11px 14px; border-left:3px solid var(--amber); background:var(--amber-soft); border-radius:0 7px 7px 0; page-break-inside:avoid}
+  .story .k{font-family:'IBM Plex Mono', monospace; font-size:9px; text-transform:uppercase; letter-spacing:.05em; color:var(--amber); font-weight:700}
+  .story p{margin:5px 0 0; font-size:10.5px; max-width:none}
+
+  .tagcloud{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
+  .tagcloud span{
+    font-size:10px; padding:4px 9px; border-radius:999px;
+    border:1px solid var(--line); color:var(--ink); background:var(--paper-raised);
+  }
+
+  footer{margin-top:26px; padding:14px 44px 22px; border-top:1px solid var(--line); font-size:9.5px; color:var(--muted); display:flex; justify-content:space-between}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="kicker">Technical case study &middot; production system</div>
+    <h1>Amira Consulting</h1>
+    <p class="role">Sole technical architect and product owner of a multi-channel AI platform delivering immigration and bureaucracy support (unemployment benefits, family reunification, Kindergeld, job search, housing, contract termination) to Romanian and other immigrant communities in Germany, over WhatsApp and Telegram &mdash; live in production with paying clients.</p>
+    <div class="badges">
+      <span class="badge">n8n orchestration</span>
+      <span class="badge">Claude / LLM integration</span>
+      <span class="badge">Python &middot; FastAPI</span>
+      <span class="badge">Postgres / Supabase</span>
+      <span class="badge">GDPR & EU AI Act compliance</span>
+      <span class="badge">AI-augmented engineering</span>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><div class="num">180+</div><div class="lbl">nodes in the core orchestration workflow</div></div>
+      <div class="stat"><div class="num">58+</div><div class="lbl">real clients onboarded</div></div>
+      <div class="stat"><div class="num">8</div><div class="lbl">languages, auto-detected</div></div>
+      <div class="stat"><div class="num">14</div><div class="lbl">service packages automated</div></div>
+    </div>
+  </div>
+
+  <div class="body-pad">
+
+  <section id="overview">
+    <div class="sec-head"><span class="sec-num">01</span><h2>What this is</h2></div>
+    <p class="lede">Amira Consulting replaces the first, most repetitive layer of a bureaucracy consultancy &mdash; intake, document collection, form-filling, status updates &mdash; with a conversational AI assistant a client can reach on the channel they already use.</p>
+    <p>I designed the product and the entire technical system: the conversation architecture, the data model, the compliance posture, the multi-language site, and the deployment and monitoring tooling around it. I built it using an AI-augmented engineering workflow &mdash; directing an AI coding agent through architecture decisions, implementation, testing, and live production incident response &mdash; the same way a technical lead directs a team, but compressed into a single fast iteration loop. Every design call, every test, every rollback decision in the stories below was mine to make and defend.</p>
+  </section>
+
+  <section id="architecture">
+    <div class="sec-head"><span class="sec-num">02</span><h2>System architecture</h2></div>
+    <p class="lede">One conversation engine, shared across every entry point, so a client gets the same reasoning and the same case history whether they write on WhatsApp, Telegram, or come in through an outbound sales call.</p>
+
+    <div class="diagram-wrap">
+      <figure style="margin:0">
+        <svg viewBox="0 0 720 300" width="100%" role="img" aria-label="Three client channels, WhatsApp, Telegram and Voice/SMS, all feed into a shared n8n orchestration engine, which calls the Claude API for understanding and reads and writes a Supabase database; the orchestration engine also calls a FastAPI backend for PDF and e-signature generation, and external services for calendar bookings and email notifications.">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="currentColor"></path>
+            </marker>
+          </defs>
+          <rect class="box" x="20" y="10" width="150" height="42" rx="7"></rect>
+          <text x="95" y="36" text-anchor="middle" font-size="12" font-weight="600">WhatsApp</text>
+          <rect class="box" x="20" y="72" width="150" height="42" rx="7"></rect>
+          <text x="95" y="98" text-anchor="middle" font-size="12" font-weight="600">Telegram</text>
+          <rect class="box" x="20" y="134" width="150" height="42" rx="7"></rect>
+          <text x="95" y="155" text-anchor="middle" font-size="12" font-weight="600">Voice call</text>
+          <text x="95" y="168" text-anchor="middle" class="lbl-small">+ SMS follow-up</text>
+
+          <rect class="box-accent" x="255" y="58" width="200" height="100" rx="9"></rect>
+          <text x="355" y="94" text-anchor="middle" font-size="13" font-weight="600">n8n orchestration</text>
+          <text x="355" y="110" text-anchor="middle" class="lbl-small">180+ node workflow</text>
+          <text x="355" y="124" text-anchor="middle" class="lbl-small">session state &middot; routing</text>
+          <text x="355" y="138" text-anchor="middle" class="lbl-small">dossier logic per package</text>
+
+          <rect class="box" x="255" y="4" width="200" height="38" rx="7"></rect>
+          <text x="355" y="27" text-anchor="middle" font-size="11.5" font-weight="600">Claude API</text>
+
+          <rect class="box" x="540" y="4" width="160" height="42" rx="7"></rect>
+          <text x="620" y="24" text-anchor="middle" font-size="11.5" font-weight="600">Supabase</text>
+          <text x="620" y="37" text-anchor="middle" class="lbl-small">Postgres + REST</text>
+
+          <rect class="box" x="540" y="58" width="160" height="42" rx="7"></rect>
+          <text x="620" y="78" text-anchor="middle" font-size="11.5" font-weight="600">FastAPI backend</text>
+          <text x="620" y="91" text-anchor="middle" class="lbl-small">PDF + e-signature</text>
+
+          <rect class="box" x="540" y="112" width="160" height="42" rx="7"></rect>
+          <text x="620" y="132" text-anchor="middle" class="lbl-small" font-size="11.5" font-weight="600" fill="var(--ink)">Calendar / Gmail</text>
+          <text x="620" y="145" text-anchor="middle" class="lbl-small">booking & alerts</text>
+
+          <path class="arrow" d="M170,31 C210,31 210,80 255,88" marker-end="url(#arrow)"></path>
+          <path class="arrow" d="M170,93 C215,93 215,102 255,104" marker-end="url(#arrow)"></path>
+          <path class="arrow" d="M170,155 C215,155 215,125 255,120" marker-end="url(#arrow)"></path>
+
+          <path class="arrow-accent" d="M355,58 L355,42" marker-end="url(#arrow)"></path>
+
+          <path class="arrow-accent" d="M455,80 C500,80 500,25 540,25" marker-end="url(#arrow)"></path>
+          <path class="arrow-accent" d="M455,102 C500,102 500,79 540,79" marker-end="url(#arrow)"></path>
+          <path class="arrow-accent" d="M455,128 C500,128 500,133 540,133" marker-end="url(#arrow)"></path>
+
+          <path class="arrow" d="M255,135 C210,135 210,96 170,100" marker-end="url(#arrow)"></path>
+        </svg>
+        <figcaption>Every channel feeds one shared conversation engine, so case history and reasoning stay consistent no matter how a client reaches out.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="built">
+    <div class="sec-head"><span class="sec-num">03</span><h2>What I built</h2></div>
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="tag">Conversation engine</span>
+        <h3>Multi-turn dossier collection</h3>
+        <p>A single n8n workflow drives structured data collection across 14 service packages, using Claude to extract dossier fields from free-form chat and track per-client state in Postgres.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Documents</span>
+        <h3>Generation & e-signature pipeline</h3>
+        <p>A Python/FastAPI service generates client-specific PDFs on demand and produces signature links for documents that legally need a client's consent before submission.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Multi-channel</span>
+        <h3>WhatsApp, Telegram, voice, SMS</h3>
+        <p>WhatsApp and Telegram both reuse the same conversation "brain." A separate outbound sales-call system pairs Twilio Voice with AI-generated speech and live Claude-driven dialogue.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Data architecture</span>
+        <h3>Channel-agnostic identity model</h3>
+        <p>A client-ID and case-number scheme that never uses phone number as a system key, and preserves full history through alias resolution whenever an identifier changes.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Compliance</span>
+        <h3>Built-in regulatory posture</h3>
+        <p>EU AI Act Article 50 disclosure in every conversation; GDPR-conscious digital power-of-attorney consent before anything is submitted to a German institution.</p>
+      </div>
+      <div class="feature">
+        <span class="tag">Product & growth</span>
+        <h3>Multilingual site, referral engine</h3>
+        <p>An 8-language site with browser-language auto-detection, plus affiliate/referral commission tracking and automated lead follow-up.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Technical stack</h2></div>
+    <table>
+      <thead><tr><th>Layer</th><th>Tools & how they're used</th></tr></thead>
+      <tbody>
+        <tr><td>Orchestration</td><td>n8n &mdash; single production workflow, 180+ nodes, handling routing, dossier state, invoicing, and commission logic</td></tr>
+        <tr><td>AI / LLM</td><td>Anthropic Claude API &mdash; conversation understanding, structured field extraction, live voice dialogue generation</td></tr>
+        <tr><td>Messaging</td><td>Twilio WhatsApp Business API, Telegram Bot API, Twilio SMS, Twilio Voice + TwiML</td></tr>
+        <tr><td>Voice</td><td>ElevenLabs text-to-speech for outbound sales calls</td></tr>
+        <tr><td>Backend</td><td>Python, FastAPI, Pydantic models, PDF generation, Cloudflare Tunnel for secure exposure</td></tr>
+        <tr><td>Database</td><td>Supabase (Postgres + REST API) &mdash; schema and key/value config design, sequence and alias tables</td></tr>
+        <tr><td>Frontend</td><td>Hand-built HTML/CSS/JS, 8-language i18n, RTL support, fully responsive</td></tr>
+        <tr><td>Deployment</td><td>Netlify via a custom direct-to-API deploy pipeline; Windows Task Scheduler watchdog for uptime</td></tr>
+        <tr><td>Integrations</td><td>Google Calendar API, Gmail API</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="stories">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Engineering highlights</h2></div>
+    <p class="lede">A production system with real clients breaks in real ways. These are incidents I actually diagnosed and resolved &mdash; the kind of story that holds up under a follow-up question.</p>
+
+    <div class="story">
+      <div class="k">Incident response & rollback discipline</div>
+      <p>While migrating dozens of nodes off inline plaintext API keys onto managed credentials, I hit an undocumented platform limitation causing silent failures in invoicing, commissions, and consent confirmations. I built a debug-capture technique to surface the real error, fully reverted to a known-good state within the same session, verified the fix against a real client conversation, and wrote a risk-tiered migration plan for a safer future attempt.</p>
+    </div>
+    <div class="story">
+      <div class="k">Systematic production debugging</div>
+      <p>Swept execution error logs across every active workflow and found a renewal-reminder feature that had been failing identically, every day, for five straight days &mdash; a missing expression prefix was sending a date filter to the database as a literal string. Fixed and confirmed against the next scheduled run.</p>
+    </div>
+    <div class="story">
+      <div class="k">Root-causing infrastructure fragility</div>
+      <p>Traced a recurring "something's broken overnight" pattern to a PDF-generation server depending on a personal machine staying powered on, by correlating process start times with outage windows, and scoped a proper fix instead of patching the symptom.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Skills demonstrated</h2></div>
+    <div class="tagcloud">
+      <span>Workflow automation</span>
+      <span>No-code / low-code development</span>
+      <span>REST API integration</span>
+      <span>Conversational AI design</span>
+      <span>LLM prompt engineering</span>
+      <span>Python / FastAPI</span>
+      <span>PostgreSQL / Supabase</span>
+      <span>Data modeling</span>
+      <span>Multi-language product design</span>
+      <span>Production incident response</span>
+      <span>Security & credential management</span>
+      <span>GDPR compliance</span>
+      <span>EU AI Act compliance</span>
+      <span>Technical product ownership</span>
+      <span>AI-augmented engineering</span>
+      <span>Remote, self-directed delivery</span>
+    </div>
+  </section>
+
+  </div>
+
+  <footer>
+    <span>Amira Consulting &mdash; live production system, built and operated solo</span>
+    <span>amiraconsulting.services</span>
+  </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,963 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>ConversaÈ›ii & Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,420;9..144,500;9..144,600;9..144,680&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#f4f2ec;
+    --surface:#ffffff;
+    --surface-alt:#faf6ed;
+    --border:#e3ded1;
+    --border-soft:#ece7da;
+    --ink:#132e26;
+    --ink-soft:#5c6b64;
+    --ink-faint:#8a978f;
+    --accent:#0a9d67;
+    --accent-ink:#ffffff;
+    --accent-soft:#e3f3ea;
+    --accent-line:#bfe4d1;
+    --amber:#9a6a12;
+    --amber-soft:#f6ecd6;
+    --amber-line:#e6d09c;
+    --blue:#2b5c8a;
+    --blue-soft:#e4edf5;
+    --blue-line:#c3d7e8;
+    --red:#a5402c;
+    --red-soft:#f5e5e0;
+    --red-line:#e3bfb2;
+    --shadow-sm:0 1px 2px rgba(19,46,38,.05);
+    --shadow-md:0 10px 28px -16px rgba(19,46,38,.28);
+    --font-display:'Fraunces',ui-serif,Georgia,serif;
+    --font-body:'Public Sans',-apple-system,Segoe UI,sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e1a16;
+      --surface:#152420;
+      --surface-alt:#1a2b25;
+      --border:#2b3e36;
+      --border-soft:#233530;
+      --ink:#edf3ee;
+      --ink-soft:#a2b8ae;
+      --ink-faint:#748a80;
+      --accent:#3fcf94;
+      --accent-ink:#062017;
+      --accent-soft:#153428;
+      --accent-line:#255b45;
+      --amber:#e6bb64;
+      --amber-soft:#3a2e15;
+      --amber-line:#5c4a20;
+      --blue:#8ab7e2;
+      --blue-soft:#17293b;
+      --blue-line:#2c4560;
+      --red:#e3937c;
+      --red-soft:#3a231b;
+      --red-line:#5c372a;
+      --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+      --shadow-md:0 10px 28px -16px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e1a16;
+    --surface:#152420;
+    --surface-alt:#1a2b25;
+    --border:#2b3e36;
+    --border-soft:#233530;
+    --ink:#edf3ee;
+    --ink-soft:#a2b8ae;
+    --ink-faint:#748a80;
+    --accent:#3fcf94;
+    --accent-ink:#062017;
+    --accent-soft:#153428;
+    --accent-line:#255b45;
+    --amber:#e6bb64;
+    --amber-soft:#3a2e15;
+    --amber-line:#5c4a20;
+    --blue:#8ab7e2;
+    --blue-soft:#17293b;
+    --blue-line:#2c4560;
+    --red:#e3937c;
+    --red-soft:#3a231b;
+    --red-line:#5c372a;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+    --shadow-md:0 10px 28px -16px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{background:var(--bg);}
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--bg);
+    padding-inline:16px;
+    padding-block:18px 40px;
+  }
+  .wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:22px;}
+
+  a{color:var(--accent);}
+
+  /* ---------- header ---------- */
+  header.top{
+    position:sticky;
+    top:env(safe-area-inset-top,0px);
+    z-index:20;
+    background:var(--bg);
+    padding-block:6px 4px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:14px;
+    border-bottom:1px solid var(--border);
+  }
+  .brand{display:flex;flex-direction:column;gap:2px;}
+  .brand .eyebrow{
+    font:600 11px/1 var(--font-mono);
+    text-transform:uppercase;
+    letter-spacing:.09em;
+    color:var(--accent);
+  }
+  .brand h1{
+    font-family:var(--font-display);
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(24px,3.2vw,32px);
+    margin:2px 0 6px;
+    text-wrap:balance;
+    letter-spacing:-.01em;
+  }
+  .statusline{
+    display:flex;align-items:center;gap:8px;
+    font:500 12.5px/1 var(--font-body);
+    color:var(--ink-soft);
+    padding-bottom:14px;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--ink-faint);flex:none;}
+  .dot.ok{background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+  .dot.bad{background:var(--red);box-shadow:0 0 0 3px var(--red-soft);}
+  .headctl{display:flex;align-items:center;gap:8px;padding-bottom:14px;}
+  button.ghost{
+    font:600 12.5px var(--font-body);
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:7px 12px;
+    cursor:pointer;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  button.ghost:hover{border-color:var(--accent);color:var(--accent);}
+  button.ghost:focus-visible, .chip:focus-visible, .tab:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+
+  /* ---------- error banner ---------- */
+  .banner{
+    display:none;
+    align-items:flex-start;
+    gap:10px;
+    background:var(--red-soft);
+    border:1px solid var(--red-line);
+    color:var(--red);
+    border-radius:10px;
+    padding:12px 14px;
+    font-size:13.5px;
+    line-height:1.5;
+  }
+  .banner.show{display:flex;}
+  .banner b{color:var(--ink);}
+
+  /* ---------- KPI row ---------- */
+  .kpis{
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:10px;
+  }
+  @media (max-width:900px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr));}}
+  @media (max-width:520px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  .kpi{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:12px 14px;
+    box-shadow:var(--shadow-sm);
+  }
+  .kpi .n{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:600;
+    font-size:26px;
+    line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .kpi .l{
+    margin-top:5px;
+    font:600 11px/1.3 var(--font-body);
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+  }
+
+  section{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    box-shadow:var(--shadow-sm);
+    overflow:hidden;
+  }
+  .sec-head{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    padding:16px 18px 12px;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .sec-head h2{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:19px;
+    margin:0;
+  }
+  .sec-head .sub{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+  .sec-body{padding:14px 18px 18px;}
+
+  /* ---------- conversations ---------- */
+  .conv-grid{display:grid;grid-template-columns:300px 1fr;gap:16px;min-height:420px;}
+  @media (max-width:760px){.conv-grid{grid-template-columns:1fr;}}
+
+  .conv-list{
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    max-height:460px;
+    overflow-y:auto;
+    background:var(--surface-alt);
+  }
+  .conv-item{
+    display:block;width:100%;text-align:left;
+    padding:10px 12px;
+    border:none;background:none;
+    border-bottom:1px solid var(--border-soft);
+    cursor:pointer;
+    font-family:var(--font-body);
+    color:var(--ink);
+  }
+  .conv-item:last-child{border-bottom:none;}
+  .conv-item:hover{background:var(--accent-soft);}
+  .conv-item.active{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent);}
+  .conv-item .row1{display:flex;justify-content:space-between;gap:8px;align-items:baseline;}
+  .conv-item .phone{font:600 13px var(--font-mono);}
+  .conv-item .when{font:400 11px var(--font-mono);color:var(--ink-faint);white-space:nowrap;}
+  .conv-item .preview{
+    margin-top:3px;font-size:12.5px;color:var(--ink-soft);
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .tag{
+    display:inline-flex;align-items:center;
+    font:600 10.5px/1 var(--font-mono);
+    padding:3px 7px;border-radius:99px;
+    background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-line);
+    margin-top:5px;
+    text-transform:none;
+  }
+  .tag.accentTag{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line);}
+  .chbadge{
+    display:inline-flex;align-items:center;justify-content:center;
+    font:700 9.5px/1 var(--font-mono);
+    padding:3px 5px;border-radius:5px;
+    margin-right:6px;letter-spacing:.02em;vertical-align:middle;
+  }
+  .chbadge.wa{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line);}
+  .chbadge.tg{background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-line);}
+
+  /* ---------- client id chip (Faza 2 client_id) ---------- */
+  .cid{
+    display:inline-flex;align-items:center;
+    font:700 11.5px/1 var(--font-mono);
+    padding:3px 8px;border-radius:6px;
+    background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber-line);
+    letter-spacing:.02em;white-space:nowrap;
+  }
+  .cid.none{background:var(--surface-alt);color:var(--ink-faint);border-color:var(--border);font-weight:600;}
+  .id-phone{font:400 11.5px var(--font-mono);color:var(--ink-faint);}
+
+  .thread-wrap{
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    background:var(--surface-alt);
+    display:flex;flex-direction:column;
+    max-height:460px;
+  }
+  .thread-head{
+    padding:10px 14px;border-bottom:1px solid var(--border-soft);
+    display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+  }
+  .thread-head .phone{font:700 15px var(--font-mono);}
+  .thread-head .idline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .thread-body{padding:12px 14px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px;}
+  .msg{border-left:3px solid var(--ink-faint);padding:2px 0 2px 10px;}
+  .msg.consultant{border-left-color:var(--accent);}
+  .msg .who{font:700 10.5px/1 var(--font-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:3px;}
+  .msg.consultant .who{color:var(--accent);}
+  .msg .txt{font-size:13.5px;line-height:1.5;white-space:pre-wrap;word-break:break-word;}
+  .empty-hint{color:var(--ink-faint);font-size:13px;padding:24px 6px;text-align:center;}
+
+  /* ---------- calls meta strip ---------- */
+  .callmeta{display:flex;gap:14px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--border-soft);background:var(--surface);}
+  .callmeta .item{display:flex;flex-direction:column;gap:1px;}
+  .callmeta .item .k{font:600 10px/1 var(--font-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);}
+  .callmeta .item .v{font:600 13px var(--font-body);color:var(--ink);}
+  .notice{
+    font-size:12.5px;line-height:1.55;color:var(--ink-soft);
+    background:var(--surface-alt);border:1px solid var(--border-soft);border-radius:10px;
+    padding:10px 12px;margin-bottom:12px;
+  }
+  .notice b{color:var(--ink);}
+
+  /* ---------- pipeline ---------- */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  input[type="search"]{
+    font:500 13px var(--font-body);
+    padding:7px 10px;border:1px solid var(--border);border-radius:8px;
+    background:var(--surface);color:var(--ink);min-width:190px;
+  }
+  input[type="search"]:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .chip{
+    font:600 12px var(--font-body);
+    padding:6px 11px;border-radius:99px;border:1px solid var(--border);
+    background:var(--surface);color:var(--ink-soft);cursor:pointer;
+  }
+  .chip.active{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+  :root[data-theme="dark"] .chip.active, :root:not([data-theme="light"]) .chip.active{
+    /* dark mode: keep readable inverted chip */
+    background:var(--accent);color:var(--accent-ink);border-color:var(--accent);
+  }
+
+  .table-scroll{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;min-width:760px;}
+  thead th{
+    text-align:left;font:600 11px var(--font-mono);text-transform:uppercase;letter-spacing:.04em;
+    color:var(--ink-soft);padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap;
+  }
+  tbody td{padding:9px 10px;border-bottom:1px solid var(--border-soft);vertical-align:middle;font-size:13px;}
+  tbody tr:hover{background:var(--surface-alt);}
+  tbody tr.clickable{cursor:pointer;}
+  td.mono, .cell-phone{font-family:var(--font-mono);font-size:12.5px;}
+  .name-cell .name-flex{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .name-cell .nm{font-weight:600;}
+  .name-cell .nm.none{color:var(--ink-faint);font-weight:400;font-style:italic;}
+
+  .badge{
+    display:inline-flex;align-items:center;gap:5px;
+    font:600 11.5px/1 var(--font-body);
+    padding:5px 9px;border-radius:99px;white-space:nowrap;
+  }
+  .badge.lead{background:var(--surface-alt);color:var(--ink-soft);border:1px solid var(--border);}
+  .badge.gdpr{background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber-line);}
+  .badge.vollmacht{background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-line);}
+  .badge.done{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line);}
+  .badge.outbound{background:var(--blue-soft);color:var(--blue);border:1px solid var(--blue-line);}
+  .badge.aris{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent-line);}
+
+  .flagrow{display:flex;gap:5px;flex-wrap:wrap;}
+  .flag{
+    font:600 10px/1 var(--font-mono);padding:3px 6px;border-radius:5px;
+    border:1px solid var(--border);color:var(--ink-faint);background:var(--surface-alt);
+  }
+  .flag.on{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft);}
+
+  .color-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;}
+  .color-dot.verde{background:var(--accent);}
+  .color-dot.rosu{background:var(--ink-faint);}
+
+  footer.note{
+    font-size:12px;color:var(--ink-faint);line-height:1.6;padding-block:6px 2px;
+  }
+  footer.note code{font-family:var(--font-mono);background:var(--surface-alt);border:1px solid var(--border-soft);padding:1px 5px;border-radius:5px;}
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <span class="eyebrow">Amira Consulting · ops intern</span>
+      <h1>ConversaÈ›ii & Pipeline</h1>
+    </div>
+    <div class="statusline">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">Se conecteazÄƒ"¦</span>
+    </div>
+    <div class="headctl">
+      <button class="ghost" id="btnRefresh" type="button">â†» VerificÄƒ din nou</button>
+    </div>
+  </header>
+
+  <div class="banner" id="errBanner">
+    <span>âš </span>
+    <span id="errText"><b>Nu am Ã®ncÄƒ date.</b> AÈ™tept prima sincronizare.</span>
+  </div>
+
+  <div class="kpis" id="kpis">
+    <!-- populated by JS -->
+  </div>
+
+  <section id="secConv">
+    <div class="sec-head">
+      <div>
+        <h2>ConversaÈ›ii (WhatsApp + Telegram)</h2>
+        <div class="sub">Sesiuni de text din <code style="font-family:var(--font-mono)">apeluri_sesiuni</code> (prefix <code style="font-family:var(--font-mono)">wa-</code> pentru WhatsApp, <code style="font-family:var(--font-mono)">tg-</code> pentru Telegram) "” cea mai recentÄƒ primÄƒ. Identitatea afiÈ™atÄƒ e acum <code style="font-family:var(--font-mono)">client_id</code>-ul intern (stabil, indiferent de canal) "” telefonul rÄƒmÃ¢ne vizibil ca datÄƒ de contact, nu ca identitate.</div>
+      </div>
+      <div class="sub" id="convCount">"”</div>
+    </div>
+    <div class="sec-body">
+      <div class="conv-grid">
+        <div class="conv-list" id="convList"></div>
+        <div class="thread-wrap">
+          <div class="thread-head">
+            <div class="idline">
+              <span class="cid" id="threadCid">"”</span>
+              <span class="phone" id="threadPhone">"”</span>
+            </div>
+            <span class="tag" id="threadTag" style="display:none;"></span>
+          </div>
+          <div class="thread-body" id="threadBody">
+            <div class="empty-hint">Alege o conversaÈ›ie din stÃ¢nga ca sÄƒ vezi mesajele.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="secCalls">
+    <div class="sec-head">
+      <div>
+        <h2>Istoric apeluri telefonice</h2>
+        <div class="sub">Sesiuni de apel vocal din <code style="font-family:var(--font-mono)">apeluri_sesiuni</code> (identificate prin <code style="font-family:var(--font-mono)">call_sid</code> Twilio, nu prefix <code style="font-family:var(--font-mono)">wa-</code> sau <code style="font-family:var(--font-mono)">tg-</code>).</div>
+      </div>
+      <div class="sub" id="callCount">"”</div>
+    </div>
+    <div class="sec-body">
+      <div class="notice">
+        <b>Ce e real aici, ce nu:</b> telefonul, ora apelului È™i transcriptul conversaÈ›iei (generat de agentul vocal AI) sunt date reale din Supabase. <b>Durata apelului, statusul (reuÈ™it/eÈ™uat/fÄƒrÄƒ rÄƒspuns) È™i Ã®nregistrarea audio NU sunt disponibile</b> "” apelurile ARIS nu au Ã®nregistrare (recording) activatÄƒ, iar detaliile brute Twilio (duratÄƒ/status) nu sunt sincronizate Ã®ncÄƒ Ã®n Supabase; ele existÄƒ doar Ã®n consola Twilio. DirecÈ›ia "žVÃ¢nzÄƒri = ieÈ™ire" e sigurÄƒ (agentul sunÄƒ mereu primul, cu <code style="font-family:var(--font-mono)">Initiaza apelul vanzari</code>); pentru linia principalÄƒ ARIS, direcÈ›ia nu e certÄƒ din date "” poate fi client care sunÄƒ, sau un apel de retur automat dupÄƒ o achiziÈ›ie "” vezi eticheta "žARIS principal" de mai jos. <b>Client ID:</b> coloana nouÄƒ aratÄƒ identitatea internÄƒ stabilÄƒ (vezi nota de mai jos) "” "ž"”" Ã®nseamnÄƒ cÄƒ numÄƒrul nu are Ã®ncÄƒ un client_id atribuit (de regulÄƒ un numÄƒr de test).
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Client ID</th>
+              <th>Telefon</th>
+              <th>Tip / direcÈ›ie</th>
+              <th>Consultant</th>
+              <th>Data & ora</th>
+              <th>Mesaje</th>
+            </tr>
+          </thead>
+          <tbody id="callBody"></tbody>
+        </table>
+      </div>
+      <div class="thread-wrap" style="margin-top:14px;max-height:420px;">
+        <div class="thread-head">
+          <div class="idline">
+            <span class="cid" id="callThreadCid">"”</span>
+            <span class="phone" id="callThreadPhone">"”</span>
+          </div>
+          <span class="tag" id="callThreadTag" style="display:none;"></span>
+        </div>
+        <div class="callmeta" id="callThreadMeta" style="display:none;"></div>
+        <div class="thread-body" id="callThreadBody">
+          <div class="empty-hint">Alege un apel din tabel ca sÄƒ vezi transcriptul conversaÈ›iei.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="secPipe">
+    <div class="sec-head">
+      <div>
+        <h2>Pipeline clienÈ›i</h2>
+        <div class="sub">Tabelul <code style="font-family:var(--font-mono)">clienti</code>, cu pachetul curent dedus din conversaÈ›ie È™i stadiul calculat din paÈ™ii semnaÈ›i. Identitatea internÄƒ stabilÄƒ (<code style="font-family:var(--font-mono)">client_id</code>, ex. <code style="font-family:var(--font-mono)">RO014</code>) apare acum direct lÃ¢ngÄƒ numele clientului "” vezi nota de mai jos.</div>
+      </div>
+      <div class="filters">
+        <input type="search" id="pipeSearch" placeholder="CautÄƒ client_id, telefon sau nume"¦">
+        <button class="chip active" data-filter="all" type="button">ToÈ›i</button>
+        <button class="chip" data-filter="lead" type="button">Lead</button>
+        <button class="chip" data-filter="gdpr" type="button">GDPR semnat</button>
+        <button class="chip" data-filter="vollmacht" type="button">Vollmacht semnat</button>
+        <button class="chip" data-filter="done" type="button">Finalizat</button>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Telefon</th>
+              <th>Tip</th>
+              <th>Pachet curent</th>
+              <th>Stadiu</th>
+              <th>PaÈ™i</th>
+              <th>Ultima interacÈ›iune</th>
+            </tr>
+          </thead>
+          <tbody id="pipeBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer class="note">
+    SursÄƒ: Supabase (<code>apeluri_sesiuni</code>, <code>clienti</code>), citite server-side de endpoint-ul intern <code>/dashboard-date</code> "” cheia Supabase nu ajunge niciodatÄƒ Ã®n aceastÄƒ paginÄƒ. AceastÄƒ paginÄƒ NU mai face fetch() direct cÄƒtre server (blocat de politica de securitate a Artifacts pentru domenii externe) "” datele sunt sincronizate periodic de Claude Ã®ntr-o bazÄƒ de date proprie a acestui Artifact (capacitatea <code>db</code>) È™i citite de aici live, prin <code>db.doc('snapshot/latest').onSnapshot(...)</code>. DacÄƒ datele par vechi, cere-i lui Claude sÄƒ ruleze o sincronizare nouÄƒ. CÃ¢teva numere de telefon vizibil de test/QA (conÈ›ineau literal "žtest", sau erau numere secvenÈ›iale de probÄƒ precum <code>+491700000999</code> ori seria <code>+4079988977x</code>) au fost excluse din aceastÄƒ copie afiÈ™atÄƒ "” datele complete rÄƒmÃ¢n neatinse Ã®n Supabase. "žPachet curent" e dedus din <code>id_consultant</code> al ultimei sesiuni de conversaÈ›ie "” nu existÄƒ Ã®ncÄƒ o coloanÄƒ dedicatÄƒ de pachet pe client. Tabelul <code>dosare_cazuri</code>, gÃ¢ndit pentru stadii mai fine (platÄƒ, trimitere la autoritate), existÄƒ Ã®n schema Supabase dar e Ã®ncÄƒ gol "” nu e folosit de niciun flux momentan. SecÈ›iunea "žIstoric apeluri telefonice" separÄƒ din acelaÈ™i tabel sesiunile al cÄƒror <code>call_sid</code> e un Call SID Twilio real (nu prefixul <code>wa-</code> folosit pentru sesiunile WhatsApp, nici prefixul <code>tg-</code> folosit pentru sesiunile Telegram) "” nu existÄƒ un tabel separat de "žapeluri" Ã®n Supabase la data acestei sincronizÄƒri.
+    <br><br>
+    <b>Client ID:</b> fiecare persoanÄƒ realÄƒ are un <code>client_id</code> intern stabil (ex. <code>RO014</code> = al 14-lea client de naÈ›ionalitate romÃ¢nÄƒ; <code>MFRO003</code> = al 3-lea Membru Fondator romÃ¢n), atribuit o singurÄƒ datÄƒ È™i pÄƒstrat indiferent de canal (WhatsApp/Telegram) sau de schimbÄƒri de status. ÃŽn tabelul "žPipeline clienÈ›i" apare acum ca etichetÄƒ direct lÃ¢ngÄƒ numele clientului (nu Ã®ntr-o coloanÄƒ separatÄƒ), ca sÄƒ nu fie ratat la o privire rapidÄƒ. E calculat aici prin rezolvarea telefonului din tabelul <code>config</code> (chei <code>amira_telefon_index__*</code> / <code>amira_client__*</code>) "” vezi <code>client_id_schema_spec.md</code> pentru mecanismul complet. AbsenÈ›a etichetei Ã®nseamnÄƒ un numÄƒr fÄƒrÄƒ identitate atribuitÄƒ Ã®ncÄƒ (de regulÄƒ date de test). Rezolvarea propriu-zisÄƒ din fluxul live WhatsApp/Telegram (n8n) e pregÄƒtitÄƒ, dar NU e Ã®ncÄƒ activÄƒ Ã®n producÈ›ie "” vezi raportul agentului care a fÄƒcut ultima sincronizare.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var state = {
+    data: null,
+    lastSyncIso: null,
+    selectedCallSid: null,
+    selectedPhoneCallSid: null,
+    pipeFilter: "all",
+    pipeSearch: ""
+  };
+
+  function escapeHtml(s){
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+      return { "&":"&", "<":"<", ">":">", '"':""", "'":"&#39;" }[c];
+    });
+  }
+  function linkify(escaped){
+    return escaped.replace(/(https?:\/\/[^\s<]+)/g, function(u){
+      var clean = u.replace(/[),.]+$/,"");
+      return '<a href="' + clean + '" target="_blank" rel="noopener">' + clean + "</a>";
+    });
+  }
+  function fmtWhen(iso){
+    if(!iso) return ""”";
+    try{
+      var d = new Date(iso);
+      return d.toLocaleDateString("ro-RO", {day:"2-digit",month:"2-digit"}) + " " +
+             d.toLocaleTimeString("ro-RO", {hour:"2-digit",minute:"2-digit"});
+    }catch(e){ return iso; }
+  }
+  function timeAgo(ms){
+    var s = Math.floor(ms/1000);
+    if(s < 5) return "chiar acum";
+    if(s < 60) return s + "s Ã®n urmÄƒ";
+    var m = Math.floor(s/60);
+    if(m < 60) return m + "m Ã®n urmÄƒ";
+    var h = Math.floor(m/60);
+    if(h < 24) return h + "h Ã®n urmÄƒ";
+    var zi = Math.floor(h/24);
+    return zi + "z Ã®n urmÄƒ";
+  }
+  function cidChip(entity){
+    var cid = entity && entity.clientId;
+    if(cid) return '<span class="cid">' + escapeHtml(cid) + '</span>';
+    return '<span class="cid none">"”</span>';
+  }
+
+  function setStatus(ok, msg){
+    var dot = document.getElementById("statusDot");
+    var txt = document.getElementById("statusText");
+    dot.className = "dot " + (ok ? "ok" : "bad");
+    txt.textContent = msg;
+  }
+  function showError(show, html){
+    var b = document.getElementById("errBanner");
+    b.classList.toggle("show", !!show);
+    if(show && html) document.getElementById("errText").innerHTML = html;
+  }
+
+  function isPhoneCall(c){
+    var sid = c.call_sid || "";
+    return sid.indexOf("wa-") !== 0 && sid.indexOf("tg-") !== 0;
+  }
+  function channelFor(c){
+    return (c.call_sid || "").indexOf("tg-") === 0 ? "telegram" : "whatsapp";
+  }
+  function channelBadge(c){
+    var ch = channelFor(c);
+    return '<span class="chbadge ' + (ch === "telegram" ? "tg" : "wa") + '">' + (ch === "telegram" ? "TG" : "WA") + '</span>';
+  }
+  function isSalesCall(c){
+    var sid = (c.call_sid || "").toLowerCase();
+    var cons = (c.id_consultant || "").toUpperCase();
+    return sid.indexOf("sales-") === 0 || cons === "VANZARI";
+  }
+  function callKind(c){
+    if(isSalesCall(c)){
+      return {
+        label: "VÃ¢nzÄƒri (agent) · ieÈ™ire",
+        badgeClass: "outbound",
+        tagText: c.id_consultant || "VANZARI"
+      };
+    }
+    return {
+      label: "ARIS principal (" + (c.id_consultant || "necunoscut") + ")",
+      badgeClass: "aris",
+      tagText: c.id_consultant || ""”"
+    };
+  }
+  function getWaConversations(data){
+    return (data.conversatii || []).filter(function(c){ return !isPhoneCall(c); });
+  }
+  function getPhoneCalls(data){
+    return (data.conversatii || []).filter(isPhoneCall);
+  }
+
+  function renderKpis(data){
+    var conv = getWaConversations(data);
+    var convTg = conv.filter(function(c){ return channelFor(c) === "telegram"; }).length;
+    var convWa = conv.length - convTg;
+    var calls = getPhoneCalls(data);
+    var callsSales = calls.filter(isSalesCall).length;
+    var callsAris = calls.length - callsSales;
+    var cl = data.clienti || [];
+    var verde = cl.filter(function(c){ return c.culoare === "verde"; }).length;
+    var gdpr = cl.filter(function(c){ return c.gdpr_semnat; }).length;
+    var vollmacht = cl.filter(function(c){ return c.vollmacht_semnat; }).length;
+    var achizitii = cl.filter(function(c){ return c.a_achizitionat; }).length;
+    var cuId = cl.filter(function(c){ return c.clientId; }).length;
+    var leadsGhid = (data.leads_ghid_remote || []).length;
+    var tiles = [
+      [convWa, "ConversaÈ›ii WhatsApp"],
+      [convTg, "ConversaÈ›ii Telegram"],
+      [calls.length, "Apeluri telefonice"],
+      [callsAris, "Apeluri linie ARIS"],
+      [callsSales, "Apeluri vÃ¢nzÄƒri (ieÈ™ire)"],
+      [cl.length, "ClienÈ›i Ã®n pipeline"],
+      [verde, "ClienÈ›i activi (verde)"],
+      [gdpr, "GDPR semnat"],
+      [vollmacht, "Vollmacht semnat"],
+      [achizitii, "AchiziÈ›ii confirmate"],
+      [cuId, "Cu Client ID atribuit"],
+      [leadsGhid, "Leads ghid remote"]
+    ];
+    document.getElementById("kpis").innerHTML = tiles.map(function(t){
+      return '<div class="kpi"><div class="n">' + t[0] + '</div><div class="l">' + t[1] + "</div></div>";
+    }).join("");
+  }
+
+  function convPreview(conv){
+    var ist = conv.istoric || [];
+    var last = ist.length ? ist[ist.length - 1] : null;
+    return last ? last.text : "(fÄƒrÄƒ mesaje)";
+  }
+
+  function renderConvList(data){
+    var conv = getWaConversations(data);
+    document.getElementById("convCount").textContent = conv.length + " sesiuni";
+    var list = document.getElementById("convList");
+    if(!conv.length){
+      list.innerHTML = '<div class="empty-hint">Nicio conversaÈ›ie momentan.</div>';
+      return;
+    }
+    if(!state.selectedCallSid || !conv.some(function(c){return c.call_sid === state.selectedCallSid;})){
+      state.selectedCallSid = conv[0].call_sid;
+    }
+    list.innerHTML = conv.map(function(c){
+      var active = c.call_sid === state.selectedCallSid;
+      return '<button type="button" class="conv-item' + (active ? " active" : "") + '" data-sid="' +
+        escapeHtml(c.call_sid) + '">' +
+          '<div class="row1"><span class="phone">' + channelBadge(c) + (c.clientId ? escapeHtml(c.clientId) + ' · ' : '') + escapeHtml(c.telefon) + '</span>' +
+          '<span class="when">' + fmtWhen(c.creat_la) + '</span></div>' +
+          '<div class="preview">' + escapeHtml(convPreview(c)) + '</div>' +
+          (c.id_consultant ? '<span class="tag">' + escapeHtml(c.id_consultant) + '</span>' : "") +
+        '</button>';
+    }).join("");
+    Array.prototype.forEach.call(list.querySelectorAll(".conv-item"), function(btn){
+      btn.addEventListener("click", function(){
+        state.selectedCallSid = btn.getAttribute("data-sid");
+        renderConvList(state.data);
+        renderThread(state.data);
+      });
+    });
+  }
+
+  function renderThread(data){
+    var conv = getWaConversations(data).find(function(c){ return c.call_sid === state.selectedCallSid; });
+    var body = document.getElementById("threadBody");
+    var phoneEl = document.getElementById("threadPhone");
+    var cidEl = document.getElementById("threadCid");
+    var tagEl = document.getElementById("threadTag");
+    if(!conv){
+      phoneEl.textContent = ""”";
+      cidEl.outerHTML = '<span class="cid none" id="threadCid">"”</span>';
+      tagEl.style.display = "none";
+      body.innerHTML = '<div class="empty-hint">Alege o conversaÈ›ie din stÃ¢nga ca sÄƒ vezi mesajele.</div>';
+      return;
+    }
+    phoneEl.innerHTML = channelBadge(conv) + escapeHtml(conv.telefon);
+    document.getElementById("threadCid").outerHTML = cidChip(conv).replace('class="cid', 'id="threadCid" class="cid');
+    if(conv.id_consultant){
+      tagEl.style.display = "inline-flex";
+      tagEl.textContent = conv.id_consultant;
+    } else {
+      tagEl.style.display = "none";
+    }
+    var msgs = conv.istoric || [];
+    if(!msgs.length){
+      body.innerHTML = '<div class="empty-hint">FÄƒrÄƒ mesaje Ã®n aceastÄƒ sesiune.</div>';
+      return;
+    }
+    body.innerHTML = msgs.map(function(m){
+      var isConsultant = m.rol === "consultant";
+      var who = isConsultant ? "Consultant (AI)" : (m.rol ? m.rol : "client");
+      return '<div class="msg' + (isConsultant ? " consultant" : "") + '">' +
+        '<div class="who">' + escapeHtml(who) + '</div>' +
+        '<div class="txt">' + linkify(escapeHtml(m.text)) + '</div>' +
+      '</div>';
+    }).join("");
+  }
+
+  function renderCallTable(data){
+    var calls = getPhoneCalls(data).slice().sort(function(a,b){
+      return new Date(b.creat_la || 0) - new Date(a.creat_la || 0);
+    });
+    document.getElementById("callCount").textContent = calls.length + " apeluri";
+    var body = document.getElementById("callBody");
+    if(!calls.length){
+      body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--ink-faint);padding:22px 10px;">Niciun apel telefonic Ã®nregistrat Ã®ncÄƒ.</td></tr>';
+      return;
+    }
+    if(!state.selectedPhoneCallSid || !calls.some(function(c){ return c.call_sid === state.selectedPhoneCallSid; })){
+      state.selectedPhoneCallSid = calls[0].call_sid;
+    }
+    body.innerHTML = calls.map(function(c){
+      var kind = callKind(c);
+      var nMsgs = (c.istoric || []).length;
+      var active = c.call_sid === state.selectedPhoneCallSid;
+      return '<tr class="clickable' + (active ? " active" : "") + '" data-sid="' + escapeHtml(c.call_sid) + '" style="' + (active ? "background:var(--accent-soft);" : "") + '">' +
+        "<td>" + cidChip(c) + "</td>" +
+        '<td class="cell-phone">' + escapeHtml(c.telefon || ""”") + "</td>" +
+        '<td><span class="badge ' + kind.badgeClass + '">' + escapeHtml(kind.label) + "</span></td>" +
+        "<td>" + escapeHtml(c.id_consultant || ""”") + "</td>" +
+        '<td class="mono">' + fmtWhen(c.creat_la) + "</td>" +
+        "<td>" + nMsgs + "</td>" +
+      "</tr>";
+    }).join("");
+    Array.prototype.forEach.call(body.querySelectorAll("tr[data-sid]"), function(row){
+      row.addEventListener("click", function(){
+        state.selectedPhoneCallSid = row.getAttribute("data-sid");
+        renderCallTable(state.data);
+        renderCallThread(state.data);
+      });
+    });
+  }
+
+  function renderCallThread(data){
+    var call = getPhoneCalls(data).find(function(c){ return c.call_sid === state.selectedPhoneCallSid; });
+    var body = document.getElementById("callThreadBody");
+    var phoneEl = document.getElementById("callThreadPhone");
+    var tagEl = document.getElementById("callThreadTag");
+    var metaEl = document.getElementById("callThreadMeta");
+    if(!call){
+      phoneEl.textContent = ""”";
+      document.getElementById("callThreadCid").outerHTML = '<span class="cid none" id="callThreadCid">"”</span>';
+      tagEl.style.display = "none";
+      metaEl.style.display = "none";
+      body.innerHTML = '<div class="empty-hint">Alege un apel din tabel ca sÄƒ vezi transcriptul conversaÈ›iei.</div>';
+      return;
+    }
+    var kind = callKind(call);
+    phoneEl.textContent = call.telefon;
+    document.getElementById("callThreadCid").outerHTML = cidChip(call).replace('class="cid', 'id="callThreadCid" class="cid');
+    tagEl.style.display = "inline-flex";
+    tagEl.textContent = kind.tagText;
+    metaEl.style.display = "flex";
+    metaEl.innerHTML =
+      '<div class="item"><span class="k">Tip</span><span class="v">' + escapeHtml(kind.label) + '</span></div>' +
+      '<div class="item"><span class="k">Data & ora</span><span class="v">' + fmtWhen(call.creat_la) + '</span></div>' +
+      '<div class="item"><span class="k">Call SID</span><span class="v">' + escapeHtml(call.call_sid || ""”") + '</span></div>' +
+      '<div class="item"><span class="k">DuratÄƒ / status</span><span class="v">nedisponibil (nesincronizat din Twilio)</span></div>';
+    var msgs = call.istoric || [];
+    if(!msgs.length){
+      body.innerHTML = '<div class="empty-hint">FÄƒrÄƒ transcript pentru acest apel.</div>';
+      return;
+    }
+    body.innerHTML = msgs.map(function(m){
+      var isConsultant = m.rol === "consultant";
+      var who = isConsultant ? "Agent vocal (AI)" : (m.rol ? m.rol : "apelant");
+      return '<div class="msg' + (isConsultant ? " consultant" : "") + '">' +
+        '<div class="who">' + escapeHtml(who) + '</div>' +
+        '<div class="txt">' + linkify(escapeHtml(m.text)) + '</div>' +
+      '</div>';
+    }).join("");
+  }
+
+  function badgeFor(cl){
+    if(cl.a_achizitionat) return '<span class="badge done">Finalizat / plÄƒtitor</span>';
+    if(cl.vollmacht_semnat) return '<span class="badge vollmacht">Vollmacht semnat</span>';
+    if(cl.gdpr_semnat) return '<span class="badge gdpr">GDPR semnat</span>';
+    return '<span class="badge lead">Contact iniÈ›ial</span>';
+  }
+  function filterKeyFor(cl){
+    if(cl.a_achizitionat) return "done";
+    if(cl.vollmacht_semnat) return "vollmacht";
+    if(cl.gdpr_semnat) return "gdpr";
+    return "lead";
+  }
+
+  function renderPipeline(data){
+    var cl = (data.clienti || []).slice();
+    var q = state.pipeSearch.trim().toLowerCase();
+    if(q){
+      cl = cl.filter(function(c){
+        return (c.telefon || "").toLowerCase().indexOf(q) > -1 ||
+               (c.nume || "").toLowerCase().indexOf(q) > -1 ||
+               (c.clientId || "").toLowerCase().indexOf(q) > -1;
+      });
+    }
+    if(state.pipeFilter !== "all"){
+      cl = cl.filter(function(c){ return filterKeyFor(c) === state.pipeFilter; });
+    }
+    var body = document.getElementById("pipeBody");
+    if(!cl.length){
+      body.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--ink-faint);padding:22px 10px;">Niciun client nu corespunde filtrului.</td></tr>';
+      return;
+    }
+    body.innerHTML = cl.map(function(c){
+      var nume = c.nume ? escapeHtml(c.nume) : '<span class="nm none">fÄƒrÄƒ nume</span>';
+      return "<tr>" +
+        '<td class="name-cell"><span class="name-flex"><span class="color-dot ' + escapeHtml(c.culoare || "") + '"></span>' + cidChip(c) + '<span class="nm">' + nume + "</span></span></td>" +
+        '<td class="cell-phone">' + escapeHtml(c.telefon) + "</td>" +
+        "<td>" + escapeHtml(c.tip || ""”") + "</td>" +
+        "<td>" + (c.pachet_curent ? '<span class="tag">' + escapeHtml(c.pachet_curent) + "</span>" : '<span style="color:var(--ink-faint)">"”</span>') + "</td>" +
+        "<td>" + badgeFor(c) + "</td>" +
+        '<td><div class="flagrow">' +
+          '<span class="flag' + (c.gdpr_semnat ? " on" : "") + '">GDPR</span>' +
+          '<span class="flag' + (c.vollmacht_semnat ? " on" : "") + '">VLM</span>' +
+          '<span class="flag' + (c.demisie_semnata ? " on" : "") + '">DEM</span>' +
+          '<span class="flag' + (c.este_afiliat ? " on" : "") + '">AFIL</span>' +
+        "</div></td>" +
+        '<td class="mono">' + fmtWhen(c.ultima_interactiune) + "</td>" +
+      "</tr>";
+    }).join("");
+  }
+
+  function renderLeadsGhid(data){
+    var leads = (data.leads_ghid_remote || []).slice();
+    document.getElementById("leadsGhidCount").textContent = leads.length + " leads";
+    var body = document.getElementById("leadsGhidBody");
+    if(!leads.length){
+      body.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--ink-faint);padding:22px 10px;">Niciun lead momentan.</td></tr>';
+      return;
+    }
+    body.innerHTML = leads.map(function(l){
+      return "<tr>" +
+        "<td>" + escapeHtml(l.nume || ""”") + "</td>" +
+        '<td class="mono">' + escapeHtml(l.email || ""”") + "</td>" +
+        '<td class="cell-phone">' + escapeHtml(l.telefon || ""”") + "</td>" +
+        "<td>" + (l.limba ? '<span class="tag">' + escapeHtml(String(l.limba).toUpperCase()) + "</span>" : '<span style="color:var(--ink-faint)">"”</span>') + "</td>" +
+        '<td class="mono">' + fmtWhen(l.creat_la) + "</td>" +
+      "</tr>";
+    }).join("");
+  }
+
+  function renderAll(data){
+    state.data = data;
+    renderKpis(data);
+    renderConvList(data);
+    renderThread(data);
+    renderCallTable(data);
+    renderCallThread(data);
+    renderPipeline(data);
+    renderLeadsGhid(data);
+  }
+
+  var tickTimer = null;
+  function startTicker(){
+    if(tickTimer) clearInterval(tickTimer);
+    tickTimer = setInterval(function(){
+      if(state.lastSyncIso){
+        var t;
+        try{ t = new Date(state.lastSyncIso).getTime(); }catch(e){ t = null; }
+        if(t) setStatus(true, "Sincronizat "” date de acum " + timeAgo(Date.now() - t));
+      }
+    }, 1000);
+  }
+
+  function handleSnapshot(snap){
+    if(!snap.exists){
+      setStatus(false, "AÈ™tept prima sincronizare de date"¦");
+      showError(true, "<b>ÃŽncÄƒ nu existÄƒ nicio sincronizare.</b> AceastÄƒ paginÄƒ citeÈ™te dintr-o bazÄƒ de date proprie a Artifactului (documentul <code>snapshot/latest</code>), pe care Claude o completeazÄƒ periodic din serverul intern. Cere-i lui Claude sÄƒ ruleze o sincronizare ca sÄƒ aparÄƒ primele date.");
+      return;
+    }
+    var data = snap.data() || {};
+    state.lastSyncIso = data.generat_la || null;
+    showError(false);
+    if(state.lastSyncIso){
+      var t = new Date(state.lastSyncIso).getTime();
+      setStatus(true, "Sincronizat "” date de acum " + timeAgo(Date.now() - t));
+    } else {
+      setStatus(true, "Sincronizat");
+    }
+    renderAll(data);
+  }
+
+  function handleSnapshotError(err){
+    setStatus(false, "Eroare la citirea datelor (" + escapeHtml(err && err.code || "necunoscutÄƒ") + ")");
+    showError(true, "<b>Nu pot citi baza de date a Artifactului.</b> " + escapeHtml(err && err.message || "") +
+      " ReÃ®ncarcÄƒ pagina; dacÄƒ persistÄƒ, cere-i lui Claude sÄƒ verifice.");
+  }
+
+  var dbRef = null;
+
+  async function initDb(){
+    if(typeof window.claude === "undefined" || !window.claude || typeof window.claude.use !== "function"){
+      setStatus(false, "Mediul acesta nu suportÄƒ capacitatea de bazÄƒ de date a Artifacts.");
+      showError(true, "<b>Nu pot accesa baza de date.</b> Deschide acest Artifact direct pe claude.ai (nu ca fiÈ™ier salvat local) ca sÄƒ funcÈ›ioneze sincronizarea live.");
+      return;
+    }
+    var db;
+    try{
+      db = await window.claude.use("db");
+    }catch(e){
+      db = null;
+    }
+    if(!db){
+      setStatus(false, "Baza de date nu e disponibilÄƒ Ã®n aceastÄƒ vizualizare.");
+      showError(true, "<b>Capacitatea de bazÄƒ de date nu e disponibilÄƒ aici.</b> Deschide Artifactul din claude.ai, autentificat, ca membru al organizaÈ›iei "” pagina citeÈ™te datele dintr-un document propriu al Artifactului, nu direct de pe internet.");
+      return;
+    }
+    dbRef = db.doc("snapshot/latest");
+    dbRef.onSnapshot(handleSnapshot, handleSnapshotError);
+  }
+
+  document.getElementById("btnRefresh").addEventListener("click", async function(){
+    if(!dbRef){ initDb(); return; }
+    try{
+      var snap = await dbRef.get();
+      handleSnapshot(snap);
+    }catch(e){
+      handleSnapshotError(e);
+    }
+  });
+
+  document.getElementById("pipeSearch").addEventListener("input", function(e){
+    state.pipeSearch = e.target.value;
+    if(state.data) renderPipeline(state.data);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".chip[data-filter]"), function(chip){
+    chip.addEventListener("click", function(){
+      Array.prototype.forEach.call(document.querySelectorAll(".chip[data-filter]"), function(c){ c.classList.remove("active"); });
+      chip.classList.add("active");
+      state.pipeFilter = chip.getAttribute("data-filter");
+      if(state.data) renderPipeline(state.data);
+    });
+  });
+
+  // ---- pornire ----
+  startTicker();
+  setStatus(false, "Se conecteazÄƒ la baza de date a Artifactului"¦");
+  initDb();
+})();
+</script>
+
+</body></html>
+

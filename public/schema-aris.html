@@ -1,0 +1,320 @@
+<title>Harta Aris Consulting</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #f4f0e6;
+    --surface: #ffffff;
+    --surface-2: #fbf7ee;
+    --ink: #1c2b45;
+    --ink-soft: #5b6478;
+    --border: #ddd2b8;
+    --gold: #a8792f;
+    --gold-bg: #f3e6c8;
+    --green: #2f6b4f;
+    --green-bg: #e3efe6;
+    --shadow: 0 1px 2px rgba(28,43,69,.06), 0 6px 20px rgba(28,43,69,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1a2e;
+      --surface: #16233d;
+      --surface-2: #1a2942;
+      --ink: #f0ece1;
+      --ink-soft: #a9b3c9;
+      --border: #2c3c5c;
+      --gold: #e8c07a;
+      --gold-bg: #2a2413;
+      --green: #7fcca3;
+      --green-bg: #16261e;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1a2e;
+    --surface: #16233d;
+    --surface-2: #1a2942;
+    --ink: #f0ece1;
+    --ink-soft: #a9b3c9;
+    --border: #2c3c5c;
+    --gold: #e8c07a;
+    --gold-bg: #2a2413;
+    --green: #7fcca3;
+    --green-bg: #16261e;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', system-ui, sans-serif;
+    padding: 28px 20px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  header { text-align: center; margin-bottom: 22px; }
+  header .eyebrow {
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 700; margin-bottom: 6px;
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif; font-weight: 700;
+    font-size: clamp(28px, 5vw, 42px); margin: 0 0 6px; text-wrap: balance;
+  }
+  header p { color: var(--ink-soft); margin: 0; font-size: 14.5px; }
+
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 18px 14px 8px;
+  }
+  svg { display: block; width: 100%; height: auto; }
+  .diagram-text { font-family: 'Public Sans', system-ui, sans-serif; }
+
+  figcaption {
+    text-align: center; color: var(--ink-soft); font-size: 13px;
+    margin: 10px 4px 0; line-height: 1.5;
+  }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: center;
+    margin: 22px 0 6px; font-size: 12.5px; color: var(--ink-soft);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .swatch { width: 13px; height: 13px; border-radius: 4px; display: inline-block; flex: none; }
+
+  footer {
+    text-align: center; margin-top: 22px; font-size: 12px; color: var(--ink-soft);
+  }
+  footer strong { color: var(--ink); }
+
+  @media print {
+    body { background: #fff; max-width: none; padding: 6mm; }
+    .stage { box-shadow: none; border: 1px solid #ccc; }
+  }
+  @media (max-width: 480px) {
+    body { padding: 20px 10px 40px; }
+  }
+</style>
+
+<header>
+  <div class="eyebrow">Harta sistemului · document viu, se actualizeazÄƒ</div>
+  <h1>Aris Consulting</h1>
+  <p>Cum intrÄƒ un romÃ¢n Ã®n sistem, ce cumpÄƒrÄƒ, È™i cum circulÄƒ banii "” inclusiv comisionul de 10%.</p>
+</header>
+
+<div class="stage">
+<figure style="margin:0">
+<svg viewBox="0 0 1200 1585" role="img" aria-label="Diagrama sistemului Aris Consulting: trei canale de intrare (Life n' Five, apeluri DVAG, recomandari) alimenteaza doua motoare AI (Maya si Consultantul WhatsApp), care conduc catre un catalog de produse si servicii (ghiduri, dosare administrative, consultatii, integrare, inscriere masina, Starlink, curs de igiena); fiecare plata se imparte 10% catre afiliat si 90% catre Aris Consulting; iar orice client poate deveni el insusi afiliat, inchizand o bucla de crestere inapoi spre recomandari.">
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--green)"/>
+    </marker>
+    <marker id="arrowGold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--gold)"/>
+    </marker>
+  </defs>
+
+  <g class="diagram-text" fill="var(--ink)" stroke="var(--ink)">
+
+  <!-- ============ ROW A: intrare ============ -->
+  <text x="600" y="28" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="var(--ink-soft)" stroke="none">CUM INTRÄ‚ UN ROMÃ‚N ÃŽN SISTEM</text>
+
+  <!-- A1 Life n' Five -->
+  <rect x="40" y="44" width="340" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="210" y="76" text-anchor="middle" font-size="17" font-weight="700" stroke="none">Life n' Five</text>
+  <text x="210" y="98" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">conÈ›inut, reÈ›ele sociale,</text>
+  <text x="210" y="115" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">live streaming multi-platformÄƒ</text>
+
+  <!-- A2 DVAG cold calls -->
+  <rect x="430" y="44" width="340" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="600" y="76" text-anchor="middle" font-size="17" font-weight="700" stroke="none">Apeluri la rece DVAG</text>
+  <text x="600" y="98" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">Maya sunÄƒ potenÈ›iali clienÈ›i,</text>
+  <text x="600" y="115" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">programeazÄƒ Ã®ntÃ¢lniri gratuite</text>
+
+  <!-- A3 Recomandari -->
+  <rect x="820" y="44" width="340" height="96" rx="12" fill="var(--gold-bg)" stroke="var(--gold)" stroke-width="1.5"/>
+  <text x="990" y="76" text-anchor="middle" font-size="17" font-weight="700" stroke="none">RecomandÄƒri (afiliaÈ›i)</text>
+  <text x="990" y="98" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">orice romÃ¢n "” telefonic</text>
+  <text x="990" y="115" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">sau prin reÈ›ele sociale</text>
+
+  <!-- arrows down to row B -->
+  <line x1="210" y1="140" x2="380" y2="200" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="600" y1="140" x2="600" y2="200" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="990" y1="140" x2="820" y2="200" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- ============ ROW B: motoare AI ============ -->
+  <text x="600" y="188" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="var(--ink-soft)" stroke="none">MOTOARELE AI</text>
+
+  <rect x="140" y="204" width="430" height="90" rx="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.8"/>
+  <text x="355" y="236" text-anchor="middle" font-size="16.5" font-weight="700" stroke="none">🚀Ž™ Maya "” telefonic DVAG</text>
+  <text x="355" y="258" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">voce · programeazÄƒ Ã®ntÃ¢lniri · cere recomandÄƒri</text>
+  <text x="355" y="277" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">integrare Ã®n Germania (nu doar romÃ¢ni)</text>
+
+  <rect x="630" y="204" width="430" height="90" rx="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.8"/>
+  <text x="845" y="236" text-anchor="middle" font-size="16.5" font-weight="700" stroke="none">🚀’¬ Consultant AI "” WhatsApp</text>
+  <text x="845" y="258" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">text · 24/7 · multilingv (RO/ES/EN)</text>
+  <text x="845" y="277" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">10 specialiÈ™ti + colectare dosare</text>
+
+  <line x1="355" y1="294" x2="500" y2="336" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="845" y1="294" x2="700" y2="336" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- ============ ROW C: hub ============ -->
+  <rect x="200" y="344" width="800" height="66" rx="14" fill="var(--ink)" stroke="var(--ink)"/>
+  <text x="600" y="384" text-anchor="middle" font-size="21" font-weight="700" fill="var(--bg)" stroke="none">ARIS CONSULTING</text>
+
+  <!-- fan-out arrows to products -->
+  <line x1="320" y1="410" x2="185" y2="448" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="480" y1="410" x2="510" y2="448" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="720" y1="410" x2="690" y2="448" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <line x1="880" y1="410" x2="1015" y2="448" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <!-- ============ ROW D: produse (grid 2 x 4) ============ -->
+  <text x="600" y="438" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="var(--ink-soft)" stroke="none">CE OFERIM</text>
+
+  <!-- card template: x,y,w=520,h=96 -->
+  <!-- Card 1 -->
+  <rect x="60" y="452" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="480" font-size="15.5" font-weight="700" stroke="none">Ghid digital (1 din 10 domenii)</text>
+  <text x="84" y="500" font-size="12.5" fill="var(--ink-soft)" stroke="none">muncÄƒ · social · locuire · trafic · sÄƒnÄƒtate · acte"¦</text>
+  <text x="556" y="480" text-anchor="end" font-size="17" font-weight="800" fill="var(--gold)" stroke="none">$47</text>
+  <text x="556" y="500" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">stan.store</text>
+
+  <!-- Card 2 -->
+  <rect x="620" y="452" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="480" font-size="15.5" font-weight="700" stroke="none">Ghid + Consultant AI WhatsApp</text>
+  <text x="644" y="500" font-size="12.5" fill="var(--ink-soft)" stroke="none">acces 30 zile, Ã®ntrebÄƒri nelimitate (plafonate)</text>
+  <text x="1116" y="480" text-anchor="end" font-size="17" font-weight="800" fill="var(--gold)" stroke="none">$97</text>
+  <text x="1116" y="500" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">stan.store</text>
+
+  <!-- Card 3 -->
+  <rect x="60" y="572" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="600" font-size="15.5" font-weight="700" stroke="none">Dosare administrative</text>
+  <text x="84" y="620" font-size="12.5" fill="var(--ink-soft)" stroke="none">Familie · Venit · Cazier · Gewerbe · duplicate acte</text>
+  <text x="556" y="600" text-anchor="end" font-size="17" font-weight="800" fill="var(--gold)" stroke="none">â‚¬219"“259</text>
+  <text x="556" y="620" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">WhatsApp</text>
+
+  <!-- Card 4 -->
+  <rect x="620" y="572" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="600" font-size="15.5" font-weight="700" stroke="none">Dosar Complex</text>
+  <text x="644" y="620" font-size="12.5" fill="var(--ink-soft)" stroke="none">Widerspruch · Grundsicherung · Anerkennung</text>
+  <text x="1116" y="600" text-anchor="end" font-size="17" font-weight="800" fill="var(--gold)" stroke="none">â‚¬349</text>
+  <text x="1116" y="620" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">WhatsApp</text>
+
+  <!-- Card 5 -->
+  <rect x="60" y="692" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="720" font-size="15.5" font-weight="700" stroke="none">ConsultaÈ›ie personalÄƒ 1-la-1</text>
+  <text x="84" y="740" font-size="12.5" fill="var(--ink-soft)" stroke="none">60 min video · gratuitÄƒ dacÄƒ apoi cumperi ceva</text>
+  <text x="556" y="720" text-anchor="end" font-size="17" font-weight="800" fill="var(--gold)" stroke="none">â‚¬30</text>
+  <text x="556" y="740" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">WhatsApp</text>
+
+  <!-- Card 6 -->
+  <rect x="620" y="692" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="720" font-size="15.5" font-weight="700" stroke="none">ConsultanÈ›Äƒ financiarÄƒ DVAG</text>
+  <text x="644" y="740" font-size="12.5" fill="var(--ink-soft)" stroke="none">gratuitÄƒ · venit din comisioane DVAG reale</text>
+  <text x="1116" y="720" text-anchor="end" font-size="17" font-weight="800" fill="var(--green)" stroke="none">gratuit</text>
+  <text x="1116" y="740" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">telefon</text>
+
+  <!-- Card 7 -->
+  <rect x="60" y="812" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="840" font-size="15.5" font-weight="700" stroke="none">Sprijin integrare Ã®n Germania</text>
+  <text x="84" y="860" font-size="12.5" fill="var(--ink-soft)" stroke="none">nu doar romÃ¢ni "” orice nou-venit</text>
+  <text x="556" y="840" text-anchor="end" font-size="17" font-weight="800" fill="var(--green)" stroke="none">gratuit</text>
+  <text x="556" y="860" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">telefon (Maya)</text>
+
+  <!-- Card 8 -->
+  <rect x="620" y="812" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="840" font-size="15.5" font-weight="700" stroke="none">ÃŽnscriere maÈ™inÄƒ (Zulassungsdienst)</text>
+  <text x="644" y="860" font-size="12.5" fill="var(--ink-soft)" stroke="none">+ asigurare prin link afiliat, cu Vollmacht</text>
+  <text x="1116" y="840" text-anchor="end" font-size="17" font-weight="800" fill="var(--gold)" stroke="none">99â‚¬+</text>
+  <text x="1116" y="860" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">fizic + telefon</text>
+
+  <!-- Card 9 -->
+  <rect x="60" y="932" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="960" font-size="15.5" font-weight="700" stroke="none">Internet Starlink</text>
+  <text x="84" y="980" font-size="12.5" fill="var(--ink-soft)" stroke="none">instalare asistatÄƒ gratuit, prin video-call</text>
+  <text x="556" y="960" text-anchor="end" font-size="17" font-weight="800" fill="var(--gold)" stroke="none">de la 29â‚¬/lunÄƒ</text>
+  <text x="556" y="980" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">link afiliat</text>
+
+  <!-- Card 10 -->
+  <rect x="620" y="932" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="644" y="960" font-size="15.5" font-weight="700" stroke="none">Curs igienÄƒ alimentarÄƒ (§43)</text>
+  <text x="644" y="980" font-size="12.5" fill="var(--ink-soft)" stroke="none">certificat oficial Ã®n romÃ¢nÄƒ, Ã®n minute</text>
+  <text x="1116" y="960" text-anchor="end" font-size="17" font-weight="800" fill="var(--gold)" stroke="none">40"“45â‚¬</text>
+  <text x="1116" y="980" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">online</text>
+
+  <!-- Card 11 -->
+  <rect x="60" y="1052" width="520" height="96" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="84" y="1080" font-size="15.5" font-weight="700" stroke="none">Primul job Ã®n Germania</text>
+  <text x="84" y="1100" font-size="12.5" fill="var(--ink-soft)" stroke="none">CV + scrisoare de intenÈ›ie, stil german</text>
+  <text x="556" y="1080" text-anchor="end" font-size="17" font-weight="800" fill="var(--gold)" stroke="none">$47</text>
+  <text x="556" y="1100" text-anchor="end" font-size="11" fill="var(--ink-soft)" stroke="none">stan.store</text>
+
+  <!-- Card 12 - viitor -->
+  <rect x="620" y="1052" width="520" height="96" rx="12" fill="none" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <text x="880" y="1090" text-anchor="middle" font-size="14" fill="var(--ink-soft)" stroke="none">+ urmÄƒtorul produs</text>
+  <text x="880" y="1110" text-anchor="middle" font-size="12" fill="var(--ink-soft)" stroke="none">(loc rezervat "” actualizeazÄƒ aici)</text>
+
+  <!-- arrows from products down to payment -->
+  <line x1="600" y1="1148" x2="600" y2="1184" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- ============ ROW E: plata & comision ============ -->
+  <text x="600" y="1176" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="var(--ink-soft)" stroke="none">CUM CIRCULÄ‚ BANII</text>
+
+  <rect x="430" y="1192" width="340" height="70" rx="12" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.8"/>
+  <text x="600" y="1233" text-anchor="middle" font-size="16" font-weight="700" stroke="none">Client plÄƒteÈ™te</text>
+
+  <line x1="500" y1="1262" x2="330" y2="1310" stroke="var(--gold)" stroke-width="1.8" marker-end="url(#arrowGold)"/>
+  <line x1="700" y1="1262" x2="870" y2="1310" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <rect x="120" y="1318" width="420" height="84" rx="12" fill="var(--gold-bg)" stroke="var(--gold)" stroke-width="1.6"/>
+  <text x="330" y="1350" text-anchor="middle" font-size="16" font-weight="800" fill="var(--gold)" stroke="none">10% â†’ afiliatul</text>
+  <text x="330" y="1372" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">dacÄƒ cineva l-a recomandat pe client</text>
+  <text x="330" y="1390" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">(nume/telefon "” fÄƒrÄƒ cod special)</text>
+
+  <rect x="660" y="1318" width="420" height="84" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="870" y="1350" text-anchor="middle" font-size="16" font-weight="800" stroke="none">90% â†’ Aris Consulting</text>
+  <text x="870" y="1372" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">acoperÄƒ costuri + profit</text>
+
+  <!-- ============ ROW F: bucla de crestere ============ -->
+  <text x="600" y="1454" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="var(--ink-soft)" stroke="none">BUCLA DE CREÈ˜TERE</text>
+
+  <line x1="330" y1="1402" x2="330" y2="1476" stroke="var(--green)" stroke-width="1.8" marker-end="url(#arrowGreen)"/>
+  <line x1="870" y1="1402" x2="870" y2="1476" stroke="currentColor" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+  <rect x="120" y="1480" width="420" height="84" rx="12" fill="var(--green-bg)" stroke="var(--green)" stroke-width="1.6"/>
+  <text x="330" y="1512" text-anchor="middle" font-size="16" font-weight="800" fill="var(--green)" stroke="none">Afiliatul e plÄƒtit</text>
+  <text x="330" y="1534" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">devine, la rÃ¢ndul lui, un vÃ¢nzÄƒtor</text>
+  <text x="330" y="1552" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">telefonic sau pe reÈ›ele sociale</text>
+
+  <rect x="660" y="1480" width="420" height="84" rx="12" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="870" y="1512" text-anchor="middle" font-size="16" font-weight="800" stroke="none">Clientul e mulÈ›umit</text>
+  <text x="870" y="1534" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">botul Ã®l Ã®ntreabÄƒ È™i pe el</text>
+  <text x="870" y="1552" text-anchor="middle" font-size="12.5" fill="var(--ink-soft)" stroke="none">dacÄƒ vrea sÄƒ recomande mai departe</text>
+
+  <!-- curved loop back to "Recomandari" box at top, routed clear along the left margin -->
+  <path d="M 120 1522 C 55 1522, 15 1510, 15 1180 L 15 60 C 15 30, 35 12, 65 12 L 975 12 L 975 42"
+        fill="none" stroke="var(--green)" stroke-width="2.2" marker-end="url(#arrowGreen)"/>
+
+  </g>
+</svg>
+<figcaption>De la trei canale de intrare, prin doi asistenÈ›i AI, spre un catalog tot mai larg de produse È™i servicii "” fiecare platÄƒ taie 10% cÄƒtre cine a recomandat clientul, iar clientul mulÈ›umit devine, la rÃ¢ndul lui, sursÄƒ de noi recomandÄƒri.</figcaption>
+</figure>
+</div>
+
+<div class="legend">
+  <span><span class="swatch" style="background:var(--gold-bg);border:1.5px solid var(--gold)"></span>afiliere / bani cÄƒtre afiliat</span>
+  <span><span class="swatch" style="background:var(--green-bg);border:1.5px solid var(--green)"></span>bucla de creÈ™tere</span>
+  <span><span class="swatch" style="background:var(--surface-2);border:1.5px solid var(--border)"></span>produs / serviciu</span>
+  <span><span class="swatch" style="background:var(--ink)"></span>Aris Consulting (hub)</span>
+</div>
+
+<footer>Actualizat: <strong>10 septembrie 2026</strong> "” adaugÄƒ un card nou de fiecare datÄƒ cÃ¢nd lansÄƒm un produs.</footer>
+

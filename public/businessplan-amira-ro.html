@@ -1,0 +1,346 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Plan de Afaceri Amira Consulting</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #f6f4ee; --surface: #ffffff; --surface-2: #f0ede2;
+    --ink: #161f33; --ink-soft: #5c6579; --border: #ddd8c7;
+    --indigo: #5b4b9e; --indigo-bg: #eae5f6;
+    --amber: #ab7a2e; --amber-bg: #f4e7c9;
+    --teal: #1f7f66; --teal-bg: #dcefe7;
+    --rust: #b1552f; --rust-bg: #f5e1d3;
+    --shadow: 0 1px 2px rgba(22,31,51,.06), 0 8px 24px rgba(22,31,51,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10162a; --surface: #171f38; --surface-2: #1b2542;
+      --ink: #f0ede2; --ink-soft: #a6afc4; --border: #2c3757;
+      --indigo: #b3a1ef; --indigo-bg: #241c40;
+      --amber: #e8bd6f; --amber-bg: #2b2311;
+      --teal: #7fd4b6; --teal-bg: #122820;
+      --rust: #e39a72; --rust-bg: #2c1c14;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10162a; --surface: #171f38; --surface-2: #1b2542;
+    --ink: #f0ede2; --ink-soft: #a6afc4; --border: #2c3757;
+    --indigo: #b3a1ef; --indigo-bg: #241c40;
+    --amber: #e8bd6f; --amber-bg: #2b2311;
+    --teal: #7fd4b6; --teal-bg: #122820;
+    --rust: #e39a72; --rust-bg: #2c1c14;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 28px rgba(0,0,0,.4);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Public Sans', system-ui, sans-serif;
+    padding: 34px 20px 70px; max-width: 880px; margin: 0 auto;
+    line-height: 1.6; font-size: 15px;
+  }
+  header { margin-bottom: 34px; }
+  .eyebrow { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--indigo); font-weight: 700; margin-bottom: 8px; }
+  h1 { font-family: 'Fraunces', Georgia, serif; font-weight: 700; font-size: clamp(28px, 5vw, 40px); margin: 0 0 10px; text-wrap: balance; }
+  header p.lead { color: var(--ink-soft); margin: 0; font-size: 15px; max-width: 62ch; }
+  header .meta { margin-top: 16px; font-size: 12.5px; color: var(--ink-soft); display: flex; gap: 18px; flex-wrap: wrap; }
+  header .meta b { color: var(--ink); }
+
+  nav.toc { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 20px; margin-bottom: 32px; box-shadow: var(--shadow); }
+  nav.toc h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-soft); margin: 0 0 10px; }
+  nav.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 24px; font-size: 13.5px; }
+  nav.toc li { margin-bottom: 4px; break-inside: avoid; }
+  nav.toc a { color: var(--ink); text-decoration: none; }
+  nav.toc a:hover { color: var(--indigo); }
+
+  section { margin-bottom: 34px; scroll-margin-top: 20px; }
+  section > .num { font-family: 'Fraunces', Georgia, serif; font-weight: 700; font-size: 13px; color: var(--indigo); letter-spacing: .04em; }
+  h2 { font-family: 'Fraunces', Georgia, serif; font-size: 22px; font-weight: 700; margin: 2px 0 14px; }
+  h3 { font-size: 15.5px; font-weight: 700; margin: 20px 0 8px; }
+  p { margin: 0 0 12px; }
+  ul, ol.plain { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 5px; }
+
+  .box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow); margin-bottom: 14px; }
+  .callout { border: 1.5px solid var(--accent); background: var(--accent-bg); border-radius: 12px; padding: 14px 16px; font-size: 13.5px; margin: 14px 0; }
+  .callout strong { color: var(--accent); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+  th, td { padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--surface-2); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-soft); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+  tr.total td { font-weight: 800; background: var(--surface-2); }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+
+  .swot { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .swot .cell { border-radius: 12px; padding: 14px 16px; border: 1.5px solid var(--accent); background: var(--accent-bg); }
+  .swot .cell h4 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--accent); }
+  .swot ul { margin: 0; padding-left: 18px; font-size: 13px; }
+
+  .chart { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px 10px; box-shadow: var(--shadow); margin: 14px 0; }
+  svg text { font-family: 'Public Sans', system-ui, sans-serif; }
+
+  footer { text-align: center; margin-top: 40px; font-size: 12px; color: var(--ink-soft); }
+  footer strong { color: var(--ink); }
+
+  @media (max-width: 620px) {
+    .swot { grid-template-columns: 1fr; }
+    nav.toc ol { columns: 1; }
+  }
+</style>
+
+<header>
+  <div class="eyebrow">Plan de afaceri · septembrie 2026</div>
+  <h1>Amira Consulting</h1>
+  <p class="lead">Servicii digitale de consultanÈ›Äƒ È™i intermediere pentru cetÄƒÈ›enii romÃ¢ni din Germania "” sprijin administrativ, consultanÈ›Äƒ financiarÄƒ È™i asistenÈ›Äƒ la integrare, livrate prin canale de comunicare bazate pe inteligenÈ›Äƒ artificialÄƒ (WhatsApp, telefon).</p>
+  <div class="meta">
+    <span><b>Fondator:</b> Robert Catalin Bercea</span>
+    <span><b>Sediu:</b> RosenstraÃŸe 1c, 49610 QuakenbrÃ¼ck</span>
+    <span><b>FormÄƒ juridicÄƒ:</b> ÃŽntreprindere individualÄƒ (activitate secundarÄƒ)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h2>Cuprins</h2>
+  <ol>
+    <li><a href="#s1">Rezumat</a></li>
+    <li><a href="#s2">Profilul fondatorului</a></li>
+    <li><a href="#s3">Ideea de afaceri È™i oferta de servicii</a></li>
+    <li><a href="#s4">Analiza pieÈ›ei È™i a concurenÈ›ei</a></li>
+    <li><a href="#s5">Marketing È™i vÃ¢nzÄƒri</a></li>
+    <li><a href="#s6">FormÄƒ juridicÄƒ, sediu, organizare</a></li>
+    <li><a href="#s7">Cadrul legal È™i conformitate</a></li>
+    <li><a href="#s8">OportunitÄƒÈ›i È™i riscuri</a></li>
+    <li><a href="#s9">Planificare financiarÄƒ</a></li>
+    <li><a href="#s10">PerspectivÄƒ de creÈ™tere: extindere internaÈ›ionalÄƒ</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+  <div class="num">01</div>
+  <h2>Rezumat</h2>
+  <p>Amira Consulting oferÄƒ servicii digitale de consultanÈ›Äƒ È™i intermediere pentru comunitatea romÃ¢nÄƒ din Germania (precum È™i pentru romÃ¢nii din RomÃ¢nia care rezolvÄƒ probleme administrative cu Germania sau vor sÄƒ vinÄƒ aici). Nucleul ofertei este un consultant digital bazat pe inteligenÈ›Äƒ artificialÄƒ, disponibil pe WhatsApp È™i telefon, care rÄƒspunde non-stop Ã®n limba romÃ¢nÄƒ, pregÄƒteÈ™te cereri È™i organizeazÄƒ paÈ™ii necesari la instituÈ›ii.</p>
+  <p>Modelul de afaceri combinÄƒ patru surse de venit: (1) ghiduri digitale È™i pachete de consultanÈ›Äƒ, (2) ajutor la depunerea de cereri administrative (asistenÈ›Äƒ, nu consultanÈ›Äƒ juridicÄƒ), (3) intermediere pe bazÄƒ de comision (Ã®nscriere auto, internet, plasare de personal) È™i (4) un program de recomandare care transformÄƒ clienÈ›ii Ã®n parteneri. Structura de costuri este foarte redusÄƒ datoritÄƒ utilizÄƒrii tehnologiei AI (costuri variabile sub 0,50 â‚¬ per interacÈ›iune), ceea ce permite marje brute ridicate cu necesar de capital minim.</p>
+  <p>Fondatorul are experienÈ›Äƒ relevantÄƒ ca agent financiar È™i de asigurÄƒri Ã®nregistrat (§34d GewO, DVAG) È™i cunoaÈ™te grupul È›intÄƒ din activitatea proprie. Activitatea Ã®ncepe ca activitate secundarÄƒ È™i, la atingerea unei stabilitÄƒÈ›i suficiente, va fi transformatÄƒ Ã®n activitate principalÄƒ.</p>
+</section>
+
+<section id="s2">
+  <div class="num">02</div>
+  <h2>Profilul fondatorului</h2>
+  <p><strong>Robert Catalin Bercea</strong>, nÄƒscut la 29.03.1990 Ã®n CÃ¢mpulung, RomÃ¢nia, domiciliat Ã®n QuakenbrÃ¼ck, Niedersachsen. CetÄƒÈ›enie romÃ¢nÄƒ, stabilit de mult timp Ã®n Germania.</p>
+  <ul>
+    <li>Agent financiar È™i de asigurÄƒri Ã®nregistrat (§34d GewO) la DVAG "” experienÈ›Äƒ practicÄƒ Ã®n consultanÈ›a clienÈ›ilor, construirea Ã®ncrederii È™i activitatea de intermediere.</li>
+    <li>Acces direct, real la grupul È›intÄƒ: comunitatea romÃ¢nÄƒ din Germania, ale cÄƒrei provocÄƒri administrative tipice le cunoaÈ™te din propria experienÈ›Äƒ.</li>
+    <li>ÃŽnÈ›elegere tehnicÄƒ pentru construirea È™i operarea sistemelor de comunicare bazate pe AI (automatizare, baze de date, asistenÈ›i vocali), care formeazÄƒ baza activitÄƒÈ›ii operaÈ›ionale.</li>
+  </ul>
+</section>
+
+<section id="s3">
+  <div class="num">03</div>
+  <h2>Ideea de afaceri È™i oferta de servicii</h2>
+  <p>MulÈ›i cetÄƒÈ›eni romÃ¢ni din Germania se confruntÄƒ cu aceleaÈ™i obstacole administrative recurente: cereri de Kindergeld È™i BÃ¼rgergeld, Ã®nscrierea maÈ™inii, recunoaÈ™terea calificÄƒrilor obÈ›inute Ã®n strÄƒinÄƒtate, formalitÄƒÈ›i de Ã®nregistrare. Barierele lingvistice È™i necunoaÈ™terea structurilor administrative duc frecvent la cereri Ã®ntÃ¢rziate sau eÈ™uate. ÃŽn acelaÈ™i timp, ofertele existente sunt fie costisitoare (cabinete de avocaturÄƒ, birouri clasice de traduceri), fie greu accesibile (timpi lungi de aÈ™teptare la instituÈ›ii È™i centre de consiliere).</p>
+  <p>Amira Consulting acoperÄƒ acest gol printr-un consultant digital bazat pe AI, disponibil instant, 24 de ore din 24, Ã®n limba romÃ¢nÄƒ, prin WhatsApp. Oferta de servicii se structureazÄƒ Ã®n È™ase categorii:</p>
+  <h3>A. Ghiduri digitale</h3>
+  <p>Ghiduri descÄƒrcabile pentru peste zece domenii (dreptul muncii, dreptul social, dreptul circulaÈ›iei, locuire, integrare), precum È™i un pachet extins cu acces de 30 de zile la consultantul AI.</p>
+  <h3>B. Ajutor la cereri (cazuri simple)</h3>
+  <p>Sprijin la completarea È™i depunerea cererilor: Kindergeld, Elterngeld, BÃ¼rgergeld, cazier judiciar german, Ã®nregistrare activitate (Gewerbeanmeldung), duplicat dovadÄƒ domiciliu, prelungire È™edere, scutire de taxÄƒ radio-TV, precum È™i ajutor la strÃ¢ngerea actelor pentru clarificarea contului de pensie (RO-DE).</p>
+  <h3>C. Ajutor la cereri (cazuri complexe)</h3>
+  <p>PregÄƒtirea È™i depunerea contestaÈ›iilor (Widerspruch), cererilor de asigurare de bazÄƒ (Grundsicherung) È™i procedurilor de recunoaÈ™tere a calificÄƒrilor profesionale strÄƒine "” Ã®ntotdeauna ca sprijin organizatoric, niciodatÄƒ ca reprezentare juridicÄƒ.</p>
+  <h3>C.2 Coaching pentru dosarul de chirie (Wohnungssuche)</h3>
+  <p>Sprijin la construirea unei candidaturi puternice pentru chirie (Mieterselbstauskunft, explicarea scorului SCHUFA, scrisoare de prezentare personalizatÄƒ cÄƒtre proprietar). Deliberat, nu este activitate de intermediere imobiliarÄƒ: nu se intermediazÄƒ un anumit apartament (pentru asta ar fi necesarÄƒ o licenÈ›Äƒ de agent imobiliar conform §34c GewO), ci se pregÄƒteÈ™te exclusiv candidatura independentÄƒ a clientului "” conform cu Bestellerprinzip (§2 alin. 1a WoVermRG).</p>
+  <h3>D. ConsultanÈ›Äƒ</h3>
+  <p>ConsultaÈ›ie personalÄƒ video (60 de minute), consultanÈ›Äƒ financiarÄƒ gratuitÄƒ prin canalul partener DVAG, sprijin general gratuit pentru integrare.</p>
+  <h3>E. Intermediere pe bazÄƒ de comision</h3>
+  <p>Serviciu de Ã®nscriere auto (incl. intermediere asigurare auto printr-un cod de partener), conexiune la internet prin Starlink (link afiliat), curs de igienÄƒ conform §43 din Legea privind protecÈ›ia Ã®mpotriva infecÈ›iilor.</p>
+  <h3>F. Plasare de personal</h3>
+  <p>Intermedierea romÃ¢nilor aflaÈ›i Ã®n cÄƒutarea unui loc de muncÄƒ cÄƒtre angajatori germani. Gratuit pentru candidaÈ›i Ã®n toate cazurile "” remuneraÈ›ia provine exclusiv dintr-un comision de succes plÄƒtit de angajator (20-30% din salariul brut anual), conform legii.</p>
+</section>
+
+<section id="s4">
+  <div class="num">04</div>
+  <h2>Analiza pieÈ›ei È™i a concurenÈ›ei</h2>
+  <p>ÃŽn Germania trÄƒiau, conform Oficiului Federal de StatisticÄƒ (Destatis), la sfÃ¢rÈ™itul anului 2023, aproximativ 909.800 de cetÄƒÈ›eni romÃ¢ni (cea mai recentÄƒ cifrÄƒ oficialÄƒ disponibilÄƒ) "” unul dintre cele mai mari grupuri de imigranÈ›i din UE. La aceÈ™tia se adaugÄƒ un numÄƒr semnificativ de lucrÄƒtori temporari, precum È™i persoane din RomÃ¢nia care planificÄƒ o mutare Ã®n Germania sau trebuie sÄƒ rezolve de la distanÈ›Äƒ proceduri administrative cu Germania. Pentru cifre concrete de venituri sau ratÄƒ de conversie ale unor oferte digitale comparabile pentru grupuri de migranÈ›i nu existÄƒ date de piaÈ›Äƒ publicate "” acest model de afaceri este nou Ã®n aceastÄƒ formÄƒ. De aceea, planificarea financiarÄƒ (capitolul 9) nu se bazeazÄƒ pe o penetrare de piaÈ›Äƒ presupusÄƒ, ci pe capacitatea realÄƒ de timp a fondatorului.</p>
+  <h3>ConcurenÈ›a</h3>
+  <ul>
+    <li><strong>Cabinete de avocaturÄƒ clasice È™i birouri de traduceri:</strong> preÈ› mai ridicat (Ã®nsoÈ›irea la instituÈ›ii costÄƒ Ã®n piaÈ›Äƒ aproximativ 250 â‚¬ per Ã®ntÃ¢lnire), de obicei fÄƒrÄƒ contact direct Ã®n limba romÃ¢nÄƒ Ã®n afara orelor de program.</li>
+    <li><strong>OrganizaÈ›ii de asistenÈ›Äƒ socialÄƒ È™i consiliere comunalÄƒ pentru migranÈ›i:</strong> gratuite, dar cu timpi lungi de aÈ™teptare È™i capacitÄƒÈ›i limitate.</li>
+    <li><strong>Ajutor informal (grupuri de Facebook, cunoÈ™tinÈ›e):</strong> gratuit, dar nesigur È™i fÄƒrÄƒ nicio rÄƒspundere.</li>
+  </ul>
+  <p>Amira Consulting se poziÈ›ioneazÄƒ Ã®ntre aceste extreme: sprijin profesional, disponibil instant, Ã®n limba maternÄƒ, la o fracÈ›iune din costul furnizorilor clasici, posibil datoritÄƒ utilizÄƒrii tehnologiei AI pentru automatizarea consultanÈ›ei iniÈ›iale.</p>
+</section>
+
+<section id="s5">
+  <div class="num">05</div>
+  <h2>Marketing È™i vÃ¢nzÄƒri</h2>
+  <ul>
+    <li><strong>Content marketing:</strong> construit pe baza prezenÈ›ei existente Ã®n social media (videoclipuri scurte, sfaturi practice despre viaÈ›a Ã®n Germania).</li>
+    <li><strong>Contact direct:</strong> apeluri telefonice iniÈ›iate de un asistent AI care prezintÄƒ oferta de consultanÈ›Äƒ.</li>
+    <li><strong>Program de recomandare:</strong> orice persoanÄƒ poate deveni partener gratuit È™i primeÈ™te 10% comision din orice achiziÈ›ie a persoanei recomandate "” fÄƒrÄƒ sÄƒ fi cumpÄƒrat ea Ã®nsÄƒÈ™i ceva anterior. Aceasta genereazÄƒ o creÈ™tere organicÄƒ, bazatÄƒ pe reÈ›ea, cu costuri de marketing minime.</li>
+    <li><strong>VÃ¢nzare Ã®ncruciÈ™atÄƒ prin canalul DVAG:</strong> clienÈ›ii contactaÈ›i pentru consultanÈ›a financiarÄƒ aflÄƒ despre oferta completÄƒ È™i invers.</li>
+  </ul>
+</section>
+
+<section id="s6">
+  <div class="num">06</div>
+  <h2>FormÄƒ juridicÄƒ, sediu, organizare</h2>
+  <p>Activitatea se desfÄƒÈ™oarÄƒ ca Ã®ntreprindere individualÄƒ, ca activitate secundarÄƒ, la domiciliul fondatorului (RosenstraÃŸe 1c, 49610 QuakenbrÃ¼ck). Operarea este independentÄƒ de locaÈ›ie, bazatÄƒ pe internet; nu sunt necesare spaÈ›ii fizice. Implementarea operaÈ›ionalÄƒ se realizeazÄƒ printr-o platformÄƒ de automatizare Ã®n cloud (n8n), conectatÄƒ la servicii de comunicare (Twilio pentru telefonie È™i WhatsApp), o bazÄƒ de date (Supabase), precum È™i modele lingvistice AI (Anthropic Claude) È™i sintezÄƒ vocalÄƒ (ElevenLabs).</p>
+  <p>La atingerea unei stabilitÄƒÈ›i suficiente este prevÄƒzutÄƒ transformarea Ã®n activitate principalÄƒ, eventual cu sprijinul GrÃ¼ndungszuschuss de la Agentur fÃ¼r Arbeit.</p>
+</section>
+
+<section id="s7">
+  <div class="num">07</div>
+  <h2>Cadrul legal È™i conformitate</h2>
+  <ul>
+    <li><strong>Legea serviciilor juridice (RDG):</strong> Toate ajutoarele la cereri sunt oferite exclusiv ca sprijin organizatoric (completare, strÃ¢ngere, depunere de acte), nu ca È™i consultanÈ›Äƒ juridicÄƒ. Cazurile care necesitÄƒ o evaluare juridicÄƒ sunt direcÈ›ionate cÄƒtre instituÈ›ii calificate corespunzÄƒtor (avocat, Rentenberater Ã®nregistrat).</li>
+    <li><strong>RenunÈ›are deliberatÄƒ la consultanÈ›a juridicÄƒ ca produs:</strong> consultanÈ›a juridicÄƒ nu este oferitÄƒ È™i nici nu poate fi intermediatÄƒ prin comision "” §49b alin. 3 BRAO interzice orice comision de recomandare pentru mandate cÄƒtre avocaÈ›i, indiferent cine Ã®l primeÈ™te. CÃ¢nd e nevoie, se face o recomandare gratuitÄƒ cÄƒtre avocaÈ›i independenÈ›i, fÄƒrÄƒ nicio remuneraÈ›ie pentru recomandare.</li>
+    <li><strong>CÄƒutarea locuinÈ›ei:</strong> nu este activitate de intermediere imobiliarÄƒ (fÄƒrÄƒ intermedierea unor apartamente anume, fÄƒrÄƒ nevoie de licenÈ›Äƒ de agent imobiliar); exclusiv coaching pentru candidatura independentÄƒ a clientului, conform cu Bestellerprinzip.</li>
+    <li><strong>Plasarea de personal:</strong> Se realizeazÄƒ conform §296 SGB III exclusiv pe costul angajatorului; candidaÈ›ii nu sunt niciodatÄƒ taxaÈ›i pentru plasarea Ã®n sine.</li>
+    <li><strong>ProtecÈ›ia datelor (GDPR):</strong> ExistÄƒ o declaraÈ›ie completÄƒ de confidenÈ›ialitate; cu toÈ›i furnizorii terÈ›i utilizaÈ›i (Twilio, Anthropic, ElevenLabs, Google, Supabase) existÄƒ sau se vor Ã®ncheia contracte de procesare a datelor.</li>
+    <li><strong>TransparenÈ›a AI (Regulamentul UE privind AI, Art. 50):</strong> ClienÈ›ii sunt informaÈ›i transparent la Ã®nceputul fiecÄƒrei interacÈ›iuni cÄƒ vorbesc cu un sistem AI.</li>
+    <li><strong>Regimul micilor Ã®ntreprinzÄƒtori (§19 UStG):</strong> PÃ¢nÄƒ la atingerea plafoanelor de venit, se factureazÄƒ fÄƒrÄƒ TVA.</li>
+  </ul>
+</section>
+
+<section id="s8">
+  <div class="num">08</div>
+  <h2>OportunitÄƒÈ›i È™i riscuri</h2>
+  <div class="swot">
+    <div class="cell" style="--accent:var(--teal); --accent-bg:var(--teal-bg)">
+      <h4>Puncte forte</h4>
+      <ul><li>Costuri variabile foarte scÄƒzute (sub 0,50 â‚¬ per interacÈ›iune)</li><li>Disponibilitate 24/7 Ã®n limba maternÄƒ a grupului È›intÄƒ</li><li>ExperienÈ›Äƒ È™i reÈ›ea existente Ã®n domeniu (DVAG)</li><li>Surse de venit diversificate</li></ul>
+    </div>
+    <div class="cell" style="--accent:var(--amber); --accent-bg:var(--amber-bg)">
+      <h4>Puncte slabe</h4>
+      <ul><li>ÃŽntreprindere cu o singurÄƒ persoanÄƒ la Ã®nceput "” capacitate limitatÄƒ</li><li>DependenÈ›Äƒ de furnizori API externi (posibile schimbÄƒri de preÈ›)</li><li>Grad de notorietate Ã®ncÄƒ redus pe piaÈ›Äƒ</li></ul>
+    </div>
+    <div class="cell" style="--accent:var(--indigo); --accent-bg:var(--indigo-bg)">
+      <h4>OportunitÄƒÈ›i</h4>
+      <ul><li>Grup È›intÄƒ mare, Ã®n creÈ™tere, fÄƒrÄƒ ofertÄƒ digitalÄƒ comparabilÄƒ</li><li>Programul de recomandare ca pÃ¢rghie de creÈ™tere fÄƒrÄƒ costuri mari de marketing</li><li>Extindere posibilÄƒ cÄƒtre alte comunitÄƒÈ›i est-europene</li></ul>
+    </div>
+    <div class="cell" style="--accent:var(--rust); --accent-bg:var(--rust-bg)">
+      <h4>Riscuri</h4>
+      <ul><li>SchimbÄƒri de reglementare (Regulamentul AI, interpretarea RDG)</li><li>Risc de reputaÈ›ie Ã®n caz de consiliere greÈ™itÄƒ "” de aceea limitare strictÄƒ la ajutor de cereri</li><li>DependenÈ›Äƒ de aprobarea numÄƒrului Twilio È™i disponibilitatea platformei</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="s9">
+  <div class="num">09</div>
+  <h2>Planificare financiarÄƒ</h2>
+
+  <h3>9.1 Necesar de capital (faza de start)</h3>
+  <div class="table-wrap"><table>
+    <tr><th>PoziÈ›ie</th><th class="num">SumÄƒ</th></tr>
+    <tr><td>ÃŽnregistrare / actualizare Gewerbe</td><td class="num">40 â‚¬</td></tr>
+    <tr><td>NumÄƒr Twilio È™i credit (rezervÄƒ de start)</td><td class="num">50 â‚¬</td></tr>
+    <tr><td>Abonamente software (primele 3 luni: n8n, Supabase, ElevenLabs)</td><td class="num">210 â‚¬</td></tr>
+    <tr><td>Buget de marketing de start (faza iniÈ›ialÄƒ)</td><td class="num">150 â‚¬</td></tr>
+    <tr><td>RezervÄƒ pentru neprevÄƒzut</td><td class="num">150 â‚¬</td></tr>
+    <tr class="total"><td>Total</td><td class="num">600 â‚¬</td></tr>
+  </table></div>
+
+  <h3>9.2 FinanÈ›are</h3>
+  <p>Necesarul redus de capital poate fi acoperit Ã®n principiu din fonduri proprii sau din veniturile curente. Suplimentar, se depune o cerere de GrÃ¼ndungszuschuss la Agentur fÃ¼r Arbeit, care asigurÄƒ protecÈ›ia socialÄƒ Ã®n faza de start È™i nu genereazÄƒ obligaÈ›ie de rambursare. Un credit bancar clasic nu este absolut necesar datoritÄƒ costurilor fixe reduse, dar ar putea fi util ca rezervÄƒ de siguranÈ›Äƒ pentru faza de creÈ™tere (anul 2), Ã®n valoare de 5.000-10.000 â‚¬.</p>
+
+  <h3>9.3 Structura costurilor</h3>
+  <div class="callout" style="--accent:var(--teal); --accent-bg:var(--teal-bg)">
+    <strong>Costuri variabile per interacÈ›iune cu clientul (valori orientative, septembrie 2026):</strong> consultanÈ›Äƒ WhatsApp aprox. 0,05-0,10 â‚¬, apel telefonic aprox. 0,10-0,15 â‚¬ "” bazat pe preÈ›urile actuale Anthropic, Twilio È™i ElevenLabs. La o valoare medie a tranzacÈ›iei de 60-350 â‚¬, rezultÄƒ o marjÄƒ brutÄƒ de peste 95%.
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>Costuri fixe (lunar)</th><th class="num">SumÄƒ</th></tr>
+    <tr><td>Supabase (bazÄƒ de date, din faza de creÈ™tere)</td><td class="num">23 â‚¬</td></tr>
+    <tr><td>n8n Cloud (automatizare)</td><td class="num">20 â‚¬</td></tr>
+    <tr><td>ElevenLabs (sintezÄƒ vocalÄƒ, tarif de bazÄƒ)</td><td class="num">10 â‚¬</td></tr>
+    <tr><td>NumÄƒr de telefon Twilio</td><td class="num">3 â‚¬</td></tr>
+    <tr class="total"><td>Total costuri fixe</td><td class="num">aprox. 56 â‚¬</td></tr>
+  </table></div>
+
+  <h3>9.4 Previziune venituri È™i rentabilitate (bazatÄƒ pe capacitate)</h3>
+  <div class="callout" style="--accent:var(--rust); --accent-bg:var(--rust-bg)">
+    <strong>Metodologie:</strong> ÃŽntrucÃ¢t pentru acest model de afaceri nou nu existÄƒ date de piaÈ›Äƒ publicate despre conversie sau cerere (vezi capitolul 4), previziunea de mai jos nu se bazeazÄƒ pe o penetrare de piaÈ›Äƒ presupusÄƒ, ci pe capacitatea realÄƒ de timp disponibilÄƒ a fondatorului "” singura mÄƒrime cuantificabilÄƒ solid Ã®n acest moment.
+  </div>
+  <div class="table-wrap"><table>
+    <tr><th>Calcul de capacitate (activitate secundarÄƒ, max. 14 ore/sÄƒptÄƒmÃ¢nÄƒ)</th><th class="num">Valoare</th></tr>
+    <tr><td>Timp disponibil</td><td class="num">â‰ˆ 60 ore/lunÄƒ</td></tr>
+    <tr><td>Din care procesare directÄƒ de cazuri (â‰ˆ 60%, restul: prospectare, administrare)</td><td class="num">â‰ˆ 36 ore/lunÄƒ</td></tr>
+    <tr><td>Timp mediu de procesare per caz (verificare + depunere "” AI face interviul iniÈ›ial)</td><td class="num">35 min.</td></tr>
+    <tr class="total"><td>Plafon teoretic de capacitate</td><td class="num">â‰ˆ 60 cazuri/lunÄƒ</td></tr>
+  </table></div>
+  <p>Ipoteza de planificare pentru anul 1 rÄƒmÃ¢ne clar sub acest plafon de capacitate (medie anualÄƒ â‰ˆ 19 cazuri/lunÄƒ, aprox. 32% din plafonul teoretic) È™i serveÈ™te drept punct de plecare deliberat prudent: 8 cazuri/lunÄƒ (T1) â†’ 15 (T2) â†’ 23 (T3) â†’ 30 (T4), la o valoare medie ponderatÄƒ a tranzacÈ›iei de 110 â‚¬ (mix din tarifarul real: 35% ajutor de cereri simple, 20% ghiduri/coaching, 15% consultanÈ›Äƒ, 10% cazuri complexe, 20% servicii de intermediere). Din anul 2 se presupune tranziÈ›ia la activitate principalÄƒ (vezi capitolul 6), ceea ce mÄƒreÈ™te capacitatea de timp È™i, implicit, numÄƒrul de cazuri realizabile.</p>
+  <div class="table-wrap"><table>
+    <tr><th></th><th class="num">Anul 1</th><th class="num">Anul 2</th><th class="num">Anul 3</th></tr>
+    <tr><td>Venituri</td><td class="num">25.000 â‚¬</td><td class="num">62.000 â‚¬</td><td class="num">95.000 â‚¬</td></tr>
+    <tr><td>Costuri variabile (API/furnizori)</td><td class="num">750 â‚¬</td><td class="num">1.860 â‚¬</td><td class="num">2.850 â‚¬</td></tr>
+    <tr><td>Costuri fixe (infrastructurÄƒ)</td><td class="num">670 â‚¬</td><td class="num">900 â‚¬</td><td class="num">1.100 â‚¬</td></tr>
+    <tr><td>Comisioane cÄƒtre parteneri (program recomandare, aprox. 10%)</td><td class="num">2.500 â‚¬</td><td class="num">6.200 â‚¬</td><td class="num">9.500 â‚¬</td></tr>
+    <tr class="total"><td>Rezultat Ã®nainte de impozitare</td><td class="num">21.080 â‚¬</td><td class="num">53.040 â‚¬</td><td class="num">81.550 â‚¬</td></tr>
+  </table></div>
+  <p style="font-size:12.5px;color:var(--ink-soft)">Toate valorile sunt ipoteze ale fondatorului, nu date de piaÈ›Äƒ verificate "” asta e normal la o firmÄƒ nou-Ã®nfiinÈ›atÄƒ fÄƒrÄƒ istoric, È™i evaluatorii o trateazÄƒ ca atare. FÄƒrÄƒ comisioanele DVAG (sursÄƒ de venit separatÄƒ).</p>
+
+  <div class="chart">
+    <svg viewBox="0 0 640 220" role="img" aria-label="Diagrama cu bare: evolutia veniturilor de la 25000 euro in anul 1 la 95000 euro in anul 3, estimate pe baza capacitatii">
+      <g font-size="11" fill="var(--ink-soft)">
+        <line x1="60" y1="20" x2="60" y2="180" stroke="var(--border)"/>
+        <line x1="60" y1="180" x2="600" y2="180" stroke="var(--border)"/>
+        <text x="55" y="24" text-anchor="end">95k</text>
+        <text x="55" y="99" text-anchor="end">47.5k</text>
+        <text x="55" y="176" text-anchor="end">0</text>
+        <line x1="60" y1="20" x2="600" y2="20" stroke="var(--border)" stroke-dasharray="3 4"/>
+        <line x1="60" y1="100" x2="600" y2="100" stroke="var(--border)" stroke-dasharray="3 4"/>
+      </g>
+      <g>
+        <rect x="140" y="137.9" width="100" height="42.1" fill="var(--indigo)" opacity="0.85"/>
+        <rect x="310" y="75.6" width="100" height="104.4" fill="var(--amber)" opacity="0.9"/>
+        <rect x="480" y="20" width="100" height="160" fill="var(--teal)" opacity="0.9"/>
+      </g>
+      <g font-size="13" font-weight="700" fill="var(--ink)">
+        <text x="190" y="130" text-anchor="middle">25k â‚¬</text>
+        <text x="360" y="68" text-anchor="middle">62k â‚¬</text>
+        <text x="530" y="12" text-anchor="middle">95k â‚¬</text>
+      </g>
+      <g font-size="12" fill="var(--ink-soft)">
+        <text x="190" y="198" text-anchor="middle">Anul 1</text>
+        <text x="360" y="198" text-anchor="middle">Anul 2</text>
+        <text x="530" y="198" text-anchor="middle">Anul 3</text>
+      </g>
+    </svg>
+  </div>
+
+  <h3>9.5 Plan de lichiditate anul 1 (simplificat, pe trimestre)</h3>
+  <div class="table-wrap"><table>
+    <tr><th></th><th class="num">T1</th><th class="num">T2</th><th class="num">T3</th><th class="num">T4</th></tr>
+    <tr><td>Medie cazuri/lunÄƒ</td><td class="num">8</td><td class="num">15</td><td class="num">23</td><td class="num">30</td></tr>
+    <tr><td>ÃŽncasÄƒri</td><td class="num">2.640 â‚¬</td><td class="num">4.950 â‚¬</td><td class="num">7.590 â‚¬</td><td class="num">9.900 â‚¬</td></tr>
+    <tr><td>Cheltuieli (fixe + variabile + comisioane)</td><td class="num">412 â‚¬</td><td class="num">772 â‚¬</td><td class="num">1.184 â‚¬</td><td class="num">1.544 â‚¬</td></tr>
+    <tr class="total"><td>Sold de lichiditate (trimestrial)</td><td class="num">2.228 â‚¬</td><td class="num">4.178 â‚¬</td><td class="num">6.406 â‚¬</td><td class="num">8.356 â‚¬</td></tr>
+  </table></div>
+  <p style="font-size:12.5px;color:var(--ink-soft)">Lichiditatea rÄƒmÃ¢ne clar pozitivÄƒ Ã®n fiecare trimestru "” datoritÄƒ bazei reduse de costuri, nu apare o problemÄƒ de capital, chiar È™i cu o creÈ™tere mai lentÄƒ a clienÈ›ilor decÃ¢t cea estimatÄƒ.</p>
+</section>
+
+<section id="s10">
+  <div class="num">10</div>
+  <h2>PerspectivÄƒ de creÈ™tere: extindere internaÈ›ionalÄƒ</h2>
+  <p>Planificarea financiarÄƒ prezentatÄƒ la punctul 9 se referÄƒ exclusiv la oferta principalÄƒ Ã®n limba romÃ¢nÄƒ (Faza 1) È™i nu include venituri dintr-o eventualÄƒ extindere. Este adÄƒugatÄƒ aici ca perspectivÄƒ, nu ca parte din baza de calcul actualÄƒ.</p>
+  <div class="callout" style="--accent:var(--indigo); --accent-bg:var(--indigo-bg)">
+    <strong>Concept:</strong> odatÄƒ ce oferta Ã®n limba romÃ¢nÄƒ este stabilitÄƒ È™i viabilÄƒ economic, este prevÄƒzutÄƒ construirea unui consultant digital <em>separat</em> pentru alte comunitÄƒÈ›i lingvistice din Germania "” ca sistem de sine stÄƒtÄƒtor, cu propria bazÄƒ de cunoÈ™tinÈ›e È™i propria persona, construit pe aceeaÈ™i arhitecturÄƒ tehnicÄƒ, dar condus deliberat separat de oferta romÃ¢neascÄƒ existentÄƒ, ca sÄƒ nu-i dilueze focusul È™i calitatea.
+  </div>
+  <p><strong>Prioritizare dupÄƒ mÄƒrimea grupului È›intÄƒ (Destatis, 2025) È™i nevoia realÄƒ:</strong></p>
+  <ol class="plain">
+    <li><strong>UcraineanÄƒ</strong> (~1,4 mil., singura comunitate mare Ã®ncÄƒ Ã®n creÈ™tere: +76.000 doar Ã®n 2025) "” nevoie administrativÄƒ acutÄƒ, puÈ›inÄƒ ofertÄƒ existentÄƒ Ã®n aceastÄƒ limbÄƒ.</li>
+    <li><strong>TurcÄƒ</strong> (cea mai mare comunitate de imigranÈ›i, ~2,6 mil. cu istoric de migraÈ›ie) "” cea mai mare piaÈ›Äƒ absolutÄƒ.</li>
+    <li><strong>PolonezÄƒ</strong> (~2 mil.) "” situaÈ›ie aproape identicÄƒ cu cea a clienÈ›ilor romÃ¢ni (migraÈ›ie de muncÄƒ UE); cea mai ieftinÄƒ extindere, pentru cÄƒ aprox. 90% din conÈ›inutul existent (BÃ¼rgergeld, Kindergeld, dreptul muncii, Ã®nscriere auto) poate fi doar tradus "” legea germanÄƒ Ã®n sine e identicÄƒ indiferent de naÈ›ionalitate, doar coordonarea de pensii RO-DE e specificÄƒ romÃ¢nilor.</li>
+    <li><strong>ArabÄƒ</strong> (~1,3 mil. de origine sirianÄƒ plus altele) "” nevoie mare, dar necesitÄƒ È™i conÈ›inut specific azilului/refugiaÈ›ilor, nu doar traducere.</li>
+  </ol>
+  <p>AceastÄƒ extindere este prevÄƒzutÄƒ ca FazÄƒ 2 È™i va fi bugetatÄƒ È™i solicitatÄƒ concret abia dupÄƒ dovedirea viabilitÄƒÈ›ii Fazei 1.</p>
+
+  <div class="callout" style="--accent:var(--amber); --accent-bg:var(--amber-bg)">
+    <strong>OpÈ›iune pe termen lung "” propriul Lohnsteuerhilfeverein:</strong> Amira Consulting oferÄƒ deja informaÈ›ii generale gratuite despre salariu È™i declaraÈ›ii fiscale, È™i Ã®ndrumÄƒ clienÈ›ii cÄƒtre Lohnsteuerhilfeverein-uri existente. ÃŽnfiinÈ›area propriului Lohnsteuerhilfeverein (§14 StBerG) ar fi o extindere naturalÄƒ "” potrivitÄƒ exact cu grupul È›intÄƒ actual (angajaÈ›i) "” dar necesitÄƒ un "žBeratungsstellenleiter" calificat (§23 alin. 3 StBerG: Steuerberater sau o calificare fiscalÄƒ terminatÄƒ plus minim 3 ani experienÈ›Äƒ practicÄƒ Ã®n dreptul impozitului pe venit), precum È™i Ã®nfiinÈ›area unei asociaÈ›ii cu recunoaÈ™tere oficialÄƒ. Fondatorul nu Ã®ndeplineÈ™te momentan aceastÄƒ calificare de specialitate. Cale realistÄƒ: un parteneriat viitor cu o persoanÄƒ deja calificatÄƒ (de exemplu Steuerfachangestellte/r cu experienÈ›Äƒ relevantÄƒ). Nu face parte din planificarea financiarÄƒ actualÄƒ.
+  </div>
+</section>
+
+<footer>Plan de afaceri Amira Consulting "” realizat septembrie 2026 · Robert Catalin Bercea, Ã®ntreprindere individualÄƒ (activitate secundarÄƒ)</footer>
+
+</body></html>
+

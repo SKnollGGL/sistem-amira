@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alina Iute - Chat</title>
+  <meta name="description" content="Chat cu Alina Iute - asistentă digitală pentru consultanță administrativă">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #f4f2ec;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .chat-container {
+      width: 100%;
+      max-width: 600px;
+      height: 90vh;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 32px rgba(19, 46, 38, 0.12);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #0a9d67 0%, #06603f 100%);
+      color: white;
+      padding: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .chat-header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .chat-header p {
+      font-size: 14px;
+      opacity: 0.95;
+      margin-top: 4px;
+    }
+
+    .chat-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      background: #fafaf8;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .message-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .message {
+      padding: 12px 16px;
+      border-radius: 12px;
+      max-width: 85%;
+      word-wrap: break-word;
+      line-height: 1.4;
+      font-size: 14px;
+    }
+
+    .message.bot {
+      background: #e8f5e9;
+      color: #1b5e20;
+      border-radius: 12px 12px 12px 0;
+      align-self: flex-start;
+      border-left: 3px solid #0a9d67;
+    }
+
+    .message.user {
+      background: #0a9d67;
+      color: white;
+      border-radius: 12px 12px 0 12px;
+      align-self: flex-end;
+    }
+
+    .chat-loading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #666;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .spinner {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #0a9d67;
+      animation: pulse 1.4s infinite;
+    }
+
+    .spinner:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .spinner:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    .chat-footer {
+      padding: 16px;
+      background: white;
+      border-top: 1px solid #e4e0d6;
+      flex-shrink: 0;
+      display: flex;
+      gap: 12px;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #e4e0d6;
+      border-radius: 999px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #fafaf8;
+      color: #132e26;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .chat-input:focus {
+      background: white;
+      border-color: #0a9d67;
+      box-shadow: 0 0 0 3px rgba(10, 157, 103, 0.1);
+    }
+
+    .send-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: #0a9d67;
+      color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .send-btn:hover:not(:disabled) {
+      background: #06603f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(10, 157, 103, 0.3);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .welcome-message {
+      text-align: center;
+      padding: 32px 24px;
+      color: #5c6b64;
+    }
+
+    .welcome-message h2 {
+      color: #0a9d67;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .welcome-message p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      .chat-container {
+        height: 100%;
+        max-width: 100%;
+        border-radius: 0;
+      }
+
+      .chat-header {
+        padding: 16px;
+      }
+
+      .chat-header h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <!-- Header -->
+    <div class="chat-header">
+      <h1>👋 Alina Iute</h1>
+      <p>Asistentă digitală - raspund în timp real</p>
+    </div>
+
+    <!-- Chat Messages -->
+    <div class="chat-body" id="chatBody">
+      <div class="welcome-message">
+        <h2>Bună! 👋</h2>
+        <p>Sunt asistenta digitală a Alinei Iute.</p>
+        <p style="margin-top: 16px; font-size: 13px;">Spune-mi, cu ce te pot ajuta astazi?</p>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="chat-footer">
+      <div class="input-area">
+        <input
+          type="text"
+          class="chat-input"
+          id="messageInput"
+          placeholder="Scrie mesajul tău..."
+          autocomplete="off"
+        >
+        <button class="send-btn" id="sendBtn" title="Trimite">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Chat widget controller for Alina bot
+
+    const chatBody = document.getElementById('chatBody');
+    const messageInput = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    // Webhook URL for chat messages
+    const WEBHOOK_URL = 'https://arisconsulting.app.n8n.cloud/webhook/client-alina-chat';
+
+    // Client ID for tracking session
+    const CLIENT_ID = 'chat_' + Math.random().toString(36).substr(2, 9);
+    const SESSION_ID = Date.now().toString();
+
+    // Scroll to bottom of chat
+    function scrollToBottom() {
+      setTimeout(() => {
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 0);
+    }
+
+    // Add message to chat UI
+    function addMessage(text, isUser = false) {
+      const messageEl = document.createElement('div');
+      messageEl.className = 'message ' + (isUser ? 'user' : 'bot');
+      messageEl.textContent = text;
+      chatBody.appendChild(messageEl);
+      scrollToBottom();
+    }
+
+    // Show typing indicator
+    function showTyping() {
+      const loadingEl = document.createElement('div');
+      loadingEl.className = 'chat-loading';
+      loadingEl.id = 'typing-indicator';
+      loadingEl.innerHTML = '<div class="spinner"></div><div class="spinner"></div><div class="spinner"></div><span>Alina scrie...</span>';
+      chatBody.appendChild(loadingEl);
+      scrollToBottom();
+    }
+
+    // Remove typing indicator
+    function removeTyping() {
+      const typing = document.getElementById('typing-indicator');
+      if (typing) typing.remove();
+    }
+
+    // Send message to webhook
+    async function sendMessage() {
+      const message = messageInput.value.trim();
+      if (!message) return;
+
+      // Add user message to UI
+      addMessage(message, true);
+      messageInput.value = '';
+      messageInput.focus();
+
+      // Show typing indicator
+      showTyping();
+
+      try {
+        // Send to n8n webhook
+        const response = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: message,
+            sender: CLIENT_ID,
+            channel: 'web_chat',
+            session_id: SESSION_ID,
+            timestamp: new Date().toISOString()
+          })
+        });
+
+        const data = await response.json();
+
+        // Remove typing indicator
+        removeTyping();
+
+        // Add bot response
+        if (data.response) {
+          addMessage(data.response, false);
+        } else if (data.message) {
+          addMessage(data.message, false);
+        } else {
+          addMessage('Am primit mesajul tău. Alina va răspunde în curând.', false);
+        }
+
+      } catch (error) {
+        removeTyping();
+        console.error('Error sending message:', error);
+        addMessage('Scuze, am întâmpinat o problemă. Te rog încearcă din nou.', false);
+      }
+    }
+
+    // Event listeners
+    sendBtn.addEventListener('click', sendMessage);
+    messageInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // Focus input on load
+    messageInput.focus();
+  </script>
+</body>
+</html>

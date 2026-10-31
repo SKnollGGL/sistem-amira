@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARIS Owner Control Panel</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f1e; color: #fff; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    header { text-align: center; margin-bottom: 40px; }
+    header h1 { font-size: 36px; color: #667eea; margin-bottom: 10px; }
+
+    .dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+    .panel { background: #1a1a2e; border: 1px solid #333; border-radius: 12px; padding: 30px; }
+    .panel h2 { color: #667eea; margin-bottom: 20px; font-size: 20px; }
+
+    .chat-box { background: #0f0f1e; border: 1px solid #333; border-radius: 8px; height: 400px; overflow-y: auto; padding: 15px; margin-bottom: 15px; }
+    .message { margin-bottom: 15px; padding: 10px; border-radius: 8px; }
+    .message.user { background: #667eea; text-align: right; }
+    .message.bot { background: #2a2a3e; }
+
+    input, textarea, button { background: #1a1a2e; border: 1px solid #667eea; color: #fff; padding: 12px; border-radius: 8px; font-size: 14px; }
+    input, textarea { width: 100%; margin-bottom: 10px; }
+    button { background: #667eea; color: white; cursor: pointer; font-weight: bold; transition: 0.3s; }
+    button:hover { background: #764ba2; }
+
+    .button-group { display: flex; gap: 10px; margin-bottom: 20px; }
+    .button-group button { flex: 1; }
+
+    .status { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .status-item { background: #0f0f1e; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea; }
+    .status-item.active { border-left-color: #4caf50; }
+    .status-item.inactive { border-left-color: #f44336; }
+    .status-item strong { display: block; color: #667eea; margin-bottom: 5px; }
+    .status-item span { font-size: 12px; color: #aaa; }
+
+    .voice-btn { background: #4caf50; padding: 15px; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin: 10px auto; cursor: pointer; transition: 0.2s; }
+    .voice-btn:hover { background: #45a049; transform: scale(1.1); }
+    .voice-btn.recording { background: #f44336; animation: pulse 1s infinite; }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+    .workflow-list { list-style: none; }
+    .workflow-list li { background: #0f0f1e; padding: 12px; margin-bottom: 10px; border-radius: 6px; border-left: 3px solid #667eea; display: flex; justify-content: space-between; align-items: center; }
+    .workflow-list button { padding: 6px 12px; font-size: 12px; flex: 0; }
+
+    @media (max-width: 768px) { .dashboard { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎮 ARIS Owner Control</h1>
+      <p>Direct Communication with Your Bots</p>
+    </header>
+
+    <div class="dashboard">
+
+      <!-- Chat Panel -->
+      <div class="panel">
+        <h2>💬 Chat with Bot</h2>
+        <div class="chat-box" id="chatBox"></div>
+        <input type="text" id="messageInput" placeholder="Scrie mesaj..." autocomplete="off">
+        <div class="button-group">
+          <button onclick="sendMessage()">📤 Trimite</button>
+          <button class="voice-btn" id="voiceBtn" onclick="toggleVoice()" title="Click to speak">🎤</button>
+        </div>
+      </div>
+
+      <!-- Control Panel -->
+      <div class="panel">
+        <h2>⚙️ System Status</h2>
+        <div class="status">
+          <div class="status-item active">
+            <strong>Cloudflare Tunnel</strong>
+            <span>HEALTHY - backend.amiraconsulting.services</span>
+          </div>
+          <div class="status-item active">
+            <strong>n8n Workflows</strong>
+            <span>131 active workflows</span>
+          </div>
+          <div class="status-item active">
+            <strong>Claude API</strong>
+            <span>Connected & responding</span>
+          </div>
+          <div class="status-item active">
+            <strong>Twilio (WhatsApp)</strong>
+            <span>Ready for messages</span>
+          </div>
+          <div class="status-item active">
+            <strong>Voice AI (MAYA)</strong>
+            <span>ElevenLabs connected</span>
+          </div>
+          <div class="status-item active">
+            <strong>Supabase Database</strong>
+            <span>58 clients, 116 configs</span>
+          </div>
+        </div>
+
+        <h2 style="margin-top: 30px;">🤖 Quick Actions</h2>
+        <ul class="workflow-list">
+          <li>
+            <span>WhatsApp Bot</span>
+            <button onclick="triggerWorkflow('whatsapp')">Start</button>
+          </li>
+          <li>
+            <span>Voice AI (MAYA)</span>
+            <button onclick="triggerWorkflow('voice')">Call Me</button>
+          </li>
+          <li>
+            <span>Sales Agent</span>
+            <button onclick="triggerWorkflow('sales')">Activate</button>
+          </li>
+          <li>
+            <span>Email Automation</span>
+            <button onclick="triggerWorkflow('email')">Run</button>
+          </li>
+          <li>
+            <span>Telegram Bot</span>
+            <button onclick="triggerWorkflow('telegram')">Check</button>
+          </li>
+        </ul>
+
+        <h2 style="margin-top: 30px;">⚡ Automation</h2>
+        <div style="background: #0f0f1e; padding: 20px; border-radius: 12px; border: 2px solid #ff6b35;">
+          <h3 style="color: #ff6b35; margin-top: 0;">🔧 Te Automatizam Pe Tine</h3>
+          <p style="color: #aaa; font-size: 14px;">Create autonomous bots that work for you 24/7</p>
+          <button onclick="openAutomationBuilder()" style="background: #ff6b35; width: 100%; padding: 15px; margin-top: 10px; font-weight: bold; font-size: 16px;">Build Autonomous Bot</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Speech Recognition & Synthesis
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'ro-RO';
+
+    let isRecording = false;
+
+    recognition.onstart = () => {
+      isRecording = true;
+      document.getElementById('voiceBtn').classList.add('recording');
+      addMessage('🎤 Listening...', 'bot');
+    };
+
+    recognition.onresult = (event) => {
+      let transcript = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+      }
+      document.getElementById('messageInput').value = transcript;
+      addMessage(transcript, 'user');
+      setTimeout(() => sendMessage(), 500);
+    };
+
+    recognition.onend = () => {
+      isRecording = false;
+      document.getElementById('voiceBtn').classList.remove('recording');
+    };
+
+    recognition.onerror = (event) => {
+      addMessage('❌ Error: ' + event.error, 'bot');
+      isRecording = false;
+      document.getElementById('voiceBtn').classList.remove('recording');
+    };
+
+    // UI Functions
+    function toggleVoice() {
+      if (isRecording) {
+        recognition.stop();
+      } else {
+        recognition.start();
+      }
+    }
+
+    function addMessage(text, sender) {
+      const chatBox = document.getElementById('chatBox');
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${sender}`;
+      msgDiv.textContent = text;
+      chatBox.appendChild(msgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const message = input.value.trim();
+
+      if (!message) return;
+
+      addMessage(message, 'user');
+      input.value = '';
+      addMessage('⏳ Processing...', 'bot');
+
+      fetch('/webhook/owner-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, owner: 'catabercea@gmail.com' })
+      })
+      .then(r => r.json())
+      .then(data => {
+        const chatBox = document.getElementById('chatBox');
+        const lastMsg = chatBox.lastChild;
+        if (lastMsg && lastMsg.textContent.includes('⏳')) lastMsg.remove();
+        addMessage(data.response, 'bot');
+      })
+      .catch(e => {
+        const chatBox = document.getElementById('chatBox');
+        const lastMsg = chatBox.lastChild;
+        if (lastMsg && lastMsg.textContent.includes('⏳')) lastMsg.remove();
+        addMessage(`❌ Error: ${e.message}`, 'bot');
+      });
+    }
+
+    function triggerWorkflow(workflow) {
+      addMessage(`🚀 Triggering ${workflow} workflow...`, 'bot');
+
+      fetch('https://backend.amiraconsulting.services/webhook/trigger-workflow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ workflow, owner: 'catabercea@gmail.com' })
+      }).then(r => r.json())
+        .then(data => addMessage(`✅ ${workflow} started`, 'bot'))
+        .catch(e => addMessage(`❌ Error: ${e.message}`, 'bot'));
+    }
+
+    function openAutomationBuilder() {
+      const botName = prompt('Bot name (e.g., "Lead Qualifier", "Support Agent"):');
+      if (!botName) return;
+
+      const botType = prompt('Bot type (whatsapp/voice/telegram/sales/email):');
+      if (!botType) return;
+
+      const prompt_text = prompt('Bot instruction (what should it do?):');
+      if (!prompt_text) return;
+
+      addMessage(`⚡ Creating bot: ${botName}`, 'bot');
+
+      fetch('/webhook/create-bot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          botName,
+          botType,
+          prompt: prompt_text,
+          owner: 'catabercea@gmail.com',
+          active: true
+        })
+      }).then(r => r.json())
+        .then(data => {
+          addMessage(`✅ Bot created: ${data.botId}`, 'bot');
+          addMessage(`Running on: ${data.endpoint}`, 'bot');
+        })
+        .catch(e => addMessage(`❌ Error: ${e.message}`, 'bot'));
+    }
+
+    // Welcome message
+    document.addEventListener('DOMContentLoaded', () => {
+      addMessage('👋 Bună! Sunt control panel-ul ARIS. Cu ce te pot ajuta?', 'bot');
+      addMessage('💡 Poți: vorbi cu botii, declanșa workflows, verifica status', 'bot');
+    });
+
+    // Enter key to send
+    document.getElementById('messageInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>

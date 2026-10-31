@@ -1,0 +1,298 @@
+<title>Remote von Ãœberall</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --ink:#0b1f1a; --ink-2:#132e26;
+    --paper:#f4f7f3; --paper-2:#e9efe9;
+    --accent:#17d68f; --accent-dark:#0a9d67;
+    --gold:#f2b705;
+    --line:#d8e0da;
+    --text:#12211c; --text-dim:#4a5c54;
+    --on-ink:#eef5f0; --on-ink-dim:#a9c2b7;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0b1611; --paper-2:#101e18;
+      --text:#e9f2ec; --text-dim:#9fb6ac;
+      --line:#20362c;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0b1611; --paper-2:#101e18;
+    --text:#e9f2ec; --text-dim:#9fb6ac;
+    --line:#20362c;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--text); font-family:'IBM Plex Sans',system-ui,sans-serif; line-height:1.55;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 20px;}
+  h1,h2,h3{font-family:'Big Shoulders Display',sans-serif; font-weight:900; text-transform:uppercase; text-wrap:balance; letter-spacing:0.01em; line-height:0.95;}
+  .hero{background:var(--ink); color:var(--on-ink); padding-block:56px 64px;}
+  .eyebrow{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:5px 14px; margin-bottom:18px;}
+  .hero h1{font-size:clamp(40px,7vw,74px); margin:0 0 14px;}
+  .hero h1 em{font-style:normal; color:var(--accent);}
+  .hero p.lead{font-size:19px; color:var(--on-ink-dim); max-width:60ch; margin:0 0 28px;}
+  .hero-grid{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
+  .pill{background:var(--ink-2); border:1px solid #234238; border-radius:10px; padding:12px 16px; font-size:14px; color:var(--on-ink-dim); flex:1 1 200px;}
+  .pill b{color:var(--on-ink); display:block; font-size:15px; margin-bottom:2px;}
+  .founder-banner{margin-top:22px; background:rgba(242,183,5,0.12); border:1px solid var(--gold); border-radius:12px; padding:14px 18px; font-size:15px; color:var(--on-ink); max-width:70ch;}
+  .founder-banner b{color:var(--gold);}
+  section{padding-block:52px;}
+  section.alt{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .kicker{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-dark); margin-bottom:10px;}
+  h2{font-size:clamp(28px,4.5vw,42px); margin:0 0 18px;}
+  p.big{font-size:18px; color:var(--text-dim); max-width:66ch;}
+  .secret-box{background:var(--ink); color:var(--on-ink); border-radius:16px; padding:32px; margin-top:28px;}
+  .secret-box p{color:var(--on-ink-dim); font-size:17px; max-width:70ch;}
+  .secret-box strong{color:var(--accent);}
+  table.calc{width:100%; border-collapse:collapse; margin-top:24px; font-size:15px;}
+  table.calc caption{text-align:left; font-size:13px; color:var(--text-dim); margin-bottom:10px;}
+  table.calc th{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); padding:10px 12px; border-bottom:2px solid var(--line);}
+  table.calc td{padding:12px; border-bottom:1px solid var(--line);}
+  table.calc td.num{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; text-align:right;}
+  table.calc td.comm{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; text-align:right; color:var(--accent-dark); font-weight:600;}
+  .scenario{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:28px;}
+  .scenario-card{background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:20px;}
+  .scenario-card .n{font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:42px; color:var(--accent-dark); line-height:1;}
+  .scenario-card .cap{font-size:13px; color:var(--text-dim); margin-top:6px;}
+  .disclaimer{font-size:13px; color:var(--text-dim); margin-top:16px; border-left:3px solid var(--gold); padding-left:12px;}
+  .channels{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:28px;}
+  .channel{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px;}
+  .channel .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent-dark); margin-bottom:8px;}
+  .channel h3{font-size:22px; margin:0 0 10px; text-transform:none; letter-spacing:0;}
+  .channel ul{margin:0; padding-left:18px; color:var(--text-dim); font-size:14.5px;}
+  .channel li{margin-bottom:6px;}
+  .script-block{margin-top:24px;}
+  .script-title{font-weight:600; margin-bottom:10px; font-size:15px;}
+  .bubble{background:var(--paper); border:1px solid var(--line); border-radius:14px 14px 14px 4px; padding:14px 18px; max-width:70ch; font-size:15px; margin-bottom:22px; position:relative;}
+  .bubble::before{content:"Du â†’"; display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent-dark); margin-bottom:6px; letter-spacing:0.06em;}
+  .faq-item{border-bottom:1px solid var(--line); padding-block:18px;}
+  .faq-item h3{font-size:17px; text-transform:none; letter-spacing:0; margin:0 0 8px; font-family:'IBM Plex Sans',sans-serif; font-weight:600;}
+  .faq-item p{margin:0; color:var(--text-dim);}
+  .cta{background:linear-gradient(160deg,var(--ink),var(--ink-2)); color:var(--on-ink); border-radius:20px; padding:44px 32px; text-align:center; margin-top:8px;}
+  .cta h2{color:var(--on-ink);}
+  .cta p{color:var(--on-ink-dim); max-width:56ch; margin:0 auto 22px;}
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:26px; text-align:left;}
+  .step{background:var(--ink-2); border:1px solid #234238; border-radius:12px; padding:18px;}
+  .step .num{font-family:'Big Shoulders Display',sans-serif; font-weight:900; color:var(--accent); font-size:28px;}
+  footer{padding-block:36px; text-align:center; font-size:12.5px; color:var(--text-dim);}
+  @media (max-width:520px){
+    .hero{padding-block:44px 48px;} section{padding-block:40px;}
+    table.calc{font-size:13px;} table.calc td, table.calc th{padding:8px 6px;}
+  }
+</style>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Ausgabe Deutschland 2026"“2027 · Amira Consulting</span>
+    <h1>Wie du <em>remote</em> Geld verdienst,<br>egal wo du bist.</h1>
+    <p class="lead" style="font-size:21px; color:var(--on-ink); font-weight:500;">Der Weg zur finanziellen UnabhÃ¤ngigkeit "” ohne Produkte zu verkaufen, ohne Dropshipping, ohne einen einzigen Euro zu investieren.</p>
+    <p class="lead">Du hast bestimmt schon Dutzende "žWie ich remote Geld verdiene"-Guides gesehen, die dich am Ende nur lehren, denselben Guide weiterzuverkaufen. Hier ist es anders: Wir zeigen dir den genauen Mechanismus, wie du durch die Empfehlung eines echten Services verdienst, den Menschen mit Migrationsgeschichte in Deutschland jetzt gerade brauchen "” inklusive fertiger Skripte, mit denen du heute anfangen kannst, nicht "žirgendwann".</p>
+    <div class="hero-grid">
+      <div class="pill"><b>10% Provision</b>fÃ¼r jeden empfohlenen Kunden, der einen Amira-Service kauft</div>
+      <div class="pill"><b>0 Investition</b>kein Lagerbestand, keine Kosten, du arbeitest vom Handy aus</div>
+      <div class="pill"><b>Direkte Auszahlung</b>automatisch nachverfolgt Ã¼ber deine Telefonnummer</div>
+    </div>
+    <div class="founder-banner">🚀… Die ersten 100 Amira-Partner erhalten den Status <b>GrÃ¼ndungspartner</b> "” <b>12% Provision auf Lebenszeit</b> (statt 10%), dauerhaft garantiert, nicht nur bei der Anmeldung.</div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Das Problem</div>
+    <h2>Warum die meisten "žRemote-Guides"<br>dir keinen Cent bringen</h2>
+    <p class="big">Du hast wahrscheinlich schon einen "žWie ich von zuhause Geld verdiene"-Guide gekauft, der damit endete: "ž...und jetzt verkaufe ihn selbst weiter". Ohne echtes Produkt dahinter, ohne jemanden, der wirklich etwas kauft, kommt nie Geld an "” nur die Provision der Person, die ihn dir verkauft hat.</p>
+    <p class="big">Deutschland hat Millionen Menschen mit Migrationsgeschichte, die echte BehÃ¶rdenanliegen zu klÃ¤ren haben: Kindergeld, BÃ¼rgergeld, Aufenthaltstitel, BuÃŸgelder, Autos. Du musst niemanden von etwas Falschem Ã¼berzeugen "” die Leute suchen lÃ¤ngst aktiv nach Hilfe dafÃ¼r, jeden Tag, in jeder Facebook-Gruppe ihrer Community.</p>
+    <div class="kicker" style="margin-top:34px;">Die LÃ¶sung</div>
+    <h2>Du wirst zur BrÃ¼cke<br>zwischen Problem und LÃ¶sung</h2>
+    <div class="secret-box">
+      <p>Wenn jemand, den du empfiehlst, <strong>tatsÃ¤chlich</strong> einen Amira-Consulting-Service kauft, bekommst du <strong>10% des Servicewerts</strong>, automatisch, ohne Papierkram, ohne Diskussion. Egal wo du bist "” du kannst einen Link aus Spanien schicken, aus RumÃ¤nien, vom Strand aus. Deine einzige Aufgabe: Menschen mit einem BehÃ¶rdenproblem in Deutschland mit unserem WhatsApp-Bot zu verbinden, der genau dieses Problem lÃ¶st.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Provisionsrechner · Amira-Partner 10%</div>
+    <h2>Wie viel du verdienen kannst "” echte Zahlen</h2>
+    <p class="big">Wir erfinden keine Zahlen. Das sind die echten, aktuellen Preise der Amira-Consulting-Services "” und ja, manche Provisionen sind viel hÃ¶her als du denkst, besonders bei Jobvermittlungen.</p>
+    <table class="calc">
+      <caption>Verwaltungsdienstleistungen "” feste Provision, 10% vom Preis</caption>
+      <tr><th>Service</th><th>Preis</th><th>Deine Provision (10%)</th></tr>
+      <tr><td>Meldebescheinigung</td><td class="num">79 â‚¬</td><td class="comm">7,90 â‚¬</td></tr>
+      <tr><td>FÃ¼hrungszeugnis</td><td class="num">99 â‚¬</td><td class="comm">9,90 â‚¬</td></tr>
+      <tr><td>Gewerbeanmeldung</td><td class="num">129 â‚¬</td><td class="comm">12,90 â‚¬</td></tr>
+      <tr><td>UnterstÃ¼tzung bei der Wohnungssuche</td><td class="num">149 â‚¬</td><td class="comm">14,90 â‚¬</td></tr>
+      <tr><td>Paket Familie / Einkommen / Papiere / Auto / Schutz</td><td class="num">219 â‚¬</td><td class="comm">21,90 â‚¬</td></tr>
+      <tr><td>AufenthaltsverlÃ¤ngerung fÃ¼r FamilienangehÃ¶rige (Nicht-EU)</td><td class="num">249 â‚¬</td><td class="comm">24,90 â‚¬</td></tr>
+      <tr><td>Komplexer Fall (Widerspruch, Anerkennung von AbschlÃ¼ssen)</td><td class="num">349 â‚¬</td><td class="comm">34,90 â‚¬</td></tr>
+    </table>
+    <table class="calc" style="margin-top:32px;">
+      <caption>Jobvermittlung "” mit Abstand die hÃ¶chste Provision (der Kandidat zahlt NIE, die GebÃ¼hr kommt vom Arbeitgeber, legal in Deutschland)</caption>
+      <tr><th>Bruttojahresgehalt des vermittelten Kandidaten</th><th>Amira-Provision vom Arbeitgeber (~25%)</th><th>Deine Provision (10% davon)</th></tr>
+      <tr><td>28.000 â‚¬ (Fachkraft, Einstieg)</td><td class="num">7.000 â‚¬</td><td class="comm">700 â‚¬</td></tr>
+      <tr><td>35.000 â‚¬ (erfahrene Fachkraft)</td><td class="num">8.750 â‚¬</td><td class="comm">875 â‚¬</td></tr>
+      <tr><td>45.000 â‚¬ (Spezialist/anerkannte Qualifikation)</td><td class="num">11.250 â‚¬</td><td class="comm">1.125 â‚¬</td></tr>
+    </table>
+    <p class="disclaimer">25% ist der reale Marktdurchschnitt fÃ¼r Vermittlungsprovisionen in Deutschland (17-30% je nach Position, BDU-Referenz ~27,8%) "” eine einzige Jobvermittlung kann so viel wert sein wie 30-50 VerwaltungsfÃ¤lle zusammen.</p>
+    <div class="kicker" style="margin-top:36px;">BeschrÃ¤nke dich nicht auf einen Kundentyp</div>
+    <h2>Kombiniere die Services "” so sieht ein echter Monat als Amira-Partner aus</h2>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">~220 â‚¬</div><div class="cap">nur aus 10 Standard-VerwaltungsfÃ¤llen (219â‚¬) "” der Startpunkt, nicht das Limit</div></div>
+      <div class="scenario-card"><div class="n">~920 â‚¬</div><div class="cap">6 VerwaltungsfÃ¤lle + <b>1 Jobvermittlung</b> (Gehalt 35.000â‚¬) im selben Monat</div></div>
+      <div class="scenario-card"><div class="n">~1.475 â‚¬</div><div class="cap">4 FÃ¤lle + 2 Wohnungshilfen + <b>1 Jobvermittlung</b> (45.000â‚¬) "” ein sehr guter Monat, kein auÃŸergewÃ¶hnlicher</div></div>
+    </div>
+    <p class="disclaimer">Diese Szenarien sind Rechenbeispiele auf Basis der obigen echten Provisionen, keine Verdienstgarantie. Wie viel du verdienst, hÃ¤ngt davon ab, wie viele Menschen in deinem Umfeld diese Services brauchen und wie konsequent du die Schritte aus diesem Guide anwendest "” aber beachte den Unterschied: eine einzige gut platzierte Jobvermittlung verÃ¤ndert die ganze Monatsrechnung.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Dein Markt ist grÃ¶ÃŸer als du denkst</div>
+    <h2>Du wirbst nicht nur bei einer Community</h2>
+    <p class="big">Der Amira-Consulting-Bot spricht jetzt auch Deutsch, Bulgarisch, Ukrainisch, TÃ¼rkisch und Polnisch, neben RumÃ¤nisch "” jede Community bekommt die fÃ¼r ihre Situation relevanten Informationen (zum Beispiel den besonderen temporÃ¤ren Schutzstatus fÃ¼r Ukrainer). Das heiÃŸt: dein Empfehlungsnetzwerk endet nicht bei einer Sprachgruppe "” jede Bekanntschaft aus einer Migranten-Community in Deutschland ist ein potenzieller Kunde.</p>
+    <p class="big">Laut Destatis (2025) leben Ã¼ber <strong>14 Millionen AuslÃ¤nder</strong> in Deutschland "” TÃ¼rken, Ukrainer, Syrer, RumÃ¤nen und Polen gehÃ¶ren zu den grÃ¶ÃŸten Gruppen. Je mehr Communities dein Netzwerk abdeckt, desto lÃ¤cherlich konservativ wird die "ž10 Empfehlungen pro Monat"-Grenze aus der Rechnung oben.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Warum jetzt</div>
+    <h2>Deutschland 2026"“2027:<br>das Fenster ist offen</h2>
+    <p class="big">Deutschland hat eine der grÃ¶ÃŸten Zuwanderungsgeschichten der EU, und die deutsche BÃ¼rokratie (Kindergeld, BÃ¼rgergeld, Aufenthaltstitel) bleibt kompliziert und grÃ¶ÃŸtenteils nur auf Deutsch "” genau da, wo ein klarer Guide wirklich hilft. Je frÃ¼her du in ein noch junges Empfehlungsnetzwerk einsteigst, desto weniger Konkurrenz hast du in den Gruppen und Communities, die du bereits kennst.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Kanal-Playbook</div>
+    <h2>Wo und wie du konkret wirbst</h2>
+    <div class="channels">
+      <div class="channel">
+        <div class="tag">Facebook</div>
+        <h3>Diaspora-Gruppen</h3>
+        <ul>
+          <li>Suche Gruppen wie "ž[Community] in [deiner Stadt in Deutschland]" "” es gibt Dutzende, mit Tausenden Mitgliedern</li>
+          <li>Poste den Link nicht sofort "” beantworte erst 2-3 echte Fragen zu Kindergeld/Papieren, dann erwÃ¤hne den Bot</li>
+          <li>Poste einmal pro Woche ein "žWusstest du..." zu einem Recht/einer Leistung, mit dem Link am Ende</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">TikTok / Reels</div>
+        <h3>Kurzes Video, eine Idee</h3>
+        <ul>
+          <li>Format: "ž3 Dinge, die du Ã¼ber Kindergeld in Deutschland nicht wusstest" "” der letzte Punkt ist "ždu kannst kostenlos auf WhatsApp nachfragen"</li>
+          <li>Versprich keine genauen GeldbetrÃ¤ge/Leistungen "” zeig nur, dass es einen einfachen nÃ¤chsten Schritt gibt</li>
+          <li>Link in der Bio, nicht im Video</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">WhatsApp</div>
+        <h3>Status + Direktnachrichten</h3>
+        <ul>
+          <li>Status-Update: "žWer Hilfe mit BehÃ¶rdenangelegenheiten in Deutschland braucht, schreibt mir" "” warm, nicht aufdringlich</li>
+          <li>Bester Kanal: jemand aus Familie/Freundeskreis beschwert sich Ã¼ber ein BehÃ¶rdenproblem "” schick direkt die Bot-Nummer</li>
+        </ul>
+      </div>
+      <div class="channel">
+        <div class="tag">Instagram</div>
+        <h3>Story + dauerhaftes Highlight</h3>
+        <ul>
+          <li>Ein festes Highlight "žPapiere Deutschland" mit 3-4 gespeicherten Storys, immer sichtbar auf deinem Profil</li>
+          <li>Teile Fragen aus anderen Gruppen (mit Zustimmung) und antworte Ã¶ffentlich mit dem Link</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Was die Forschung sagt</div>
+    <h2>Warum Empfehlungen jede Werbung schlagen</h2>
+    <p class="big">"žEmpfehlung ist die beste Werbung" ist keine leere Phrase "” das sind echte Zahlen aus seriÃ¶sen Marktstudien.</p>
+    <div class="scenario">
+      <div class="scenario-card"><div class="n">92%</div><div class="cap">der Menschen vertrauen einer Empfehlung von jemandem, den sie kennen, mehr als jeder Werbung (Nielsen, globale Studie)</div></div>
+      <div class="scenario-card"><div class="n">4x</div><div class="cap">wahrscheinlicher kauft jemand, wenn er von einem Freund empfohlen wird, statt das Angebot selbst zu finden</div></div>
+      <div class="scenario-card"><div class="n">80%</div><div class="cap">der VerkÃ¤ufe brauchen mindestens 5 Nachfassaktionen "” nur 2% werden beim ersten Kontakt abgeschlossen. Gib nicht auf nach einem "žantwortet gerade nicht"</div></div>
+    </div>
+    <p class="disclaimer">Die praktische Schlussfolgerung: Du hast bereits den grÃ¶ÃŸtmÃ¶glichen Vorteil "” die Menschen in deinem Umfeld vertrauen dir mehr als jeder Amira-Werbung, die es je geben kÃ¶nnte. Es bleibt nur, nach der ersten unbeantworteten Nachricht nicht aufzugeben.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Verkaufen, nicht drÃ¤ngen</div>
+    <h2>Wie du auf die hÃ¤ufigsten Bedenken reagierst</h2>
+    <p class="big">Ein guter Amira-Partner Ã¼berzeugt niemanden mit Druck "” er lÃ¶st den Einwand, bevor er zum Ablehnungsgrund wird. Hier sind fertige Antworten auf das, was jeder hÃ¶rt.</p>
+    <div class="script-block">
+      <div class="script-title">"žIst das nicht direkt bei der Familienkasse/beim Jobcenter kostenlos?"</div>
+      <div class="bubble">Stimmt, die Einreichung selbst ist kostenlos. Du zahlst nur dafÃ¼r, dass jemand den ganzen Antrag korrekt ausfÃ¼llt und einreicht, damit er nicht aus Versehen abgelehnt wird oder du Monate wegen einer fehlenden Unterlage verlierst. Wenn du es erst selbst versuchen willst, kannst du das jederzeit "” aber viele wollen sich damit nicht mehr rumschlagen.</div>
+      <div class="script-title">"žIch traue mich nicht, persÃ¶nliche Daten an einen WhatsApp-Bot zu geben"</div>
+      <div class="bubble">VÃ¶llig normal, vorsichtig zu sein. Die Daten werden gemÃ¤ÃŸ DSGVO behandelt und nur fÃ¼r deinen Fall verwendet "” du kannst mit einer allgemeinen Frage anfangen, ganz ohne persÃ¶nliche Daten, und selbst sehen, wie geantwortet wird, bevor du entscheidest, ob du weitermachst.</div>
+      <div class="script-title">"žIch brauche das jetzt nicht, vielleicht spÃ¤ter"</div>
+      <div class="bubble">Klar, keine Eile. Ich lass dir die Nummer hier, falls du sie mal brauchst "” und wenn du zwischendurch jemanden kennst, der Probleme mit den Papieren hat, kannst du sie auch weitergeben.</div>
+    </div>
+    <p class="disclaimer">Beachte das Muster: keine Antwort drÃ¤ngt, alle lassen Raum fÃ¼r "žjetzt nicht" "” und alle verwandeln eine Absage in eine offene TÃ¼r fÃ¼r spÃ¤ter.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Kopieren und senden</div>
+    <h2>Fertige Skripte</h2>
+    <div class="script-block">
+      <div class="script-title">FÃ¼r jemanden aus Familie/Freundeskreis</div>
+      <div class="bubble">Hey! Du hast doch gesagt, du weiÃŸt nicht, wie du die Sache mit Kindergeld / BÃ¼rgergeld regeln sollst. Ich hab einen WhatsApp-Service gefunden, Amira Consulting, der dir Schritt fÃ¼r Schritt hilft. Schreibst du selbst hin, oder soll ich deine Nummer weitergeben?</div>
+      <div class="script-title">In einer Facebook-Gruppe (nachdem du eine echte Frage beantwortet hast)</div>
+      <div class="bubble">...kurz gesagt, du hast auch Anspruch auf Kinderzuschlag zusÃ¤tzlich zum Kindergeld, wenn das Einkommen niedrig ist, das wissen viele nicht. Wenn du Hilfe brauchst, den Antrag richtig einzureichen, gibt's einen WhatsApp-Berater (Amira Consulting), der dich kostenlos durch den Prozess fÃ¼hrt "” du zahlst nur, wenn du auch bei AusfÃ¼llen/Einreichen Hilfe willst.</div>
+      <div class="script-title">WhatsApp-Status</div>
+      <div class="bubble">Hast du Ã„rger mit AuslÃ¤nderbehÃ¶rde, Jobcenter oder Familienkasse und weiÃŸt nicht, wo du anfangen sollst? Schreib mir, ich verbinde dich mit jemandem, der dir Schritt fÃ¼r Schritt hilft. 🚀‡©🚀‡ª🚀“‹</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">HÃ¤ufige Fragen</div>
+    <h2>Was du vor dem Start wissen solltest</h2>
+    <div class="faq-item">
+      <h3>Woher weiÃŸ Amira Consulting, dass ich den Kunden gebracht habe?</h3>
+      <p>Die Person, die du empfiehlst, sagt dem Bot beim ersten GesprÃ¤ch, wer sie geschickt hat (Name oder deine Telefonnummer) "” das System verknÃ¼pft dich automatisch mit dieser Empfehlung.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Brauche ich eine Firma oder einen Vertrag fÃ¼r die Provision?</h3>
+      <p>Nein, du brauchst keine Firma, um Amira-Partner zu sein. Die Provision wird Ã¼ber deine Telefonnummer berechnet und nachverfolgt.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Wie lange dauert es, bis die Provision erscheint?</h3>
+      <p>Sobald die von dir empfohlene Person tatsÃ¤chlich einen Service bezahlt, wird die Provision auf deinem Partnerkonto erfasst.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Kann ich auch aus einem anderen Land werben, nicht nur aus Deutschland?</h3>
+      <p>Ja. Sehr viele Menschen mit BehÃ¶rdenanliegen in Deutschland leben tatsÃ¤chlich in einem anderen Land "” das Problem hÃ¤ngt an Deutschland, nicht an deinem Aufenthaltsort.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Was genau bedeutet "žGrÃ¼ndungspartner"?</h3>
+      <p>Die ersten 100 Menschen, die diesen Guide kaufen und als Amira-Partner aktiv werden, erhalten dauerhaft 12% Provision statt 10% "” nicht nur bei der ersten Empfehlung, sondern bei allen, solange du Amira-Partner bist. Eine echte Anerkennung fÃ¼r frÃ¼he Netzwerk-Mitglieder, kein dekorativer Titel.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="cta">
+      <h2>Bereit anzufangen?</h2>
+      <p>Du brauchst keine Website, keine bezahlte Werbung und keine tausend Follower. Du brauchst ein Handy und Menschen in deinem Umfeld, die sowieso Hilfe mit BehÃ¶rdensachen in Deutschland brauchen. Und wenn du zu den ersten 100 gehÃ¶rst, bleibst du dauerhaft bei 12% Provision "” nicht nur 10%.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div>Speichere die WhatsApp-Nummer von Amira Consulting aus den Kaufunterlagen</div>
+        <div class="step"><div class="num">02</div>WÃ¤hle 1-2 KanÃ¤le aus dem Guide und schick die erste Nachricht heute, nicht "žmorgen"</div>
+        <div class="step"><div class="num">03</div>Verfolge deine Provisionen "” jede bezahlte Empfehlung erscheint automatisch auf deiner Nummer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Dieser Guide garantiert kein Einkommen "” die Ergebnisse hÃ¤ngen vom Einsatz und Netzwerk jedes Einzelnen ab. Die Amira-Partner-Provision betrÃ¤gt 10% des Werts der von empfohlenen Personen bezahlten Services. Amira Consulting · RosenstraÃŸe 1, 49610 QuakenbrÃ¼ck.
+</footer>
+
