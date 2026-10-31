@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r \"\\\\.from\\('users'\\)\\\\|\\\\.from\\('ghiduri'\\)\\\\|\\\\.from\\('letters'\\)\\\\|\\\\.from\\('payments'\\)\\\\|\\\\.from\\('webhook_events'\\)\" /c/Users/catab/Desktop/amira-backend-work/src --include=\"*.ts\" | grep -v node_modules)",
+      "Read(//c/Users/catab/Desktop/amira-backend-work/src/**)"
+    ]
+  }
+}

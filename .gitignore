@@ -1,0 +1,178 @@
+# ============================================
+# Environment Variables & Secrets
+# ============================================
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+.env.staging
+*.env
+
+# API Keys & Credentials
+.api-keys
+api-keys/
+credentials.json
+credentials.json.local
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+*.jks
+service-account-key.json
+private-key.json
+oauth.json
+tokens.json
+secrets.json
+config/secrets.json
+
+# Authentication & Session Files
+.auth
+auth/
+sessions/
+.session
+.cookie
+.jwt
+jwt-secret
+
+# AWS & Cloud Provider Credentials
+.aws/
+.awsconfig
+aws-credentials.json
+aws-config.json
+gcp-key.json
+azure-credentials.json
+do-spaces-key.json
+
+# Database Credentials
+.db.password
+.database-credentials
+db-config.local.js
+.mysql.cnf
+.postgres-uri
+
+# API Gateway & Payment Keys
+stripe-key.json
+paypal-config.json
+twilio-config.json
+sendgrid-key.json
+mailgun-key.json
+auth0-config.json
+firebase-config.json
+
+# Third-party Service Keys
+slack-bot-token
+telegram-bot-token
+discord-bot-token
+github-token
+gitlab-token
+bitbucket-token
+
+# SSH & Security
+.ssh/
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+*.pem
+known_hosts
+authorized_keys
+
+# Certificate Files
+certs/
+certificates/
+*.crt
+*.cer
+*.pem
+*.der
+*.p7b
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node
+node_modules/
+dist/
+build/
+.next/
+out/
+.cache/
+
+# IDE & Editor
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+*~
+.env.local.php
+.sublime-project
+.sublime-workspace
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+# Dependencies & Lock Files (optionally ignore)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+npm-shrinkwrap.json
+
+# Testing
+coverage/
+.nyc_output/
+junit.xml
+test-results/
+
+# Build Outputs
+dist/
+build/
+*.tgz
+*.tar.gz
+
+# Temporary Files
+temp/
+tmp/
+.tmp/
+*.tmp
+*~
+.DS_Store
+Thumbs.db
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+desktop.ini
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Environment-specific
+.env.*.local
+.env.*.secret
+local.settings.json
+
+# Backup files
+*.bak
+*.backup
+*~
+*.orig
+
+# IDE Workspace Settings
+.vscode/settings.json
+.vscode/launch.json

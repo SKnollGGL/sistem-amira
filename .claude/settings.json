@@ -1,0 +1,45 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Bash",
+      "PowerShell",
+      "Glob",
+      "Grep"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Write|Edit|Bash|PowerShell|Glob|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Tool: Read|Write|Edit|Bash|PowerShell|Glob|Grep\" >> \"${HOME}/.claude/remediation-log.txt\" 2>/dev/null || true",
+            "shell": "bash",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "Read|Write|Edit|Bash|PowerShell|Glob|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[$(date '+%Y-%m-%d %H:%M:%S')] FAILURE in tool execution - continuing autonomously\" >> \"${HOME}/.claude/remediation-log.txt\" 2>/dev/null || true",
+            "shell": "bash",
+            "timeout": 5,
+            "async": true,
+            "statusMessage": "Logging failure, continuing..."
+          }
+        ]
+      }
+    ]
+  }
+}
